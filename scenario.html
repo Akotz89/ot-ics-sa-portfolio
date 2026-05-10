@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise Scenario — USACE Columbia River Hydropower</title>
+  <link rel="stylesheet" href="discovery/style.css">
+  <style>
+    .scenario-banner { background: linear-gradient(135deg, #0a2540 0%, #1a3a5c 100%); color: #fff; padding: 32px 48px; border-left: 5px solid #f9ab00; margin-bottom: 32px; }
+    .scenario-banner h2 { color: #f9ab00; border: none; margin: 0 0 8px; padding: 0; }
+    .scenario-banner p { color: rgba(255,255,255,.75); margin: 0; font-size: 14px; }
+    .timeline { position: relative; padding-left: 32px; margin: 24px 0; }
+    .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--gray-300); }
+    .timeline .event { position: relative; margin-bottom: 20px; }
+    .timeline .event::before { content: ''; position: absolute; left: -28px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--dragos-accent); border: 2px solid #fff; }
+    .timeline .event.alert::before { background: var(--dragos-red); }
+    .timeline .event .date { font-size: 12px; font-weight: 600; color: var(--dragos-accent); text-transform: uppercase; }
+    .timeline .event.alert .date { color: var(--dragos-red); }
+    .timeline .event .desc { font-size: 14px; color: var(--gray-900); }
+    .persona-card { border: 1px solid var(--gray-200); border-radius: 8px; padding: 16px 20px; margin-bottom: 12px; }
+    .persona-card .name { font-weight: 700; font-size: 15px; color: var(--dragos-blue); }
+    .persona-card .title { font-size: 13px; color: var(--gray-700); margin-bottom: 8px; }
+    .persona-card .detail { font-size: 13px; color: var(--gray-900); line-height: 1.5; }
+    .site-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+    .site-card { border: 1px solid var(--gray-200); border-radius: 8px; padding: 16px 20px; }
+    .site-card h4 { margin: 0 0 8px; color: var(--dragos-blue); }
+    .site-card .stat { font-size: 13px; color: var(--gray-700); line-height: 1.6; }
+    .callout { background: #fff3cd; border-left: 4px solid var(--dragos-amber); padding: 12px 16px; margin: 16px 0; font-size: 13px; }
+  </style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="logo-area"><span class="dot"></span> SA Work Product Exercise</div>
+  <h1>Scenario Brief</h1>
+  <p class="subtitle">USACE Columbia River Hydropower — OT Cybersecurity Program<br>A realistic federal engagement scenario for SA portfolio development</p>
+  <div class="meta-grid">
+    <div class="meta-item"><label>Purpose</label><span>Provide consistent context for all work products across all 7 sales cycle stages</span></div>
+    <div class="meta-item"><label>Based On</label><span>Real USACE infrastructure, Dragos YIR statistics, actual federal procurement paths</span></div>
+    <div class="meta-item"><label>Created</label><span>May 2026</span></div>
+    <div class="meta-item"><label>Classification</label><span>EXERCISE — Not a real engagement</span></div>
+  </div>
+  <div class="classification">Exercise Scenario — All entities, names, and findings are fictional</div>
+</div>
+
+<div class="page">
+
+<div class="scenario-banner">
+  <h2>⚡ Why This Scenario</h2>
+  <p>This scenario is designed to exercise every skill a Dragos Federal SA needs: federal procurement, DoD stakeholders, multi-site OT architecture, mixed vendor environments, compliance mandates, and a real threat actor driving urgency. Every work product in this portfolio references this single scenario for consistency.</p>
+</div>
+
+<!-- ═══════════════ THE CUSTOMER ═══════════════ -->
+<h2>The Customer</h2>
+
+<table>
+  <tr><th style="width:200px">Field</th><th>Detail</th></tr>
+  <tr><td>Organization</td><td><strong>U.S. Army Corps of Engineers (USACE)</strong> — Northwestern Division (NWD)</td></tr>
+  <tr><td>Mission</td><td>Operates 21 hydroelectric dams across the Columbia and Willamette River basins (OR, WA, ID, MT). Generates over 22,000 GWh/year — part of the Federal Columbia River Power System that provides roughly 40% of all U.S. hydroelectric power.</td></tr>
+  <tr><td>Sector</td><td>Federal — DoD (Civil Works) / Energy / Water</td></tr>
+  <tr><td>Scope</td><td>Initial engagement: <strong>4 dams</strong>. Success → expansion to all 21 NWD dams.</td></tr>
+  <tr><td>Annual OT Budget</td><td>~$2M (cybersecurity portion of SCADA modernization program)</td></tr>
+  <tr><td>Existing Relationship</td><td>None with Dragos. CrowdStrike and Splunk on IT side. Dr. Torres attended S4 Conference and heard Robert M. Lee present.</td></tr>
+</table>
+
+<!-- ═══════════════ THE SITES ═══════════════ -->
+<h2>The Sites</h2>
+
+<div class="site-grid">
+  <div class="site-card">
+    <h4>🏭 Bonneville Dam — OR</h4>
+    <div class="stat">
+      <strong>Commissioned:</strong> 1938 (first powerhouse; second powerhouse 1981)<br>
+      <strong>Capacity:</strong> 1,080 MW nameplate / 1,242 MW overload (20 generating units across two powerhouses)<br>
+      <strong>Control System:</strong> GE Mark VIe Turbine Controls<br>
+      <strong>HMI:</strong> GE iFIX 6.1 (8 operator stations)<br>
+      <strong>Historian:</strong> OSIsoft PI<br>
+      <strong>Safety:</strong> Woodward Load Sharing<br>
+      <strong>Network:</strong> Cisco IE-4010 (SPAN capable)<br>
+      <strong>Role:</strong> Primary PoC site — largest, most complex
+    </div>
+  </div>
+  <div class="site-card">
+    <h4>🏭 The Dalles Dam — OR</h4>
+    <div class="stat">
+      <strong>Commissioned:</strong> 1957 (Phase I, 14 units); 1973 (Phase II, 8 units)<br>
+      <strong>Capacity:</strong> 1,820 MW nameplate / 2,160 MW overload (22 generating units)<br>
+      <strong>Control System:</strong> Emerson Ovation DCS<br>
+      <strong>HMI:</strong> Emerson OvationView<br>
+      <strong>Historian:</strong> OSIsoft PI<br>
+      <strong>Safety:</strong> Legacy relay protection (no digital monitoring)<br>
+      <strong>Network:</strong> Cisco IE-3400 (SPAN capable)<br>
+      <strong>Risk:</strong> Legacy relays vulnerable to Industroyer-style attacks
+    </div>
+  </div>
+  <div class="site-card">
+    <h4>🏭 John Day Dam — OR</h4>
+    <div class="stat">
+      <strong>Commissioned:</strong> 1968 (first power); completed 1971<br>
+      <strong>Capacity:</strong> 2,160 MW (16 generating units)<br>
+      <strong>Control System:</strong> Allen-Bradley ControlLogix L83<br>
+      <strong>HMI:</strong> FactoryTalk View SE (6 stations)<br>
+      <strong>Historian:</strong> Wonderware Historian<br>
+      <strong>Safety:</strong> None identified<br>
+      <strong>Network:</strong> HP ProCurve 2920 (limited SPAN — TAP needed)<br>
+      <strong>Risk:</strong> ControlLogix firmware CVE-2023-XXXX (RCE, unpatched)
+    </div>
+  </div>
+  <div class="site-card">
+    <h4>🏭 McNary Dam — OR/WA</h4>
+    <div class="stat">
+      <strong>Commissioned:</strong> 1953 (first power); expanded 1957<br>
+      <strong>Capacity:</strong> 980 MW (14 generating units)<br>
+      <strong>Control System:</strong> Siemens S7-400 PLCs<br>
+      <strong>HMI:</strong> WinCC 7.5 (4 stations)<br>
+      <strong>Historian:</strong> None (manual logs only)<br>
+      <strong>Safety:</strong> None identified<br>
+      <strong>Network:</strong> Unmanaged Moxa switches (no SPAN — TAP required)<br>
+      <strong>Risk:</strong> Least visibility, most legacy infrastructure
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ THE PEOPLE ═══════════════ -->
+<h2>The People</h2>
+
+<h3>Customer Side</h3>
+
+<div class="persona-card">
+  <div class="name">COL James Harding</div>
+  <div class="title">District Commander, Portland District</div>
+  <div class="detail">Executive sponsor. Army O-6. Cares about mission readiness and compliance. Won't read a 40-page report — needs the 1-page executive summary. Controls the budget approval. You brief him in 5 minutes or less.</div>
+</div>
+
+<div class="persona-card">
+  <div class="name">Dr. Rebecca Torres</div>
+  <div class="title">Chief, Cybersecurity Division (NWD)</div>
+  <div class="detail">Your primary technical champion. PhD in CS, former NSA. Understands IT security deeply but openly admits OT is new territory. She's the one who went to S4, heard Rob Lee, and initiated this engagement. She'll evaluate technical depth. She's also under pressure from the DoD CIO mandate — needs a win by Sep 30.</div>
+</div>
+
+<div class="persona-card">
+  <div class="name">Mike Osterman</div>
+  <div class="title">SCADA Program Manager, Hydropower</div>
+  <div class="detail">30-year USACE veteran. Knows every turbine personally. Deeply skeptical of "IT security people touching his network." His nightmare: a security tool causes a turbine trip and shuts down power generation on the Columbia River. You win Mike, you win the deal. You lose Mike, nothing else matters.</div>
+</div>
+
+<div class="persona-card">
+  <div class="name">Jennifer Walsh</div>
+  <div class="title">Contracting Officer, USACE CERL</div>
+  <div class="detail">Controls the procurement process. Needs clean SOW, compliant contract vehicle (SEWP VI — successor to SEWP V as of May 2026), and justified sole-source or competitive documentation. She doesn't care about your technology — she cares about FAR compliance and obligation deadlines.</div>
+</div>
+
+<div class="persona-card">
+  <div class="name">TSgt Brian Knox</div>
+  <div class="title">OT Network Administrator</div>
+  <div class="detail">Your hands-on evaluator. Former Air Force comm. Manages the switches, configures the SPAN ports, will physically rack your sensors. If the PoC goes well, it's because Brian made it work. Treat him as a peer — he's the one who told you "we tried Tenable on the OT network once — it crashed two HMIs."</div>
+</div>
+
+<h3>Dragos Side</h3>
+
+<div class="persona-card">
+  <div class="name">Aaron Kotz</div>
+  <div class="title">Senior Solutions Architect (Federal)</div>
+  <div class="detail">You. Own the technical evaluation. Produce the discovery doc, architecture, demo, PoC, and RFP response. Partner with the AE on deal strategy. Your TS clearance and DoD background give you credibility with COL Harding and TSgt Knox that a civilian SA wouldn't have.</div>
+</div>
+
+<div class="persona-card">
+  <div class="name">[Account Executive]</div>
+  <div class="title">Account Executive, Dragos Public Sector</div>
+  <div class="detail">Owns the relationship and the quota. You own the technology. They handle pricing, negotiation, and Carahsoft coordination. You never quote pricing directly — that goes through AE → Deal Desk.</div>
+</div>
+
+<!-- ═══════════════ THE TIMELINE ═══════════════ -->
+<h2>The Timeline — How This Deal Unfolds</h2>
+
+<div class="timeline">
+  <div class="event alert">
+    <div class="date">Feb 2024 — Trigger Event</div>
+    <div class="desc">CISA publishes Advisory AA24-038A warning about PRC state-sponsored actors (Volt Typhoon / tracked by Dragos as VOLTZITE) pre-positioning in U.S. critical infrastructure, including energy and water systems.</div>
+  </div>
+  <div class="event alert">
+    <div class="date">Nov 2025 — Incident</div>
+    <div class="desc">Unauthorized laptop found connected to SCADA network at Bonneville Dam. Discovered by an operator visually — no technical detection. No evidence of intrusion, but no way to confirm either.</div>
+  </div>
+  <div class="event">
+    <div class="date">Jan 2026 — Mandate</div>
+    <div class="desc">DoD CIO issues memo requiring OT cybersecurity assessments for all Civil Works facilities by end of FY2026 (Sep 30, 2026).</div>
+  </div>
+  <div class="event">
+    <div class="date">Feb 2026 — S4x26 Conference (Miami Beach)</div>
+    <div class="desc">Dr. Torres attends S4x26 Conference (Feb 23–26). Hears Robert M. Lee present on OT threat landscape. Visits Dragos booth and POC Pavilion demo. Contacts Dragos through the website afterward.</div>
+  </div>
+  <div class="event">
+    <div class="date">Apr 2026 — Initial Contact</div>
+    <div class="desc">Dragos AE reaches out. NDA executed April 30. First intro call scheduled.</div>
+  </div>
+  <div class="event">
+    <div class="date">May 15 — Discovery Call</div>
+    <div class="desc"><strong>You run the 90-minute technical discovery session.</strong> → Discovery Document produced.</div>
+  </div>
+  <div class="event">
+    <div class="date">May 30 — Solution Design</div>
+    <div class="desc">Solution Architecture Document + Bill of Materials delivered to customer.</div>
+  </div>
+  <div class="event">
+    <div class="date">Jun 9 — Demo</div>
+    <div class="desc">90-minute tailored demo for Dr. Torres, Mike Osterman, TSgt Knox, and 5 OT engineers.</div>
+  </div>
+  <div class="event">
+    <div class="date">Jun 16–Jul 16 — PoC</div>
+    <div class="desc">30-day Proof of Value at Bonneville Dam. 2 sensors deployed (L3 SPAN + L2 TAP).</div>
+  </div>
+  <div class="event">
+    <div class="date">Jul 22 — PoC Readout</div>
+    <div class="desc">Findings presentation to Dr. Torres, Mike Osterman, COL Harding. Data-driven results.</div>
+  </div>
+  <div class="event">
+    <div class="date">Aug 5 — Technical Win</div>
+    <div class="desc">USACE Architecture Review Board endorses Dragos. Technical win achieved.</div>
+  </div>
+  <div class="event">
+    <div class="date">Sep 15 — Contract Award</div>
+    <div class="desc">FFP contract via NASA SEWP VI (Carahsoft). $780K Year 1. FY26 funds obligated.</div>
+  </div>
+  <div class="event">
+    <div class="date">Dec 2026 — First Site Live</div>
+    <div class="desc">Bonneville Dam fully operational. 247 assets discovered, 83 previously unknown.</div>
+  </div>
+  <div class="event">
+    <div class="date">Mar 2027 — All Sites Live</div>
+    <div class="desc">All 4 dams operational. CentralStore providing unified visibility at NWD HQ.</div>
+  </div>
+</div>
+
+<!-- ═══════════════ THE THREAT ═══════════════ -->
+<h2>The Threat — Why This Is Urgent</h2>
+
+<table>
+  <tr><th style="width:160px">Threat Group</th><th>Relevance</th></tr>
+  <tr><td><span class="sev-crit">VOLTZITE</span></td><td>Stage 2 group (PRC-linked, overlaps with Volt Typhoon) targeting U.S. electric grid, pipelines, and water systems. Manipulates engineering workstation software to extract config files. CISA advisory AA24-038A covers the PRC pre-positioning campaign; Dragos elevated VOLTZITE to Stage 2 in 2025. <strong>This is the threat driving the deal.</strong></td></tr>
+  <tr><td><span class="sev-crit">CHERNOVITE</span></td><td>Developed PIPEDREAM/INCONTROLLER — ICS-specific malware that can target industrial controllers. Relevant because USACE runs PLCs from multiple vendors.</td></tr>
+  <tr><td><span class="sev-high">ELECTRUM</span></td><td>Connected to Industroyer malware that targeted electric grid in Ukraine. Relevant to The Dalles Dam's legacy relay protection systems.</td></tr>
+  <tr><td><span class="sev-high">SYLVANITE</span></td><td>Access broker that weaponizes VPN/edge device vulnerabilities. Relevant because USACE uses VPN for remote OT access with no MFA.</td></tr>
+</table>
+
+<!-- ═══════════════ KEY CONSTRAINTS ═══════════════ -->
+<h2>Key Constraints &amp; Rules of Engagement</h2>
+
+<div class="callout">
+  <strong>⚠ Non-Negotiable:</strong> No active scanning. No agents on PLCs. Passive monitoring ONLY. A turbine trip caused by a security tool is a career-ending event for everyone involved.
+</div>
+
+<table>
+  <tr><th>Constraint</th><th>Detail</th></tr>
+  <tr><td>Availability Priority</td><td>OT uptime > everything else. These dams provide power to millions. You do NOT disrupt operations.</td></tr>
+  <tr><td>Change Control</td><td>Any network change (SPAN config, TAP install) requires a 4-week change control process.</td></tr>
+  <tr><td>Passive Only</td><td>Customer burned by Tenable crashing HMIs. They will reject any solution that sends packets into the OT network.</td></tr>
+  <tr><td>CUI Handling</td><td>All documents are CUI // FOUO. No cloud storage. No emailing findings over unencrypted channels.</td></tr>
+  <tr><td>STIG Compliance</td><td>Any hardware deployed must be STIG-hardened. Customer ISSM will validate.</td></tr>
+  <tr><td>Fiscal Year</td><td>Funds expire Sep 30, 2026. If contract isn't awarded by then, deal dies and restarts in FY27.</td></tr>
+  <tr><td>Expansion Potential</td><td>Success at 4 dams = expansion to 21 dams ($3M+ follow-on). This is a land-and-expand play.</td></tr>
+</table>
+
+<!-- ═══════════════ WORK PRODUCTS ═══════════════ -->
+<h2>Work Products Produced From This Scenario</h2>
+
+<table>
+  <tr><th>Stage</th><th>Document</th><th>Status</th></tr>
+  <tr><td>1. Discovery</td><td>Technical Discovery Document</td><td><span class="check">✓ Complete</span></td></tr>
+  <tr><td>2. Solution Design</td><td>Architecture Document + Bill of Materials</td><td>Pending</td></tr>
+  <tr><td>3. Demo</td><td>Demo Agenda + Tailored Script</td><td>Pending</td></tr>
+  <tr><td>4. PoC</td><td>Proof of Value Findings Report</td><td>Pending</td></tr>
+  <tr><td>5. RFP Response</td><td>Technical Volume + Requirements Matrix</td><td>Pending</td></tr>
+  <tr><td>6. Technical Win</td><td>Architecture Review Board Brief</td><td>Pending</td></tr>
+  <tr><td>7. Post-Sales</td><td>Quarterly Business Review</td><td>Pending</td></tr>
+</table>
+
+<div class="doc-footer">
+  <span>Exercise Scenario — Not a real engagement</span>
+  <span>USACE Columbia River Hydropower — v1.0</span>
+</div>
+
+</div>
+</body>
+</html>

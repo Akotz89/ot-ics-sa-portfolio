@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aaron Kotz — Federal SA Technical Readiness</title>
+<style>
+  /* ═══════════════════════════════════════════════════════════════
+     PRINT-OPTIMIZED DOCUMENT STYLES
+     Target: Chrome Print → Save as PDF
+     ═══════════════════════════════════════════════════════════════ */
+
+  @page {
+    size: letter;
+    margin: 0.75in 0.85in;
+  }
+
+  :root {
+    --navy: #0a1628;
+    --navy-light: #1a2a4a;
+    --steel: #2c5282;
+    --steel-light: #4a7ab5;
+    --accent: #e53e3e;
+    --accent-soft: #fc8181;
+    --text: #1a202c;
+    --text-muted: #4a5568;
+    --text-light: #718096;
+    --bg: #ffffff;
+    --bg-alt: #f7fafc;
+    --border: #e2e8f0;
+    --border-dark: #cbd5e0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: var(--text);
+    background: var(--bg);
+  }
+
+  /* ── Typography ─────────────────────────────── */
+  h1 { font-size: 26pt; font-weight: 700; color: var(--navy); letter-spacing: -0.5px; }
+  h2 { font-size: 16pt; font-weight: 700; color: var(--navy); margin-bottom: 8pt; border-bottom: 2px solid var(--steel); padding-bottom: 4pt; }
+  h3 { font-size: 12pt; font-weight: 600; color: var(--steel); margin-bottom: 6pt; margin-top: 12pt; }
+  h4 { font-size: 10.5pt; font-weight: 600; color: var(--navy-light); margin-bottom: 4pt; }
+  p { margin-bottom: 8pt; }
+  strong { color: var(--navy); }
+
+  /* ── Page Break Control ─────────────────────── */
+  .page-break { page-break-before: always; }
+  .no-break { page-break-inside: avoid; }
+  h2, h3 { page-break-after: avoid; }
+
+  /* ── Cover Page ─────────────────────────────── */
+  .cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 2in 0.5in;
+  }
+  .cover-logo {
+    font-size: 11pt;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 24pt;
+  }
+  .cover h1 {
+    font-size: 30pt;
+    margin-bottom: 8pt;
+    line-height: 1.2;
+  }
+  .cover .subtitle {
+    font-size: 14pt;
+    color: var(--steel);
+    font-weight: 400;
+    margin-bottom: 32pt;
+  }
+  .cover .meta-line {
+    font-size: 10pt;
+    color: var(--text-muted);
+    margin-bottom: 4pt;
+  }
+  .cover .clearance-badge {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    padding: 6pt 24pt;
+    border-radius: 3pt;
+    font-size: 9pt;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 16pt;
+    max-width: max-content;
+    align-self: center;
+  }
+  .cover-rule {
+    width: 80px;
+    height: 3px;
+    background: var(--steel);
+    margin: 20pt auto;
+  }
+
+  /* ── Section Styling ────────────────────────── */
+  .section { margin-bottom: 24pt; }
+
+  /* ── Tables ─────────────────────────────────── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10pt 0 16pt;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+  }
+  th {
+    background: var(--navy);
+    color: #fff;
+    padding: 6pt 8pt;
+    text-align: left;
+    font-weight: 600;
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 5pt 8pt;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: var(--bg-alt); }
+
+  /* ── Callout Boxes ──────────────────────────── */
+  .callout {
+    background: var(--bg-alt);
+    border-left: 3px solid var(--steel);
+    padding: 10pt 14pt;
+    margin: 10pt 0 14pt;
+    font-size: 10pt;
+    page-break-inside: avoid;
+  }
+  .callout-accent {
+    border-left-color: var(--accent);
+    background: #fff5f5;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ── Quote/Bridge Statement ─────────────────── */
+  blockquote {
+    border-left: 3px solid var(--steel-light);
+    padding: 8pt 14pt;
+    margin: 10pt 0;
+    font-style: italic;
+    color: var(--text-muted);
+    background: var(--bg-alt);
+    page-break-inside: avoid;
+  }
+
+  /* ── Figures ────────────────────────────────── */
+  figure {
+    margin: 14pt 0;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+  figure img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: 3pt;
+  }
+  figcaption {
+    font-size: 8.5pt;
+    color: var(--text-light);
+    margin-top: 4pt;
+    font-style: italic;
+  }
+
+  /* ── Cards Grid ─────────────────────────────── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10pt;
+    margin: 10pt 0 16pt;
+  }
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 4pt;
+    padding: 10pt 12pt;
+    page-break-inside: avoid;
+  }
+  .card h4 {
+    color: var(--steel);
+    margin-bottom: 4pt;
+    font-size: 10pt;
+  }
+  .card p { font-size: 9.5pt; margin-bottom: 0; }
+
+  /* ── Stage Flow ─────────────────────────────── */
+  .stage-flow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8pt;
+    margin: 10pt 0 16pt;
+  }
+  .stage {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--steel);
+    border-radius: 3pt;
+    padding: 8pt 10pt;
+    page-break-inside: avoid;
+  }
+  .stage-number {
+    font-size: 8pt;
+    font-weight: 700;
+    color: var(--steel);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2pt;
+  }
+  .stage h4 { font-size: 9.5pt; color: var(--navy); margin-bottom: 3pt; }
+  .stage p { font-size: 8.5pt; color: var(--text-muted); margin-bottom: 0; }
+
+  /* ── Lists ──────────────────────────────────── */
+  ul, ol { margin-left: 18pt; margin-bottom: 8pt; }
+  li { margin-bottom: 3pt; }
+
+  /* ── Footer ─────────────────────────────────── */
+  .doc-footer {
+    margin-top: 32pt;
+    padding-top: 10pt;
+    border-top: 1px solid var(--border);
+    font-size: 8pt;
+    color: var(--text-light);
+    text-align: center;
+  }
+
+  /* ── Inline Badge ───────────────────────────── */
+  .badge {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    padding: 1pt 6pt;
+    border-radius: 2pt;
+    font-size: 7.5pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+  }
+  .badge-red { background: var(--accent); }
+  .badge-blue { background: var(--steel); }
+
+  /* ── Two-Column Layout ──────────────────────── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16pt;
+  }
+
+  @media print {
+    body { font-size: 10pt; }
+    .cover { min-height: auto; padding: 2.5in 0.5in; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     COVER PAGE
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-logo">Technical Readiness Document</div>
+  <h1>Federal Solution Architect</h1>
+  <div class="subtitle">Pre-Sales Technical Competency & POC Methodology</div>
+  <div class="cover-rule"></div>
+  <div class="meta-line"><strong>Aaron Kotz</strong></div>
+  <div class="meta-line">Senior Pre-Sales Solution Architect Candidate</div>
+  <div class="meta-line">6 Years Federal Mission Systems · 13+ ANG Sites · DoD Cybersecurity Operations</div>
+  <div class="clearance-badge">TS/SCI Cleared</div>
+  <div style="margin-top: 32pt;">
+    <div class="meta-line" style="color: var(--text-light); font-size: 9pt;">
+      Prepared for Dragos, Inc. — Public Sector Team<br>
+      May 2026
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 1: EXECUTIVE SUMMARY
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break section">
+  <h2>1. Executive Summary</h2>
+
+  <p>This document demonstrates my understanding of the Solution Architect pre-sales motion, the OT/ICS cybersecurity landscape, the Dragos product portfolio, and how I would execute a federal proof-of-concept engagement. It is designed to complement my resume and provide the hiring team with a clear view of my technical readiness for the Senior Pre-Sales Solution Architect (Federal) role.</p>
+
+  <div class="callout">
+    <p><strong>My core value proposition:</strong> I've spent the last 6 years as the person Dragos is trying to sell to — running classified mission networks, managing vulnerability programs, enforcing STIGs, and coordinating security across 13 federal sites. I want to bring that perspective to the other side of the table because I know what these customers need, I speak their language, and I can help them see how Dragos solves problems I've personally experienced.</p>
+  </div>
+
+  <h3>What I Bring From Day One</h3>
+  <div class="card-grid">
+    <div class="card">
+      <h4>Federal Mission Credibility</h4>
+      <p>Active TS/SCI clearance. 6 years operating classified mission systems across 13+ Air National Guard sites. I earn trust in 5 minutes because I speak the customer's language — STIGs, ATOs, ACAS, RMF, Purdue zones, SCADA boundaries, and SOC operations.</p>
+    </div>
+    <div class="card">
+      <h4>Architecture That Maps to OT</h4>
+      <p>My environment has four security zones, two hard DMZ boundaries, and isolated circuits — the same segmented, availability-first architecture Dragos deploys into for ICS customers. I live in the Purdue Model.</p>
+    </div>
+    <div class="card">
+      <h4>Technical Depth for Pre-Sales</h4>
+      <p>Cisco/Juniper firewalls, OpenShift, VMware, SIEM deployment, vulnerability scanning, multi-VLAN networks, Linux CLI, real-time sensor data processing. I can whiteboard a deployment architecture from experience.</p>
+    </div>
+    <div class="card">
+      <h4>Stakeholder Communication</h4>
+      <p>I brief military leadership on risk posture, present monthly status across 13 sites, deliver a 9-block technical training curriculum, and mentor ISSOs on compliance. Translating complex technical content for decision-makers is my daily job.</p>
+    </div>
+  </div>
+
+  <h3>How This Document is Organized</h3>
+  <table>
+    <tr><th>Section</th><th>What It Demonstrates</th><th>Job Posting Alignment</th></tr>
+    <tr><td><strong>2. SA Presales Motion</strong></td><td>Understanding of the go-to-market motion and where the SA fits</td><td>"Engage in pre- and post-sales processes"</td></tr>
+    <tr><td><strong>3. Industry Landscape</strong></td><td>OT/ICS threat landscape awareness and regulatory drivers</td><td>"Familiarity with the ICS/OT discipline"</td></tr>
+    <tr><td><strong>4. Dragos Platform</strong></td><td>Product architecture, deployment model, and portfolio depth</td><td>"Conduct tailored product demonstrations"</td></tr>
+    <tr><td><strong>5. POC Methodology</strong></td><td>How I would execute a federal proof-of-concept</td><td>"Execute proof-of-concept deployments"</td></tr>
+    <tr><td><strong>6. Architecture Bridge</strong></td><td>Direct mapping of my environment to OT/ICS</td><td>"Strong foundation in networking and systems"</td></tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 2: THE SA PRESALES MOTION
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break section">
+  <h2>2. The SA Pre-Sales Motion</h2>
+
+  <p>The Solution Architect is the technical engine of the sales cycle. While the Account Manager owns the relationship and pipeline, the SA owns technical credibility — from first conversation through deployment design. Here is how I understand the 6-stage motion and where my experience maps at each stage.</p>
+
+  <div class="stage-flow">
+    <div class="stage">
+      <div class="stage-number">Stage 1</div>
+      <h4>Get the Meeting</h4>
+      <p>AM identifies the prospect — DOE, DHS, DoD. The SA prepares by researching the customer's infrastructure and compliance posture.</p>
+    </div>
+    <div class="stage">
+      <div class="stage-number">Stage 2</div>
+      <h4>Earn Trust in 5 Minutes</h4>
+      <p>The customer's technical team has seen 50 vendor pitches. The SA earns trust by demonstrating real operational experience in their environment.</p>
+    </div>
+    <div class="stage">
+      <div class="stage-number">Stage 3</div>
+      <h4>Listen to Their Pain</h4>
+      <p>The SA diagnoses problems through discovery — asking the right questions about segmentation, visibility, logging, and compliance gaps.</p>
+    </div>
+    <div class="stage">
+      <div class="stage-number">Stage 4</div>
+      <h4>Demo the Solution</h4>
+      <p>Map Dragos capabilities to the specific pain points identified. Show the 3 features that solve their problem, not every feature in the platform.</p>
+    </div>
+    <div class="stage">
+      <div class="stage-number">Stage 5</div>
+      <h4>Design the Deployment</h4>
+      <p>Architect where sensors, SiteStore, and CentralStore fit in the customer's network. Address STIG, ATO, and cross-domain constraints.</p>
+    </div>
+    <div class="stage">
+      <div class="stage-number">Stage 6</div>
+      <h4>Win the Deal</h4>
+      <p>Support the AM with technical sections of the proposal, RFP/RFI responses, SOW development, and POC execution.</p>
+    </div>
+  </div>
+
+  <h3>How My Experience Maps to Each Stage</h3>
+  <table>
+    <tr><th>Stage</th><th>What the SA Does</th><th>My Direct Experience</th></tr>
+    <tr>
+      <td><strong>Earn Trust</strong></td>
+      <td>Prove you've operated in their world — classified networks, compliance pressure, real consequences</td>
+      <td>TS/SCI cleared. I operate across JWICS, SIPRNet, and unclassified enclaves daily. I enforce STIGs, run ACAS scans, manage ATOs, and coordinate security across 13 federal sites. When I say "I understand your environment" — I mean I've built, secured, and defended one.</td>
+    </tr>
+    <tr>
+      <td><strong>Listen</strong></td>
+      <td>Diagnose the real problem through the right discovery questions</td>
+      <td>I built the network documentation for my environment from scratch — VLANs, firewall rules, data flows, VM inventories — because none of it existed. I know exactly what "we don't have visibility" means because I've lived it and fixed it.</td>
+    </tr>
+    <tr>
+      <td><strong>Demo</strong></td>
+      <td>Map platform capabilities to the customer's specific pain, not a generic feature walk</td>
+      <td>I present risk posture and architecture decisions to military leadership, deliver technical training to operators, and translate multi-tier firewall and SIEM configurations into executive-level recommendations. I adjust depth to the audience in real time.</td>
+    </tr>
+    <tr>
+      <td><strong>Design</strong></td>
+      <td>Architect where sensors, SiteStore, and CentralStore fit in the customer's segmented network</td>
+      <td>I deployed a 20+ VM platform across dual-tier firewalls, load balancers, and 14 protocol translators — then integrated it with SIEM and vulnerability scanning. I know how to place monitoring at the right points in a segmented, availability-first architecture.</td>
+    </tr>
+    <tr>
+      <td><strong>Win</strong></td>
+      <td>Support proposals, RFP responses, and POC execution through the federal procurement process</td>
+      <td>I work under FAR-governed DoD contracts, have authored technical documentation for 10 IT programs, and coordinate multi-site deployments with federal stakeholders. I know the procurement cadence, the approval chains, and the paperwork.</td>
+    </tr>
+  </table>
+
+  <div class="callout">
+    <p><strong>The Trust Advantage:</strong> "Before we get into the demo, let me give you context — I'm coming from the DoD mission systems side. I've been the site lead running classified infrastructure, managing STIG enforcement, syslog collection, multi-vendor firewalls, and real-time sensor data across 13 ANG sites. I understand your environment because I've operated in it."</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 3: INDUSTRY & THREAT LANDSCAPE
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break section">
+  <h2>3. OT/ICS Industry & Threat Landscape</h2>
+
+  <p>Understanding the OT/ICS threat landscape is foundational to the SA role. Federal customers are not buying cybersecurity products — they are defending national critical infrastructure against state-sponsored adversaries who have demonstrated the capability and intent to disrupt physical processes.</p>
+
+  <h3>The ICS Cyber Kill Chain</h3>
+  <div class="two-col">
+    <div class="card">
+      <h4><span class="badge">Stage 1</span> IT Network Compromise</h4>
+      <p>Adversary gains initial access through the enterprise network — phishing, supply chain, VPN exploitation, internet-facing assets. Goal: establish foothold and move laterally toward the OT/ICS boundary. This stage mirrors traditional enterprise intrusions.</p>
+    </div>
+    <div class="card">
+      <h4><span class="badge badge-red">Stage 2</span> ICS Attack</h4>
+      <p>Adversary crosses the IT/OT boundary and develops the capability to interact with, disrupt, or destroy the physical process. This requires ICS-specific knowledge: understanding control logic, process dynamics, and safety systems. This is where OT-native detection is essential.</p>
+    </div>
+  </div>
+
+  <h3>Key OT Threat Groups (Dragos-Tracked)</h3>
+  <table>
+    <tr><th>Group</th><th>Target Sectors</th><th>Capability</th><th>Significance</th></tr>
+    <tr>
+      <td><strong>CHERNOVITE</strong></td>
+      <td>Electric, Oil & Gas, Water</td>
+      <td><span class="badge badge-red">Stage 2 ICS</span></td>
+      <td>Developed PIPEDREAM/INCONTROLLER — first cross-industry ICS attack framework targeting safety controllers. Capable of manipulating Schneider, Omron PLCs and OPC UA servers.</td>
+    </tr>
+    <tr>
+      <td><strong>VOLTZITE</strong></td>
+      <td>Electric, Telecom, Defense Industrial Base</td>
+      <td><span class="badge">Stage 1</span></td>
+      <td>PRC-linked group conducting sustained reconnaissance of US electric utilities. Focused on GIS data, OT network diagrams, and SCADA access. Pre-positioning for future disruption.</td>
+    </tr>
+    <tr>
+      <td><strong>BENTONITE</strong></td>
+      <td>Oil & Gas, Electric</td>
+      <td><span class="badge">Stage 1</span></td>
+      <td>Demonstrated pivot from IT to OT networks. Exploiting internet-facing ICS assets. Linked to Middle East tensions.</td>
+    </tr>
+    <tr>
+      <td><strong>GRAPHITE</strong></td>
+      <td>Energy, Government</td>
+      <td><span class="badge">Stage 1</span></td>
+      <td>Russian-nexus group targeting Ukrainian and Eastern European energy infrastructure. Demonstrates state-sponsored ICS reconnaissance patterns.</td>
+    </tr>
+  </table>
+
+  <h3>2025-2026 Landscape Trends</h3>
+  <div class="card-grid">
+    <div class="card">
+      <h4>Ecosystem-Based Targeting</h4>
+      <p>Adversaries no longer target single facilities. They map entire ecosystems — supply chains, shared protocols, common vendors — to develop scalable attack capabilities that work across sectors.</p>
+    </div>
+    <div class="card">
+      <h4>Edge Device Exploitation</h4>
+      <p>Routers, firewalls, and VPN concentrators at OT network boundaries are increasingly targeted. CISA BOD 25-01 mandates federal agencies replace at-risk end-of-life edge devices.</p>
+    </div>
+    <div class="card">
+      <h4>Ransomware Impact on OT</h4>
+      <p>Dragos tracked 60%+ increase in ransomware incidents impacting industrial organizations in 2024. Even when ransomware doesn't touch OT directly, it forces operational shutdowns.</p>
+    </div>
+    <div class="card">
+      <h4>Federal Regulatory Acceleration</h4>
+      <p>NIST SP 800-82r3, CISA CI Fortify initiative, NSA/CISA OT asset inventory guidance, and new CIRCIA reporting requirements are driving federal OT security investment.</p>
+    </div>
+  </div>
+
+  <h3>SANS 5 Critical Controls for ICS → Dragos Alignment</h3>
+  <table>
+    <tr><th>SANS Control</th><th>Purpose</th><th>Dragos Capability</th></tr>
+    <tr>
+      <td><strong>1. ICS Incident Response</strong></td>
+      <td>Plan and practice OT-specific IR</td>
+      <td>Dragos Services: IR retainer, tabletop exercises, Architecture Assessment</td>
+    </tr>
+    <tr>
+      <td><strong>2. Defensible Architecture</strong></td>
+      <td>Segmentation, monitoring points, visibility</td>
+      <td>Platform: network segmentation validation, traffic analysis across zones</td>
+    </tr>
+    <tr>
+      <td><strong>3. ICS Network Monitoring</strong></td>
+      <td>Continuous visibility into OT traffic</td>
+      <td>Platform sensors: passive monitoring, 600+ protocol parsers, behavioral analytics</td>
+    </tr>
+    <tr>
+      <td><strong>4. Secure Remote Access</strong></td>
+      <td>Control and audit remote connections to OT</td>
+      <td>Platform: remote access detection, anomalous connection alerting</td>
+    </tr>
+    <tr>
+      <td><strong>5. Risk-Based Vulnerability Mgmt</strong></td>
+      <td>Prioritize vulns by OT impact, not CVSS alone</td>
+      <td>Platform: Now/Next/Never prioritization with threat intelligence context</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 4: DRAGOS PLATFORM & PORTFOLIO
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break section">
+  <h2>4. Dragos Platform & Portfolio</h2>
+
+  <p>Dragos offers a purpose-built OT cybersecurity platform — not a re-skinned IT SIEM or bolted-on module. Understanding the deployment architecture, the four core pillars, and the full portfolio is essential for any SA to design the right solution for each customer.</p>
+
+  <h3>Deployment Architecture</h3>
+
+  <!-- SVG 3-Tier Deployment Architecture -->
+  <div style="background: #fff; border: 1px solid var(--border); border-radius: 4pt; padding: 14pt 10pt 8pt; margin: 10pt 0 16pt; page-break-inside: avoid;">
+    <div style="text-align: center; font-size: 12pt; font-weight: 700; color: var(--navy); margin-bottom: 2pt;">Dragos Platform — 3-Tier Deployment Architecture</div>
+    <div style="text-align: center; font-size: 7pt; color: var(--text-light); margin-bottom: 8pt; letter-spacing: 0.5px;">Based on Dragos Platform deployment documentation · dragos.com</div>
+    
+    <!-- 3-tier flow -->
+    <div style="display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 8pt; margin-bottom: 18pt;">
+      <!-- Sensors -->
+      <div style="text-align: center;">
+        <div style="background: var(--steel); color: #fff; padding: 10pt 8pt; border-radius: 4pt; font-weight: 600; font-size: 10pt;">Sensors</div>
+        <div style="font-size: 8pt; color: var(--text-muted); margin-top: 4pt; line-height: 1.3;">Passive Network Sensors<br>Deployed via SPAN / TAP<br>Zero active scanning</div>
+      </div>
+      <!-- Arrow -->
+      <div style="font-size: 16pt; color: var(--steel); font-weight: 700;">→</div>
+      <!-- SiteStore -->
+      <div style="text-align: center;">
+        <div style="background: var(--navy-light); color: #fff; padding: 10pt 8pt; border-radius: 4pt; font-weight: 600; font-size: 10pt;">SiteStore</div>
+        <div style="font-size: 8pt; color: var(--text-muted); margin-top: 4pt; line-height: 1.3;">Site-Level Analysis<br>& Storage<br>(1 per facility)</div>
+      </div>
+      <!-- Arrow -->
+      <div style="font-size: 16pt; color: var(--steel); font-weight: 700;">→</div>
+      <!-- CentralStore -->
+      <div style="text-align: center;">
+        <div style="background: var(--navy); color: #fff; padding: 10pt 8pt; border-radius: 4pt; font-weight: 600; font-size: 10pt;">CentralStore</div>
+        <div style="font-size: 8pt; color: var(--text-muted); margin-top: 4pt; line-height: 1.3;">Enterprise Dashboard<br>& Cross-Site Correlation<br>(HQ / SOC)</div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div style="border-top: 1px dashed var(--border-dark); margin: 10pt 0; position: relative;">
+      <span style="position: absolute; top: -8pt; left: 50%; transform: translateX(-50%); background: #f8fafc; padding: 0 8pt; font-size: 7.5pt; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px;">Four Pillars</span>
+    </div>
+
+    <!-- Four Pillars -->
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8pt; margin-top: 14pt;">
+      <div style="text-align: center; border: 1px solid var(--border); border-top: 2px solid var(--steel); border-radius: 3pt; padding: 8pt 6pt;">
+        <div style="font-size: 9pt; font-weight: 700; color: var(--navy); margin-bottom: 3pt;">Asset Visibility</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted); line-height: 1.3;">Passive discovery of all OT assets — make, model, firmware, comms patterns</div>
+      </div>
+      <div style="text-align: center; border: 1px solid var(--border); border-top: 2px solid var(--steel); border-radius: 3pt; padding: 8pt 6pt;">
+        <div style="font-size: 9pt; font-weight: 700; color: var(--navy); margin-bottom: 3pt;">Vulnerability Mgmt</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted); line-height: 1.3;">Now / Next / Never prioritization with threat intel context</div>
+      </div>
+      <div style="text-align: center; border: 1px solid var(--border); border-top: 2px solid var(--steel); border-radius: 3pt; padding: 8pt 6pt;">
+        <div style="font-size: 9pt; font-weight: 700; color: var(--navy); margin-bottom: 3pt;">Threat Detection</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted); line-height: 1.3;">Behavioral analytics + signatures for OT protocols and process commands</div>
+      </div>
+      <div style="text-align: center; border: 1px solid var(--border); border-top: 2px solid var(--steel); border-radius: 3pt; padding: 8pt 6pt;">
+        <div style="font-size: 9pt; font-weight: 700; color: var(--navy); margin-bottom: 3pt;">Investigation & Response</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted); line-height: 1.3;">PCAP replay, protocol-aware forensics, timeline reconstruction</div>
+      </div>
+    </div>
+  </div>
+  <div style="font-size: 8.5pt; color: var(--text-light); font-style: italic; text-align: center; margin-top: -10pt; margin-bottom: 14pt;">Figure 1: Dragos Platform 3-tier deployment — passive sensors feed SiteStore for site-level analysis, aggregated by CentralStore for enterprise visibility.</div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>Sensors</h4>
+      <p>Deployed passively via SPAN/TAP at OT network monitoring points. No active scanning — critical for environments where a scan can crash a PLC. Parse 600+ industrial protocols including Modbus, DNP3, OPC-UA, IEC 61850, and Ethernet/IP.</p>
+    </div>
+    <div class="card">
+      <h4>SiteStore</h4>
+      <p>Site-level analysis and storage appliance (physical or VM). Aggregates sensor data, runs detections, manages asset inventory for a single site. Runs on hardened Linux — available as DISA STIG-compliant Platform 2.x appliance.</p>
+    </div>
+    <div class="card">
+      <h4>CentralStore</h4>
+      <p>Enterprise-wide correlation and dashboard. Aggregates data from multiple SiteStores for multi-site visibility. Enables centralized asset management, vulnerability tracking, and cross-site threat detection.</p>
+    </div>
+    <div class="card">
+      <h4>Federal Deployment Notes</h4>
+      <p>DISA STIG available (Platform 2.x — multiple releases on public.cyber.mil). Supports air-gapped deployments. Integrates with existing SIEM via syslog forwarding. Compatible with VMware, Hyper-V, and AWS GovCloud. ATO documentation support available.</p>
+    </div>
+  </div>
+
+  <h3>Whiteboard Example: Dragos in a Federal OT Network</h3>
+  <p>This is how I would sketch a Dragos deployment during a customer discovery session — mapping sensor placement to the Purdue Model zones in their environment:</p>
+
+  <div style="margin: 10pt 0 16pt; page-break-inside: avoid;">
+    <svg viewBox="0 0 1000 680" xmlns="http://www.w3.org/2000/svg" style="width:100%; border: 1px solid #cbd5e0; border-radius: 4pt; background: #fff;">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4299e1"/></marker>
+        <filter id="sh"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.08"/></filter>
+      </defs>
+      <!-- Title -->
+      <text x="500" y="30" font-family="Inter,sans-serif" font-size="14" font-weight="700" fill="#1a2332" text-anchor="middle">Federal OT Network — Dragos Sensor Deployment</text>
+      <text x="500" y="46" font-family="Inter,sans-serif" font-size="9" fill="#718096" text-anchor="middle">Based on ISA-99 / IEC 62443 Purdue Reference Architecture</text>
+      <!-- L5: Enterprise -->
+      <rect x="40" y="60" width="920" height="65" rx="5" fill="#edf2f7" stroke="#cbd5e0" stroke-width="1.5" filter="url(#sh)"/>
+      <text x="56" y="82" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#718096" letter-spacing="1">LEVEL 5 · ENTERPRISE</text>
+      <rect x="76" y="90" width="88" height="24" rx="3" fill="#fff" stroke="#cbd5e0"/><text x="120" y="106" font-family="Inter,sans-serif" font-size="8" fill="#4a5568" text-anchor="middle">Email / DNS</text>
+      <rect x="174" y="90" width="100" height="24" rx="3" fill="#fff" stroke="#cbd5e0"/><text x="224" y="106" font-family="Inter,sans-serif" font-size="8" fill="#4a5568" text-anchor="middle">Active Directory</text>
+      <rect x="284" y="90" width="88" height="24" rx="3" fill="#fff" stroke="#cbd5e0"/><text x="328" y="106" font-family="Inter,sans-serif" font-size="8" fill="#4a5568" text-anchor="middle">SIEM / Splunk</text>
+      <rect x="700" y="78" width="240" height="34" rx="5" fill="#1a365d" stroke="#2c5282" stroke-width="2" filter="url(#sh)"/>
+      <text x="820" y="100" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">⬢ Dragos CentralStore</text>
+      <!-- L4: Business -->
+      <rect x="40" y="135" width="920" height="55" rx="5" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5"/>
+      <text x="56" y="157" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#718096" letter-spacing="1">LEVEL 4 · BUSINESS</text>
+      <rect x="76" y="166" width="88" height="20" rx="3" fill="#fff" stroke="#cbd5e0"/><text x="120" y="180" font-family="Inter,sans-serif" font-size="8" fill="#4a5568" text-anchor="middle">ERP</text>
+      <!-- DMZ -->
+      <rect x="40" y="200" width="920" height="44" rx="5" fill="#fff5f5" stroke="#e53e3e" stroke-width="2" stroke-dasharray="8,4"/>
+      <text x="56" y="222" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#e53e3e" letter-spacing="1">LEVEL 3.5 · INDUSTRIAL DMZ</text>
+      <rect x="340" y="210" width="72" height="24" rx="3" fill="#fff" stroke="#e53e3e"/><text x="376" y="226" font-family="Inter,sans-serif" font-size="8" fill="#c53030" text-anchor="middle">Firewall</text>
+      <rect x="422" y="210" width="110" height="24" rx="3" fill="#fff" stroke="#e53e3e"/><text x="477" y="226" font-family="Inter,sans-serif" font-size="8" fill="#c53030" text-anchor="middle">Jump Server / VPN</text>
+      <rect x="542" y="210" width="80" height="24" rx="3" fill="#fff" stroke="#e53e3e"/><text x="582" y="226" font-family="Inter,sans-serif" font-size="8" fill="#c53030" text-anchor="middle">Data Diode</text>
+      <!-- L3: Site Ops -->
+      <rect x="40" y="254" width="920" height="80" rx="5" fill="#ebf8ff" stroke="#90cdf4" stroke-width="1.5" filter="url(#sh)"/>
+      <text x="56" y="276" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#2b6cb0" letter-spacing="1">LEVEL 3 · SITE OPERATIONS</text>
+      <rect x="76" y="288" width="96" height="24" rx="3" fill="#fff" stroke="#90cdf4"/><text x="124" y="304" font-family="Inter,sans-serif" font-size="8" fill="#2c5282" text-anchor="middle">Historian</text>
+      <rect x="182" y="288" width="120" height="24" rx="3" fill="#fff" stroke="#90cdf4"/><text x="242" y="304" font-family="Inter,sans-serif" font-size="8" fill="#2c5282" text-anchor="middle">Eng. Workstation</text>
+      <rect x="312" y="288" width="88" height="24" rx="3" fill="#fff" stroke="#90cdf4"/><text x="356" y="304" font-family="Inter,sans-serif" font-size="8" fill="#2c5282" text-anchor="middle">Patch Server</text>
+      <!-- Sensor L3 -->
+      <rect x="480" y="284" width="130" height="32" rx="5" fill="#f6ad55" stroke="#dd6b20" stroke-width="2" filter="url(#sh)"/>
+      <text x="545" y="305" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">◉ Sensor (SPAN)</text>
+      <!-- SiteStore -->
+      <rect x="700" y="270" width="240" height="48" rx="5" fill="#2b6cb0" stroke="#2c5282" stroke-width="2" filter="url(#sh)"/>
+      <text x="820" y="291" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">⬢ Dragos SiteStore</text>
+      <text x="820" y="307" font-family="Inter,sans-serif" font-size="7.5" fill="#bee3f8" text-anchor="middle">Analysis · Detection · Asset Inventory</text>
+      <line x1="610" y1="300" x2="698" y2="294" stroke="#4299e1" stroke-width="2" marker-end="url(#arr)"/>
+      <!-- L2: Supervisory -->
+      <rect x="40" y="344" width="920" height="74" rx="5" fill="#f0fff4" stroke="#9ae6b4" stroke-width="1.5"/>
+      <text x="56" y="366" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#276749" letter-spacing="1">LEVEL 2 · SUPERVISORY CONTROL</text>
+      <rect x="76" y="378" width="96" height="24" rx="3" fill="#fff" stroke="#9ae6b4"/><text x="124" y="394" font-family="Inter,sans-serif" font-size="8" fill="#276749" text-anchor="middle">SCADA Server</text>
+      <rect x="182" y="378" width="70" height="24" rx="3" fill="#fff" stroke="#9ae6b4"/><text x="217" y="394" font-family="Inter,sans-serif" font-size="8" fill="#276749" text-anchor="middle">HMI #1</text>
+      <rect x="262" y="378" width="70" height="24" rx="3" fill="#fff" stroke="#9ae6b4"/><text x="297" y="394" font-family="Inter,sans-serif" font-size="8" fill="#276749" text-anchor="middle">HMI #2</text>
+      <!-- Sensor L2 -->
+      <rect x="480" y="374" width="130" height="32" rx="5" fill="#f6ad55" stroke="#dd6b20" stroke-width="2" filter="url(#sh)"/>
+      <text x="545" y="395" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">◉ Sensor (TAP)</text>
+      <line x1="610" y1="390" x2="820" y2="320" stroke="#4299e1" stroke-width="2" marker-end="url(#arr)" stroke-dasharray="6,3"/>
+      <!-- L1: Basic Control -->
+      <rect x="40" y="428" width="920" height="74" rx="5" fill="#fffff0" stroke="#fefcbf" stroke-width="1.5"/>
+      <text x="56" y="450" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#975a16" letter-spacing="1">LEVEL 1 · BASIC CONTROL</text>
+      <rect x="76" y="462" width="70" height="24" rx="3" fill="#fff" stroke="#fefcbf"/><text x="111" y="478" font-family="Inter,sans-serif" font-size="8" fill="#975a16" text-anchor="middle">PLC #1</text>
+      <rect x="156" y="462" width="70" height="24" rx="3" fill="#fff" stroke="#fefcbf"/><text x="191" y="478" font-family="Inter,sans-serif" font-size="8" fill="#975a16" text-anchor="middle">PLC #2</text>
+      <rect x="236" y="462" width="60" height="24" rx="3" fill="#fff" stroke="#fefcbf"/><text x="266" y="478" font-family="Inter,sans-serif" font-size="8" fill="#975a16" text-anchor="middle">RTU</text>
+      <rect x="306" y="462" width="100" height="24" rx="3" fill="#fff" stroke="#fefcbf"/><text x="356" y="478" font-family="Inter,sans-serif" font-size="8" fill="#975a16" text-anchor="middle">DCS Controller</text>
+      <rect x="416" y="462" width="60" height="24" rx="3" fill="#fff" stroke="#fefcbf"/><text x="446" y="478" font-family="Inter,sans-serif" font-size="8" fill="#975a16" text-anchor="middle">SIS</text>
+      <!-- L0: Physical -->
+      <rect x="40" y="512" width="920" height="48" rx="5" fill="#f7fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+      <text x="56" y="534" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#718096" letter-spacing="1">LEVEL 0 · PHYSICAL PROCESS</text>
+      <text x="76" y="550" font-family="Inter,sans-serif" font-size="8" fill="#a0aec0">Valves · Pumps · Motors · Actuators · Sensors · Transmitters</text>
+      <!-- Data flow: SiteStore → CentralStore -->
+      <line x1="820" y1="270" x2="820" y2="114" stroke="#4299e1" stroke-width="2.5" marker-end="url(#arr)" stroke-dasharray="8,4"/>
+      <text x="808" y="200" font-family="Inter,sans-serif" font-size="7" fill="#4299e1" transform="rotate(-90,808,200)">Encrypted Metadata</text>
+      <!-- Syslog -->
+      <line x1="700" y1="92" x2="374" y2="102" stroke="#718096" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="4,3"/>
+      <text x="540" y="88" font-family="Inter,sans-serif" font-size="7" fill="#718096">Syslog Forwarding</text>
+      <!-- Legend -->
+      <rect x="40" y="575" width="920" height="42" rx="4" fill="#f7fafc" stroke="#e2e8f0"/>
+      <rect x="56" y="588" width="14" height="14" rx="3" fill="#f6ad55" stroke="#dd6b20"/>
+      <text x="76" y="600" font-family="Inter,sans-serif" font-size="8" fill="#4a5568">Dragos Sensor (passive)</text>
+      <rect x="230" y="588" width="14" height="14" rx="3" fill="#1a365d" stroke="#2c5282"/>
+      <text x="250" y="600" font-family="Inter,sans-serif" font-size="8" fill="#4a5568">Dragos Platform Component</text>
+      <line x1="430" y1="595" x2="466" y2="595" stroke="#4299e1" stroke-width="2" stroke-dasharray="6,3"/>
+      <text x="472" y="600" font-family="Inter,sans-serif" font-size="8" fill="#4a5568">Metadata Flow</text>
+      <rect x="580" y="588" width="14" height="14" rx="3" fill="#fff5f5" stroke="#e53e3e" stroke-dasharray="4,2"/>
+      <text x="600" y="600" font-family="Inter,sans-serif" font-size="8" fill="#4a5568">DMZ Boundary</text>
+    </svg>
+  </div>
+  <div style="font-size: 8.5pt; color: var(--text-light); font-style: italic; text-align: center; margin-top: -10pt; margin-bottom: 14pt;">Figure 2: Customer whiteboard sketch — passive sensors at L1-2 and L3 monitoring points, SiteStore at site operations, syslog forwarding to enterprise SIEM.</div>
+
+  <h3>The Four Pillars</h3>
+  <table>
+    <tr><th>Pillar</th><th>What It Does</th><th>Federal Value</th></tr>
+    <tr>
+      <td><strong>Asset Visibility</strong></td>
+      <td>Passive discovery of all OT assets — make, model, firmware, communication patterns. No scanning required.</td>
+      <td>Addresses CISA BOD 23-01 (asset inventory mandate). Replaces manual spreadsheet tracking with automated, continuous discovery.</td>
+    </tr>
+    <tr>
+      <td><strong>Vulnerability Management</strong></td>
+      <td>OT-specific vulnerability identification with "Now / Next / Never" prioritization based on threat intelligence context.</td>
+      <td>Complements ACAS/Tenable for OT assets that can't be actively scanned. Maps vulns to Dragos-tracked threat groups for risk-based prioritization.</td>
+    </tr>
+    <tr>
+      <td><strong>Threat Detection</strong></td>
+      <td>Behavioral analytics and signature-based detection for OT protocols. Detects abnormal process commands, not just network anomalies.</td>
+      <td>Goes beyond IT SIEM alerting. Detects "firmware update to PLC" not just "port scan detected." Integrates Dragos threat intelligence.</td>
+    </tr>
+    <tr>
+      <td><strong>Investigation & Response</strong></td>
+      <td>Forensic tools for OT incident investigation. PCAP replay, protocol-aware search, timeline reconstruction.</td>
+      <td>Enables OT-specific incident response without disrupting physical processes. Supports CIRCIA reporting requirements.</td>
+    </tr>
+  </table>
+
+  <h3>Full Portfolio</h3>
+  <table>
+    <tr><th>Offering</th><th>Description</th><th>SA Relevance</th></tr>
+    <tr><td><strong>Platform</strong></td><td>Core OT visibility, detection, and response</td><td>Primary product in every engagement</td></tr>
+    <tr><td><strong>WorldView</strong></td><td>OT threat intelligence subscription — tracks 20+ threat groups, vulnerability advisories, strategic reports</td><td>Differentiator vs. Claroty/Nozomi: Dragos has the largest dedicated OT intel team</td></tr>
+    <tr><td><strong>OT Watch</strong></td><td>Managed detection service — Dragos analysts monitor customer environments 24/7</td><td>For customers without OT SOC capability (most federal agencies)</td></tr>
+    <tr><td><strong>Neighborhood Keeper</strong></td><td>Community defense program — anonymized threat data sharing across participants. NSA/CISA are trusted advisors.</td><td>Unique federal value: collective defense for critical infrastructure sectors</td></tr>
+    <tr><td><strong>Professional Services</strong></td><td>Architecture assessment, penetration testing, tabletop exercises, incident response retainer</td><td>Supports SANS Control 1 (ICS IR) and NIST CSF assessment requirements</td></tr>
+    <tr><td><strong>Dragos Public Sector LLC</strong></td><td>Subsidiary launched Oct 2024 — dedicated to federal and SLTT customers. SAM registered, Carahsoft contract vehicles.</td><td>Procurement pathway: GSA Schedule, NASA SEWP, Carahsoft</td></tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 5: POC METHODOLOGY
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break section">
+  <h2>5. Proof-of-Concept Methodology</h2>
+
+  <p>A successful federal POC isn't just a technology test — it's a trust-building exercise. The customer needs to see that the platform works in their environment, with their protocols, under their security constraints. Here is how I would structure a Dragos POC for a federal customer.</p>
+
+  <!-- Inline POC Timeline -->
+  <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 4pt; padding: 16pt; margin: 10pt 0 16pt; page-break-inside: avoid;">
+    <div style="text-align: center; font-size: 11pt; font-weight: 700; color: var(--navy); margin-bottom: 4pt;">Federal POC Methodology — 5 Phases / ~7 Weeks</div>
+    <div style="text-align: center; font-size: 7pt; color: var(--text-light); margin-bottom: 10pt; letter-spacing: 0.5px;">Adapted from Dragos pre-sales engagement methodology</div>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6pt;">
+      <div style="text-align: center; border-top: 3px solid var(--steel-light); padding-top: 8pt;">
+        <div style="font-size: 7.5pt; font-weight: 700; color: var(--steel); text-transform: uppercase; letter-spacing: 0.5px;">Phase 1</div>
+        <div style="font-size: 9pt; font-weight: 700; color: var(--navy); margin: 2pt 0;">Pre-POC Discovery</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted);">Week 0</div>
+        <div style="font-size: 7pt; color: var(--text-light); margin-top: 3pt;">Scope · Success criteria · Architecture review</div>
+      </div>
+      <div style="text-align: center; border-top: 3px solid var(--steel); padding-top: 8pt;">
+        <div style="font-size: 7.5pt; font-weight: 700; color: var(--steel); text-transform: uppercase; letter-spacing: 0.5px;">Phase 2</div>
+        <div style="font-size: 9pt; font-weight: 700; color: var(--navy); margin: 2pt 0;">Environment Prep</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted);">Week 1–2</div>
+        <div style="font-size: 7pt; color: var(--text-light); margin-top: 3pt;">SPAN/TAP · SiteStore deploy · ATO artifacts</div>
+      </div>
+      <div style="text-align: center; border-top: 3px solid var(--steel); padding-top: 8pt;">
+        <div style="font-size: 7.5pt; font-weight: 700; color: var(--steel); text-transform: uppercase; letter-spacing: 0.5px;">Phase 3</div>
+        <div style="font-size: 9pt; font-weight: 700; color: var(--navy); margin: 2pt 0;">Deploy & Baseline</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted);">Week 2–3</div>
+        <div style="font-size: 7pt; color: var(--text-light); margin-top: 3pt;">72hr baseline · Asset discovery · Protocol parsing</div>
+      </div>
+      <div style="text-align: center; border-top: 3px solid var(--navy-light); padding-top: 8pt;">
+        <div style="font-size: 7.5pt; font-weight: 700; color: var(--steel); text-transform: uppercase; letter-spacing: 0.5px;">Phase 4</div>
+        <div style="font-size: 9pt; font-weight: 700; color: var(--navy); margin: 2pt 0;">Evaluation</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted);">Week 3–6</div>
+        <div style="font-size: 7pt; color: var(--text-light); margin-top: 3pt;">Monitoring · Vuln analysis · Detection demos · SIEM integration</div>
+      </div>
+      <div style="text-align: center; border-top: 3px solid var(--navy); padding-top: 8pt;">
+        <div style="font-size: 7.5pt; font-weight: 700; color: var(--steel); text-transform: uppercase; letter-spacing: 0.5px;">Phase 5</div>
+        <div style="font-size: 9pt; font-weight: 700; color: var(--navy); margin: 2pt 0;">Executive Readout</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted);">Week 7</div>
+        <div style="font-size: 7pt; color: var(--text-light); margin-top: 3pt;">Findings brief · Architecture proposal · ROI · Transition plan</div>
+      </div>
+    </div>
+  </div>
+  <div style="font-size: 8.5pt; color: var(--text-light); font-style: italic; text-align: center; margin-top: -10pt; margin-bottom: 14pt;">Figure 3: Federal POC methodology — 5 phases over approximately 7 weeks, adapted for ATO and classification constraints.</div>
+
+  <h3>Phase Details</h3>
+  <table>
+    <tr><th>Phase</th><th>Duration</th><th>Activities</th><th>Deliverables</th></tr>
+    <tr>
+      <td><strong>1. Pre-POC Discovery</strong></td>
+      <td>Week 0</td>
+      <td>
+        • Architecture review: network diagrams, segmentation, data flows<br>
+        • Identify "crown jewel" assets — what can't go down?<br>
+        • Define success criteria with customer (what does "pass" look like?)<br>
+        • Assess classification/ATO constraints for sensor placement
+      </td>
+      <td>POC scope document, success criteria matrix, preliminary deployment design</td>
+    </tr>
+    <tr>
+      <td><strong>2. Environment Prep</strong></td>
+      <td>Week 1–2</td>
+      <td>
+        • Configure SPAN/TAP access at identified monitoring points<br>
+        • Deploy SiteStore (VM or appliance) per STIG requirements<br>
+        • Firewall rules for sensor → SiteStore communication<br>
+        • Coordinate with ISSO for ATO documentation (if required)<br>
+        • Validate no active scanning occurs — passive only
+      </td>
+      <td>Deployed infrastructure, connectivity validation, ATO artifact package</td>
+    </tr>
+    <tr>
+      <td><strong>3. Deploy & Baseline</strong></td>
+      <td>Week 2–3</td>
+      <td>
+        • Activate sensors — begin passive discovery<br>
+        • 72-hour baseline collection: learn normal traffic patterns<br>
+        • Initial asset inventory review with customer<br>
+        • Verify protocol parsing (Modbus, DNP3, OPC-UA, etc.)
+      </td>
+      <td>Initial asset inventory, baseline traffic profile, protocol coverage report</td>
+    </tr>
+    <tr>
+      <td><strong>4. Evaluation</strong></td>
+      <td>Week 3–6</td>
+      <td>
+        • Ongoing monitoring against success criteria<br>
+        • Weekly check-in calls with customer technical team<br>
+        • Vulnerability analysis with Now/Next/Never prioritization<br>
+        • Threat detection demonstrations (simulated or historical)<br>
+        • Network segmentation validation: expected vs. actual traffic<br>
+        • SIEM integration testing (syslog forwarding)
+      </td>
+      <td>Weekly status reports, vulnerability findings, detection examples, integration validation</td>
+    </tr>
+    <tr>
+      <td><strong>5. Executive Readout</strong></td>
+      <td>Week 7</td>
+      <td>
+        • Compile findings into executive summary<br>
+        • Present to decision-makers: CISO, mission owner, contracting<br>
+        • Architecture proposal for full deployment<br>
+        • ROI analysis: manual process cost vs. platform automation<br>
+        • Transition plan: POC → production (licensing, support, training)
+      </td>
+      <td>Executive summary, findings brief, deployment architecture proposal, commercial proposal</td>
+    </tr>
+  </table>
+
+  <div class="callout">
+    <p><strong>Why My Background Matters for POC Execution:</strong> I've deployed and troubleshot 20+ VM pods on OpenShift in classified environments. I know the pain of firewall rule coordination, ATO timelines, ISSO approvals, and the reality that "Week 1" in a federal environment means "Week 1 after 3 weeks of paperwork." A Dragos POC is technically simpler than what I operate daily — the hard part is navigating the federal process, and that's where I have direct experience.</p>
+  </div>
+
+  <h3>Federal-Specific POC Considerations</h3>
+  <div class="card-grid">
+    <div class="card">
+      <h4>ATO / Authorization</h4>
+      <p>Many federal customers require ATO artifacts for any new system on their network. Dragos Platform 2.x has a published DISA STIG, which accelerates the assessment process. I would prepare the ATO artifact package during Phase 2.</p>
+    </div>
+    <div class="card">
+      <h4>Classification Constraints</h4>
+      <p>Classified environments may restrict data export, remote access, and vendor support models. POC design must account for air-gapped operation and on-site-only support. I've operated in these constraints daily.</p>
+    </div>
+    <div class="card">
+      <h4>Passive-Only Requirement</h4>
+      <p>OT environments cannot tolerate active scanning. I would explicitly validate with the customer and their network team that Dragos sensors are passive — SPAN port mirroring only, zero injection. This is non-negotiable.</p>
+    </div>
+    <div class="card">
+      <h4>Multi-Stakeholder Alignment</h4>
+      <p>Federal POCs involve CISO, mission owners, network engineers, ISSOs, contracting officers, and sometimes external assessors. I coordinate across these stakeholders daily in my current role.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 6: MY ARCHITECTURE IS OT
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break section">
+  <h2>6. My Architecture IS OT</h2>
+
+  <p>The most common objection I anticipate: "You don't have ICS experience." This section demonstrates that my operational environment directly parallels the Purdue Model architecture that Dragos deploys into — the zones differ in label, but the architecture, segmentation philosophy, and stakes are identical.</p>
+
+  <!-- Inline Purdue Mapping Diagram -->
+  <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 4pt; padding: 16pt; margin: 10pt 0 16pt; page-break-inside: avoid;">
+    <div style="text-align: center; font-size: 7pt; color: var(--text-light); margin-bottom: 10pt; letter-spacing: 0.5px;">Zone mapping based on ISA-99 / IEC 62443 Purdue Reference Architecture</div>
+    <div style="display: grid; grid-template-columns: 1fr 40px 1fr; gap: 0; align-items: start;">
+      <!-- Left: RPA-SOC -->
+      <div>
+        <div style="text-align: center; font-size: 11pt; font-weight: 700; color: var(--navy); margin-bottom: 10pt;">My Architecture (RPA-SOC)</div>
+        <div style="background: #edf2f7; border: 1px solid var(--border); padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
+          <div style="font-weight: 600; font-size: 9pt; color: var(--navy);">Enterprise / NIPR</div>
+          <div style="font-size: 7.5pt; color: var(--text-muted);">Level 5</div>
+        </div>
+        <div style="background: #edf2f7; border: 1px solid var(--border); padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
+          <div style="font-weight: 600; font-size: 9pt; color: var(--navy);">Enterprise Services</div>
+          <div style="font-size: 7.5pt; color: var(--text-muted);">Level 4</div>
+        </div>
+        <div style="background: #fff5f5; border: 1px solid #fed7d7; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
+          <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">DMZ #2 — Firewall / Router Boundary</div>
+        </div>
+        <div style="background: #ebf4ff; border: 1px solid #bee3f8; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
+          <div style="font-weight: 600; font-size: 9pt; color: var(--steel);">Collateral Network</div>
+          <div style="font-size: 7.5pt; color: var(--text-muted);">SIEM · ACAS · Mission VMs</div>
+        </div>
+        <div style="background: #fff5f5; border: 1px solid #fed7d7; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
+          <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">DMZ #1 — MISP VNI Boundary</div>
+          <div style="font-size: 7.5pt; color: var(--text-muted);">Dual firewalls · 14 protocol translators</div>
+        </div>
+        <div style="background: #ebf4ff; border: 1px solid #bee3f8; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
+          <div style="font-weight: 600; font-size: 9pt; color: var(--steel);">GCS / C2 / SPDN Networks</div>
+          <div style="font-size: 7.5pt; color: var(--text-muted);">Level 2 · Isolated control circuits</div>
+        </div>
+        <div style="background: var(--navy); color: #fff; padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
+          <div style="font-weight: 600; font-size: 9pt;">Aircraft / Physical Platform</div>
+          <div style="font-size: 7.5pt; opacity: 0.8;">Level 0–1 · Encrypted fiber · Real-time control</div>
+        </div>
+      </div>
+      <!-- Center: Arrows -->
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 30pt; gap: 18pt;">
+        <span style="color: var(--steel); font-size: 12pt;">→</span>
+        <span style="color: var(--steel); font-size: 12pt;">→</span>
+        <span style="color: var(--accent); font-size: 12pt;">→</span>
+        <span style="color: var(--steel); font-size: 12pt;">→</span>
+        <span style="color: var(--accent); font-size: 12pt;">→</span>
+        <span style="color: var(--steel); font-size: 12pt;">→</span>
+        <span style="color: var(--steel); font-size: 12pt;">→</span>
+      </div>
+      <!-- Right: Purdue Model -->
+      <div>
+        <div style="text-align: center; font-size: 11pt; font-weight: 700; color: var(--navy); margin-bottom: 10pt;">Purdue Model (ICS/OT)</div>
+        <div style="background: #edf2f7; border: 1px solid var(--border); padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
+          <div style="font-weight: 600; font-size: 9pt; color: var(--navy);">Enterprise Network</div>
+          <div style="font-size: 7.5pt; color: var(--text-muted);">Level 5</div>
+        </div>
+        <div style="background: #edf2f7; border: 1px solid var(--border); padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
+          <div style="font-weight: 600; font-size: 9pt; color: var(--navy);">Business Planning</div>
+          <div style="font-size: 7.5pt; color: var(--text-muted);">Level 4</div>
+        </div>
+        <div style="background: #fff5f5; border: 1px solid #fed7d7; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
+          <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">Enterprise DMZ</div>
+          <div style="font-size: 7.5pt; color: var(--text-muted);">Level 3.5</div>
+        </div>
+        <div style="background: #ebf4ff; border: 1px solid #bee3f8; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
+          <div style="font-weight: 600; font-size: 9pt; color: var(--steel);">Site Operations</div>
+          <div style="font-size: 7.5pt; color: var(--text-muted);">Level 3 · HMIs · Historians</div>
+        </div>
+        <div style="background: #fff5f5; border: 1px solid #fed7d7; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
+          <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">Industrial DMZ</div>
+          <div style="font-size: 7.5pt; color: var(--text-muted);">Level 3.5</div>
+        </div>
+        <div style="background: #ebf4ff; border: 1px solid #bee3f8; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
+          <div style="font-weight: 600; font-size: 9pt; color: var(--steel);">Supervisory Control</div>
+          <div style="font-size: 7.5pt; color: var(--text-muted);">Level 2 · SCADA / DCS</div>
+        </div>
+        <div style="background: var(--navy); color: #fff; padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
+          <div style="font-weight: 600; font-size: 9pt;">Basic Control / Physical Process</div>
+          <div style="font-size: 7.5pt; opacity: 0.8;">Level 0–1 · PLCs · Sensors · Actuators</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="font-size: 8.5pt; color: var(--text-light); font-style: italic; text-align: center; margin-top: -10pt; margin-bottom: 14pt;">Figure 4: Side-by-side mapping — my operational architecture directly parallels the Purdue Model. Same zones, same segmentation philosophy, same stakes.</div>
+
+  <h3>Zone-by-Zone Mapping</h3>
+  <table>
+    <tr><th>My Environment</th><th>Purdue Equivalent</th><th>Why It Matters to Dragos</th></tr>
+    <tr>
+      <td><strong>Aircraft / Physical Platform</strong> — encrypted fiber, real-time control</td>
+      <td>Level 0–1: Physical Process / Basic Control</td>
+      <td>The thing nobody touches. Ever. Air-gapped, encrypted, mission-critical. Identical to SIS/PLC networks.</td>
+    </tr>
+    <tr>
+      <td><strong>GCS with C2 & SPDN circuits</strong> — isolated control networks</td>
+      <td>Level 2: Supervisory Control</td>
+      <td>Where process control happens. Separate circuits for separate functions. Same as DCS/SCADA control networks.</td>
+    </tr>
+    <tr>
+      <td><strong>MISP VNI Boundary</strong> — dual firewalls, 14 protocol translators, load balancer</td>
+      <td>Level 3.5: Industrial DMZ</td>
+      <td>This IS the boundary Dragos monitors. Controlled bidirectional traffic, protocol translation, data inspection.</td>
+    </tr>
+    <tr>
+      <td><strong>Collateral Network</strong> — SIEM, ACAS, mission VMs, CAVOK</td>
+      <td>Level 3: Site Operations</td>
+      <td>Where humans view data and make decisions. SCADA servers, HMIs, analysis workstations.</td>
+    </tr>
+    <tr>
+      <td><strong>Second Firewall Boundary → Enterprise</strong></td>
+      <td>Level 3.5–4: Enterprise DMZ</td>
+      <td>The second hard boundary between operations and business networks. Two DMZs, not one.</td>
+    </tr>
+  </table>
+
+  <h3>Architectural Parallels</h3>
+  <div class="card-grid">
+    <div class="card">
+      <h4>Availability-First Operations</h4>
+      <p>My systems support 24/7 national defense operations. Downtime is not an IT inconvenience — it's a mission failure. This is the same mindset as electric grid, water treatment, and manufacturing OT environments.</p>
+    </div>
+    <div class="card">
+      <h4>No-Scan Environments</h4>
+      <p>Active scanning can disrupt my mission systems just as it can crash a PLC. I manage vulnerability assessment through passive observation, careful testing windows, and compensating controls — the exact approach Dragos takes.</p>
+    </div>
+    <div class="card">
+      <h4>Segmented by Design</h4>
+      <p>Four zones, two hard DMZ boundaries, physically isolated circuits. Data flows are controlled, inspected, and logged. This isn't IT "micro-segmentation" — it's real physical and logical isolation with controlled data paths.</p>
+    </div>
+    <div class="card">
+      <h4>Real-Time Sensor Data</h4>
+      <p>I process real-time video, telemetry, and sensor data — low-latency, high-bandwidth, mission-critical. This is the same challenge as SCADA historian data in industrial environments.</p>
+    </div>
+  </div>
+
+  <blockquote>
+    <p>"I don't operate PLCs, but I operate a four-zone architecture with two hard firewall boundaries, isolated circuits, protocol translation, and controlled data flows — aircraft control on air-gapped encrypted fiber, mission processing networks behind boundary protection, a collateral operations zone with our SIEM and vulnerability scanning, and another firewall boundary to enterprise. That maps directly to the Purdue Model. The protocols differ, but the architecture, the segmentation philosophy, and the stakes are identical."</p>
+  </blockquote>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="doc-footer">
+  <p>This document was prepared using publicly available information from dragos.com, NIST, CISA, and SANS Institute publications.<br>
+  All architecture references use sanitized, unclassified concepts consistent with OPSEC best practices.<br>
+  No classified or proprietary information is contained in this document.</p>
+  <p style="margin-top: 6pt;">Aaron Kotz · May 2026 · Prepared for Dragos, Inc. Public Sector Team</p>
+</div>
+
+</body>
+</html>
