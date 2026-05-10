@@ -19,7 +19,7 @@
     <div class="meta-item"><label>Channel Partner</label><span>Carahsoft Technology Corp.</span></div>
     <div class="meta-item"><label>Contract Vehicle</label><span>NASA SEWP VI (via Carahsoft)</span></div>
     <div class="meta-item"><label>Date</label><span>May 20, 2026</span></div>
-    <div class="meta-item"><label>Version</label><span>1.1 — Post-Discovery</span></div>
+    <div class="meta-item"><label>Version</label><span>1.2 — Post-Discovery</span></div>
     <div class="meta-item"><label>Opportunity ID</label><span>DRG-FED-2026-0847</span></div>
     <div class="meta-item"><label>NDA Status</label><span>Executed 2026-04-30</span></div>
   </div>
@@ -101,8 +101,8 @@
 <h3>Control Systems by Site</h3>
 <table>
   <tr><th>Site</th><th>Primary Control</th><th>SCADA / HMI</th><th>Safety</th><th>Historian</th></tr>
-  <tr><td>Bonneville Dam</td><td>GE Mark VIe Turbine Controls</td><td>GE iFIX 6.1 (8 stations)</td><td>Woodward Load Sharing</td><td>OSIsoft PI</td></tr>
-  <tr><td>The Dalles Dam</td><td>Emerson Ovation DCS</td><td>Emerson OvationView</td><td>Legacy relay protection</td><td>OSIsoft PI</td></tr>
+  <tr><td>Bonneville Dam</td><td>GE Mark VIe Turbine Controls</td><td>GE iFIX 6.1 (plant-level SCADA); ControlST/WorkstationST (per-unit)</td><td>Woodward Load Sharing</td><td>AVEVA PI System</td></tr>
+  <tr><td>The Dalles Dam</td><td>Emerson Ovation DCS</td><td>Emerson OvationView</td><td>Legacy relay protection</td><td>AVEVA PI System</td></tr>
   <tr><td>John Day Dam</td><td>Allen-Bradley ControlLogix L83</td><td>FactoryTalk View SE (6 stn)</td><td>None identified</td><td>Wonderware</td></tr>
   <tr><td>McNary Dam</td><td>Siemens S7-400 PLCs</td><td>WinCC 7.5 (4 stations)</td><td>None identified</td><td>None (manual)</td></tr>
 </table>
@@ -110,15 +110,15 @@
 <h3>Estimated Asset Inventory</h3>
 <table>
   <tr><th>Device Type</th><th>Est. Count</th><th>Notes</th></tr>
-  <tr><td>Turbine Control PLCs</td><td>36</td><td>4–12 per dam depending on generating units</td></tr>
+  <tr><td>Turbine Control PLCs / DCS Controllers</td><td>48</td><td>Per-unit controllers at Bonneville (Mark VIe); shared DCS/PLC groups at other sites. 72 generating units total — actual controller count TBV during PoC asset discovery.</td></tr>
   <tr><td>Gate/Lock Control PLCs</td><td>24</td><td>Spillway gates, navigation lock controls</td></tr>
   <tr><td>RTUs</td><td>18</td><td>River level, seismic, weather monitoring</td></tr>
   <tr><td>HMI / Operator Stations</td><td>22</td><td>Mix of dedicated workstations and shared terminals</td></tr>
   <tr><td>Engineering Workstations</td><td>6</td><td>PLC programming — shared, no access control</td></tr>
-  <tr><td>Historians / Data Servers</td><td>6</td><td>OSIsoft PI (2), Wonderware (1), misc</td></tr>
+  <tr><td>Historians / Data Servers</td><td>6</td><td>AVEVA PI System (2), Wonderware (1), misc</td></tr>
   <tr><td>Network Switches (OT)</td><td>~40</td><td>Mix of managed (Cisco IE) and unmanaged (Moxa)</td></tr>
   <tr><td>IP Cameras on OT Network</td><td>~30</td><td>Physical security cameras routed through OT switches</td></tr>
-  <tr><td><strong>TOTAL</strong></td><td><strong>~182</strong></td><td>Customer estimates 30–40% undocumented</td></tr>
+  <tr><td><strong>TOTAL</strong></td><td><strong>~194</strong></td><td>Customer estimates 30–40% undocumented. Actual count expected to be higher — primary justification for automated asset discovery.</td></tr>
 </table>
 
 <h3>OT Protocols Identified</h3>
@@ -147,7 +147,7 @@
                                        ▼  Palo Alto PA-3260 (✓ good)
                         ┌──────────────┴───────────────────────┐
 Level 4 (IT/OT DMZ)    │  DMZ — partially implemented          │
-  PI relay, WSUS,       │  OSIsoft PI relay, WSUS patch server  │
+  PI relay, WSUS,       │  AVEVA PI relay, WSUS patch server  │
   AV definitions        └──────────────┬───────────────────────┘
                                        │
                                        ▼  ⚠ NO FIREWALL — flat L1 switch
@@ -196,7 +196,7 @@ Level 1 (Field)         ┌──────────────┴──�
   <tr><td>OT Network Monitoring</td><td>NONE</td><td><span class="nocheck">✗</span> Complete blind spot below L4 DMZ.</td></tr>
   <tr><td>Vulnerability Mgmt</td><td>Tenable.sc — IT only. No OT scanning.</td><td><span class="nocheck">✗</span> Zero OT vulnerability visibility.</td></tr>
   <tr><td>Endpoint Protection</td><td>CrowdStrike Falcon on L3/L4 Windows servers only</td><td><span class="partial">⚠</span> No coverage on HMIs or below.</td></tr>
-  <tr><td>SIEM</td><td>Splunk Cloud — IT side only</td><td><span class="partial">⚠</span> Exists but has zero OT data feeds.</td></tr>
+  <tr><td>SIEM</td><td>Splunk Cloud (FedRAMP IL4) — IT side only</td><td><span class="partial">⚠</span> Exists but has zero OT data feeds.</td></tr>
   <tr><td>Patch Management</td><td>WSUS for Windows. No OT firmware process.</td><td><span class="nocheck">✗</span> Months/years behind on OT patches.</td></tr>
   <tr><td>Access Control</td><td>Shared local accounts on HMIs. No MFA.</td><td><span class="nocheck">✗</span> "admin/admin" on ≥3 HMI stations.</td></tr>
   <tr><td>Incident Response</td><td>IT-only IR plan. No OT playbooks.</td><td><span class="nocheck">✗</span> No OT tabletop exercises conducted.</td></tr>
@@ -277,11 +277,11 @@ Level 1 (Field)         ┌──────────────┴──�
 
 <table>
   <tr><th>Site</th><th>Sensors</th><th>SiteStore</th><th>Notes</th></tr>
-  <tr><td>Bonneville Dam</td><td>2 (L3 SPAN + L2 TAP)</td><td>1 × Hardware</td><td>Largest facility, most generators</td></tr>
-  <tr><td>The Dalles Dam</td><td>1 (L3 SPAN)</td><td>1 × Hardware</td><td>Emerson — verify protocol support</td></tr>
-  <tr><td>John Day Dam</td><td>2 (L3 SPAN + L2 TAP)</td><td>1 × Hardware</td><td>TAP needed for HP switch limitation</td></tr>
-  <tr><td>McNary Dam</td><td>1 (TAP required)</td><td>1 × Virtual</td><td>Siemens S7 — verify S7comm parsing</td></tr>
-  <tr><td><strong>Enterprise (NWD HQ)</strong></td><td>—</td><td>—</td><td><strong>1 × CentralStore (VM)</strong></td></tr>
+  <tr><td>Bonneville Dam</td><td>2 (SPAN × 2 segments — Powerhouse 1 + 2)</td><td>1 × Hardware</td><td>Largest facility; 2 powerhouses require separate SPAN sessions on separate switch stacks</td></tr>
+  <tr><td>The Dalles Dam</td><td>1 (L3 SPAN)</td><td>1 × Hardware</td><td>Emerson Ovation — verify OPC-DA/UA and Ovation proprietary protocol parsing</td></tr>
+  <tr><td>John Day Dam</td><td>2 (L3 SPAN + L2 TAP)</td><td>1 × Hardware</td><td>TAP needed — HP ProCurve 2920 has limited SPAN capability per SPAN/TAP assessment</td></tr>
+  <tr><td>McNary Dam</td><td>1 (TAP required)</td><td>1 × Hardware</td><td>Siemens S7 — verify S7comm parsing. Hardware SiteStore required — no existing server infrastructure for VM.</td></tr>
+  <tr><td><strong>Enterprise (NWD HQ)</strong></td><td>—</td><td>—</td><td><strong>1 × CentralStore (VM on existing NWD data center infrastructure)</strong></td></tr>
 </table>
 
 <h3>Integration Points</h3>
@@ -289,7 +289,7 @@ Level 1 (Field)         ┌──────────────┴──�
   <tr><th>Target System</th><th>Integration</th><th>Method</th></tr>
   <tr><td>Splunk Cloud</td><td>OT alerts → Splunk</td><td>Syslog/CEF over TLS</td></tr>
   <tr><td>CrowdStrike Falcon</td><td>IOC sharing</td><td>REST API (bi-directional)</td></tr>
-  <tr><td>ServiceNow</td><td>Vulnerability tickets</td><td>REST API</td></tr>
+  <tr><td>ITSM (ServiceNow TBC)</td><td>Vulnerability tickets</td><td>REST API — customer to confirm ITSM platform during solution design</td></tr>
 </table>
 
 <!-- ═══════════════ SECTION 10 ═══════════════ -->
@@ -311,7 +311,7 @@ Level 1 (Field)         ┌──────────────┴──�
 
 <div class="doc-footer">
   <span>Dragos, Inc. — Confidential</span>
-  <span>Technical Discovery Document v1.1 — DRG-FED-2026-0847</span>
+  <span>Technical Discovery Document v1.2 — DRG-FED-2026-0847</span>
 </div>
 
 </div>
