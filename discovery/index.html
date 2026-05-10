@@ -125,6 +125,8 @@
 <table>
   <tr><th>Protocol</th><th>Usage</th><th>Priority</th></tr>
   <tr><td><span class="tip" data-tip="Modbus TCP is one of the most common OT protocols. Open standard, no authentication, no encryption. Operates on TCP port 502. Widely used for SCADA communications between HMIs and PLCs in power generation.">Modbus TCP</span></td><td>Turbine controls, gate actuators</td><td><span class="sev-crit">Critical</span></td></tr>
+  <tr><td><span class="tip" data-tip="GE SRTP (Service Request Transfer Protocol) is a proprietary GE protocol running over TCP. Used by ToolboxST engineering workstations and HMIs to read/write Mark VIe controller memory, perform diagnostics, and download configuration. Dragos Platform supports passive SRTP parsing.">GE SRTP</span></td><td>Mark VIe turbine controllers — Bonneville</td><td><span class="sev-crit">Critical</span></td></tr>
+  <tr><td><span class="tip" data-tip="GE EGD (Ethernet Global Data) is a proprietary multicast UDP protocol for high-speed cyclic data exchange between Mark VIe controllers. Deterministic, broadcast-based. Used for inter-controller communication and status distribution. Dragos Platform supports passive EGD parsing.">GE EGD</span></td><td>Mark VIe inter-controller data — Bonneville</td><td><span class="sev-crit">Critical</span></td></tr>
   <tr><td><span class="tip" data-tip="EtherNet/IP uses the Common Industrial Protocol (CIP) at the application layer. Native to Allen-Bradley/Rockwell Automation PLCs. CIP carries configuration, control, and I/O data. CVE-2023-3595 targets this protocol specifically.">EtherNet/IP (CIP)</span></td><td>Allen-Bradley PLCs — John Day</td><td><span class="sev-crit">Critical</span></td></tr>
   <tr><td><span class="tip" data-tip="S7comm is Siemens' proprietary protocol for S7-300 and S7-400 series PLCs. Runs on TCP port 102. No native encryption or authentication. Dragos Platform can passively parse S7comm to extract asset data, firmware versions, and detect anomalous commands.">S7comm</span></td><td>Siemens S7-400 — McNary</td><td><span class="sev-crit">Critical</span></td></tr>
   <tr><td>OPC-UA</td><td>Historian data collection</td><td><span class="sev-high">High</span></td></tr>
@@ -311,7 +313,7 @@ Level 1 (Field)         ┌──────────────┴──�
 
 <div class="doc-footer">
   <span>Dragos, Inc. — Confidential</span>
-  <span>Technical Discovery Document v1.2 — DRG-FED-2026-0847</span>
+  <span>Technical Discovery Document v1.3 — DRG-FED-2026-0847</span>
 </div>
 
 </div>

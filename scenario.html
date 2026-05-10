@@ -76,6 +76,7 @@
       <strong>HMI:</strong> <span class="tip" data-tip="iFIX serves as the plant-level SCADA aggregation layer across all units. ControlST/WorkstationST is GE's native per-unit turbine interface for the Mark VIe platform. Both systems coexist in hydro environments — iFIX for operators, ControlST for unit-level control and tuning.">GE iFIX 6.1 (plant-level SCADA); ControlST/WorkstationST (per-unit)</span><br>
       <strong>Historian:</strong> <span class="tip" data-tip="AVEVA acquired OSIsoft in August 2021. The PI System is now part of the AVEVA industrial software portfolio. PI is the most widely deployed historian in the energy sector.">AVEVA PI System</span><br>
       <strong>Safety:</strong> <span class="tip" data-tip="Woodward is a major turbine controls manufacturer. Load sharing systems distribute electrical load across multiple generating units to prevent overloading and maintain grid frequency stability. Critical safety function in multi-unit hydro plants.">Woodward Load Sharing</span><br>
+      <strong>Protocols:</strong> <span class="tip" data-tip="GE SRTP (Service Request Transfer Protocol) runs over TCP and is used by ToolboxST and HMIs to read/write controller memory. EGD (Ethernet Global Data) is GE's proprietary multicast UDP protocol for high-speed cyclic data exchange between Mark VIe controllers. Both are supported by Dragos Platform for passive parsing.">GE SRTP, EGD</span>, Modbus TCP, OPC-UA<br>
       <strong>Network:</strong> Cisco IE-4010 (SPAN capable)<br>
       <strong>Role:</strong> Primary PoC site — largest, most complex
     </div>
@@ -84,7 +85,7 @@
     <h4>🏭 The Dalles Dam — OR</h4>
     <div class="stat">
       <strong>Commissioned:</strong> 1957 (Phase I, 14 units); 1973 (Phase II, 8 units)<br>
-      <strong>Capacity:</strong> 2,080 MW total generating capacity (22 generating units)<br>
+      <strong>Capacity:</strong> 1,813 MW nameplate / 2,160 MW overload (22 generating units)<br>
       <strong>Control System:</strong> <span class="tip" data-tip="Distributed Control System (DCS) — unlike discrete PLCs, a DCS provides integrated control across an entire plant with centralized engineering and operator interface. Emerson Ovation is widely used in power generation, especially hydro and fossil plants.">Emerson Ovation DCS</span><br>
       <strong>HMI:</strong> Emerson OvationView<br>
       <strong>Historian:</strong> AVEVA PI System<br>
@@ -208,7 +209,7 @@
   </div>
   <div class="event">
     <div class="date">Jun 23–Jul 23 — PoC</div>
-    <div class="desc">30-day Proof of Value at Bonneville Dam. <span class="tip" data-tip="Bonneville has two separate powerhouses (1938 and 1981) with independent OT switch stacks. Each powerhouse requires its own SPAN session. Both use Cisco IE-4010 switches with full SPAN support — no TAPs required.">2 sensors deployed (SPAN × 2 segments — Powerhouse 1 + Powerhouse 2)</span>. SPAN change request submitted May 22 — <span class="tip" data-tip="Any OT network configuration change at a federal dam requires formal change control approval. 4 weeks is the standard USACE change control cycle for SPAN/TAP modifications. This constraint drives the critical path of the PoC timeline.">4-week change control</span> clears Jun 19, sensors racked Jun 20–22.</div>
+    <div class="desc">30-day Proof of Value at Bonneville Dam. <span class="tip" data-tip="Bonneville has two separate powerhouses (1938 and 1981) with independent OT switch stacks. Each powerhouse requires its own SPAN session. Both use Cisco IE-4010 switches with full SPAN support — no TAPs required.">2 sensors deployed (SPAN × 2 segments — Powerhouse 1 + Powerhouse 2)</span>. SPAN change request submitted May 22 — <span class="tip" data-tip="Any OT network configuration change at a federal dam requires formal change control approval. 4 weeks is the standard USACE change control cycle for SPAN/TAP modifications. This constraint drives the critical path of the PoC timeline.">4-week change control</span> clears Jun 19, sensors racked Jun 20–22. <span class="tip" data-tip="Neighborhood Keeper is Dragos' community defense program. Participating sites share anonymized threat and vulnerability data, enabling collective defense across critical infrastructure sectors. NSA and CISA participate as trusted advisors.">Neighborhood Keeper</span> enrollment configured during PoC to enable anonymized threat sharing.</div>
   </div>
   <div class="event">
     <div class="date">Jul 28 — PoC Readout</div>
@@ -224,7 +225,7 @@
   </div>
   <div class="event">
     <div class="date">Dec 2026 — First Site Live</div>
-    <div class="desc">Bonneville Dam fully operational with continuous OT monitoring. 247 assets discovered, 83 previously unknown.</div>
+    <div class="desc">Bonneville Dam fully operational with continuous OT monitoring. 247 assets discovered, 83 previously unknown. Neighborhood Keeper connected — anonymized telemetry flowing to Dragos community intelligence.</div>
   </div>
   <div class="event">
     <div class="date">Mar 2027 — All Sites Live</div>
@@ -281,7 +282,7 @@
   <strong>📋 PoC Success Criteria (agreed with Dr. Torres before deployment):</strong><br>
   1. Discover ≥90% of known OT assets within 72 hours of sensor activation<br>
   2. Identify ≥1 previously unknown device or communication path<br>
-  3. Demonstrate protocol-specific parsing for Modbus TCP, EtherNet/IP (CIP), and OPC-UA<br>
+  3. Demonstrate protocol-specific parsing for ≥3 site-relevant OT protocols (Bonneville target: GE SRTP, EGD, Modbus TCP, OPC-UA)<br>
   4. Generate zero operational disruptions — no turbine trips, no HMI impacts, no network degradation<br>
   5. Produce findings report within 5 business days of PoC completion
 </div>
@@ -295,7 +296,7 @@
 <table>
   <tr><th style="width:200px">Claim</th><th>Source</th></tr>
   <tr><td>Bonneville Dam — 20 units, 1,080 MW nameplate, commissioned 1938/1981</td><td><a href="https://www.nwd.usace.army.mil/fact-sheets/article/3485127/bonneville-dam-and-lake-bonneville/" target="_blank">USACE NWD Fact Sheet: Bonneville Dam</a> · <a href="https://www.nwd-wc.usace.army.mil/dd/common/projects/www/bon.html" target="_blank">USACE Water Control Data: Bonneville</a> · <a href="https://www.cbr.washington.edu/dart/hydro/bonneville" target="_blank">Columbia Basin Research (Univ. of Washington): Bonneville Hydro Data</a></td></tr>
-  <tr><td>The Dalles Dam — 22 units, 2,080 MW, Phase I 1957 / Phase II 1973</td><td><a href="https://www.nwd.usace.army.mil/fact-sheets/article/3485297/the-dalles-dam-and-lake-celilo/" target="_blank">USACE NWD Fact Sheet: The Dalles Dam</a> · <a href="https://www.nwd-wc.usace.army.mil/dd/common/projects/www/tda.html" target="_blank">USACE Water Control Data: The Dalles</a></td></tr>
+  <tr><td>The Dalles Dam — 22 units, 1,813 MW nameplate, Phase I 1957 / Phase II 1973</td><td><a href="https://www.nwd.usace.army.mil/fact-sheets/article/3485297/the-dalles-dam-and-lake-celilo/" target="_blank">USACE NWD Fact Sheet: The Dalles Dam</a> · <a href="https://www.nwd-wc.usace.army.mil/dd/common/projects/www/tda.html" target="_blank">USACE Water Control Data: The Dalles</a></td></tr>
   <tr><td>John Day Dam — 16 units, 2,160 MW, first power 1968</td><td><a href="https://www.nwd.usace.army.mil/fact-sheets/article/3485190/john-day-dam-and-lake-umatilla/" target="_blank">USACE NWD Fact Sheet: John Day Dam</a> · <a href="https://www.nwd-wc.usace.army.mil/dd/common/projects/www/jda.html" target="_blank">USACE Water Control Data: John Day</a></td></tr>
   <tr><td>McNary Dam — 14 units, 980 MW, first power 1953</td><td><a href="https://www.nwd.usace.army.mil/fact-sheets/article/3485279/mcnary-dam-and-lake-wallula/" target="_blank">USACE NWD Fact Sheet: McNary Dam</a> · <a href="https://www.nww.usace.army.mil/Portals/28/FINAL%20FS_McNary2021.pdf" target="_blank">USACE Walla Walla District: McNary Fact Sheet (PDF)</a></td></tr>
   <tr><td>USACE NWD — 21 dams in Columbia/Willamette basins</td><td><a href="https://www.nwd.usace.army.mil/columbia-river/cr-dams/" target="_blank">USACE NWD: Columbia River Basin Dams</a> · <a href="https://www.nwd.usace.army.mil/Media/News-Releases/Article/3329894/" target="_blank">USACE NWD News Release (2023)</a></td></tr>
@@ -340,7 +341,7 @@
 
 <div class="doc-footer">
   <span>Exercise Scenario — Not a real engagement</span>
-  <span>USACE Columbia River Hydropower — v1.3</span>
+  <span>USACE Columbia River Hydropower — v1.4</span>
 </div>
 
 </div>
