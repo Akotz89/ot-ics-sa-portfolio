@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARB Brief — USACE Columbia River Hydropower</title>
+  <link rel="stylesheet" href="discovery/style.css">
+  <style>
+    .slide { background: #fff; border: 1px solid var(--gray-200); border-radius: 8px; padding: 32px 40px; margin-bottom: 24px; page-break-inside: avoid; }
+    .slide-header { font-size: 20px; font-weight: 700; color: var(--dragos-blue); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--dragos-accent); }
+    .slide-subheader { font-size: 14px; color: var(--gray-500); margin-bottom: 20px; }
+    .risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+    .risk-card { border-left: 3px solid var(--dragos-red); padding: 12px 16px; background: #fef2f2; border-radius: 0 6px 6px 0; }
+    .risk-card h4 { margin: 0 0 4px; font-size: 13px; color: var(--dragos-red); }
+    .risk-card p { font-size: 12px; color: var(--gray-700); margin: 0; line-height: 1.5; }
+    .decision-box { background: var(--dragos-blue); color: #fff; padding: 24px 32px; border-radius: 8px; margin: 16px 0; }
+    .decision-box h3 { color: var(--dragos-amber); margin: 0 0 12px; font-size: 16px; }
+    .decision-box p { color: rgba(255,255,255,.85); margin: 0 0 8px; font-size: 14px; }
+    .decision-box ul { margin: 8px 0 0 20px; color: rgba(255,255,255,.85); font-size: 13px; }
+    .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 16px 0; }
+    .kpi { border: 1px solid var(--gray-200); border-radius: 8px; padding: 16px; text-align: center; }
+    .kpi .value { font-size: 24px; font-weight: 700; color: var(--dragos-blue); }
+    .kpi .label { font-size: 11px; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+    .timeline-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 16px 0; }
+    .phase { border-top: 3px solid var(--dragos-accent); padding: 10px 8px; text-align: center; }
+    .phase .name { font-size: 12px; font-weight: 700; color: var(--dragos-blue); }
+    .phase .date { font-size: 11px; color: var(--gray-500); }
+    .phase.active { border-top-color: var(--dragos-green); background: #f0fdf4; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  </style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="logo-area"><span class="dot"></span> Dragos, Inc. — Public Sector</div>
+  <h1>Architecture Review Board Brief</h1>
+  <p class="subtitle">U.S. Army Corps of Engineers — Northwestern Division<br>OT Cybersecurity Program — Dragos Platform Deployment</p>
+  <div class="meta-grid">
+    <div class="meta-item"><label>Presented By</label><span>Aaron Kotz, Sr. Solutions Architect (Federal)</span></div>
+    <div class="meta-item"><label>Sponsor</label><span>COL James Harding, NWD Commander</span></div>
+    <div class="meta-item"><label>Champion</label><span>Dr. Sarah Torres, NWD Chief Engineer</span></div>
+    <div class="meta-item"><label>Date</label><span>August 14, 2026</span></div>
+    <div class="meta-item"><label><span class="tip" data-tip="The Architecture Review Board is a governance body that evaluates proposed technology deployments for technical soundness, security compliance, and enterprise architecture alignment. ARB endorsement is required before procurement can proceed.">ARB</span> Session</label><span>NWD IT Governance — Quarterly Review</span></div>
+    <div class="meta-item"><label>Decision Requested</label><span>Endorsement for full 4-site deployment procurement</span></div>
+  </div>
+  <div class="classification">CUI // FOUO — Distribution Limited to ARB Members</div>
+</div>
+
+<div class="page">
+
+<!-- SLIDE 1: AGENDA -->
+<div class="slide">
+  <div class="slide-header">Agenda</div>
+  <table>
+    <tr><th style="width:60px">#</th><th>Topic</th><th style="width:80px">Time</th></tr>
+    <tr><td>1</td><td>Problem Statement — Current OT Visibility Gaps</td><td>5 min</td></tr>
+    <tr><td>2</td><td>Proof of Value Results — Bonneville Dam</td><td>10 min</td></tr>
+    <tr><td>3</td><td>Proposed Architecture — 4-Site Deployment</td><td>10 min</td></tr>
+    <tr><td>4</td><td>Compliance Alignment</td><td>5 min</td></tr>
+    <tr><td>5</td><td>Risk Assessment — Cost of Inaction</td><td>5 min</td></tr>
+    <tr><td>6</td><td>Budget &amp; Timeline</td><td>5 min</td></tr>
+    <tr><td>7</td><td>Decision — ARB Endorsement</td><td>5 min</td></tr>
+  </table>
+</div>
+
+<!-- SLIDE 2: PROBLEM -->
+<div class="slide">
+  <div class="slide-header">1. Problem Statement</div>
+  <div class="slide-subheader">NWD operates 6,033 MW of hydroelectric generation across 4 major dams with zero OT network visibility.</div>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="value">0</div><div class="label">OT Assets Monitored</div></div>
+    <div class="kpi"><div class="value">72</div><div class="label">Turbine Controllers</div></div>
+    <div class="kpi"><div class="value">4</div><div class="label">Controller Vendors</div></div>
+    <div class="kpi"><div class="value">0</div><div class="label">OT Incident Response Capability</div></div>
+  </div>
+
+  <blockquote>
+    <strong>Current State:</strong> If an adversary gained access to a turbine controller today, NWD would have no way to detect, investigate, or respond. The first indication would be a physical failure — by which point the attack has already succeeded.
+  </blockquote>
+</div>
+
+<!-- SLIDE 3: POC RESULTS -->
+<div class="slide">
+  <div class="slide-header">2. Proof of Value Results — Bonneville Dam</div>
+  <div class="slide-subheader">7-week evaluation (Jun 2 – Jul 18, 2026) · All 5 success criteria met</div>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="value" style="color: var(--dragos-green);">5/5</div><div class="label">Success Criteria Met</div></div>
+    <div class="kpi"><div class="value">247</div><div class="label">Assets Discovered</div></div>
+    <div class="kpi"><div class="value">27</div><div class="label">Previously Unknown</div></div>
+    <div class="kpi"><div class="value">0</div><div class="label">Operational Disruptions</div></div>
+  </div>
+
+  <table>
+    <tr><th>Finding</th><th>Severity</th><th>Status</th></tr>
+    <tr><td>Undocumented jump server bridging L3/L4 boundary</td><td><span class="sev-crit">CRITICAL</span></td><td>Remediation in progress</td></tr>
+    <tr><td>2 Windows XP HMIs on L2 process network</td><td><span class="sev-high">HIGH</span></td><td>Compensating controls applied</td></tr>
+    <tr><td>SMB traffic crossing IT→OT boundary</td><td><span class="sev-high">HIGH</span></td><td>Firewall rule audit initiated</td></tr>
+    <tr><td>34 OT vulnerabilities identified (2 Now / 8 Next / 24 Never)</td><td><span class="sev-med">MEDIUM</span></td><td>Prioritized remediation plan</td></tr>
+  </table>
+</div>
+
+<!-- SLIDE 4: ARCHITECTURE -->
+<div class="slide">
+  <div class="slide-header">3. Proposed Architecture</div>
+
+  <table>
+    <tr><th>Site</th><th>Controller</th><th>Sensors</th><th>SiteStore</th><th>Tap Strategy</th></tr>
+    <tr><td><strong>Bonneville</strong> (1,080 MW)</td><td>GE Mark VIe</td><td>2</td><td>DS-1000</td><td>SPAN (Cisco IE-4010)</td></tr>
+    <tr><td><strong>The Dalles</strong> (1,813 MW)</td><td>Emerson Ovation</td><td>1</td><td>DS-1000</td><td>SPAN (Cisco IE-3400)</td></tr>
+    <tr><td><strong>John Day</strong> (2,160 MW)</td><td>AB ControlLogix L83</td><td>2</td><td>DS-1000</td><td>TAP (HP ProCurve unmanaged)</td></tr>
+    <tr><td><strong>McNary</strong> (980 MW)</td><td>Siemens S7-400</td><td>1</td><td>DS-500</td><td>TAP (Moxa unmanaged)</td></tr>
+    <tr style="font-weight:700; background: var(--gray-100);"><td>CentralStore</td><td colspan="2">NWD HQ (Portland)</td><td>VM</td><td>Aggregation + SIEM integration</td></tr>
+  </table>
+
+  <p style="font-size: 13px; margin-top: 12px;"><strong>Integration:</strong> Splunk Cloud (Syslog/CEF — FedRAMP High / DoD IL5) · CrowdStrike Falcon (REST API — bi-directional IOC exchange) · Neighborhood Keeper (anonymized community defense)</p>
+</div>
+
+<!-- SLIDE 5: COMPLIANCE -->
+<div class="slide">
+  <div class="slide-header">4. Compliance Alignment</div>
+  <table>
+    <tr><th>Requirement</th><th>Source</th><th>Dragos Coverage</th></tr>
+    <tr><td>OT Asset Inventory</td><td>USACE EP 1130-2-510; CISA BOD 23-01</td><td><span class="check">✓</span> Continuous passive discovery</td></tr>
+    <tr><td>OT Network Monitoring</td><td>NIST 800-82 §5.3; DoD CIO OT Directive</td><td><span class="check">✓</span> 600+ protocol parsers, behavioral analytics</td></tr>
+    <tr><td>Vulnerability Management</td><td>NIST 800-53 RA-5; EP 1130-2-510</td><td><span class="check">✓</span> Now/Next/Never prioritization</td></tr>
+    <tr><td>Incident Response</td><td>NIST 800-53 IR-4; CIRCIA</td><td><span class="check">✓</span> PCAP forensics, timeline reconstruction</td></tr>
+    <tr><td>System Hardening</td><td>DISA STIG</td><td><span class="check">✓</span> Platform 2.x STIG published on public.cyber.mil</td></tr>
+  </table>
+</div>
+
+<!-- SLIDE 6: RISK -->
+<div class="slide">
+  <div class="slide-header">5. Risk Assessment — Cost of Inaction</div>
+  <div class="risk-grid">
+    <div class="risk-card">
+      <h4>VOLTZITE (PRC-linked) Pre-Positioning</h4>
+      <p>Active reconnaissance of US electric utilities per CISA AA24-038A. Columbia River dams are high-value targets — 40% of US hydroelectric generation. Current detection capability: <strong>zero</strong>.</p>
+    </div>
+    <div class="risk-card">
+      <h4>CHERNOVITE ICS Attack Framework</h4>
+      <p>PIPEDREAM/INCONTROLLER targets safety controllers across vendors. First cross-industry ICS malware. Without protocol-level monitoring, this type of attack is invisible to IT security tools.</p>
+    </div>
+    <div class="risk-card">
+      <h4>Regulatory Non-Compliance</h4>
+      <p>EP 1130-2-510 requires OT asset inventory and network monitoring. Current state: manual spreadsheets, no continuous monitoring. Audit risk is increasing with DoD-wide OT security emphasis.</p>
+    </div>
+    <div class="risk-card">
+      <h4>Cascading Infrastructure Impact</h4>
+      <p>A successful attack on Columbia River dams affects power generation (6,033 MW), navigation, flood control, irrigation, and fish passage across 3 states. The blast radius extends far beyond USACE.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: BUDGET & TIMELINE -->
+<div class="slide">
+  <div class="slide-header">6. Budget &amp; Timeline</div>
+
+  <div class="two-col">
+    <div>
+      <h4>Investment Summary</h4>
+      <table>
+        <tr><th>Category</th><th>Year 1</th></tr>
+        <tr><td>Hardware (Sensors + SiteStores)</td><td>10 appliances</td></tr>
+        <tr><td>Software (Platform Enterprise)</td><td>≤500 assets, 4 sites</td></tr>
+        <tr><td>Subscriptions (WorldView + OT Watch)</td><td>Annual</td></tr>
+        <tr><td>Services (Assessment + Deploy + Training)</td><td>One-time</td></tr>
+        <tr style="font-weight:700; background: var(--gray-100);"><td>Total FFP Year 1</td><td>~$780K</td></tr>
+      </table>
+      <p style="font-size: 11px; color: var(--gray-500); margin-top: 4px;">Via NASA SEWP VI (Carahsoft). Final pricing from Deal Desk.</p>
+    </div>
+    <div>
+      <h4>Deployment Timeline</h4>
+      <div class="timeline-row" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="phase active"><div class="name">PoC ✓</div><div class="date">Jun–Jul '26</div></div>
+        <div class="phase active"><div class="name">ARB ← Today</div><div class="date">Aug '26</div></div>
+        <div class="phase"><div class="name">Contract</div><div class="date">Sep '26</div></div>
+        <div class="phase"><div class="name">All Sites Live</div><div class="date">Mar '27</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: DECISION -->
+<div class="slide">
+  <div class="slide-header">7. Decision Requested</div>
+  <div class="decision-box">
+    <h3>ARB Endorsement — Full 4-Site Deployment</h3>
+    <p>We request the Architecture Review Board endorse the proposed Dragos Platform deployment for procurement via NASA SEWP VI:</p>
+    <ul>
+      <li>Architecture technically sound — validated by 7-week PoC at most complex site</li>
+      <li>Compliance requirements addressed — EP 1130-2-510, NIST 800-82, DoD CIO OT Directive</li>
+      <li>Integration validated — Splunk Cloud, CrowdStrike Falcon, Neighborhood Keeper operational</li>
+      <li>Procurement path clear — SEWP VI task order via Carahsoft, ~$780K FFP Year 1</li>
+    </ul>
+    <p style="margin-top: 12px;"><strong>Upon endorsement:</strong> Procurement package forwarded to Jennifer Walsh (Contracting Officer) for SEWP VI task order initiation. Target contract award: September 2026.</p>
+  </div>
+</div>
+
+</div>
+
+<div style="margin-top: 40px; padding: 12px 48px; font-size: 11px; color: var(--gray-500); text-align: center; border-top: 1px solid var(--gray-200);">
+  CUI // FOUO — ARB Members Only · Architecture Review Board Brief v1.0 · DRG-FED-2026-0847
+</div>
+
+</body>
+</html>
