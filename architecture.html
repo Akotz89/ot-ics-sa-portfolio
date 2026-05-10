@@ -51,6 +51,8 @@
 
 <p>This document presents the recommended Dragos Platform deployment architecture for the U.S. Army Corps of Engineers — Northwestern Division (NWD) Columbia River hydropower facilities. The architecture is derived from the Technical Discovery session conducted on May 15, 2026, and addresses the complete absence of OT network monitoring across four major dam sites generating 6,033 MW of combined capacity.</p>
 
+<p>This gap is critical given the current <span class="tip" data-tip="Dragos tracks 20+ ICS-specific threat groups. VOLTZITE (Chinese state-sponsored) has been observed pre-positioning in US critical infrastructure. CHERNOVITE developed PIPEDREAM/INCONTROLLER — the first cross-industry ICS attack framework capable of targeting multiple OT protocols. ELECTRUM (Sandworm) has demonstrated destructive capability against power grid infrastructure.">threat landscape</span>. Dragos tracks 20+ ICS-specific threat groups, including <strong>VOLTZITE</strong> (targeting U.S. critical infrastructure for pre-positioning) and <strong>CHERNOVITE</strong> (developer of PIPEDREAM, the first cross-industry ICS attack framework). Hydropower facilities with unmonitored OT networks represent high-value targets with zero detection capability.</p>
+
 <blockquote>
   <strong>Design Principle:</strong> All OT data processing stays on-premises. Only structured alert metadata leaves the local network via encrypted channels to existing enterprise security tools. No raw PCAP, asset data, or process telemetry is sent to any cloud service.
 </blockquote>
@@ -99,7 +101,7 @@
       <strong>HMI:</strong> <span class="tip" data-tip="Rockwell's visualization platform for ControlLogix environments. Runs on Windows, communicates via EtherNet/IP. SE (Site Edition) is the server-based version for multi-client deployments.">FactoryTalk View SE</span><br>
       <strong>Protocols:</strong> <span class="tip" data-tip="EtherNet/IP uses the Common Industrial Protocol (CIP) over standard Ethernet. It's Rockwell's primary industrial communication protocol for real-time I/O, configuration, and diagnostics.">EtherNet/IP (CIP)</span>, Modbus TCP<br>
       <strong>Network:</strong> <span class="tip" data-tip="HP ProCurve 2920 is a managed switch with limited SPAN capability — it supports basic port mirroring but has restrictions on the number of mirror sessions and monitored ports. A network TAP is recommended for reliable, full-duplex traffic capture.">HP ProCurve 2920</span> (limited SPAN)<br>
-      <strong>Tap Strategy:</strong> <span class="tip" data-tip="A network TAP (Test Access Point) is a passive hardware device that creates a physical copy of network traffic. Required here because the HP ProCurve switches lack SPAN capability — you can't mirror ports on an unmanaged switch.">Network TAP required</span> — switches lack SPAN<br>
+      <strong>Tap Strategy:</strong> <span class="tip" data-tip="A network TAP (Test Access Point) is a passive hardware device that creates a physical copy of network traffic. The HP ProCurve 2920 supports only 1 mirror session with limited source port selection — insufficient for monitoring the full OT network. A TAP provides reliable, full-duplex capture without SPAN limitations.">Network TAP required</span> — switches lack SPAN<br>
       <strong>Sensors:</strong> 2 (L1/L2 process + L3 operations)<br>
       <strong>SiteStore:</strong> 1× SiteStore appliance
     </div>
@@ -165,6 +167,27 @@
     <strong>Value:</strong> Collective defense for critical infrastructure</p>
   </div>
 </div>
+
+<!-- SECTION 4.5: PORTS, PROTOCOLS & DATA FLOWS -->
+<h3>4.1 Ports, Protocols &amp; Data Flow Matrix</h3>
+
+<p>The following matrix defines all network communications required by the Dragos Platform deployment. This table satisfies <span class="tip" data-tip="DoDI 8551.01 requires all Ports, Protocols, and Services (PPS) used on DoD networks to be registered and assessed. The ISSO uses this table for PPSM registration and firewall rule requests.">PPSM registration</span> and <span class="tip" data-tip="Security Impact Analysis — required before adding any new system to a federal network. This ports/protocols matrix is the #1 artifact the ISSO needs to evaluate the network impact of the Dragos deployment.">SIA</span> requirements.</p>
+
+<table>
+  <tr><th>Source</th><th>Destination</th><th>Port</th><th>Protocol</th><th>Direction</th><th>Data Content</th></tr>
+  <tr><td><strong>Sensor</strong></td><td>OT Network</td><td>—</td><td>—</td><td><span class="tip" data-tip="This is the most important row in the table. The sensor has NO transmit path to the OT network. It receives copied traffic from SPAN or TAP only. This passive-only architecture eliminates the risk of sensor-induced disruption to industrial operations.">NONE (receive-only)</span></td><td>Passive capture via SPAN/TAP — no packets sent to OT network</td></tr>
+  <tr><td>Sensor</td><td>SiteStore</td><td>443/TCP</td><td>TLS (HTTPS)</td><td>Outbound</td><td>Captured traffic metadata, parsed protocol data</td></tr>
+  <tr><td>SiteStore</td><td>CentralStore</td><td>443/TCP</td><td>TLS (HTTPS)</td><td>Outbound</td><td>Structured alerts, asset inventory, vulnerability data (no raw PCAP)</td></tr>
+  <tr><td>CentralStore</td><td>Splunk Cloud</td><td>6514/TCP</td><td>Syslog/CEF over TLS</td><td>Outbound</td><td>Alert metadata: type, severity, timestamp, asset ID</td></tr>
+  <tr><td>CentralStore</td><td>CrowdStrike</td><td>443/TCP</td><td>REST API (HTTPS)</td><td>Bi-directional</td><td>OT IOCs → CS; EDR context ← CS</td></tr>
+  <tr><td>Sensor</td><td>Neighborhood Keeper</td><td>443/TCP</td><td>TLS (HTTPS)</td><td>Outbound</td><td>Anonymized statistical telemetry only</td></tr>
+  <tr><td>Admin workstation</td><td>SiteStore / CentralStore</td><td>443/TCP</td><td>HTTPS</td><td>Inbound (mgmt)</td><td>Web UI management interface</td></tr>
+  <tr><td>Admin workstation</td><td>SiteStore / CentralStore</td><td>22/TCP</td><td>SSH</td><td>Inbound (mgmt)</td><td>CLI administration</td></tr>
+</table>
+
+<blockquote>
+  <strong>Key Point:</strong> The Sensor → OT Network row is intentionally blank. Dragos sensors are physically configured as receive-only — there is no transmit path to the monitored OT network. This passive-only architecture is the foundation for a streamlined Security Impact Analysis and accelerated ATO timeline.
+</blockquote>
 
 <!-- SECTION 5: BILL OF MATERIALS -->
 <h2>5. Bill of Materials</h2>
@@ -248,8 +271,37 @@
   </ul>
 </div>
 
-<!-- SECTION 8: DEPLOYMENT TIMELINE -->
-<h2>8. Deployment Timeline</h2>
+<div class="arch-box">
+  <h4>Security Impact Analysis (SIA) Approach</h4>
+  <p style="font-size: 13px; line-height: 1.8;">Adding Dragos components to the USACE OT network authorization boundary triggers a <span class="tip" data-tip="Security Impact Analysis per NIST SP 800-128. Evaluates whether a proposed change introduces new risks or weakens existing controls. The ISSO uses the SIA to determine if re-authorization is needed.">Security Impact Analysis</span>. The SA proactively provides SIA artifacts (ports/protocols matrix, data flow diagrams, network diagrams, hardware/software inventory) to the ISSO before deployment. The passive-only sensor architecture significantly reduces SIA complexity — the system cannot affect the monitored OT network, eliminating an entire class of risk controls from the assessment scope.</p>
+</div>
+
+<div class="arch-box">
+  <h4>Resilience &amp; High Availability</h4>
+  <ul style="margin: 8px 0 0 20px; font-size: 13px; line-height: 1.8;">
+    <li><strong>Sensor failure:</strong> Traffic continues to flow on the OT network unaffected — sensor is passive and not inline</li>
+    <li><strong>SiteStore failure:</strong> Sensors buffer captured data locally for up to 24 hours pending SiteStore recovery</li>
+    <li><strong>CentralStore failure:</strong> Each SiteStore operates independently with full local analysis, detection, and alerting capability. No single point of failure for site-level monitoring</li>
+    <li><strong>WAN outage:</strong> SiteStores queue metadata transport and sync automatically when connectivity restores</li>
+  </ul>
+</div>
+
+<!-- SECTION 8: POC SUCCESS CRITERIA -->
+<h2>8. PoC Success Criteria</h2>
+
+<p>The Bonneville Dam PoC is evaluated against five specific, measurable success criteria. All five must be met before recommending full production deployment.</p>
+
+<table>
+  <tr><th>#</th><th>Criterion</th><th>Target</th><th>Measurement Method</th></tr>
+  <tr><td>1</td><td><strong>Asset Discovery Accuracy</strong></td><td><span class="tip" data-tip="The customer's SCADA PM provides a known asset list from their CMDB or maintenance records. Dragos sensor discovers assets passively. We compare the two lists. >95% match rate validates discovery capability.">≥95% of known OT assets detected</span></td><td>Compare Dragos asset inventory against SCADA PM's baseline list</td></tr>
+  <tr><td>2</td><td><strong>Protocol Parsing Coverage</strong></td><td>GE SRTP, EGD, Modbus TCP, OPC-UA all parsed</td><td>Verify protocol-specific fields populated in asset detail view</td></tr>
+  <tr><td>3</td><td><strong>Vulnerability Identification</strong></td><td><span class="tip" data-tip="The platform should automatically correlate discovered assets with known CVEs from the WorldView threat intelligence feed, categorized using Now/Next/Never prioritization.">Known CVEs correlated to discovered assets</span></td><td>Vulnerability dashboard populated with Now/Next/Never ratings</td></tr>
+  <tr><td>4</td><td><strong>Detection Fidelity</strong></td><td>&lt;5% false positive rate on generated alerts</td><td>Analyst review of all alerts during 14-day evaluation window</td></tr>
+  <tr><td>5</td><td><strong>SIEM Integration</strong></td><td>Alerts visible in Splunk within 60 seconds</td><td>Timed test: trigger alert → verify Splunk dashboard update</td></tr>
+</table>
+
+<!-- SECTION 9: DEPLOYMENT TIMELINE -->
+<h2>9. Deployment Timeline</h2>
 
 
 <table>
