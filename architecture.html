@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solution Architecture — USACE Columbia River Hydropower</title>
+  <link rel="stylesheet" href="discovery/style.css">
+  <style>
+    .site-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+    .site-card { border: 1px solid var(--gray-200); border-radius: 8px; padding: 16px 20px; }
+    .site-card h4 { margin: 0 0 8px; color: var(--dragos-blue); font-size: 15px; }
+    .site-card .stat { font-size: 13px; color: var(--gray-700); line-height: 1.7; }
+    .site-card .stat strong { color: var(--gray-900); }
+    .subtotal td { font-weight: 700; background: var(--gray-100) !important; }
+    .total-row td { font-weight: 700; background: var(--dragos-blue) !important; color: #fff !important; font-size: 14px; }
+    .arch-box { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 20px 24px; margin: 16px 0; }
+    .arch-box h4 { margin-top: 0; }
+    .int-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 16px 0; }
+    .int-card { border: 1px solid var(--gray-200); border-radius: 8px; padding: 14px 16px; background: #fff; }
+    .int-card h4 { margin: 0 0 6px; font-size: 13px; }
+    .int-card p { font-size: 12px; color: var(--gray-700); margin: 0; line-height: 1.5; }
+    .compliance-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+    .comp-card { border-left: 3px solid var(--dragos-accent); padding: 12px 16px; background: var(--gray-50); }
+    .comp-card h4 { margin: 0 0 4px; font-size: 13px; color: var(--dragos-blue); }
+    .comp-card p { font-size: 12px; color: var(--gray-700); margin: 0; }
+  </style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="logo-area"><span class="dot"></span> Dragos, Inc. — Public Sector</div>
+  <h1>Solution Architecture &amp; Bill of Materials</h1>
+  <p class="subtitle">U.S. Army Corps of Engineers — Northwestern Division<br>Columbia River Hydropower OT Cybersecurity Program</p>
+  <div class="meta-grid">
+    <div class="meta-item"><label>Prepared By</label><span>Aaron Kotz, Sr. Solutions Architect (Federal)</span></div>
+    <div class="meta-item"><label><span class="tip" data-tip="The AE owns the customer relationship and pipeline forecast. The SA owns the technical win and architecture design. SA never quotes pricing directly.">Account Executive</span></label><span>[AE Name], Dragos Public Sector</span></div>
+    <div class="meta-item"><label><span class="tip" data-tip="A channel partner is an authorized reseller that holds the contract vehicle. In federal sales, orders flow through the channel partner for compliance.">Channel Partner</span></label><span><span class="tip" data-tip="Carahsoft is Dragos' authorized federal distributor. They hold SEWP VI, GSA Schedule, and handle quoting, order processing, and compliance documentation.">Carahsoft Technology Corp.</span></span></div>
+    <div class="meta-item"><label><span class="tip" data-tip="A contract vehicle is a pre-competed agreement (GWAC, IDIQ, BPA) that federal agencies use to streamline procurement, avoiding 6-12 month FAR Part 15 timelines.">Contract Vehicle</span></label><span><span class="tip" data-tip="NASA SEWP VI (Solutions for Enterprise-Wide Procurement) is a GWAC managed by NASA, available to all federal agencies. SEWP V expired April 30, 2026; SEWP VI is the active successor.">NASA SEWP VI (via Carahsoft)</span></span></div>
+    <div class="meta-item"><label>Date</label><span>May 22, 2026</span></div>
+    <div class="meta-item"><label>Version</label><span>1.0 — Post-Discovery Architecture</span></div>
+    <div class="meta-item"><label><span class="tip" data-tip="CRM tracking number from Salesforce linking all deal artifacts to a single pipeline entry for forecasting and deal review.">Opportunity ID</span></label><span>DRG-FED-2026-0847</span></div>
+    <div class="meta-item"><label>Based On</label><span>Discovery Document v1.4 (DRG-FED-2026-0847)</span></div>
+  </div>
+  <div class="classification"><span class="tip" data-tip="CUI per 32 CFR Part 2002. Distribution limited to named parties only — no cloud storage, no unencrypted email.">CUI // FOUO — Distribution Limited to Dragos Internal + Carahsoft</span></div>
+</div>
+
+<div class="page">
+
+<!-- SECTION 1: EXECUTIVE SUMMARY -->
+<h2>1. Executive Summary</h2>
+
+<p>This document presents the recommended Dragos Platform deployment architecture for the U.S. Army Corps of Engineers — Northwestern Division (NWD) Columbia River hydropower facilities. The architecture is derived from the Technical Discovery session conducted on May 15, 2026, and addresses the complete absence of OT network monitoring across four major dam sites generating 6,033 MW of combined capacity.</p>
+
+<blockquote>
+  <strong>Design Principle:</strong> All OT data processing stays on-premises. Only structured alert metadata leaves the local network via encrypted channels to existing enterprise security tools. No raw PCAP, asset data, or process telemetry is sent to any cloud service.
+</blockquote>
+
+<p>The proposed architecture deploys <strong>6 passive sensors</strong> across 4 dam sites, <strong>4 SiteStores</strong> for local analysis, and <strong>1 CentralStore</strong> at NWD HQ for enterprise aggregation — providing complete OT visibility from Purdue Level 1 through Level 3 without any active scanning or operational disruption.</p>
+
+<!-- SECTION 2: SITE ARCHITECTURE -->
+<h2>2. Site Deployment Architecture</h2>
+
+<p>Each site's deployment is tailored to its specific controller platform, network infrastructure, and protocol requirements identified during discovery. Sensor placement and network tap strategy varies by site based on switch capabilities.</p>
+
+<div class="site-grid">
+  <div class="site-card">
+    <h4>🏭 Bonneville Dam — <span class="tip" data-tip="Bonneville is selected as the PoC site because it has the most modern network infrastructure (Cisco IE-4010 managed switches with SPAN capability), reducing deployment complexity and change control risk.">PoC Site</span></h4>
+    <div class="stat">
+      <strong>Capacity:</strong> 1,080 MW · 20 generating units<br>
+      <strong>Controller:</strong> <span class="tip" data-tip="GE Mark VIe is a turbine control system widely used in power generation. It communicates using proprietary GE protocols (SRTP and EGD) plus standard protocols like Modbus TCP and OPC-UA.">GE Mark VIe</span><br>
+      <strong>HMI:</strong> <span class="tip" data-tip="GE's SCADA/HMI platform for the Mark VIe ecosystem. Runs on Windows and communicates with controllers via SRTP and EGD.">GE CIMPLICITY</span><br>
+      <strong>Protocols:</strong> <span class="tip" data-tip="GE Service Request Transport Protocol — proprietary protocol used for configuration, diagnostics, and firmware updates on GE Mark controllers.">GE SRTP</span>, <span class="tip" data-tip="Ethernet Global Data — GE's real-time data exchange protocol for broadcasting process values between Mark VIe controllers and HMIs at high speed.">EGD</span>, Modbus TCP, OPC-UA<br>
+      <strong>Network:</strong> Cisco IE-4010 managed switches<br>
+      <strong>Tap Strategy:</strong> <span class="tip" data-tip="SPAN (Switched Port Analyzer) mirrors traffic from selected switch ports to a monitoring port where the Dragos sensor passively captures packets. Uses existing managed switch capability — no additional hardware needed.">SPAN port mirroring</span> — no TAP hardware needed<br>
+      <strong>Sensors:</strong> 2 (L2 process network + L3 site operations)<br>
+      <strong>SiteStore:</strong> 1× <span class="tip" data-tip="Dragos hardware appliance model sized for sites with up to 500 OT assets. Includes local storage, analysis engine, and detection capabilities.">DS-1000 appliance</span>
+    </div>
+  </div>
+
+  <div class="site-card">
+    <h4>🏭 The Dalles Dam</h4>
+    <div class="stat">
+      <strong>Capacity:</strong> <span class="tip" data-tip="1,813 MW is the nameplate rating per USACE NWD fact sheets. The 2,160 MW 'overload' rating referenced in some sources represents maximum short-duration output, not sustained capacity.">1,813 MW nameplate</span> · 22 generating units<br>
+      <strong>Controller:</strong> <span class="tip" data-tip="Emerson Ovation is a distributed control system (DCS) commonly used in power generation. It uses OPC-UA for data exchange and Modbus TCP for device integration.">Emerson Ovation DCS</span><br>
+      <strong>HMI:</strong> Ovation Operator Workstations<br>
+      <strong>Protocols:</strong> OPC-UA, Modbus TCP<br>
+      <strong>Network:</strong> Cisco IE-3400 managed switches<br>
+      <strong>Tap Strategy:</strong> SPAN port mirroring<br>
+      <strong>Sensors:</strong> 1 (combined L2/L3 — flat OT network)<br>
+      <strong>SiteStore:</strong> 1× DS-1000 appliance
+    </div>
+  </div>
+
+  <div class="site-card">
+    <h4>🏭 John Day Dam</h4>
+    <div class="stat">
+      <strong>Capacity:</strong> 2,160 MW · 16 generating units<br>
+      <strong>Controller:</strong> <span class="tip" data-tip="Allen-Bradley ControlLogix L83 is a high-performance PLC from Rockwell Automation. Communicates via EtherNet/IP (CIP) — an industrial Ethernet protocol for real-time control and I/O data.">AB ControlLogix L83</span><br>
+      <strong>HMI:</strong> <span class="tip" data-tip="Rockwell's visualization platform for ControlLogix environments. Runs on Windows, communicates via EtherNet/IP. SE (Site Edition) is the server-based version for multi-client deployments.">FactoryTalk View SE</span><br>
+      <strong>Protocols:</strong> <span class="tip" data-tip="EtherNet/IP uses the Common Industrial Protocol (CIP) over standard Ethernet. It's Rockwell's primary industrial communication protocol for real-time I/O, configuration, and diagnostics.">EtherNet/IP (CIP)</span>, Modbus TCP<br>
+      <strong>Network:</strong> HP ProCurve unmanaged switches<br>
+      <strong>Tap Strategy:</strong> <span class="tip" data-tip="A network TAP (Test Access Point) is a passive hardware device that creates a physical copy of network traffic. Required here because the HP ProCurve switches lack SPAN capability — you can't mirror ports on an unmanaged switch.">Network TAP required</span> — switches lack SPAN<br>
+      <strong>Sensors:</strong> 2 (L1/L2 process + L3 operations)<br>
+      <strong>SiteStore:</strong> 1× DS-1000 appliance
+    </div>
+  </div>
+
+  <div class="site-card">
+    <h4>🏭 McNary Dam</h4>
+    <div class="stat">
+      <strong>Capacity:</strong> 980 MW · 14 generating units<br>
+      <strong>Controller:</strong> <span class="tip" data-tip="Siemens SIMATIC S7-400 is a legacy PLC platform. Communicates via S7comm, Siemens' proprietary protocol. End-of-production since 2020 — successor is S7-1500.">Siemens S7-400</span><br>
+      <strong>HMI:</strong> <span class="tip" data-tip="Siemens WinCC is the SCADA/HMI platform for S7-series PLCs. Version 7.5 runs on Windows and communicates via S7comm and OPC. End-of-mainstream-support is approaching.">WinCC 7.5</span><br>
+      <strong>Protocols:</strong> <span class="tip" data-tip="S7comm is Siemens' proprietary industrial protocol for communication between S7-series PLCs and HMI/SCADA systems. Dragos parses S7comm natively for asset discovery and threat detection.">S7comm</span>, Modbus TCP<br>
+      <strong>Network:</strong> <span class="tip" data-tip="Moxa industrial Ethernet switches in unmanaged configuration. No SPAN or mirror capability. A network TAP must be installed inline to provide traffic visibility to the Dragos sensor.">Moxa EDS unmanaged switches</span><br>
+      <strong>Tap Strategy:</strong> Network TAP required — unmanaged switches<br>
+      <strong>Sensors:</strong> 1 (combined — smaller OT footprint)<br>
+      <strong>SiteStore:</strong> 1× DS-500 appliance
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: CENTRALSTORE -->
+<h2>3. CentralStore &amp; Enterprise Architecture</h2>
+
+<div class="arch-box">
+  <h4>CentralStore — NWD Headquarters (Portland, OR)</h4>
+  <p>The <span class="tip" data-tip="CentralStore is Dragos' enterprise aggregation component — a 'manager of managers' that collects data from multiple SiteStores to provide unified multi-site visibility, cross-site correlation, and executive reporting.">CentralStore</span> is deployed as a virtual machine in the NWD HQ data center, aggregating data from all 4 SiteStores over encrypted channels. It provides:</p>
+  <ul style="margin: 12px 0 0 20px; font-size: 13px; line-height: 1.8;">
+    <li>Unified asset inventory across all 4 dam sites (est. 247 OT assets)</li>
+    <li>Cross-site threat correlation — detect adversary lateral movement between facilities</li>
+    <li>Enterprise vulnerability dashboard with <span class="tip" data-tip="Dragos' OT-specific vulnerability prioritization framework. 'Now' = actively exploited or trivially exploitable; 'Next' = exploitable but requires specific conditions; 'Never' = theoretical risk with no practical exploit path. Replaces raw CVSS scoring with operational context.">Now/Next/Never</span> prioritization</li>
+    <li>Executive reporting for NWD leadership and USACE HQ</li>
+    <li>SIEM integration point (single syslog feed to Splunk Cloud)</li>
+  </ul>
+  <p style="margin-top: 12px; font-size: 13px;"><strong>VM Requirements:</strong> 8 vCPU, 32 GB RAM, 2 TB storage, VMware ESXi 7.0+ or RHEL 8.x KVM. DISA STIG baseline applied.</p>
+</div>
+
+<!-- SECTION 4: INTEGRATIONS -->
+<h2>4. Integration Architecture</h2>
+
+<p>The Dragos Platform integrates with the customer's existing security stack. All integrations use encrypted channels and send only metadata — no raw OT data leaves the on-premises environment.</p>
+
+<div class="int-grid">
+  <div class="int-card">
+    <h4>📊 <span class="tip" data-tip="Splunk Cloud achieved FedRAMP High authorization (September 2024) and DoD IL5 Provisional Authorization from DISA. Hosted in AWS GovCloud with US data sovereignty.">Splunk Cloud</span></h4>
+    <p><strong>Method:</strong> <span class="tip" data-tip="Syslog using Common Event Format (CEF) is the standard for forwarding security alerts to SIEMs. TLS encryption ensures alert metadata is protected in transit.">Syslog/CEF over TLS</span><br>
+    <strong>Source:</strong> CentralStore → Splunk Cloud<br>
+    <strong>Data:</strong> Alert metadata only (type, severity, timestamp, asset ID). No raw PCAP.<br>
+    <strong>Value:</strong> OT alerts in existing SOC dashboards</p>
+  </div>
+  <div class="int-card">
+    <h4>🛡️ <span class="tip" data-tip="CrowdStrike Falcon is the customer's existing EDR platform on IT/L3-L4 Windows endpoints. The Dragos integration uses a supported marketplace app — not custom development.">CrowdStrike Falcon</span></h4>
+    <p><strong>Method:</strong> REST API (bi-directional)<br>
+    <strong>Dragos → CS:</strong> OT IOCs + asset inventory → Falcon Discover for IoT<br>
+    <strong>CS → Dragos:</strong> EDR context (hostname, OS, AD domain) enriches OT asset data<br>
+    <strong>Value:</strong> Unified IT/OT threat visibility</p>
+  </div>
+  <div class="int-card">
+    <h4>🌐 <span class="tip" data-tip="Neighborhood Keeper is Dragos' community defense program. Sensors share anonymized threat telemetry — customer identifiers are stripped before transmission. NSA and CISA participate as trusted advisors.">Neighborhood Keeper</span></h4>
+    <p><strong>Method:</strong> Anonymized sensor telemetry<br>
+    <strong>Source:</strong> Sensors → Dragos Cloud (anonymized)<br>
+    <strong>Data:</strong> Statistical threat patterns only. Zero customer-identifiable data.<br>
+    <strong>Value:</strong> Collective defense for critical infrastructure</p>
+  </div>
+</div>
+
+<!-- SECTION 5: BILL OF MATERIALS -->
+<h2>5. Bill of Materials</h2>
+
+<p>The following <span class="tip" data-tip="The SA sizes the BoM based on the architecture design; the AE and Deal Desk price it. The SA never quotes specific dollar amounts to the customer — pricing goes through the channel partner (Carahsoft).">Bill of Materials</span> is sized to the architecture described above. All pricing is indicative and subject to <span class="tip" data-tip="Deal Desk is the internal pricing authority at Dragos. The SA submits the BoM with architecture justification; Deal Desk sets final pricing based on deal size, strategic value, and competitive dynamics.">Deal Desk</span> approval and Carahsoft quoting.</p>
+
+<table>
+  <tr><th>Category</th><th>Item</th><th>Qty</th><th>Unit</th><th>Notes</th></tr>
+  <tr><td rowspan="3"><strong>Hardware</strong></td><td><span class="tip" data-tip="Dragos sensor appliance for passive network monitoring. Deployed at SPAN/TAP points to capture OT traffic for analysis by the SiteStore.">Dragos Sensor Appliance</span></td><td>6</td><td>Each</td><td>2× Bonneville, 1× Dalles, 2× John Day, 1× McNary</td></tr>
+  <tr><td>Dragos SiteStore DS-1000</td><td>3</td><td>Each</td><td>Bonneville, The Dalles, John Day</td></tr>
+  <tr><td>Dragos SiteStore DS-500</td><td>1</td><td>Each</td><td>McNary (smaller OT footprint)</td></tr>
+
+  <tr class="subtotal"><td></td><td colspan="4">Hardware Subtotal — 10 appliances</td></tr>
+
+  <tr><td rowspan="2"><strong>Software</strong></td><td>Dragos Platform License</td><td>1</td><td><span class="tip" data-tip="Dragos Platform licensing is typically based on the number of monitored OT assets, not per-sensor or per-site. The 'enterprise' tier covers multi-site deployments with CentralStore.">Enterprise Tier</span></td><td>≤500 assets, 4 sites, includes CentralStore</td></tr>
+  <tr><td>CentralStore VM License</td><td>1</td><td>Each</td><td>NWD HQ — VMware deployment</td></tr>
+
+  <tr class="subtotal"><td></td><td colspan="4">Software Subtotal — Enterprise platform + CentralStore</td></tr>
+
+  <tr><td rowspan="3"><strong>Subscriptions</strong></td><td><span class="tip" data-tip="Dragos' OT threat intelligence subscription. Tracks 20+ ICS threat groups, provides vulnerability advisories, strategic reports, and indicator feeds. Updated continuously by the largest dedicated OT intel team in the industry.">WorldView Threat Intelligence</span></td><td>1</td><td>Annual</td><td>Threat group tracking, vulnerability advisories, IOC feeds</td></tr>
+  <tr><td><span class="tip" data-tip="Dragos' managed detection service. Dragos analysts monitor customer OT environments and provide alert triage, investigation support, and escalation. Addresses the common federal gap of no dedicated OT SOC capability.">OT Watch</span></td><td>1</td><td>Annual</td><td>Managed detection — covers staffing gap for OT SOC</td></tr>
+  <tr><td>Neighborhood Keeper</td><td>1</td><td>Annual</td><td>Included with platform — community defense enrollment</td></tr>
+
+  <tr class="subtotal"><td></td><td colspan="4">Subscriptions Subtotal — Annual recurring</td></tr>
+
+  <tr><td rowspan="4"><strong>Services</strong></td><td><span class="tip" data-tip="A Dragos Professional Services engagement that evaluates the customer's OT network architecture, segmentation, and security posture. Produces a findings report with prioritized recommendations aligned to SANS 5 Critical Controls.">Architecture Assessment</span></td><td>1</td><td>Engagement</td><td>Pre-deployment network architecture review</td></tr>
+  <tr><td>Deployment &amp; Configuration</td><td>4</td><td>Sites</td><td>On-site sensor + SiteStore installation per site</td></tr>
+  <tr><td>CentralStore Integration</td><td>1</td><td>Engagement</td><td>Splunk + CrowdStrike integration setup</td></tr>
+  <tr><td>Platform Training</td><td>1</td><td>Session</td><td>2-day administrator + analyst training for NWD team</td></tr>
+
+  <tr class="subtotal"><td></td><td colspan="4">Services Subtotal — One-time professional services</td></tr>
+
+  <tr class="total-row"><td></td><td colspan="4">Total Estimated Value: ~$780K FFP Year 1 (via NASA SEWP VI)</td></tr>
+</table>
+
+<p style="font-size: 12px; color: var(--gray-500); margin-top: 8px;"><em>Note: Pricing is indicative. Final pricing determined by Dragos Deal Desk and quoted through Carahsoft. <span class="tip" data-tip="Firm Fixed Price — a contract type where the price is agreed upon before work begins and does not change regardless of actual costs incurred. Preferred by federal contracting officers because it transfers cost risk to the vendor.">FFP</span> contract type recommended for Year 1 to simplify procurement.</em></p>
+
+<!-- SECTION 6: COMPLIANCE MAPPING -->
+<h2>6. Compliance &amp; Regulatory Alignment</h2>
+
+<p>This architecture addresses multiple overlapping federal compliance requirements. The Dragos Platform provides direct evidence artifacts for each framework.</p>
+
+<div class="compliance-grid">
+  <div class="comp-card">
+    <h4><span class="tip" data-tip="USACE Engineer Pamphlet 1130-2-510 establishes cybersecurity requirements for USACE hydropower facilities. It mandates OT asset inventory, network monitoring, and vulnerability management — all directly addressed by this architecture.">USACE EP 1130-2-510</span></h4>
+    <p>OT asset inventory, network monitoring, vulnerability management. Dragos Platform provides continuous compliance evidence for all three requirements.</p>
+  </div>
+  <div class="comp-card">
+    <h4><span class="tip" data-tip="NIST Special Publication 800-82 Revision 3 (2023) provides guidance for securing industrial control systems. Sections 5 and 6 specifically address network monitoring, access control, and incident response for OT environments.">NIST SP 800-82 Rev 3</span></h4>
+    <p>ICS security guidance. Platform addresses network monitoring (§5.3), access control validation (§5.5), and incident response capability (§6.2).</p>
+  </div>
+  <div class="comp-card">
+    <h4><span class="tip" data-tip="The DoD CIO issued a directive requiring all DoD components to establish OT cybersecurity programs with asset inventory, network monitoring, and vulnerability management capabilities. Applies to USACE as a DoD agency.">DoD CIO OT Security Directive</span></h4>
+    <p>Mandates OT cybersecurity programs across all DoD components. This deployment directly satisfies the asset visibility and network monitoring requirements.</p>
+  </div>
+  <div class="comp-card">
+    <h4><span class="tip" data-tip="NIST SP 800-53 Rev 5 provides the security control catalog used by all federal systems. The Dragos Platform maps to controls in the SI (System and Information Integrity), AU (Audit), and IR (Incident Response) families.">NIST SP 800-53 Rev 5</span></h4>
+    <p>Federal security controls. Platform provides evidence for SI-4 (System Monitoring), AU-6 (Audit Review), IR-4 (Incident Handling), and RA-5 (Vulnerability Scanning).</p>
+  </div>
+</div>
+
+<!-- SECTION 7: DEPLOYMENT TIMELINE -->
+<h2>7. Deployment Timeline</h2>
+
+<table>
+  <tr><th>Phase</th><th>Timeline</th><th>Activities</th><th>Gate</th></tr>
+  <tr><td><strong>PoC</strong></td><td>Jun–Jul 2026</td><td>Bonneville Dam — 2 sensors + 1 SiteStore. Validate GE SRTP/EGD parsing, asset discovery, Splunk integration.</td><td>Success criteria met (5/5)</td></tr>
+  <tr><td><strong><span class="tip" data-tip="The Architecture Review Board is a governance body that evaluates proposed technology deployments for technical soundness, security compliance, and enterprise architecture alignment. ARB endorsement is typically required before procurement.">ARB Review</span></strong></td><td>Aug 2026</td><td>Present PoC findings + full architecture to NWD Architecture Review Board.</td><td>ARB endorsement</td></tr>
+  <tr><td><strong>Contract Award</strong></td><td>Sep 2026</td><td>SEWP VI task order via Carahsoft. FFP Year 1.</td><td>CO signature</td></tr>
+  <tr><td><strong>First Site Live</strong></td><td>Dec 2026</td><td>Bonneville production deployment + NK enrollment. CentralStore at NWD HQ.</td><td>Site acceptance</td></tr>
+  <tr><td><strong>Remaining Sites</strong></td><td>Jan–Mar 2027</td><td>The Dalles, John Day, McNary — sequential rollout. TAP installation at John Day and McNary during scheduled outage windows.</td><td>Full operational capability</td></tr>
+</table>
+
+<blockquote>
+  <strong>Key Constraint:</strong> John Day and McNary require <span class="tip" data-tip="Network TAP installation requires a brief network interruption to insert the inline device. At OT sites, this must be coordinated with a scheduled maintenance window or planned outage to avoid impacting turbine operations. Typical change control lead time is 4 weeks.">network TAP installation</span> during scheduled maintenance windows. TAP procurement and change control requests should be initiated during the PoC phase to avoid timeline delays.
+</blockquote>
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <span>CUI // FOUO — Dragos Internal + Carahsoft</span>
+  <span>Solution Architecture v1.0 — DRG-FED-2026-0847</span>
+</div>
+
+</div>
+</body>
+</html>
