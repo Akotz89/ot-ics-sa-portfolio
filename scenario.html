@@ -57,10 +57,10 @@
   <tr><th style="width:200px">Field</th><th>Detail</th></tr>
   <tr><td>Organization</td><td><strong>U.S. Army Corps of Engineers (USACE)</strong> — Northwestern Division (NWD)</td></tr>
   <tr><td>Mission</td><td>Operates 21 hydroelectric dams across the Columbia and Willamette River basins (OR, WA, ID, MT). Generates over 22,000 GWh/year — part of the Federal Columbia River Power System that provides roughly 40% of all U.S. hydroelectric power.</td></tr>
-  <tr><td>Sector</td><td>Federal — DoD (Civil Works) / Energy / Water</td></tr>
+  <tr><td>Sector</td><td>Federal — <span class="tip" data-tip="USACE Civil Works is the non-combat mission set: flood control, navigation, hydropower, environmental stewardship. Distinct from USACE Military Programs (base construction). Civil Works is funded through the Energy and Water appropriations bill, not DoD base budget.">DoD (Civil Works)</span> / Energy / Water</td></tr>
   <tr><td>Scope</td><td>Initial engagement: <strong>4 dams</strong>. Success → expansion to all 21 NWD dams.</td></tr>
   <tr><td>Annual OT Budget</td><td><span class="tip" data-tip="Sourced from the existing SCADA modernization line item — not a new budget request. Using existing program funding accelerates obligation and avoids the 1-2 year POM cycle for new requirements.">~$2M</span> (cybersecurity portion of SCADA modernization program)</td></tr>
-  <tr><td>Existing Relationship</td><td>None with Dragos. CrowdStrike and Splunk on IT side. Dr. Torres attended S4 Conference and heard Robert M. Lee present.</td></tr>
+  <tr><td>Existing Relationship</td><td>None with Dragos. CrowdStrike and Splunk on IT side. Dr. Torres attended <span class="tip" data-tip="S4 is the premier ICS/SCADA security conference, held annually in Miami Beach. Features vendor-neutral technical content and a PoC Pavilion where companies demo live on real PLCs. High-value networking for federal OT decision-makers.">S4 Conference</span> and heard <span class="tip" data-tip="Robert M. Lee is the CEO and co-founder of Dragos, Inc. Former NSA operator and SANS ICS instructor. Widely recognized as a leading authority on ICS/OT cybersecurity.">Robert M. Lee</span> present.</td></tr>
 </table>
 
 <!-- ═══════════════ THE SITES ═══════════════ -->
@@ -72,10 +72,10 @@
     <div class="stat">
       <strong>Commissioned:</strong> 1938 (first powerhouse; second powerhouse 1981)<br>
       <strong>Capacity:</strong> 1,080 MW nameplate / 1,242 MW overload (20 generating units across two powerhouses)<br>
-      <strong>Control System:</strong> GE Mark VIe Turbine Controls<br>
+      <strong>Control System:</strong> <span class="tip" data-tip="GE Mark VIe is GE Vernova's current-generation turbine control platform. The 'VI' designates the sixth generation of GE's Mark series; 'e' denotes the Ethernet-based variant. Widely deployed in gas, steam, and hydro turbine applications.">GE Mark VIe</span> Turbine Controls<br>
       <strong>HMI:</strong> <span class="tip" data-tip="iFIX serves as the plant-level SCADA aggregation layer across all units. ControlST/WorkstationST is GE's native per-unit turbine interface for the Mark VIe platform. Both systems coexist in hydro environments — iFIX for operators, ControlST for unit-level control and tuning.">GE iFIX 6.1 (plant-level SCADA); ControlST/WorkstationST (per-unit)</span><br>
       <strong>Historian:</strong> <span class="tip" data-tip="AVEVA acquired OSIsoft in August 2021. The PI System is now part of the AVEVA industrial software portfolio. PI is the most widely deployed historian in the energy sector.">AVEVA PI System</span><br>
-      <strong>Safety:</strong> Woodward Load Sharing<br>
+      <strong>Safety:</strong> <span class="tip" data-tip="Woodward is a major turbine controls manufacturer. Load sharing systems distribute electrical load across multiple generating units to prevent overloading and maintain grid frequency stability. Critical safety function in multi-unit hydro plants.">Woodward Load Sharing</span><br>
       <strong>Network:</strong> Cisco IE-4010 (SPAN capable)<br>
       <strong>Role:</strong> Primary PoC site — largest, most complex
     </div>
@@ -85,12 +85,12 @@
     <div class="stat">
       <strong>Commissioned:</strong> 1957 (Phase I, 14 units); 1973 (Phase II, 8 units)<br>
       <strong>Capacity:</strong> 2,080 MW total generating capacity (22 generating units)<br>
-      <strong>Control System:</strong> Emerson Ovation DCS<br>
+      <strong>Control System:</strong> <span class="tip" data-tip="Distributed Control System (DCS) — unlike discrete PLCs, a DCS provides integrated control across an entire plant with centralized engineering and operator interface. Emerson Ovation is widely used in power generation, especially hydro and fossil plants.">Emerson Ovation DCS</span><br>
       <strong>HMI:</strong> Emerson OvationView<br>
       <strong>Historian:</strong> AVEVA PI System<br>
       <strong>Safety:</strong> Legacy relay protection (no digital monitoring)<br>
       <strong>Network:</strong> Cisco IE-3400 (SPAN capable)<br>
-      <strong>Risk:</strong> Legacy relays vulnerable to Industroyer-style attacks
+      <strong>Risk:</strong> Legacy relays vulnerable to <span class="tip" data-tip="Industroyer (also called CrashOverride) is ICS-specific malware used in the 2016 and 2022 Ukraine power grid attacks. It manipulates protection relay communications to trip breakers and cause outages. Directly relevant to any plant using legacy relay protection without digital monitoring.">Industroyer-style attacks</span>
     </div>
   </div>
   <div class="site-card">
@@ -102,7 +102,7 @@
       <strong>HMI:</strong> FactoryTalk View SE (6 stations)<br>
       <strong>Historian:</strong> Wonderware Historian<br>
       <strong>Safety:</strong> None identified<br>
-      <strong>Network:</strong> HP ProCurve 2920 (limited SPAN — TAP needed)<br>
+      <strong>Network:</strong> <span class="tip" data-tip="HP ProCurve 2920 is a managed enterprise switch, not designed for industrial environments. Its SPAN (port mirroring) implementation has limited session support and cannot mirror traffic from all VLANs simultaneously. A network TAP provides a reliable passive alternative.">HP ProCurve 2920</span> (limited SPAN — TAP needed)<br>
       <strong>Risk:</strong> ControlLogix CIP firmware <span class="tip" data-tip="CVE-2023-3595: Remote code execution via CIP protocol. Discovered by Dragos and coordinated with Rockwell Automation. CVSS 9.8 — critical. Affects ControlLogix 5580 and earlier firmware. Dragos published detection signatures and mitigation guidance.">CVE-2023-3595</span> (RCE via CIP, Dragos-discovered, CVSS 9.8)
     </div>
   </div>
@@ -111,11 +111,11 @@
     <div class="stat">
       <strong>Commissioned:</strong> 1953 (first power); expanded 1957<br>
       <strong>Capacity:</strong> 980 MW (14 generating units)<br>
-      <strong>Control System:</strong> Siemens S7-400 PLCs<br>
+      <strong>Control System:</strong> <span class="tip" data-tip="Siemens S7-400 is a legacy PLC platform, now superseded by the S7-1500 series. Still widely deployed in critical infrastructure due to long equipment lifecycles. Communicates via S7comm protocol, which Dragos Platform can parse passively.">Siemens S7-400 PLCs</span><br>
       <strong>HMI:</strong> WinCC 7.5 (4 stations)<br>
       <strong>Historian:</strong> None (manual logs only)<br>
       <strong>Safety:</strong> None identified<br>
-      <strong>Network:</strong> Unmanaged Moxa switches (no SPAN — TAP required)<br>
+      <strong>Network:</strong> <span class="tip" data-tip="Unmanaged switches have no SPAN/mirror capability and no CLI for configuration. Network visibility requires installing a passive network TAP (Test Access Point) — a hardware device that copies traffic without introducing any active elements to the network.">Unmanaged Moxa switches</span> (no SPAN — TAP required)<br>
       <strong>Risk:</strong> Least visibility, most legacy infrastructure
     </div>
   </div>
@@ -152,8 +152,8 @@
 
 <div class="persona-card">
   <div class="name">Brian Knox</div>
-  <div class="title">OT Network Administrator, GS-12</div>
-  <div class="detail">Your hands-on evaluator. Former Air Force 3D1X2 (Cyber Transport Systems), 8 years active duty before transitioning to USACE civilian service. Manages the switches, configures the SPAN ports, will physically rack your sensors. If the PoC goes well, it's because Brian made it work. Treat him as a peer — he's the one who told you "we tried Tenable on the OT network once — it crashed two HMIs."</div>
+  <div class="title">OT Network Administrator, <span class="tip" data-tip="GS-12 is a mid-career federal civilian pay grade in the General Schedule system. Typical for a senior technician or first-line supervisor with 5-10 years of specialized experience. GS pay scale ranges from GS-1 (entry) to GS-15 (senior executive).">GS-12</span></div>
+  <div class="detail">Your hands-on evaluator. Former Air Force <span class="tip" data-tip="3D1X2 (Cyber Transport Systems) is the USAF specialty code for network infrastructure and cybersecurity. Redesignated to 1D7X1A under the 2024 AFSC restructure. Personnel manage, monitor, and defend AF network infrastructure.">3D1X2</span> (Cyber Transport Systems), 8 years active duty before transitioning to USACE civilian service. Manages the switches, configures the SPAN ports, will physically rack your sensors. If the PoC goes well, it's because Brian made it work. Treat him as a peer — he's the one who told you "we tried Tenable on the OT network once — it crashed two HMIs."</div>
 </div>
 
 <h3>Dragos Side</h3>
@@ -212,7 +212,7 @@
   </div>
   <div class="event">
     <div class="date">Jul 28 — PoC Readout</div>
-    <div class="desc">Findings presentation to Dr. Torres, Mike Osterman, COL Harding. Data-driven results: 247 OT assets discovered, 83 previously unknown, 12 critical vulnerabilities identified.</div>
+    <div class="desc">Findings presentation to Dr. Torres, Mike Osterman, COL Harding. Data-driven results: <span class="tip" data-tip="PoC readout numbers demonstrate platform value. 247 total assets discovered vs. the customer's estimated ~194 known assets validates that automated discovery finds significantly more than manual inventory. 83 previously unknown devices (34%) directly addresses the '30-40% undocumented' gap identified in discovery.">247 OT assets discovered, 83 previously unknown</span>, 12 critical vulnerabilities identified.</div>
   </div>
   <div class="event">
     <div class="date">Aug 11 — Technical Win</div>
@@ -220,7 +220,7 @@
   </div>
   <div class="event">
     <div class="date">Sep 15 — Contract Award</div>
-    <div class="desc"><span class="tip" data-tip="Firm Fixed Price — the government pays a locked total price with no cost-growth risk. Preferred by federal contracting officers because it shifts cost risk to the vendor and simplifies obligation.">FFP</span> contract via <span class="tip" data-tip="Pre-competed Government-Wide Acquisition Contract managed by NASA. Enables task-order issuance without a new competition cycle, saving 3-4 months vs. full and open procurement.">NASA SEWP VI</span> (Carahsoft). $780K Year 1. FY26 funds obligated.</div>
+    <div class="desc"><span class="tip" data-tip="Firm Fixed Price — the government pays a locked total price with no cost-growth risk. Preferred by federal contracting officers because it shifts cost risk to the vendor and simplifies obligation.">FFP</span> contract via <span class="tip" data-tip="Pre-competed Government-Wide Acquisition Contract managed by NASA. Enables task-order issuance without a new competition cycle, saving 3-4 months vs. full and open procurement.">NASA SEWP VI</span> (<span class="tip" data-tip="Carahsoft Technology Corp. is the largest government IT solutions provider and Dragos' authorized federal channel partner. They hold the SEWP VI contract, manage the order logistics, and handle small business subcontracting requirements.">Carahsoft</span>). <span class="tip" data-tip="$780K Year 1 covers 6 sensors (across 4 dams), 4 hardware SiteStores, 1 CentralStore VM, Dragos Platform subscription, Neighborhood Keeper participation, and 1 year of Dragos support. Sized to the 4-dam initial scope with built-in expansion path.">$780K Year 1</span>. FY26 funds obligated.</div>
   </div>
   <div class="event">
     <div class="date">Dec 2026 — First Site Live</div>
@@ -238,7 +238,7 @@
 <table>
   <tr><th style="width:160px">Threat Group</th><th>Relevance</th></tr>
   <tr><td><span class="sev-crit">VOLTZITE</span></td><td><span class="tip" data-tip="Stage 2 in Dragos threat classification means the group has demonstrated capability and intent to target ICS/OT environments specifically, beyond IT reconnaissance. Stage 1 groups show IT-focused activity with potential OT interest.">Stage 2 group</span> (PRC-linked, overlaps with Volt Typhoon) targeting U.S. electric grid, pipelines, and water systems. Manipulates engineering workstation software to extract config files. CISA advisory AA24-038A covers the PRC pre-positioning campaign; Dragos elevated VOLTZITE to Stage 2 in 2025. <strong>This is the threat driving the deal.</strong></td></tr>
-  <tr><td><span class="sev-crit">CHERNOVITE</span></td><td>Developed PIPEDREAM/INCONTROLLER — ICS-specific malware that can target industrial controllers. Relevant because USACE runs PLCs from multiple vendors.</td></tr>
+  <tr><td><span class="sev-crit">CHERNOVITE</span></td><td>Developed <span class="tip" data-tip="PIPEDREAM (also tracked as INCONTROLLER) is a modular ICS attack framework capable of interacting with Schneider Electric and OMRON PLCs via native industrial protocols. Discovered by Dragos in early 2022 before deployment. First ICS malware designed to target multiple vendor architectures simultaneously.">PIPEDREAM/INCONTROLLER</span> — ICS-specific malware that can target industrial controllers. Relevant because USACE runs PLCs from multiple vendors.</td></tr>
   <tr><td><span class="sev-high">ELECTRUM</span></td><td>Connected to Industroyer malware that targeted electric grid in Ukraine. Relevant to The Dalles Dam's legacy relay protection systems.</td></tr>
   <tr><td><span class="sev-high">SYLVANITE</span></td><td>Access broker that weaponizes VPN/edge device vulnerabilities. Relevant because USACE uses VPN for remote OT access with no MFA.</td></tr>
 </table>
@@ -255,12 +255,12 @@
   <tr><td>Availability Priority</td><td>OT uptime > everything else. These dams provide power to millions. You do NOT disrupt operations.</td></tr>
   <tr><td>Change Control</td><td>Any network change (SPAN config, TAP install) requires a 4-week change control process.</td></tr>
   <tr><td>Passive Only</td><td>Customer burned by Tenable crashing HMIs. They will reject any solution that sends packets into the OT network.</td></tr>
-  <tr><td>CUI Handling</td><td>All documents are CUI // FOUO. No cloud storage. No emailing findings over unencrypted channels.</td></tr>
-  <tr><td>STIG Compliance</td><td>Any hardware deployed must be STIG-hardened. Customer ISSM will validate.</td></tr>
+  <tr><td>CUI Handling</td><td>All documents are <span class="tip" data-tip="Controlled Unclassified Information (CUI) // For Official Use Only (FOUO). CUI is the standardized marking for sensitive but unclassified federal information per 32 CFR Part 2002. Requires encrypted storage, encrypted transmission, and access limited to authorized personnel.">CUI // FOUO</span>. No cloud storage. No emailing findings over unencrypted channels.</td></tr>
+  <tr><td>STIG Compliance</td><td>Any hardware deployed must be <span class="tip" data-tip="Security Technical Implementation Guide — DISA-published configuration baselines for hardening systems to DoD security standards. STIGs exist for operating systems, applications, and network devices. ISSM (Information System Security Manager) validates compliance before any system connects to a DoD network.">STIG-hardened</span>. Customer ISSM will validate.</td></tr>
   <tr><td>Fiscal Year</td><td>Funds expire Sep 30, 2026. If contract isn't awarded by then, deal dies and restarts in FY27.</td></tr>
   <tr><td>Expansion Potential</td><td>Success at 4 dams = expansion to 21 dams ($3M+ follow-on). <span class="tip" data-tip="Standard federal sales strategy: demonstrate value at a manageable initial scope, then expand across the enterprise based on proven results. Reduces procurement risk for the customer and builds an evidence base for larger funding requests.">This is a land-and-expand play.</span></td></tr>
   <tr><td>Regulatory Framework</td><td>USACE hydropower generation is <strong>not directly <span class="tip" data-tip="NERC CIP applies to entities registered with NERC as Bulk Electric System (BES) operators. USACE generates power, but BPA markets and transmits it. BPA holds the NERC CIP registration for transmission assets. USACE generation compliance is driven by EP 1130-2-510 and DoD directives.">NERC CIP-registered</span></strong> — compliance is driven by <span class="tip" data-tip="USACE Engineering Pamphlet 1130-2-510: the internal USACE regulation governing hydropower plant operations, maintenance, and cybersecurity requirements for generation assets.">USACE EP 1130-2-510</span>, DoD CIO OT cybersecurity directives, and NIST SP 800-82 Rev. 3 (Guide to OT Security). BPA, which markets the power, is NERC CIP-registered for transmission assets.</td></tr>
-  <tr><td>Applicable Standards</td><td>NIST SP 800-53 Rev. 5 (security controls), NIST SP 800-82 Rev. 3 (OT security), DoD Zero Trust Strategy (FY2027 mandate), EO 14028 (Improving the Nation's Cybersecurity), CISA Cross-Sector CPGs.</td></tr>
+  <tr><td>Applicable Standards</td><td>NIST SP 800-53 Rev. 5 (security controls), NIST SP 800-82 Rev. 3 (OT security), DoD Zero Trust Strategy (FY2027 mandate), <span class="tip" data-tip="Executive Order 14028 (May 12, 2021): Improving the Nation’s Cybersecurity. Mandates zero-trust architecture adoption, software supply chain security, and enhanced federal cybersecurity incident response across all agencies.">EO 14028</span> (Improving the Nation’s Cybersecurity), <span class="tip" data-tip="Cross-Sector Cybersecurity Performance Goals — voluntary baseline practices published by CISA to help critical infrastructure owners prioritize cybersecurity investments. Organized by outcome: account security, device security, data security, governance, vulnerability management, supply chain, response and recovery.">CISA Cross-Sector CPGs</span>.</td></tr>
 </table>
 
 <!-- ═══════════════ WORK PRODUCTS ═══════════════ -->
