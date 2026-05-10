@@ -16,6 +16,13 @@ Realistic, fact-checked SA work products for the OT/ICS cybersecurity domain, bu
 | 5. RFP Response | Technical Volume + Requirements Matrix | [View →](https://akotz89.github.io/ot-ics-sa-portfolio/rfp-response.html) |
 | 6. Technical Win | Architecture Review Board Brief | [View →](https://akotz89.github.io/ot-ics-sa-portfolio/arb-brief.html) |
 
+### 🛠️ SA Tools
+
+| Tool | Description | Direct Link |
+|------|-------------|-------------|
+| Whiteboard | Interactive step-through Purdue Model architecture walkthrough (8 steps, keyboard nav) | [View →](https://akotz89.github.io/ot-ics-sa-portfolio/whiteboard/) |
+| Diagrams | Professional SVG Purdue Model + 3-Tier Platform diagrams (print-ready) | [View →](https://akotz89.github.io/ot-ics-sa-portfolio/diagrams.html) |
+
 ## The Scenario
 
 **Customer:** U.S. Army Corps of Engineers — Northwestern Division  
