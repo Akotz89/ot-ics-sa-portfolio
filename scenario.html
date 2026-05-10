@@ -55,8 +55,8 @@
 
 <table>
   <tr><th style="width:200px">Field</th><th>Detail</th></tr>
-  <tr><td>Organization</td><td><strong>U.S. Army Corps of Engineers (USACE)</strong> — Northwestern Division (NWD)</td></tr>
-  <tr><td>Mission</td><td>Operates 21 hydroelectric dams across the Columbia and Willamette River basins (OR, WA, ID, MT). Generates over 22,000 GWh/year — part of the Federal Columbia River Power System that provides roughly 40% of all U.S. hydroelectric power.</td></tr>
+  <tr><td>Organization</td><td><strong>U.S. Army Corps of Engineers (USACE)</strong> — <span class="tip" data-tip="Northwestern Division is one of 9 USACE divisions. NWD oversees the Portland, Seattle, Walla Walla, Kansas City, and Omaha districts. NWD HQ in Portland, OR manages the Columbia River hydropower portfolio — the largest federal hydro system in the U.S.">Northwestern Division (NWD)</span></td></tr>
+  <tr><td>Mission</td><td>Operates 21 hydroelectric dams across the Columbia and Willamette River basins (OR, WA, ID, MT). Generates over 22,000 GWh/year — part of the <span class="tip" data-tip="FCRPS is the collective name for 31 federal dams operated by USACE and Bureau of Reclamation in the Columbia River basin. BPA (Bonneville Power Administration) markets and transmits the power. Together they produce more hydroelectric power than any other river system in North America.">Federal Columbia River Power System</span> that provides roughly 40% of all U.S. hydroelectric power.</td></tr>
   <tr><td>Sector</td><td>Federal — <span class="tip" data-tip="USACE Civil Works is the non-combat mission set: flood control, navigation, hydropower, environmental stewardship. Distinct from USACE Military Programs (base construction). Civil Works is funded through the Energy and Water appropriations bill, not DoD base budget.">DoD (Civil Works)</span> / Energy / Water</td></tr>
   <tr><td>Scope</td><td>Initial engagement: <strong>4 dams</strong>. Success → expansion to all 21 NWD dams.</td></tr>
   <tr><td>Annual OT Budget</td><td><span class="tip" data-tip="Sourced from the existing SCADA modernization line item — not a new budget request. Using existing program funding accelerates obligation and avoids the 1-2 year POM cycle for new requirements.">~$2M</span> (cybersecurity portion of SCADA modernization program)</td></tr>
@@ -89,7 +89,7 @@
       <strong>Control System:</strong> <span class="tip" data-tip="Distributed Control System (DCS) — unlike discrete PLCs, a DCS provides integrated control across an entire plant with centralized engineering and operator interface. Emerson Ovation is widely used in power generation, especially hydro and fossil plants.">Emerson Ovation DCS</span><br>
       <strong>HMI:</strong> Emerson OvationView<br>
       <strong>Historian:</strong> AVEVA PI System<br>
-      <strong>Safety:</strong> Legacy relay protection (no digital monitoring)<br>
+      <strong>Safety:</strong> <span class="tip" data-tip="Electromechanical protection relays predate digital monitoring. They operate based on physical mechanisms (springs, magnets, bimetallic strips) with no network connectivity or logging. Tampering or malfunction is undetectable without physical inspection — directly relevant to Industroyer-style relay manipulation attacks.">Legacy relay protection</span> (no digital monitoring)<br>
       <strong>Network:</strong> Cisco IE-3400 (SPAN capable)<br>
       <strong>Risk:</strong> Legacy relays vulnerable to <span class="tip" data-tip="Industroyer (also called CrashOverride) is ICS-specific malware used in the 2016 and 2022 Ukraine power grid attacks. It manipulates protection relay communications to trip breakers and cause outages. Directly relevant to any plant using legacy relay protection without digital monitoring.">Industroyer-style attacks</span>
     </div>
@@ -99,9 +99,9 @@
     <div class="stat">
       <strong>Commissioned:</strong> 1968 (first power); completed 1971<br>
       <strong>Capacity:</strong> 2,160 MW (16 generating units)<br>
-      <strong>Control System:</strong> Allen-Bradley ControlLogix L83<br>
-      <strong>HMI:</strong> FactoryTalk View SE (6 stations)<br>
-      <strong>Historian:</strong> Wonderware Historian<br>
+      <strong>Control System:</strong> <span class="tip" data-tip="Allen-Bradley ControlLogix is Rockwell Automation's flagship PLC platform for process control. The L83 is a high-performance controller in the 5580 series. Communicates via EtherNet/IP (CIP protocol). Subject to CVE-2023-3595 (RCE via CIP, CVSS 9.8, Dragos-discovered).">Allen-Bradley ControlLogix L83</span><br>
+      <strong>HMI:</strong> <span class="tip" data-tip="FactoryTalk View Site Edition is Rockwell Automation's enterprise-class SCADA/HMI platform. Runs on Windows. SE (Site Edition) supports distributed client-server architecture — multiple operator stations connecting to a shared data server.">FactoryTalk View SE</span> (6 stations)<br>
+      <strong>Historian:</strong> <span class="tip" data-tip="Wonderware (now AVEVA) Historian is a time-series database for industrial process data. Competitor to AVEVA PI System. The presence of a different historian vendor at John Day vs. Bonneville/Dalles demonstrates the mixed-vendor environment typical of federal facilities with decades of independent procurement.">Wonderware Historian</span><br>
       <strong>Safety:</strong> None identified<br>
       <strong>Network:</strong> <span class="tip" data-tip="HP ProCurve 2920 is a managed enterprise switch, not designed for industrial environments. Its SPAN (port mirroring) implementation has limited session support and cannot mirror traffic from all VLANs simultaneously. A network TAP provides a reliable passive alternative.">HP ProCurve 2920</span> (limited SPAN — TAP needed)<br>
       <strong>Risk:</strong> ControlLogix CIP firmware <span class="tip" data-tip="CVE-2023-3595: Remote code execution via CIP protocol. Discovered by Dragos and coordinated with Rockwell Automation. CVSS 9.8 — critical. Affects ControlLogix 5580 and earlier firmware. Dragos published detection signatures and mitigation guidance.">CVE-2023-3595</span> (RCE via CIP, Dragos-discovered, CVSS 9.8)
@@ -113,7 +113,7 @@
       <strong>Commissioned:</strong> 1953 (first power); expanded 1957<br>
       <strong>Capacity:</strong> 980 MW (14 generating units)<br>
       <strong>Control System:</strong> <span class="tip" data-tip="Siemens S7-400 is a legacy PLC platform, now superseded by the S7-1500 series. Still widely deployed in critical infrastructure due to long equipment lifecycles. Communicates via S7comm protocol, which Dragos Platform can parse passively.">Siemens S7-400 PLCs</span><br>
-      <strong>HMI:</strong> WinCC 7.5 (4 stations)<br>
+      <strong>HMI:</strong> <span class="tip" data-tip="Siemens WinCC (Windows Control Center) is Siemens' SCADA/HMI platform. Version 7.5 is a legacy release. Communicates with S7-400 PLCs via S7comm protocol. Runs on Windows — subject to standard Windows patching and STIG hardening requirements.">WinCC 7.5</span> (4 stations)<br>
       <strong>Historian:</strong> None (manual logs only)<br>
       <strong>Safety:</strong> None identified<br>
       <strong>Network:</strong> <span class="tip" data-tip="Unmanaged switches have no SPAN/mirror capability and no CLI for configuration. Network visibility requires installing a passive network TAP (Test Access Point) — a hardware device that copies traffic without introducing any active elements to the network.">Unmanaged Moxa switches</span> (no SPAN — TAP required)<br>
@@ -136,7 +136,7 @@
 <div class="persona-card">
   <div class="name">Dr. Rebecca Torres</div>
   <div class="title">Chief, Cybersecurity Division (NWD)</div>
-  <div class="detail">Your primary technical champion. PhD in CS, former NSA. Understands IT security deeply but openly admits OT is new territory. She's the one who went to S4, heard Rob Lee, and initiated this engagement. She'll evaluate technical depth. She's also under pressure from the DoD CIO mandate — needs a win by Sep 30.</div>
+  <div class="detail">Your primary technical champion. PhD in CS, former NSA. Understands IT security deeply but openly admits OT is new territory. She's the one who went to S4, heard Rob Lee, and initiated this engagement. She'll evaluate technical depth. She's also under pressure from the <span class="tip" data-tip="The DoD Chief Information Officer issued a January 2026 memo requiring all DoD components (including USACE Civil Works) to conduct OT cybersecurity assessments and implement continuous monitoring by end of FY2026 (September 30, 2026). This is the compliance deadline driving the deal urgency.">DoD CIO mandate</span> — needs a win by Sep 30.</div>
 </div>
 
 <div class="persona-card">
@@ -148,7 +148,7 @@
 <div class="persona-card">
   <div class="name">Jennifer Walsh</div>
   <div class="title">Contracting Officer, USACE Portland District</div>
-  <div class="detail">Controls the procurement process. Needs clean SOW, compliant contract vehicle (<span class="tip" data-tip="NASA SEWP (Solutions for Enterprise-Wide Procurement) is a Government-Wide Acquisition Contract. Any federal agency can use it. SEWP V expired April 30, 2026; SEWP VI is the active successor. Pre-competed vehicle — enables task-order issuance without a new competition.">SEWP VI</span> — successor to SEWP V as of May 2026), and justified sole-source or competitive documentation. She doesn't care about your technology — she cares about <span class="tip" data-tip="Federal Acquisition Regulation — the governing framework for all federal procurement actions. Using a pre-competed GWAC like SEWP VI simplifies FAR compliance because competition requirements were satisfied at the contract-vehicle level.">FAR compliance</span> and obligation deadlines.</div>
+  <div class="detail">Controls the procurement process. Needs clean <span class="tip" data-tip="Statement of Work — the formal document defining the scope of work, deliverables, timelines, and acceptance criteria for a federal contract. The SA contributes the technical scope; the AE and contracting team finalize the commercial terms.">SOW</span>, compliant <span class="tip" data-tip="A contract vehicle is a pre-established agreement (like a GWAC, BPA, or IDIQ) that federal agencies use to purchase products and services. Using an existing vehicle (e.g., SEWP VI) avoids the 6-12 month timeline of a new standalone procurement.">contract vehicle</span> (<span class="tip" data-tip="NASA SEWP (Solutions for Enterprise-Wide Procurement) is a Government-Wide Acquisition Contract. Any federal agency can use it. SEWP V expired April 30, 2026; SEWP VI is the active successor. Pre-competed vehicle — enables task-order issuance without a new competition.">SEWP VI</span> — successor to SEWP V as of May 2026), and justified <span class="tip" data-tip="A sole-source procurement bypasses full and open competition. Requires a written justification (J&amp;A — Justification and Approval) demonstrating that only one vendor can meet the requirement. Using a pre-competed GWAC like SEWP VI avoids sole-source justification entirely because competition was satisfied at the vehicle level.">sole-source or competitive</span> documentation. She doesn't care about your technology — she cares about <span class="tip" data-tip="Federal Acquisition Regulation — the governing framework for all federal procurement actions. Using a pre-competed GWAC like SEWP VI simplifies FAR compliance because competition requirements were satisfied at the contract-vehicle level.">FAR compliance</span> and obligation deadlines.</div>
 </div>
 
 <div class="persona-card">
@@ -162,13 +162,13 @@
 <div class="persona-card">
   <div class="name">Aaron Kotz</div>
   <div class="title">Senior Solutions Architect (Federal)</div>
-  <div class="detail">You. Own the technical evaluation. Produce the discovery doc, architecture, demo, PoC, and RFP response. Partner with the AE on deal strategy. Your TS clearance and DoD background give you credibility with COL Harding and Brian Knox that a civilian SA wouldn't have.</div>
+  <div class="detail">You. Own the technical evaluation. Produce the discovery doc, architecture, demo, PoC, and RFP response. Partner with the AE on deal strategy. Your <span class="tip" data-tip="Top Secret security clearance — required for access to classified national security information. In federal OT sales, a TS clearance enables access to classified threat briefings, SCIF-based discussions, and builds immediate credibility with DoD stakeholders who value 'cleared and read-in' partners.">TS clearance</span> and DoD background give you credibility with COL Harding and Brian Knox that a civilian SA wouldn't have.</div>
 </div>
 
 <div class="persona-card">
   <div class="name">[Account Executive]</div>
   <div class="title">Account Executive, Dragos Public Sector</div>
-  <div class="detail">Owns the relationship and the quota. You own the technology. They handle pricing, negotiation, and Carahsoft coordination. You never quote pricing directly — that goes through AE → Deal Desk.</div>
+  <div class="detail">Owns the relationship and the quota. You own the technology. They handle pricing, negotiation, and Carahsoft coordination. You never quote pricing directly — that goes through AE → <span class="tip" data-tip="Deal Desk is Dragos' internal pricing and commercial operations team. They approve discount levels, validate margin, and ensure commercial terms comply with company policies. The SA provides the technical scope and BoM; Deal Desk sets the price.">Deal Desk</span>.</div>
 </div>
 
 <!-- ═══════════════ THE TIMELINE ═══════════════ -->
@@ -177,7 +177,7 @@
 <div class="timeline">
   <div class="event alert">
     <div class="date">Feb 2024 — Trigger Event</div>
-    <div class="desc">CISA publishes Advisory AA24-038A warning about PRC state-sponsored actors (Volt Typhoon / tracked by Dragos as VOLTZITE) pre-positioning in U.S. critical infrastructure, including energy and water systems.</div>
+    <div class="desc">CISA publishes <span class="tip" data-tip="Advisory AA24-038A (February 7, 2024): 'PRC State-Sponsored Actors Compromise and Maintain Persistent Access to U.S. Critical Infrastructure.' Joint advisory from CISA, NSA, and FBI. Documents Volt Typhoon pre-positioning in energy, water, and communications sectors. The advisory that triggered executive-level urgency at USACE.">Advisory AA24-038A</span> warning about PRC state-sponsored actors (Volt Typhoon / tracked by Dragos as VOLTZITE) pre-positioning in U.S. critical infrastructure, including energy and water systems.</div>
   </div>
   <div class="event alert">
     <div class="date">Nov 2025 — Incident</div>
@@ -185,7 +185,7 @@
   </div>
   <div class="event">
     <div class="date">Jan 2026 — Mandate</div>
-    <div class="desc">DoD CIO issues memo requiring OT cybersecurity assessments for all Civil Works facilities by end of FY2026 (Sep 30, 2026).</div>
+    <div class="desc"><span class="tip" data-tip="The Department of Defense Chief Information Officer is the senior DoD official responsible for IT/OT policy, cybersecurity standards, and digital modernization across all DoD components. The CIO has authority to issue binding directives to all DoD agencies including USACE.">DoD CIO</span> issues memo requiring OT cybersecurity assessments for all Civil Works facilities by end of FY2026 (Sep 30, 2026).</div>
   </div>
   <div class="event">
     <div class="date">Feb 2026 — S4x26 Conference (Miami Beach)</div>
@@ -217,7 +217,7 @@
   </div>
   <div class="event">
     <div class="date">Aug 11 — Technical Win</div>
-    <div class="desc">USACE Architecture Review Board endorses Dragos. Technical win achieved. Procurement package submitted to Jennifer Walsh.</div>
+    <div class="desc"><span class="tip" data-tip="An Architecture Review Board (ARB) is a governance body that evaluates and approves technology solutions before procurement. Federal ARBs typically include the CIO, CISO, enterprise architects, and program managers. ARB endorsement is the 'technical win' gate — it means the technical team has formally recommended your solution.">USACE Architecture Review Board</span> endorses Dragos. Technical win achieved. Procurement package submitted to Jennifer Walsh.</div>
   </div>
   <div class="event">
     <div class="date">Sep 15 — Contract Award</div>
@@ -261,7 +261,7 @@
   <tr><td>Fiscal Year</td><td>Funds expire Sep 30, 2026. If contract isn't awarded by then, deal dies and restarts in FY27.</td></tr>
   <tr><td>Expansion Potential</td><td>Success at 4 dams = expansion to 21 dams ($3M+ follow-on). <span class="tip" data-tip="Standard federal sales strategy: demonstrate value at a manageable initial scope, then expand across the enterprise based on proven results. Reduces procurement risk for the customer and builds an evidence base for larger funding requests.">This is a land-and-expand play.</span></td></tr>
   <tr><td>Regulatory Framework</td><td>USACE hydropower generation is <strong>not directly <span class="tip" data-tip="NERC CIP applies to entities registered with NERC as Bulk Electric System (BES) operators. USACE generates power, but BPA markets and transmits it. BPA holds the NERC CIP registration for transmission assets. USACE generation compliance is driven by EP 1130-2-510 and DoD directives.">NERC CIP-registered</span></strong> — compliance is driven by <span class="tip" data-tip="USACE Engineering Pamphlet 1130-2-510: the internal USACE regulation governing hydropower plant operations, maintenance, and cybersecurity requirements for generation assets.">USACE EP 1130-2-510</span>, DoD CIO OT cybersecurity directives, and NIST SP 800-82 Rev. 3 (Guide to OT Security). BPA, which markets the power, is NERC CIP-registered for transmission assets.</td></tr>
-  <tr><td>Applicable Standards</td><td>NIST SP 800-53 Rev. 5 (security controls), NIST SP 800-82 Rev. 3 (OT security), DoD Zero Trust Strategy (FY2027 mandate), <span class="tip" data-tip="Executive Order 14028 (May 12, 2021): Improving the Nation’s Cybersecurity. Mandates zero-trust architecture adoption, software supply chain security, and enhanced federal cybersecurity incident response across all agencies.">EO 14028</span> (Improving the Nation’s Cybersecurity), <span class="tip" data-tip="Cross-Sector Cybersecurity Performance Goals — voluntary baseline practices published by CISA to help critical infrastructure owners prioritize cybersecurity investments. Organized by outcome: account security, device security, data security, governance, vulnerability management, supply chain, response and recovery.">CISA Cross-Sector CPGs</span>.</td></tr>
+  <tr><td>Applicable Standards</td><td><span class="tip" data-tip="NIST Special Publication 800-53 Revision 5: the master catalog of security and privacy controls for federal information systems. Contains 20 control families (AC, AU, CM, IA, etc.). The ISSM selects and validates applicable controls based on system categorization (Low/Moderate/High).">NIST SP 800-53 Rev. 5</span> (security controls), <span class="tip" data-tip="NIST Special Publication 800-82 Revision 3 (June 2023): Guide to Operational Technology Security. The primary federal framework for OT security, covering ICS architecture, threat landscape, risk management, and specific security controls tailored to OT environments.">NIST SP 800-82 Rev. 3</span> (OT security), <span class="tip" data-tip="Published November 2022. Mandates all DoD systems achieve 'target level' zero trust architecture by FY2027. Seven pillars: User, Device, Network/Environment, Application/Workload, Data, Visibility/Analytics, Automation/Orchestration. Drives the requirement for continuous OT monitoring.">DoD Zero Trust Strategy</span> (FY2027 mandate), <span class="tip" data-tip="Executive Order 14028 (May 12, 2021): Improving the Nation’s Cybersecurity. Mandates zero-trust architecture adoption, software supply chain security, and enhanced federal cybersecurity incident response across all agencies.">EO 14028</span> (Improving the Nation’s Cybersecurity), <span class="tip" data-tip="Cross-Sector Cybersecurity Performance Goals — voluntary baseline practices published by CISA to help critical infrastructure owners prioritize cybersecurity investments. Organized by outcome: account security, device security, data security, governance, vulnerability management, supply chain, response and recovery.">CISA Cross-Sector CPGs</span>.</td></tr>
 </table>
 
 <!-- ═══════════════ WORK PRODUCTS ═══════════════ -->
@@ -270,10 +270,10 @@
 <table>
   <tr><th>Stage</th><th>Document</th><th>Gate to Advance</th><th>Status</th></tr>
   <tr><td>1. Discovery</td><td>Technical Discovery Document</td><td>Customer validates environment data; NDA executed</td><td><span class="check">✓ Complete</span></td></tr>
-  <tr><td>2. Solution Design</td><td>Architecture Document + Bill of Materials</td><td>SA + AE alignment on pricing; customer accepts architecture</td><td>Pending</td></tr>
+  <tr><td>2. Solution Design</td><td>Architecture Document + <span class="tip" data-tip="Bill of Materials — the itemized list of all hardware, software licenses, subscriptions, and services required for the deployment. The SA sizes the BoM based on the architecture; the AE and Deal Desk price it. The BoM drives the total contract value.">Bill of Materials</span></td><td>SA + AE alignment on pricing; customer accepts architecture</td><td>Pending</td></tr>
   <tr><td>3. Demo</td><td>Demo Agenda + Tailored Script</td><td>Demo environment configured with customer-relevant protocols</td><td>Pending</td></tr>
   <tr><td>4. PoC</td><td>Proof of Value Findings Report</td><td>SPAN/TAP change control cleared; success criteria agreed</td><td>Pending</td></tr>
-  <tr><td>5. RFP Response</td><td>Technical Volume + Requirements Matrix</td><td>PoC data validates architecture; customer issues solicitation</td><td>Pending</td></tr>
+  <tr><td>5. RFP Response</td><td><span class="tip" data-tip="The Technical Volume is the portion of an RFP response that describes the proposed solution, architecture, methodology, and technical qualifications. Written primarily by the SA. Evaluated separately from the pricing volume by the government's technical evaluation panel.">Technical Volume</span> + Requirements Matrix</td><td>PoC data validates architecture; customer issues solicitation</td><td>Pending</td></tr>
   <tr><td>6. Technical Win</td><td>Architecture Review Board Brief</td><td>ARB endorsement; procurement package to Contracting Officer</td><td>Pending</td></tr>
   <tr><td>7. Post-Sales</td><td>Quarterly Business Review</td><td>Contract awarded; deployment complete at ≥1 site</td><td>Pending</td></tr>
 </table>
@@ -341,7 +341,7 @@
 
 <div class="doc-footer">
   <span>Exercise Scenario — Not a real engagement</span>
-  <span>USACE Columbia River Hydropower — v1.4</span>
+  <span>USACE Columbia River Hydropower — v1.5</span>
 </div>
 
 </div>
