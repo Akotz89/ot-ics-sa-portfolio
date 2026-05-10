@@ -1,0 +1,14 @@
+/* nav.css — Shared portfolio navigation bar */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+.portfolio-nav{position:sticky;top:0;z-index:9999;background:#0a1628;border-bottom:2px solid #1e3a5f;font-family:'Inter',system-ui,sans-serif;padding:0 20px;display:flex;align-items:center;gap:0;height:44px;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+.portfolio-nav .nav-brand{color:#fff;font-size:13px;font-weight:700;letter-spacing:-.3px;margin-right:24px;white-space:nowrap;text-decoration:none;display:flex;align-items:center;gap:8px}
+.portfolio-nav .nav-brand span{color:#4299e1}
+.portfolio-nav .nav-links{display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;flex:1}
+.portfolio-nav .nav-links::-webkit-scrollbar{display:none}
+.portfolio-nav .nav-link{color:#94a3b8;font-size:11px;font-weight:500;text-decoration:none;padding:6px 10px;border-radius:4px;white-space:nowrap;transition:all .15s;letter-spacing:.2px}
+.portfolio-nav .nav-link:hover{color:#fff;background:rgba(255,255,255,.08)}
+.portfolio-nav .nav-link.active{color:#fff;background:rgba(66,153,225,.2);font-weight:600}
+.portfolio-nav .nav-sep{width:1px;height:20px;background:#1e3a5f;margin:0 6px;flex-shrink:0}
+.portfolio-nav .nav-badge{font-size:9px;font-weight:700;color:#f59e0b;background:rgba(245,158,11,.12);padding:1px 5px;border-radius:3px;margin-left:3px;letter-spacing:.3px}
+@media print{.portfolio-nav{display:none!important}}
