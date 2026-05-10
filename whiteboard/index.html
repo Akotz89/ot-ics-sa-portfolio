@@ -3,121 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SA Whiteboard — USACE OT Architecture Walkthrough</title>
+<title>SA Whiteboard — Federal OT Network Design</title>
+<link rel="stylesheet" href="../nav.css">
 <link rel="stylesheet" href="whiteboard.css">
-  <link rel="stylesheet" href="../nav.css">
 </head>
 <body>
 
-<div class="wb-header">
-  <h1>⬢ <span>SA Whiteboard</span> — USACE Columbia River OT Architecture</h1>
+<header class="wb-header">
+  <div>
+    <p class="eyebrow">Interactive SA whiteboard</p>
+    <h1>Federal OT Network Discovery and Dragos Placement</h1>
+  </div>
   <div class="step-controls">
-    <button class="step-btn" id="btn-reset">↺ Reset</button>
-    <button class="step-btn" id="btn-prev" disabled>← Back</button>
+    <button class="step-btn" id="btn-reset">Reset</button>
+    <button class="step-btn" id="btn-prev" disabled>Back</button>
     <span class="step-indicator">Ready</span>
-    <button class="step-btn primary" id="btn-next">Next →</button>
+    <button class="step-btn primary" id="btn-next">Next</button>
   </div>
-</div>
+</header>
 
-<div class="narration">
-  <p>Press <strong>→ Next</strong> or <strong>spacebar</strong> to begin the architecture walkthrough.</p>
-</div>
+<section class="narration" aria-live="polite">
+  <p>Press <strong>Next</strong> or <strong>spacebar</strong> to begin the customer whiteboard walkthrough.</p>
+</section>
 
-<div class="wb-canvas">
-  <!-- LEVEL 5: Enterprise -->
-  <div class="layer l5" data-layer="l5">
-    <span class="layer-label">LEVEL 5 · ENTERPRISE</span>
-    <div class="comp it" data-group="l5-devices" style="margin-left:auto">Email / DNS</div>
-    <div class="comp it" data-group="l5-devices">Active Directory</div>
-    <div class="comp it" data-group="l5-devices">Splunk Cloud<div class="sub">SIEM · FedRAMP High</div></div>
-    <div class="comp centralstore" data-group="l5-centralstore" style="margin-left:auto">⬢ CentralStore<div class="sub">Enterprise Aggregation</div></div>
+<main class="wb-stage">
+  <div id="diagram-frame" class="diagram-frame">
+    <div id="diagram" class="diagram" aria-label="Federal OT network diagram">
+      <svg id="flow-layer" class="flow-layer" width="1320" height="720" viewBox="0 0 1320 720" aria-hidden="true">
+        <defs>
+          <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0 0L10 5L0 10z" fill="#586a7f"/>
+          </marker>
+          <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0 0L10 5L0 10z" fill="#1f65a6"/>
+          </marker>
+          <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0 0L10 5L0 10z" fill="#c96a16"/>
+          </marker>
+        </defs>
+      </svg>
+      <div id="enclave-layer" class="enclave-layer"></div>
+      <div id="node-layer" class="node-layer"></div>
+      <div id="flow-label-layer" class="flow-label-layer"></div>
+      <div id="annotation-layer" class="annotation-layer"></div>
+    </div>
   </div>
+</main>
 
-  <!-- LEVEL 4: Business -->
-  <div class="layer l4" data-layer="l4">
-    <span class="layer-label">LEVEL 4 · BUSINESS</span>
-    <div class="comp it" data-group="l4-devices" style="margin-left:120px">ERP System</div>
-    <div class="comp it" data-group="l4-devices">Supply Chain</div>
-  </div>
-
-  <!-- DMZ -->
-  <div class="layer dmz" data-layer="dmz">
-    <span class="layer-label">LEVEL 3.5 · INDUSTRIAL DMZ</span>
-    <div class="comp sec" data-group="dmz-devices" style="margin-left:180px">Firewall</div>
-    <div class="comp sec" data-group="dmz-devices">Jump Server</div>
-    <div class="comp sec" data-group="dmz-devices">Data Diode</div>
-  </div>
-
-  <!-- LEVEL 3: Site Operations -->
-  <div class="layer l3" data-layer="l3">
-    <span class="layer-label">LEVEL 3 · SITE OPERATIONS</span>
-    <div class="comp ot" data-group="l3-devices" style="margin-top:22px;margin-left:20px">Historian<div class="sub">OSIsoft PI</div></div>
-    <div class="comp ot" data-group="l3-devices">Eng. Workstation</div>
-    <div class="comp ot" data-group="l3-devices">Patch Server</div>
-    <div class="comp sensor" data-group="sensor-l3">◉ Sensor<div class="sub">L3 · SPAN Port</div></div>
-    <div class="comp sitestore" data-group="l3-sitestore" style="margin-left:auto">⬢ SiteStore<div class="sub">Analysis · Detection</div></div>
-  </div>
-
-  <!-- LEVEL 2: Supervisory -->
-  <div class="layer l2" data-layer="l2">
-    <span class="layer-label">LEVEL 2 · SUPERVISORY CONTROL</span>
-    <div class="comp ot" data-group="l2-devices" style="margin-left:20px;margin-top:22px">SCADA Server</div>
-    <div class="comp ot" data-group="l2-devices">HMI #1<div class="sub">FactoryTalk View</div></div>
-    <div class="comp ot" data-group="l2-devices">HMI #2</div>
-    <div class="comp ot" data-group="l2-devices">Historian Mirror</div>
-    <div class="comp sensor" data-group="sensor-l2" style="margin-left:auto">◉ Sensor<div class="sub">L1/L2 · Network TAP</div></div>
-  </div>
-
-  <!-- LEVEL 1: Basic Control -->
-  <div class="layer l1" data-layer="l1">
-    <span class="layer-label">LEVEL 1 · BASIC CONTROL</span>
-    <div class="comp ot" data-group="l1-devices" style="margin-left:20px;margin-top:22px">GE Mark VIe<div class="sub">Turbine Governor</div></div>
-    <div class="comp ot" data-group="l1-devices">AB ControlLogix<div class="sub">Balance-of-Plant</div></div>
-    <div class="comp ot" data-group="l1-devices">RTU<div class="sub">SEL-3530</div></div>
-    <div class="comp ot" data-group="l1-devices">Siemens S7-400<div class="sub">McNary Site</div></div>
-    <div class="comp ot" data-group="l1-devices">SIS<div class="sub">Safety Instrumented</div></div>
-  </div>
-
-  <!-- LEVEL 0: Physical Process -->
-  <div class="layer l0" data-layer="l0">
-    <span class="layer-label">LEVEL 0 · PHYSICAL PROCESS</span>
-    <div class="comp ot" data-group="l0-devices" style="margin-left:20px;margin-top:18px;min-width:auto;padding:4px 10px;font-size:9px">Turbines</div>
-    <div class="comp ot" data-group="l0-devices" style="min-width:auto;padding:4px 10px;font-size:9px">Generators</div>
-    <div class="comp ot" data-group="l0-devices" style="min-width:auto;padding:4px 10px;font-size:9px">Gate Actuators</div>
-    <div class="comp ot" data-group="l0-devices" style="min-width:auto;padding:4px 10px;font-size:9px">Water Level Sensors</div>
-    <div class="comp ot" data-group="l0-devices" style="min-width:auto;padding:4px 10px;font-size:9px">Valves</div>
-    <div class="comp ot" data-group="l0-devices" style="min-width:auto;padding:4px 10px;font-size:9px">Pumps</div>
-  </div>
-
-  <!-- DATA FLOW ARROWS (SVG overlays) -->
-  <svg class="flow-svg" data-flow="sensor-to-site" viewBox="0 0 1200 700">
-    <defs><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#60a5fa"/></marker></defs>
-    <line x1="780" y1="340" x2="920" y2="320" stroke="#60a5fa" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#a1)"/>
-    <line x1="920" y1="450" x2="960" y2="340" stroke="#60a5fa" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#a1)"/>
-  </svg>
-  <svg class="flow-svg" data-flow="site-to-central" viewBox="0 0 1200 700">
-    <defs><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#818cf8"/></marker></defs>
-    <line x1="1020" y1="290" x2="1050" y2="80" stroke="#818cf8" stroke-width="2.5" stroke-dasharray="8,4" marker-end="url(#a2)"/>
-    <text x="1060" y="185" font-size="9" fill="#818cf8" font-family="Inter" transform="rotate(-90,1060,185)">Encrypted Metadata</text>
-  </svg>
-  <svg class="flow-svg" data-flow="central-to-siem" viewBox="0 0 1200 700">
-    <defs><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#94a3b8"/></marker></defs>
-    <line x1="900" y1="55" x2="660" y2="55" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#a3)"/>
-    <text x="780" y="48" font-size="8" fill="#94a3b8" font-family="Inter" text-anchor="middle">Syslog/CEF → Splunk</text>
-  </svg>
-
-  <!-- LEGEND -->
-  <div class="legend">
-    <div class="legend-item"><div class="legend-swatch" style="background:linear-gradient(135deg,#f59e0b,#d97706)"></div>Dragos Sensor (passive)</div>
-    <div class="legend-item"><div class="legend-swatch" style="background:linear-gradient(135deg,#3b82f6,#2563eb)"></div>Dragos SiteStore</div>
-    <div class="legend-item"><div class="legend-swatch" style="background:linear-gradient(135deg,#1e3a5f,#0f172a)"></div>Dragos CentralStore</div>
-    <div class="legend-item"><div class="legend-swatch" style="background:#1e293b;border:1px solid #475569"></div>OT / IT Device</div>
-    <div class="legend-item"><div class="legend-swatch" style="background:rgba(239,68,68,.12);border:1px solid #ef4444"></div>Security Boundary</div>
-    <div class="legend-item" style="margin-left:auto;color:#6b7280;font-style:italic">ISA-99 / IEC 62443 Purdue Reference Model</div>
-  </div>
-</div>
-
-<script src="whiteboard.js"></script>
+<script type="module" src="whiteboard.js?v=wide-fill-1"></script>
 <script src="../nav.js"></script>
 </body>
 </html>

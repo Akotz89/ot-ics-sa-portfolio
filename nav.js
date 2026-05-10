@@ -6,9 +6,8 @@
   const prefix = inSubdir ? '../' : '';
 
   const pages = [
-    { href: 'index.html',        label: 'SA Readiness',    stage: null },
     { href: 'scenario.html',     label: 'Scenario',        stage: '0' },
-    { href: 'discovery/',        label: 'Discovery',       stage: '1' },
+    { href: 'discovery/index.html', label: 'Discovery',  stage: '1' },
     { href: 'architecture.html', label: 'Architecture',    stage: '2' },
     { href: 'demo.html',         label: 'Demo',            stage: '3' },
     { href: 'poc-report.html',   label: 'PoC Report',      stage: '4' },
@@ -17,7 +16,7 @@
   ];
 
   const tools = [
-    { href: 'whiteboard/',   label: 'Whiteboard', badge: 'NEW' },
+    { href: 'whiteboard/index.html', label: 'Whiteboard', badge: 'NEW' },
     { href: 'diagrams.html', label: 'Diagrams',   badge: null },
   ];
 

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+ Contract, Clauses & SOW</title>
+                     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="rno" content="Joanne.R.Woytek.1" />
+<meta name="content-owner" content="Joanne.R.Woytek.1" />
+<meta name="webmaster" content="Kenneth.G.Woltz.1" />
+<meta name="orgcode" content="704" />
+<meta name="description" content="The official NASA SEWP V (www1-2-pz)
+ WWW resource." />
+<meta name="verify-v1" content="Jm83HBZf69QX4SMbH/9VlLOKLW6LxdOmksj9Qg2Dzds=" />
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1" />
+<meta name="classification" content="computer, procurement, government, federal" />
+<meta name="keywords" content="procurement, sewp, hardware, computers, purchase, order, software, peripherals, gwac, contract" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- jQuery -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<!-- Include either the minifed or production version, NOT both!! -->
+<script type="text/javascript" src="/addins/jquery.qtip/jquery.qtip.js"></script>
+<!-- Tablesorter jQuery plugin -->
+<script src="/addins/tablesorter_new/js/jquery.tablesorter.js" type="text/javascript"></script>
+<!-- Tablesorter widgets jQuery plugin -->
+<script type="text/javascript" src="/addins/tablesorter_new/js/jquery.tablesorter.widgets.js"></script>
+<!-- SmartMenus jQuery plugin -->
+<script src="/addins/jquery.smartmenus.js" type="text/javascript"></script>
+<!-- Dynamic Menu -->
+<script id='dynamicMenuPlaceholder' type='text/javascript'></script>
+<script type="text/javascript">
+  var dynamicMenuJsPath = 'https://www.sewp.nasa.gov/addins/dynamicMenu.js';
+  document.getElementById('dynamicMenuPlaceholder').src = dynamicMenuJsPath + '?v=' + Date.now();
+</script>
+<!-- qtip CSS file -->
+<link type="text/css" rel="stylesheet" href="/addins/jquery.qtip/jquery.qtip.css" />
+<!-- SEWP style sheet -->
+<link href="/addins/style.css?version=04262024" rel="stylesheet" type="text/css" />
+<!-- SmartMenus core CSS (required) -->
+<link href='/addins/sm-core-css.css' rel='stylesheet' type='text/css' />
+<!-- "sm-blue" menu theme  -->
+<link href='/addins/sm-blue.css' rel='stylesheet' type='text/css' />
+<script src="/addins/s5.js" type="text/javascript"></script>
+  </head>
+  <body>
+  <!-- Start of the BODY -->
+<div id="scontainer">
+
+  <div class="header">
+    <!-- Start of /addins/v3header.shtml -->
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+
+
+
+<div id="head1"> 
+ <div  id="head2"> 
+  <a href="https://www.sewp.nasa.gov/index.shtml" title="Click Here to go to the SEWP Home Page."
+         accesskey="h" >
+     <img  id="head1img" src="https://www.sewp.nasa.gov/images/sewpvhead.png" 
+           style="height: auto; max-width: 100%; border: 0;"
+           alt="Solutions for Enterprise-Wide Procurement" /></a> 
+
+  <!-- SEARCH-ENGINE-OFF -->
+<!-- Start /addins/headtext.shtml -->
+
+<ul class="headtext"> 
+  <li>Helpline: (301) 286-1478<br /><a href="mailto:help&#64;sewp.nasa.gov" title="help&#64;sewp.nasa.gov">help&#64;sewp.nasa.gov</a></li>
+  <li>Orders: FAX (301) 286-0317<br /><a href="mailto:sewporders&#64;sewp.nasa.gov" title="sewporders&#64;sewp.nasa.gov">sewporders&#64;sewp.nasa.gov</a></li>
+  <li><br /><a href="https://support.sewp.nasa.gov" target="_blank" title="support.sewp.nasa.gov">Customer Support Center</a></li>
+</ul>
+
+<!-- Dynamic menu: chat functionality -->
+<script src='https://www.sewp.nasa.gov/addins/chatDeployment.js' type='text/javascript'></script>
+<script type="text/javascript">
+  window.onload = createDplOnLoadDelegate();
+</script>
+
+<!-- End /addins/headtext.shtml -->
+<!-- SEARCH-ENGINE-ON -->
+
+ 
+
+    
+   
+
+ </div>
+
+</div>
+   
+    <ul id="dynamicMenu" class="sm sm-blue"></ul>
+
+    <!--include virtual="/addins/main_menu_new.html" --> 
+    <!-- include virtual="/addins/NOTE_oldrfqs.shtml" --> 
+    <!-- ***********************  Include notice files below   *************************   -->
+<script type="text/javascript">
+	var note_text_041026 = '<div CLASS="notice"><p><strong>&#42; &#42; &#42; </strong> SEWP IT is aware of an issue where some email senders are receiving a non-delivery report when emailing SEWP recipients. Regardless of this non-delivery report, SEWP is receiving the messages successfully. Please continue to email as normal and disregard any non-delivery reports received while we work with our email security vendor to resolve this issue.  For assistance, please ';
+</script>
+<script type="text/javascript">
+	var note_text_012926 = '<div CLASS="notice"><p><strong>&#42; &#42; &#42; </strong> A surge in demand for AI infrastructure is straining the Global Semiconductor supply chain, leading to product shortages, rising costs, and extended delivery timelines.  <a href="https://www.sewp.nasa.gov/addins/hot_topic/2026/SCRM_Memory_Shortage.shtml" target="_blank">Learn More</a> <strong> &#42; &#42; &#42;</strong><br /><span style="position: relative; text-align: right; font-size: 10px; color: teal; margin: -5px 5px 0px 5px;">Updated: Fri, Jan 30, 2026</span></div>';
+
+</script>
+
+<!-- ***********************  Include notice files above   *************************   -->
+
+<script type="text/javascript">
+  // set this to true to show uncheduled wording with a notice
+  // the default should be false (i.e. scheduled)
+  //  var scheduledOverride = true;
+  var scheduledOverride = false;
+  var scheduled;
+  var CHOP = false;
+  //alert('Location: '+document.location);
+  var location_reg1 = new RegExp("chop");
+  if (location_reg1.test(document.location) === true) {
+    CHOP = true;
+    //alert('Location: '+document.location +"CHOP = "+CHOP);
+  }
+  var PROP = false;
+  //alert('Location: '+document.location);
+  var location_reg2 = new RegExp("prop");
+  if (location_reg2.test(document.location) === true) {
+    PROP = true;
+    //alert('Location: '+document.location +"PROP = "+PROP);
+  }
+  var INTERNAL = false;
+  //alert('Location: '+document.location);
+  var location_reg3 = new RegExp("sewp5internal");
+  if (location_reg3.test(document.location) === true) {
+    INTERNAL = true;
+    //alert('Location: '+document.location +"PROP = "+PROP);
+  }
+  var PROVIDERS = false; 
+  var location_reg4 = new RegExp("provider");
+  if (location_reg4.test(document.location) === true){
+	  PROVIDERS = true;
+	   //  alert('Location: '+document.location +"PROVIDERS = "+PROVIDERS);
+  }
+	
+  ///////////////////////////////SET THIS START AND END DATE EQUAL TO MAINTENANCE DATE
+  StartDate = "8/3/2019";
+  EndDate = "8/4/2019";
+
+  var UpdatedDate = "Fri, Apr 10, 2026";
+
+  ///////////// NOTICES THAT HAVE AUDIENCE SPECIFIC MESSAGE ENDINGS // START AND END DATES GO HERE
+  if (CHOP === true) {
+    // no end date for now
+
+    delayexpwords(
+      "04/10/2026",
+      "04/16/2026",
+      note_text_041026 +
+      '  email <a href="mailto:chhelp@sewp.nasa.gov">chhelp@sewp.nasa.gov</a> or contact our helpline at 301-286-4555.</strong> <span style="position: relative; text-align: right; font-size: 10px; color: teal; margin: -5px 5px 0px 5px;"> '+
+      'Updated: ' + UpdatedDate + '</span><strong> &#42; &#42; &#42;</strong></p></div>'
+    );
+  } else if (PROP === true) {
+    delayexpwords(
+      "04/10/2026",
+      "04/16/2026",
+      note_text_041026 +
+      '  email <a href="mailto:industryhelp@sewp.nasa.gov">industryhelp@sewp.nasa.gov</a> or contact our helpline at 301-286-4555.</strong> <span style="position: relative; text-align: right; font-size: 10px; color: teal; margin: -5px 5px 0px 5px;">' + 
+        'Updated: ' + UpdatedDate + '</span><strong> &#42; &#42; &#42;</strong></p></div>'
+    );
+  } else if (INTERNAL === true) {
+    delayexpwords(
+      "04/10/2026",
+      "04/16/2026",
+      note_text_041026 +
+      ' email <a href="mailto:itsupport@sewp.nasa.gov">itsupport@sewp.nasa.gov</a> or visit our <a href="https://sewpprod.servicenowservices.com/sp">IT service portal</a> to submit a ticket and we will respond within 1 business day.</strong> <span style="position: relative; text-align: right; font-size: 10px; color: teal; margin: -5px 5px 0px 5px;">' +
+        'Updated: ' + UpdatedDate + '</span><strong> &#42; &#42; &#42;</strong></p></div>'
+    );
+  
+  }
+	else {
+    //  PUBLIC
+    delayexpwords(
+      "04/10/2026",
+      "04/16/2026",
+      note_text_041026 +
+      '  email <a href="mailto:help@sewp.nasa.gov">help@sewp.nasa.gov</a> or contact our helpline at 301-286-1478.</strong> <span style="position: relative; text-align: right; font-size: 10px; color: teal; margin: -5px 5px 0px 5px;">' + 
+        'Updated: ' + UpdatedDate + '</span><strong> &#42; &#42; &#42;</strong></p></div>'
+    );
+
+    delayexpwords(
+      "7/29/2025",
+      "10/01/2026",
+      note_text_012926
+    );
+  }
+
+  ///////////// NOTICES THAT HAVE SAME MESSAGE EVERYWHERE // START AND END DATES GO HERE
+
+  // delayexpwords("7/31/2023", "9/30/2023", note_text_073123);
+  //delayexpwords("6/19/2023", "9/22/2023", note_text_062023);
+
+  //////////////// do not touch the stuff below this line //////////////
+  if (scheduledOverride === true) {
+    scheduled = false;
+  } else {
+    testStart = new Date(StartDate);
+    testEnd = new Date(EndDate);
+    myDate = new Date();
+    if (testEnd.getTime() > myDate.getTime() && testStart.getTime() < myDate.getTime()) {
+      scheduled = true;
+    } else {
+      scheduled = false;
+    } // end if
+  } // end if
+  //  //alert('the variable scheduled is set to ('+scheduled+')!');
+</script> 
+
+<!-- End of /addins/v3header.shtml -->
+
+<a id="main-content"></a>
+ 
+   </div>
+ 
+
+<div class="inner">
+  <h1 class="page_title">
+ Contract, Clauses & SOW</h1>
+      
+<!---  start of /info/ContractInfo.shtml  -->
+
+
+
+ <p class="p_content"><strong>Contract Number:</strong>
+     NNG (varies per contract, see <script type="text/javascript">
+       var my_url = '<a href="';
+              my_url += my_https;
+              my_url += my_domain;
+              my_url += '/sewp5public/contractholders#/contractholderslist">';
+       my_url += 'Contract Holders<\/a>';
+       document.writeln(my_url);
+    </script> list) </p> 
+
+     <p class="p_content"><strong>NOTE:</strong> Upon clicking on a Contract Holder name from the list, the base contract can be found in the “Contract Documents”. </p>
+  
+     <p class="p_content">  <strong>Contract Type:</strong> Fixed Price, IDIQ </p>
+  
+     <p class="p_content">SEWP is divided into 5 Groups of contracts. Groups A, B(1), B(2), C and D were awarded through a competitive process. Group A was a full and open competition and consists primarily of large and small OEM's/manufacturers. Groups B, C, and D consists primarily of Value Added Resellers. Group B(1) was a small business set-aside competition for HUBZone businesses. Group B(2) was a small business set-aside for Service Disabled Veteran Owned Small Businesses (SDVOSB). Group C was a small business set-aside for Small Businesses. Group D was a full and open competition and consists of both small and large businesses. </p>
+
+     <p class="p_content">Note that each competed group has the same scope which provides overlap among all contracts and groups.</p>
+
+     <p class="p_content">Per Fair Opportunity as required by FAR Part 16, all Contract Holders within any one individual group must be considered (the SEWP on-line 
+	<script TYPE="text/javascript">
+      	var my_url = '<a href="';
+      	my_url += my_https;
+      	my_url += my_domain;
+      	my_url += '/sewp5public/">';
+      	my_url += 'Quote Request Tool<\/a>';
+      	document.writeln(my_url);
+        </script> 
+       automatically provide the Fair Opportunity groupings when selecting Contract Holders). It is recommended to post requirements to multiple groups for maximum competition.  </p>
+
+    
+ 
+
+    
+<!---  start of /info/WhatIsSEWP.shtml  -->
+
+
+
+  <p class="p_content"><strong>Contract Effective Dates:</strong>
+    SEWP V Contracts have an effective ordering period of <strong>May 1, 2015</strong> through <strong>September 30, 2026</strong>. NASA has extended the SEWP V ordering period through September 30, 2026, with the potential for 2 option periods, one (1) four-month optional period (i.e., October 1, 2026 - January 31, 2027), and one (1) three-month optional period (i.e., February 1, 2027 - April 30, 2027). Issuing agencies can continue to place delivery orders and BPAs using the SEWP V contracts. The base contracts were awarded for 5 years with one 5 year option for a total of 10 years. Each contract has a $20 Billion contract limit. 
+   <br /><br />
+   <strong>Contract Ceiling Limit:</strong> The current available ceiling for any given contract is a minimum of <span id="availableCeiling"></span>.
+  </p>
+
+    
+ 
+
+
+
+
+
+
+
+<!---  end of /info/WhatIsSEWP.shtml  -->
+
+
+
+
+
+
+
+<!---  end of /info/ContractInfo.shtml  -->
+
+      <!---  start of /info/ContractClauses.shtml  -->
+
+<p class="p_content" style="font-size: 18px; color: #336699">
+  <strong>Contract Clauses:</strong>
+</p>
+
+<p class="p_content">Download the list of contract clauses. &nbsp;</p>
+
+<p class="p_content">
+  <a href="../documents/SEWP_V_Full_Contract_Clause_List_January_2026.pdf" target="_blank">SEWP V Full Contract Clause List</a> (JAN 2026)
+</p>
+
+<!--
+<p class="p_content"> <a HREF="/documents/SEWP_V_CLAUSE_LIST.pdf" TARGET="_blank_">Basic Contract Clauses</a> (MAY 2015) <br /> <a HREF="/documents/SEWPVClauses_June2016.pdf" TARGET="_blank_">Revised Contract Clauses</a> (JUN 2016) </p>
+-->
+
+<!---  end of /info/ContractClauses.shtml  -->
+
+      
+<!---  start of /info/ContractSOW.shtml  -->
+
+
+<p class="p_content"><strong>Contract SOW:</strong>
+</p>
+  
+<p class="p_content">Download the SEWP V Contract Statement of Work <A HREF="/documents/ATTACHMENT-C_SOW_SEWP_V.pdf" TARGET="_blank_">SOW</A></p>
+
+
+
+<!---  end of /info/ContractSOW.shtml  -->
+
+
+</div>
+</div>
+
+    <!-- Start of /addins/footer.shtml -->
+<div id="footer" class="footer">
+  <ul class="sub_menu">
+    <!-- 1 -->
+    <li>
+      <script type="text/javascript">
+        var my_url = '<a href="';
+        my_url += my_https;
+        my_url += my_domain;
+        my_url += '/index.shtml">';
+        my_url += " Home<\/a>";
+        document.writeln(my_url);
+      </script>
+    </li>
+    <!-- 2 -->
+    <li>
+      <script type="text/javascript">
+        var my_url = '<a href="';
+        my_url += my_https;
+        my_url += my_domain;
+        my_url += '/about_us.shtml">';
+        my_url += " About Us<\/a>";
+        document.writeln(my_url);
+      </script>
+    </li>
+    <!-- 3 -->
+    <li>
+      <script type="text/javascript">
+        var my_url = '<a href="';
+        my_url += my_https;
+        my_url += my_domain;
+        my_url += '/contact.shtml">';
+        my_url += " Contact Us<\/a>";
+        document.writeln(my_url);
+      </script>
+    </li>
+    <!-- 4 -->
+    <li style="border-right: none">
+      <a href="https://www.nasa.gov/about/highlights/HP_Privacy.html" target="_blank">Privacy, Security, Notices</a>
+    </li>
+  </ul>
+
+  <!-- START social.shtml -->
+<div id="social">
+  <a href="https://twitter.com/nasasewp" target="_blank">
+    <script type="text/javascript">
+      var my_url = '<img src="';
+      my_url += my_https;
+      my_url += my_domain;
+      my_url +=
+        '/images/x_logo.png" style="text-align: center; vertical-align: middle; border: 0;" alt="Twitter" width="24" height="20" />';
+      document.writeln(my_url);
+    </script></a
+  >
+
+  &nbsp;
+  <a href="https://www.facebook.com/nasa.sewp.3?fref=ts" target="_blank">
+    <script type="text/javascript">
+      var my_url = '<img src="';
+      my_url += my_https;
+      my_url += my_domain;
+      my_url +=
+        '/images/facebook.jpg" style="text-align: center; vertical-align: middle;" width="20" height="20" alt="Facebook" />';
+      document.writeln(my_url);
+    </script></a
+  >
+
+  &nbsp;
+  <a href="https://www.linkedin.com/in/nasasewp/" target="_blank">
+    <script type="text/javascript">
+      var my_url = '<img src="';
+      my_url += my_https;
+      my_url += my_domain;
+      my_url +=
+        '/images/InBug-20px-R.png" style="text-align: center; vertical-align: middle;" width="27" height="20" alt="LinkedIn" />';
+      document.writeln(my_url);
+    </script></a
+  >
+
+  &nbsp;
+  <a
+    href="https://www.youtube.com/channel/UCGvRH2hAkXgV5BnHd9ste6A"
+    target="_blank"
+  >
+    <script type="text/javascript">
+      var my_url = '<img src="';
+      my_url += my_https;
+      my_url += my_domain;
+      my_url +=
+        '/images/youtube_social_icon_red_20px.png" style="text-align: center; vertical-align: middle;" width="27" height="20" alt="Youtube" />';
+      document.writeln(my_url);
+    </script></a
+  >
+
+  <br />
+  <br />
+
+  <a href="https://get.adobe.com/reader/" target="_blank">
+    <script type="text/javascript">
+      var my_url = '<img src="';
+      my_url += my_https;
+      my_url += my_domain;
+      my_url +=
+        '/images/Get_Adobe_Reader_button_158x39.png" STYLE="text-align: center; vertical-align: middle;" width="158" height="39" alt="Get Adobe Acrobat Reader" />';
+      document.writeln(my_url);
+    </script></a
+  >
+  &nbsp; &nbsp;
+  <!-- Blue Duck Page -->
+  <script type="text/javascript">
+    var my_url = '<a href="';
+    my_url += my_https;
+    my_url += my_domain;
+    my_url += '/documents/training/sewp.shtml">';
+    my_url += '<img src="';
+    my_url += my_https;
+    my_url += my_domain;
+    my_url +=
+      '/images/blueduck.png" id="blueDuck" alt="blue duck" width="20" height="19" /><\/a>';
+    document.writeln(my_url);
+  </script>
+</div>
+<!-- END social.shtml -->
+
+</div>
+
+<!-- s5_jquery.js -->
+<script type="text/javascript" src="/addins/s5_jquery.js?version=10162023"></script>
+<!-- include virtual="/addins/s5_jquery.js" -->
+<!-- End of /addins/footer.shtml -->
+
+
+  </body>
+</html>

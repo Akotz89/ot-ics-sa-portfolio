@@ -1,0 +1,60 @@
+/* ═══════════════════════════════════════════════════════════════
+   dragos-theme.css — Single Source of Truth for Dragos Brand
+   Brand colors sourced from dragos.com (May 2026)
+   All portfolio pages import this file; edit here to change everywhere.
+   ═══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ── Dragos Brand Primaries ─────────────── */
+  --dragos-dark:        #0a1212;
+  --dragos-teal:        #01605e;
+  --dragos-teal-bright: #049995;
+  --dragos-teal-light:  #7dd3d0;
+  --dragos-teal-wash:   #e6f7f7;
+  --dragos-red:         #d93025;
+  --dragos-amber:       #f9ab00;
+  --dragos-green:       #34a853;
+
+  /* ── Semantic Aliases (used in doc pages) ── */
+  --navy:        #0a1212;
+  --navy-light:  #1a2a2a;
+  --steel:       #01605e;
+  --steel-light: #049995;
+  --accent:      #d93025;
+  --accent-soft: #fc8181;
+
+  /* ── Light Theme Surfaces ──────────────── */
+  --text:        #0a1212;
+  --text-muted:  #4a5568;
+  --text-light:  #718096;
+  --bg:          #ffffff;
+  --bg-alt:      #f7fafa;
+  --border:      #e2e8ed;
+  --border-dark: #cbd5e0;
+
+  /* ── Neutral Grays ─────────────────────── */
+  --gray-50:  #f8f9fa;
+  --gray-100: #f1f3f4;
+  --gray-200: #e8eaed;
+  --gray-300: #dadce0;
+  --gray-500: #9aa0a6;
+  --gray-700: #5f6368;
+  --gray-900: #202124;
+}
+
+/* ── Base Reset ──────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Typography Defaults ─────────────────── */
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ── Print ────────────────────────────────── */
+@media print {
+  body { background: #fff; }
+}

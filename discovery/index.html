@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Technical Discovery Document — USACE Northwestern Division</title>
+  <link rel="stylesheet" href="../dragos-theme.css">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="../nav.css">
 </head>
@@ -174,7 +175,7 @@ Level 1 (Field)         ┌──────────────┴──�
 <table>
   <tr><th>ID</th><th>Finding</th><th>Severity</th><th>Detail</th></tr>
   <tr><td>A-1</td><td>No firewall between L4 DMZ and L3 control network</td><td><span class="sev-crit">CRITICAL</span></td><td>L3 and L4 share switch fabric. DMZ compromise = direct SCADA access.</td></tr>
-  <tr><td>A-2</td><td>L3 and L2 are a flat network — no segmentation</td><td><span class="sev-crit">CRITICAL</span></td><td>HMI compromise = direct PLC access. <span class="tip" data-tip="From the Dragos 2025 Year in Review: 81% of assessed OT environments had insufficient network segmentation between IT and OT. This is the most common architectural gap Dragos finds in field assessments.">Found in 81% of Dragos assessments.</span></td></tr>
+  <tr><td>A-2</td><td>L3 and L2 are a flat network — no segmentation</td><td><span class="sev-crit">CRITICAL</span></td><td>HMI compromise = direct PLC access. <span class="tip" data-tip="From the Dragos 2026 Year in Review (covering 2025 data): 81% of assessed OT environments had insufficient network segmentation between IT and OT. This is the most common architectural gap Dragos finds in field assessments.">Found in 81% of Dragos assessments.</span></td></tr>
   <tr><td>A-3</td><td>RDP enabled on 4 engineering workstations</td><td><span class="sev-crit">CRITICAL</span></td><td>RDP is the #1 lateral movement vector in OT attacks.</td></tr>
   <tr><td>A-4</td><td>30+ IP cameras on OT network</td><td><span class="sev-high">HIGH</span></td><td>IoT devices with poor security expanding OT attack surface.</td></tr>
   <tr><td>A-5</td><td>MPLS WAN connects all 4 sites unfiltered</td><td><span class="sev-high">HIGH</span></td><td>Compromise at one dam can reach all others.</td></tr>
@@ -211,7 +212,7 @@ Level 1 (Field)         ┌──────────────┴──�
 <h2>6. Compliance &amp; Regulatory</h2>
 <table>
   <tr><th>Framework</th><th>Applicability</th><th>Status</th></tr>
-  <tr><td><span class="tip" data-tip="NIST Special Publication 800-82 Revision 3 (June 2023): Guide to Operational Technology Security. The primary federal framework for OT security controls. Covers asset management, network architecture, incident response, and vulnerability management specific to ICS/SCADA environments.">NIST SP 800-82 Rev 3</span></td><td>Primary OT framework for federal</td><td><span class="sev-crit">Not assessed</span></td></tr>
+  <tr><td><span class="tip" data-tip="NIST Special Publication 800-82 Revision 3 (September 2023): Guide to Operational Technology Security. The primary federal framework for OT security controls. Covers asset management, network architecture, incident response, and vulnerability management specific to ICS/SCADA environments.">NIST SP 800-82 Rev 3</span></td><td>Primary OT framework for federal</td><td><span class="sev-crit">Not assessed</span></td></tr>
   <tr><td>DoD CIO OT Mandate (2026)</td><td>Requires OT monitoring by EOY FY26</td><td><span class="sev-crit">Non-compliant</span></td></tr>
   <tr><td>USACE EP 1130-2-510</td><td>Internal USACE hydropower operations policy — primary compliance driver for generation assets</td><td><span class="sev-crit">Gap — no OT monitoring capability</span></td></tr>
   <tr><td>EO 14028</td><td>Improving the Nation’s Cybersecurity (May 2021) — drives zero-trust and supply chain security</td><td><span class="sev-med">Partial — IT only</span></td></tr>

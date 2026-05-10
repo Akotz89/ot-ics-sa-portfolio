@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Solution Architecture — USACE Columbia River Hydropower</title>
-  <link rel="stylesheet" href="discovery/style.css">
+  <link rel="stylesheet" href="dragos-theme.css"><link rel="stylesheet" href="discovery/style.css">
   <style>
     .site-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
     .site-card { border: 1px solid var(--gray-200); border-radius: 8px; padding: 16px 20px; }
@@ -50,7 +50,7 @@
 <!-- SECTION 1: EXECUTIVE SUMMARY -->
 <h2>1. Executive Summary</h2>
 
-<p>This document presents the recommended Dragos Platform deployment architecture for the U.S. Army Corps of Engineers — Northwestern Division (NWD) Columbia River hydropower facilities. The architecture is derived from the Technical Discovery session conducted on May 15, 2026, and addresses the complete absence of OT network monitoring across four major dam sites generating 6,033 MW of combined capacity.</p>
+<p>This document presents the recommended Dragos Platform deployment architecture for the U.S. Army Corps of Engineers — Northwestern Division (NWD) Columbia River hydropower facilities. The architecture is derived from the Technical Discovery session conducted on May 15, 2026, and addresses the complete absence of OT network monitoring across four major dam sites generating 6,003 MW of combined capacity.</p>
 
 <p>This gap is critical given the current <span class="tip" data-tip="Dragos tracks 20+ ICS-specific threat groups. VOLTZITE (Chinese state-sponsored) has been observed pre-positioning in US critical infrastructure. CHERNOVITE developed PIPEDREAM/INCONTROLLER — the first cross-industry ICS attack framework capable of targeting multiple OT protocols. ELECTRUM (Sandworm) has demonstrated destructive capability against power grid infrastructure.">threat landscape</span>. Dragos tracks 20+ ICS-specific threat groups, including <strong>VOLTZITE</strong> (targeting U.S. critical infrastructure for pre-positioning) and <strong>CHERNOVITE</strong> (developer of PIPEDREAM, the first cross-industry ICS attack framework). Hydropower facilities with unmonitored OT networks represent high-value targets with zero detection capability.</p>
 
@@ -69,7 +69,7 @@
   <div class="site-card">
     <h4>🏭 Bonneville Dam — <span class="tip" data-tip="Bonneville is selected as the PoC site because it has the most modern network infrastructure (Cisco IE-4010 managed switches with SPAN capability), reducing deployment complexity and change control risk.">PoC Site</span></h4>
     <div class="stat">
-      <strong>Capacity:</strong> 1,080 MW · 20 generating units<br>
+      <strong>Capacity:</strong> 1,050 MW · 18 generating units<br>
       <strong>Controller:</strong> <span class="tip" data-tip="GE Mark VIe is a turbine control system widely used in power generation. It communicates using proprietary GE protocols (SRTP and EGD) plus standard protocols like Modbus TCP and OPC-UA.">GE Mark VIe</span><br>
       <strong>HMI:</strong> <span class="tip" data-tip="GE's SCADA/HMI platform for the Mark VIe ecosystem. Runs on Windows and communicates with controllers via SRTP and EGD.">GE CIMPLICITY</span><br>
       <strong>Protocols:</strong> <span class="tip" data-tip="GE Service Request Transport Protocol — proprietary protocol used for configuration, diagnostics, and firmware updates on GE Mark controllers.">GE SRTP</span>, <span class="tip" data-tip="Ethernet Global Data — GE's real-time data exchange protocol for broadcasting process values between Mark VIe controllers and HMIs at high speed.">EGD</span>, Modbus TCP, OPC-UA<br>

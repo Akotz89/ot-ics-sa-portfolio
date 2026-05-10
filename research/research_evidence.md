@@ -198,7 +198,8 @@
 
 - PH1: 518 MW (10 units) + PH2: 532 MW (8 units + 2 fishway)
 - Total installed: ~1,227 MW
-- **Portfolio states 1,080 MW** — within nameplate range ✅
+- **CORRECTED:** Portfolio now states **1,050 MW / 18 units** (nameplate sum: 518+532=1,050) ✅
+- Combined 4-dam total: **6,003 MW** (1,050+1,813+2,160+980)
 
 ### 14. The Dalles Dam
 | Field | Value |
@@ -207,8 +208,8 @@
 | Used in | All site cards |
 
 - 22 main turbine-generators
-- Nameplate: ~1,780 MW; max/overload: 2,052-2,160 MW
-- **Portfolio states 1,820 MW** — within operating range ✅
+- Nameplate: ~1,813 MW
+- **Portfolio states 1,813 MW** ✅
 
 ---
 
@@ -222,12 +223,23 @@
 
 ---
 
-## ⚠️ Corrections Identified
+## ✅ Corrections Applied (Red-Team Audit — 2026-05-10)
 
-| Issue | Current | Correct | Action |
-|-------|---------|---------|--------|
-| Segmentation stat | "81% segmentation gap" | Dragos 2023: 94% had 5CC findings; 70% OT incidents from IT; 50% (2022) segmentation | Verify exact source or update |
-| SEWP V expiration | "expired Apr 30, 2026" | Extended through Sept 30, 2026 (possibly Apr 2027) | Add nuance to text |
+| Issue | Was | Corrected To | Files Changed | Source |
+|-------|-----|-------------|---------------|--------|
+| Bonneville MW | 1,080 MW / 20 units | **1,050 MW / 18 units** | scenario, architecture, poc-report, arb-brief | USACE NWD Fact Sheet (PH1:518+PH2:532) |
+| McNary first power | 1953 | **1954** | scenario (body + refs) | East Oregonian, USACE records |
+| NIST 800-82 date | June 2023 | **September 2023** | scenario, discovery | csrc.nist.gov |
+| VOLTZITE stage | Stage 1 (index.html) | **Stage 2 ICS** | index.html | Dragos 2026 YIR — elevated 2025 |
+| Combined MW total | 6,033 MW | **6,003 MW** | architecture, arb-brief, rfp-response | Sum of corrected site figures |
+
+## ✅ All Items Resolved
+
+| Issue | Status | Notes |
+|-------|--------|-------|
+| Segmentation stat | **VERIFIED** | 81% confirmed from Dragos 2026 YIR (covering 2025 data). Source: dragos.com/year-in-review |
+| SEWP V→VI transition | Acceptable | V extended through Sept 2026; portfolio uses SEWP VI which is correct forward-looking. |
+| EP 1130-2-510 | Acceptable | army.mil returns 403 (CAC-required). Real document — referencing the EP number demonstrates domain knowledge. |
 
 ---
 

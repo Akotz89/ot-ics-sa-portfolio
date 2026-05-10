@@ -4,10 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aaron Kotz — Federal SA Technical Readiness</title>
+<link rel="stylesheet" href="dragos-theme.css">
 <style>
   /* ═══════════════════════════════════════════════════════════════
-     PRINT-OPTIMIZED DOCUMENT STYLES
-     Target: Chrome Print → Save as PDF
+     INDEX PAGE — Layout & page-specific styles
+     Brand tokens inherited from dragos-theme.css
      ═══════════════════════════════════════════════════════════════ */
 
   @page {
@@ -15,38 +16,28 @@
     margin: 0.75in 0.85in;
   }
 
-  :root {
-    --navy: #0a1628;
-    --navy-light: #1a2a4a;
-    --steel: #2c5282;
-    --steel-light: #4a7ab5;
-    --accent: #e53e3e;
-    --accent-soft: #fc8181;
-    --text: #1a202c;
-    --text-muted: #4a5568;
-    --text-light: #718096;
-    --bg: #ffffff;
-    --bg-alt: #f7fafc;
-    --border: #e2e8f0;
-    --border-dark: #cbd5e0;
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text);
+    background: #f0f2f4;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    font-size: 10.5pt;
-    line-height: 1.55;
-    color: var(--text);
-    background: var(--bg);
+  /* ── Page Container (web readability) ──────── */
+  .section, .page-break {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 40px 48px;
+    background: #fff;
   }
 
   /* ── Typography ─────────────────────────────── */
-  h1 { font-size: 26pt; font-weight: 700; color: var(--navy); letter-spacing: -0.5px; }
-  h2 { font-size: 16pt; font-weight: 700; color: var(--navy); margin-bottom: 8pt; border-bottom: 2px solid var(--steel); padding-bottom: 4pt; }
-  h3 { font-size: 12pt; font-weight: 600; color: var(--steel); margin-bottom: 6pt; margin-top: 12pt; }
-  h4 { font-size: 10.5pt; font-weight: 600; color: var(--navy-light); margin-bottom: 4pt; }
-  p { margin-bottom: 8pt; }
+  h1 { font-size: 30px; font-weight: 700; color: var(--navy); letter-spacing: -0.5px; }
+  h2 { font-size: 21px; font-weight: 700; color: var(--navy); margin-bottom: 12px; border-bottom: 2px solid var(--steel); padding-bottom: 6px; margin-top: 36px; }
+  h3 { font-size: 16px; font-weight: 600; color: var(--steel); margin-bottom: 10px; margin-top: 24px; }
+  h4 { font-size: 14px; font-weight: 600; color: var(--navy-light); margin-bottom: 4px; }
+  p { margin-bottom: 10px; }
   strong { color: var(--navy); }
 
   /* ── Page Break Control ─────────────────────── */
@@ -54,95 +45,102 @@
   .no-break { page-break-inside: avoid; }
   h2, h3 { page-break-after: avoid; }
 
-  /* ── Cover Page ─────────────────────────────── */
+  /* ── Cover Page (dark Dragos charcoal) ──────── */
   .cover {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     min-height: 100vh;
     text-align: center;
-    padding: 2in 0.5in;
+    padding: 80px 48px;
+    background: var(--navy);
+    color: #fff;
   }
   .cover-logo {
-    font-size: 11pt;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--steel);
-    margin-bottom: 24pt;
+    color: var(--steel-light);
+    margin-bottom: 28px;
   }
   .cover h1 {
-    font-size: 30pt;
-    margin-bottom: 8pt;
-    line-height: 1.2;
+    font-size: 48px;
+    font-weight: 300;
+    margin-bottom: 8px;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    color: #fff;
   }
   .cover .subtitle {
-    font-size: 14pt;
-    color: var(--steel);
+    font-size: 17px;
+    color: rgba(255,255,255,.6);
     font-weight: 400;
-    margin-bottom: 32pt;
+    margin-bottom: 36px;
   }
   .cover .meta-line {
-    font-size: 10pt;
-    color: var(--text-muted);
-    margin-bottom: 4pt;
+    font-size: 13px;
+    color: rgba(255,255,255,.65);
+    margin-bottom: 4px;
   }
+  .cover .meta-line strong { color: #fff; }
   .cover .clearance-badge {
     display: inline-block;
-    background: var(--navy);
+    background: var(--steel);
     color: #fff;
-    padding: 6pt 24pt;
-    border-radius: 3pt;
-    font-size: 9pt;
-    font-weight: 600;
-    letter-spacing: 1.5px;
+    padding: 7px 24px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    margin-top: 16pt;
-    max-width: max-content;
-    align-self: center;
+    margin-top: 18px;
   }
   .cover-rule {
     width: 80px;
     height: 3px;
     background: var(--steel);
-    margin: 20pt auto;
+    margin: 22px auto;
   }
 
   /* ── Section Styling ────────────────────────── */
-  .section { margin-bottom: 24pt; }
+  .section { margin-bottom: 0; }
 
   /* ── Tables ─────────────────────────────────── */
   table {
     width: 100%;
     border-collapse: collapse;
-    margin: 10pt 0 16pt;
-    font-size: 9.5pt;
+    margin: 12px 0 18px;
+    font-size: 13px;
     page-break-inside: avoid;
   }
   th {
     background: var(--navy);
     color: #fff;
-    padding: 6pt 8pt;
+    padding: 8px 10px;
     text-align: left;
     font-weight: 600;
-    font-size: 8.5pt;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
   td {
-    padding: 5pt 8pt;
+    padding: 8px 10px;
     border-bottom: 1px solid var(--border);
     vertical-align: top;
   }
   tr:nth-child(even) td { background: var(--bg-alt); }
+  tr:hover td { background: #edf2f7; }
 
   /* ── Callout Boxes ──────────────────────────── */
   .callout {
     background: var(--bg-alt);
     border-left: 3px solid var(--steel);
-    padding: 10pt 14pt;
-    margin: 10pt 0 14pt;
-    font-size: 10pt;
+    padding: 14px 18px;
+    margin: 14px 0 18px;
+    font-size: 14px;
+    border-radius: 0 4px 4px 0;
     page-break-inside: avoid;
   }
   .callout-accent {
@@ -154,17 +152,18 @@
   /* ── Quote/Bridge Statement ─────────────────── */
   blockquote {
     border-left: 3px solid var(--steel-light);
-    padding: 8pt 14pt;
-    margin: 10pt 0;
+    padding: 12px 18px;
+    margin: 14px 0;
     font-style: italic;
     color: var(--text-muted);
     background: var(--bg-alt);
+    border-radius: 0 4px 4px 0;
     page-break-inside: avoid;
   }
 
   /* ── Figures ────────────────────────────────── */
   figure {
-    margin: 14pt 0;
+    margin: 18px 0;
     text-align: center;
     page-break-inside: avoid;
   }
@@ -172,12 +171,12 @@
     max-width: 100%;
     height: auto;
     border: 1px solid var(--border);
-    border-radius: 3pt;
+    border-radius: 4px;
   }
   figcaption {
-    font-size: 8.5pt;
+    font-size: 12px;
     color: var(--text-light);
-    margin-top: 4pt;
+    margin-top: 6px;
     font-style: italic;
   }
 
@@ -185,60 +184,70 @@
   .card-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10pt;
-    margin: 10pt 0 16pt;
+    gap: 12px;
+    margin: 12px 0 18px;
   }
   .card {
     border: 1px solid var(--border);
-    border-radius: 4pt;
-    padding: 10pt 12pt;
+    border-radius: 6px;
+    padding: 14px 16px;
+    background: #fff;
     page-break-inside: avoid;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .card:hover {
+    border-color: var(--steel-light);
+    box-shadow: 0 2px 8px rgba(1,96,94,.1);
   }
   .card h4 {
     color: var(--steel);
-    margin-bottom: 4pt;
-    font-size: 10pt;
+    margin-bottom: 4px;
+    font-size: 13px;
   }
-  .card p { font-size: 9.5pt; margin-bottom: 0; }
+  .card p { font-size: 13px; margin-bottom: 0; color: var(--text-muted); }
 
   /* ── Stage Flow ─────────────────────────────── */
   .stage-flow {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 8pt;
-    margin: 10pt 0 16pt;
+    gap: 10px;
+    margin: 12px 0 18px;
   }
   .stage {
     background: var(--bg-alt);
     border: 1px solid var(--border);
     border-top: 3px solid var(--steel);
-    border-radius: 3pt;
-    padding: 8pt 10pt;
+    border-radius: 4px;
+    padding: 12px 12px;
     page-break-inside: avoid;
+    transition: border-top-color .15s;
   }
+  .stage:hover { border-top-color: var(--steel-light); }
   .stage-number {
-    font-size: 8pt;
+    font-size: 10px;
     font-weight: 700;
     color: var(--steel);
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 2pt;
+    margin-bottom: 2px;
   }
-  .stage h4 { font-size: 9.5pt; color: var(--navy); margin-bottom: 3pt; }
-  .stage p { font-size: 8.5pt; color: var(--text-muted); margin-bottom: 0; }
+  .stage h4 { font-size: 13px; color: var(--navy); margin-bottom: 4px; }
+  .stage p { font-size: 12px; color: var(--text-muted); margin-bottom: 0; }
 
   /* ── Lists ──────────────────────────────────── */
-  ul, ol { margin-left: 18pt; margin-bottom: 8pt; }
-  li { margin-bottom: 3pt; }
+  ul, ol { margin-left: 20px; margin-bottom: 10px; }
+  li { margin-bottom: 3px; }
 
   /* ── Footer ─────────────────────────────────── */
   .doc-footer {
-    margin-top: 32pt;
-    padding-top: 10pt;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 20px 48px;
     border-top: 1px solid var(--border);
-    font-size: 8pt;
+    font-size: 12px;
     color: var(--text-light);
     text-align: center;
+    background: #fff;
   }
 
   /* ── Inline Badge ───────────────────────────── */
@@ -246,9 +255,9 @@
     display: inline-block;
     background: var(--navy);
     color: #fff;
-    padding: 1pt 6pt;
-    border-radius: 2pt;
-    font-size: 7.5pt;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-size: 10px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -261,12 +270,30 @@
   .two-col {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16pt;
+    gap: 16px;
   }
 
+  /* ── Print overrides ───────────────────────── */
   @media print {
-    body { font-size: 10pt; }
-    .cover { min-height: auto; padding: 2.5in 0.5in; }
+    body { font-size: 10pt; background: #fff; }
+    .cover {
+      min-height: auto;
+      padding: 2.5in 0.5in;
+      background: #fff !important;
+      color: var(--navy) !important;
+    }
+    .cover h1 { color: var(--navy) !important; }
+    .cover .subtitle { color: var(--text-muted) !important; }
+    .cover .meta-line { color: var(--text-muted) !important; }
+    .cover .meta-line strong { color: var(--navy) !important; }
+    .cover-logo { color: var(--steel) !important; }
+    .cover-rule { background: var(--steel) !important; }
+    .cover .clearance-badge { background: var(--steel); color: #fff; }
+    .section, .page-break { padding: 0; max-width: none; background: transparent; }
+    .doc-footer { max-width: none; padding: 10pt 0; background: transparent; }
+    .card:hover { border-color: var(--border); box-shadow: none; }
+    .stage:hover { border-top-color: var(--steel); }
+    tr:hover td { background: transparent; }
   }
 </style>
   <link rel="stylesheet" href="nav.css">
@@ -283,7 +310,7 @@
   <div class="cover-rule"></div>
   <div class="meta-line"><strong>Aaron Kotz</strong></div>
   <div class="meta-line">Senior Pre-Sales Solution Architect Candidate</div>
-  <div class="meta-line">6 Years Federal Mission Systems · 13+ ANG Sites · DoD Cybersecurity Operations</div>
+  <div class="meta-line">6 Years Federal Mission Systems · ANG Site Lead (13-Site Program) · DoD Cybersecurity Operations</div>
   <div class="clearance-badge">TS/SCI Cleared</div>
   <div style="margin-top: 32pt;">
     <div class="meta-line" style="color: var(--text-light); font-size: 9pt;">
@@ -302,14 +329,14 @@
   <p>This document demonstrates my understanding of the Solution Architect pre-sales motion, the OT/ICS cybersecurity landscape, the Dragos product portfolio, and how I would execute a federal proof-of-concept engagement. It is designed to complement my resume and provide the hiring team with a clear view of my technical readiness for the Senior Pre-Sales Solution Architect (Federal) role.</p>
 
   <div class="callout">
-    <p><strong>My core value proposition:</strong> I've spent the last 6 years as the person Dragos is trying to sell to — running classified mission networks, managing vulnerability programs, enforcing STIGs, and coordinating security across 13 federal sites. I want to bring that perspective to the other side of the table because I know what these customers need, I speak their language, and I can help them see how Dragos solves problems I've personally experienced.</p>
+    <p><strong>My core value proposition:</strong> I've spent the last 6 years as the person Dragos is trying to sell to — I'm a site lead running classified mission networks, managing vulnerability programs, and enforcing STIGs at one of 13 Air National Guard sites in a DoD program. I want to bring that perspective to the other side of the table because I know what these customers need, I speak their language, and I can help them see how Dragos solves problems I've personally dealt with.</p>
   </div>
 
   <h3>What I Bring From Day One</h3>
   <div class="card-grid">
     <div class="card">
       <h4>Federal Mission Credibility</h4>
-      <p>Active TS/SCI clearance. 6 years operating classified mission systems across 13+ Air National Guard sites. I earn trust in 5 minutes because I speak the customer's language — STIGs, ATOs, ACAS, RMF, Purdue zones, SCADA boundaries, and SOC operations.</p>
+      <p>Active TS/SCI clearance. 6 years as a site lead operating classified mission systems in a 13-site ANG program. I speak the customer's language — STIGs, ATOs, ACAS, RMF, Purdue zones, SCADA boundaries, and SOC operations — because it's what I do every day.</p>
     </div>
     <div class="card">
       <h4>Architecture That Maps to OT</h4>
@@ -321,7 +348,7 @@
     </div>
     <div class="card">
       <h4>Stakeholder Communication</h4>
-      <p>I brief military leadership on risk posture, present monthly status across 13 sites, deliver a 9-block technical training curriculum, and mentor ISSOs on compliance. Translating complex technical content for decision-makers is my daily job.</p>
+      <p>I brief military leadership on risk posture, present my site's status in program-wide reviews covering all 13 sites, deliver technical training, and mentor ISSOs on compliance. Translating complex technical content for decision-makers is part of my daily role.</p>
     </div>
   </div>
 
@@ -383,7 +410,7 @@
     <tr>
       <td><strong>Earn Trust</strong></td>
       <td>Prove you've operated in their world — classified networks, compliance pressure, real consequences</td>
-      <td>TS/SCI cleared. I operate across JWICS, SIPRNet, and unclassified enclaves daily. I enforce STIGs, run ACAS scans, manage ATOs, and coordinate security across 13 federal sites. When I say "I understand your environment" — I mean I've built, secured, and defended one.</td>
+      <td>TS/SCI cleared. I operate across JWICS, SIPRNet, and unclassified enclaves daily. I enforce STIGs, run ACAS scans, manage ATOs, and coordinate with other site leads across a 13-site DoD program. When I say "I understand your environment" — I mean I've built, secured, and defended one.</td>
     </tr>
     <tr>
       <td><strong>Listen</strong></td>
@@ -408,7 +435,7 @@
   </table>
 
   <div class="callout">
-    <p><strong>The Trust Advantage:</strong> "Before we get into the demo, let me give you context — I'm coming from the DoD mission systems side. I've been the site lead running classified infrastructure, managing STIG enforcement, syslog collection, multi-vendor firewalls, and real-time sensor data across 13 ANG sites. I understand your environment because I've operated in it."</p>
+    <p><strong>The Trust Advantage:</strong> "Before we get into the demo, let me give you context — I'm coming from the DoD mission systems side. I'm a site lead running classified infrastructure — STIG enforcement, syslog collection, multi-vendor firewalls, and real-time sensor data — as part of a 13-site ANG program. I understand your environment because I've operated in it."</p>
   </div>
 </div>
 
@@ -444,8 +471,8 @@
     <tr>
       <td><strong>VOLTZITE</strong></td>
       <td>Electric, Telecom, Defense Industrial Base</td>
-      <td><span class="badge">Stage 1</span></td>
-      <td>PRC-linked group conducting sustained reconnaissance of US electric utilities. Focused on GIS data, OT network diagrams, and SCADA access. Pre-positioning for future disruption.</td>
+      <td><span class="badge badge-red">Stage 2 ICS</span></td>
+      <td>PRC-linked group elevated to Stage 2 in 2025. Conducting sustained reconnaissance and pre-positioning in US electric utilities. Manipulates engineering workstation software to extract configuration files. Overlaps CISA-tracked Volt Typhoon (AA24-038A).</td>
     </tr>
     <tr>
       <td><strong>BENTONITE</strong></td>
@@ -469,7 +496,7 @@
     </div>
     <div class="card">
       <h4>Edge Device Exploitation</h4>
-      <p>Routers, firewalls, and VPN concentrators at OT network boundaries are increasingly targeted. CISA BOD 25-01 mandates federal agencies replace at-risk end-of-life edge devices.</p>
+      <p>Routers, firewalls, and VPN concentrators at OT network boundaries are increasingly targeted. CISA BOD 26-02 (Feb 2026) mandates federal agencies inventory and replace end-of-support edge devices to mitigate unpatched vulnerabilities.</p>
     </div>
     <div class="card">
       <h4>Ransomware Impact on OT</h4>
@@ -602,11 +629,11 @@
   <div style="margin: 10pt 0 16pt; page-break-inside: avoid;">
     <svg viewBox="0 0 1000 680" xmlns="http://www.w3.org/2000/svg" style="width:100%; border: 1px solid #cbd5e0; border-radius: 4pt; background: #fff;">
       <defs>
-        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4299e1"/></marker>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#049995"/></marker>
         <filter id="sh"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.08"/></filter>
       </defs>
       <!-- Title -->
-      <text x="500" y="30" font-family="Inter,sans-serif" font-size="14" font-weight="700" fill="#1a2332" text-anchor="middle">Federal OT Network — Dragos Sensor Deployment</text>
+      <text x="500" y="30" font-family="Inter,sans-serif" font-size="14" font-weight="700" fill="#0a1212" text-anchor="middle">Federal OT Network — Dragos Sensor Deployment</text>
       <text x="500" y="46" font-family="Inter,sans-serif" font-size="9" fill="#718096" text-anchor="middle">Based on ISA-99 / IEC 62443 Purdue Reference Architecture</text>
       <!-- L5: Enterprise -->
       <rect x="40" y="60" width="920" height="65" rx="5" fill="#edf2f7" stroke="#cbd5e0" stroke-width="1.5" filter="url(#sh)"/>
@@ -614,7 +641,7 @@
       <rect x="76" y="90" width="88" height="24" rx="3" fill="#fff" stroke="#cbd5e0"/><text x="120" y="106" font-family="Inter,sans-serif" font-size="8" fill="#4a5568" text-anchor="middle">Email / DNS</text>
       <rect x="174" y="90" width="100" height="24" rx="3" fill="#fff" stroke="#cbd5e0"/><text x="224" y="106" font-family="Inter,sans-serif" font-size="8" fill="#4a5568" text-anchor="middle">Active Directory</text>
       <rect x="284" y="90" width="88" height="24" rx="3" fill="#fff" stroke="#cbd5e0"/><text x="328" y="106" font-family="Inter,sans-serif" font-size="8" fill="#4a5568" text-anchor="middle">SIEM / Splunk</text>
-      <rect x="700" y="78" width="240" height="34" rx="5" fill="#1a365d" stroke="#2c5282" stroke-width="2" filter="url(#sh)"/>
+      <rect x="700" y="78" width="240" height="34" rx="5" fill="#0a1212" stroke="#01605e" stroke-width="2" filter="url(#sh)"/>
       <text x="820" y="100" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">⬢ Dragos CentralStore</text>
       <!-- L4: Business -->
       <rect x="40" y="135" width="920" height="55" rx="5" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5"/>
@@ -627,19 +654,19 @@
       <rect x="422" y="210" width="110" height="24" rx="3" fill="#fff" stroke="#e53e3e"/><text x="477" y="226" font-family="Inter,sans-serif" font-size="8" fill="#c53030" text-anchor="middle">Jump Server / VPN</text>
       <rect x="542" y="210" width="80" height="24" rx="3" fill="#fff" stroke="#e53e3e"/><text x="582" y="226" font-family="Inter,sans-serif" font-size="8" fill="#c53030" text-anchor="middle">Data Diode</text>
       <!-- L3: Site Ops -->
-      <rect x="40" y="254" width="920" height="80" rx="5" fill="#ebf8ff" stroke="#90cdf4" stroke-width="1.5" filter="url(#sh)"/>
-      <text x="56" y="276" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#2b6cb0" letter-spacing="1">LEVEL 3 · SITE OPERATIONS</text>
-      <rect x="76" y="288" width="96" height="24" rx="3" fill="#fff" stroke="#90cdf4"/><text x="124" y="304" font-family="Inter,sans-serif" font-size="8" fill="#2c5282" text-anchor="middle">Historian</text>
-      <rect x="182" y="288" width="120" height="24" rx="3" fill="#fff" stroke="#90cdf4"/><text x="242" y="304" font-family="Inter,sans-serif" font-size="8" fill="#2c5282" text-anchor="middle">Eng. Workstation</text>
-      <rect x="312" y="288" width="88" height="24" rx="3" fill="#fff" stroke="#90cdf4"/><text x="356" y="304" font-family="Inter,sans-serif" font-size="8" fill="#2c5282" text-anchor="middle">Patch Server</text>
+      <rect x="40" y="254" width="920" height="80" rx="5" fill="#e6f7f7" stroke="#7dd3d0" stroke-width="1.5" filter="url(#sh)"/>
+      <text x="56" y="276" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#01605e" letter-spacing="1">LEVEL 3 · SITE OPERATIONS</text>
+      <rect x="76" y="288" width="96" height="24" rx="3" fill="#fff" stroke="#7dd3d0"/><text x="124" y="304" font-family="Inter,sans-serif" font-size="8" fill="#01605e" text-anchor="middle">Historian</text>
+      <rect x="182" y="288" width="120" height="24" rx="3" fill="#fff" stroke="#7dd3d0"/><text x="242" y="304" font-family="Inter,sans-serif" font-size="8" fill="#01605e" text-anchor="middle">Eng. Workstation</text>
+      <rect x="312" y="288" width="88" height="24" rx="3" fill="#fff" stroke="#7dd3d0"/><text x="356" y="304" font-family="Inter,sans-serif" font-size="8" fill="#01605e" text-anchor="middle">Patch Server</text>
       <!-- Sensor L3 -->
       <rect x="480" y="284" width="130" height="32" rx="5" fill="#f6ad55" stroke="#dd6b20" stroke-width="2" filter="url(#sh)"/>
       <text x="545" y="305" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">◉ Sensor (SPAN)</text>
       <!-- SiteStore -->
-      <rect x="700" y="270" width="240" height="48" rx="5" fill="#2b6cb0" stroke="#2c5282" stroke-width="2" filter="url(#sh)"/>
+      <rect x="700" y="270" width="240" height="48" rx="5" fill="#01605e" stroke="#049995" stroke-width="2" filter="url(#sh)"/>
       <text x="820" y="291" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">⬢ Dragos SiteStore</text>
-      <text x="820" y="307" font-family="Inter,sans-serif" font-size="7.5" fill="#bee3f8" text-anchor="middle">Analysis · Detection · Asset Inventory</text>
-      <line x1="610" y1="300" x2="698" y2="294" stroke="#4299e1" stroke-width="2" marker-end="url(#arr)"/>
+      <text x="820" y="307" font-family="Inter,sans-serif" font-size="7.5" fill="#a8e8e5" text-anchor="middle">Analysis · Detection · Asset Inventory</text>
+      <line x1="610" y1="300" x2="698" y2="294" stroke="#049995" stroke-width="2" marker-end="url(#arr)"/>
       <!-- L2: Supervisory -->
       <rect x="40" y="344" width="920" height="74" rx="5" fill="#f0fff4" stroke="#9ae6b4" stroke-width="1.5"/>
       <text x="56" y="366" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#276749" letter-spacing="1">LEVEL 2 · SUPERVISORY CONTROL</text>
@@ -649,7 +676,7 @@
       <!-- Sensor L2 -->
       <rect x="480" y="374" width="130" height="32" rx="5" fill="#f6ad55" stroke="#dd6b20" stroke-width="2" filter="url(#sh)"/>
       <text x="545" y="395" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">◉ Sensor (TAP)</text>
-      <line x1="610" y1="390" x2="820" y2="320" stroke="#4299e1" stroke-width="2" marker-end="url(#arr)" stroke-dasharray="6,3"/>
+      <line x1="610" y1="390" x2="820" y2="320" stroke="#049995" stroke-width="2" marker-end="url(#arr)" stroke-dasharray="6,3"/>
       <!-- L1: Basic Control -->
       <rect x="40" y="428" width="920" height="74" rx="5" fill="#fffff0" stroke="#fefcbf" stroke-width="1.5"/>
       <text x="56" y="450" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#975a16" letter-spacing="1">LEVEL 1 · BASIC CONTROL</text>
@@ -663,8 +690,8 @@
       <text x="56" y="534" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#718096" letter-spacing="1">LEVEL 0 · PHYSICAL PROCESS</text>
       <text x="76" y="550" font-family="Inter,sans-serif" font-size="8" fill="#a0aec0">Valves · Pumps · Motors · Actuators · Sensors · Transmitters</text>
       <!-- Data flow: SiteStore → CentralStore -->
-      <line x1="820" y1="270" x2="820" y2="114" stroke="#4299e1" stroke-width="2.5" marker-end="url(#arr)" stroke-dasharray="8,4"/>
-      <text x="808" y="200" font-family="Inter,sans-serif" font-size="7" fill="#4299e1" transform="rotate(-90,808,200)">Encrypted Metadata</text>
+      <line x1="820" y1="270" x2="820" y2="114" stroke="#049995" stroke-width="2.5" marker-end="url(#arr)" stroke-dasharray="8,4"/>
+      <text x="808" y="200" font-family="Inter,sans-serif" font-size="7" fill="#049995" transform="rotate(-90,808,200)">Encrypted Metadata</text>
       <!-- Syslog -->
       <line x1="700" y1="92" x2="374" y2="102" stroke="#718096" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="4,3"/>
       <text x="540" y="88" font-family="Inter,sans-serif" font-size="7" fill="#718096">Syslog Forwarding</text>
@@ -672,9 +699,9 @@
       <rect x="40" y="575" width="920" height="42" rx="4" fill="#f7fafc" stroke="#e2e8f0"/>
       <rect x="56" y="588" width="14" height="14" rx="3" fill="#f6ad55" stroke="#dd6b20"/>
       <text x="76" y="600" font-family="Inter,sans-serif" font-size="8" fill="#4a5568">Dragos Sensor (passive)</text>
-      <rect x="230" y="588" width="14" height="14" rx="3" fill="#1a365d" stroke="#2c5282"/>
+      <rect x="230" y="588" width="14" height="14" rx="3" fill="#0a1212" stroke="#01605e"/>
       <text x="250" y="600" font-family="Inter,sans-serif" font-size="8" fill="#4a5568">Dragos Platform Component</text>
-      <line x1="430" y1="595" x2="466" y2="595" stroke="#4299e1" stroke-width="2" stroke-dasharray="6,3"/>
+      <line x1="430" y1="595" x2="466" y2="595" stroke="#049995" stroke-width="2" stroke-dasharray="6,3"/>
       <text x="472" y="600" font-family="Inter,sans-serif" font-size="8" fill="#4a5568">Metadata Flow</text>
       <rect x="580" y="588" width="14" height="14" rx="3" fill="#fff5f5" stroke="#e53e3e" stroke-dasharray="4,2"/>
       <text x="600" y="600" font-family="Inter,sans-serif" font-size="8" fill="#4a5568">DMZ Boundary</text>
@@ -831,7 +858,7 @@
   </table>
 
   <div class="callout">
-    <p><strong>Why My Background Matters for POC Execution:</strong> I've deployed and troubleshot 20+ VM pods on OpenShift in classified environments. I know the pain of firewall rule coordination, ATO timelines, ISSO approvals, and the reality that "Week 1" in a federal environment means "Week 1 after 3 weeks of paperwork." A Dragos POC is technically simpler than what I operate daily — the hard part is navigating the federal process, and that's where I have direct experience.</p>
+    <p><strong>Why My Background Matters for POC Execution:</strong> I've deployed and troubleshot 20+ VM pods on OpenShift in classified environments. I know the pain of firewall rule coordination, ATO timelines, ISSO approvals, and the reality that "Week 1" in a federal environment means "Week 1 after 3 weeks of paperwork." The POC deployment process is familiar territory — I routinely deploy and troubleshoot complex multi-VM platforms under the same federal constraints. The hard part is navigating the process, and that's where I have direct experience.</p>
   </div>
 
   <h3>Federal-Specific POC Considerations</h3>
@@ -881,7 +908,7 @@
         <div style="background: #fff5f5; border: 1px solid #fed7d7; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
           <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">DMZ #2 — Firewall / Router Boundary</div>
         </div>
-        <div style="background: #ebf4ff; border: 1px solid #bee3f8; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
+        <div style="background: #e6f7f7; border: 1px solid #a8e8e5; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
           <div style="font-weight: 600; font-size: 9pt; color: var(--steel);">Collateral Network</div>
           <div style="font-size: 7.5pt; color: var(--text-muted);">SIEM · ACAS · Mission VMs</div>
         </div>
@@ -889,7 +916,7 @@
           <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">DMZ #1 — MISP VNI Boundary</div>
           <div style="font-size: 7.5pt; color: var(--text-muted);">Dual firewalls · 14 protocol translators</div>
         </div>
-        <div style="background: #ebf4ff; border: 1px solid #bee3f8; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
+        <div style="background: #e6f7f7; border: 1px solid #a8e8e5; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
           <div style="font-weight: 600; font-size: 9pt; color: var(--steel);">GCS / C2 / SPDN Networks</div>
           <div style="font-size: 7.5pt; color: var(--text-muted);">Level 2 · Isolated control circuits</div>
         </div>
@@ -923,7 +950,7 @@
           <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">Enterprise DMZ</div>
           <div style="font-size: 7.5pt; color: var(--text-muted);">Level 3.5</div>
         </div>
-        <div style="background: #ebf4ff; border: 1px solid #bee3f8; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
+        <div style="background: #e6f7f7; border: 1px solid #a8e8e5; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
           <div style="font-weight: 600; font-size: 9pt; color: var(--steel);">Site Operations</div>
           <div style="font-size: 7.5pt; color: var(--text-muted);">Level 3 · HMIs · Historians</div>
         </div>
@@ -931,7 +958,7 @@
           <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">Industrial DMZ</div>
           <div style="font-size: 7.5pt; color: var(--text-muted);">Level 3.5</div>
         </div>
-        <div style="background: #ebf4ff; border: 1px solid #bee3f8; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
+        <div style="background: #e6f7f7; border: 1px solid #a8e8e5; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
           <div style="font-weight: 600; font-size: 9pt; color: var(--steel);">Supervisory Control</div>
           <div style="font-size: 7.5pt; color: var(--text-muted);">Level 2 · SCADA / DCS</div>
         </div>
