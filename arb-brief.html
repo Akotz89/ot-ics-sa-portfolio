@@ -94,10 +94,10 @@
 
   <table>
     <tr><th>Finding</th><th>Severity</th><th>Status</th></tr>
-    <tr><td>Undocumented jump server bridging L3/L4 boundary</td><td><span class="sev-crit">CRITICAL</span></td><td>Remediation in progress</td></tr>
+    <tr><td><span class="tip" data-tip="A jump server (or bastion host) is a system used to access devices in a different security zone. An undocumented jump server bridging L3 (site operations) and L4 (enterprise IT) means there's an uncontrolled access path between IT and OT networks.">Undocumented jump server</span> bridging L3/L4 boundary</td><td><span class="sev-crit">CRITICAL</span></td><td>Remediation in progress</td></tr>
     <tr><td>2 Windows XP HMIs on L2 process network</td><td><span class="sev-high">HIGH</span></td><td>Compensating controls applied</td></tr>
     <tr><td>SMB traffic crossing IT→OT boundary</td><td><span class="sev-high">HIGH</span></td><td>Firewall rule audit initiated</td></tr>
-    <tr><td>34 OT vulnerabilities identified (2 Now / 8 Next / 24 Never)</td><td><span class="sev-med">MEDIUM</span></td><td>Prioritized remediation plan</td></tr>
+    <tr><td>34 OT vulnerabilities identified (<span class="tip" data-tip="Now: actively exploited, patch immediately. Next: exploitable under conditions, schedule for maintenance window. Never: theoretical risk, monitor only. Replaces raw CVSS with operational context.">2 Now / 8 Next / 24 Never</span>)</td><td><span class="sev-med">MEDIUM</span></td><td>Prioritized remediation plan</td></tr>
   </table>
 </div>
 
@@ -114,7 +114,7 @@
     <tr style="font-weight:700; background: var(--gray-100);"><td>CentralStore</td><td colspan="2">NWD HQ (Portland)</td><td>VM</td><td>Aggregation + SIEM integration</td></tr>
   </table>
 
-  <p style="font-size: 13px; margin-top: 12px;"><strong>Integration:</strong> Splunk Cloud (Syslog/CEF — FedRAMP High / DoD IL5) · CrowdStrike Falcon (REST API — bi-directional IOC exchange) · Neighborhood Keeper (anonymized community defense)</p>
+  <p style="font-size: 13px; margin-top: 12px;"><strong>Integration:</strong> <span class="tip" data-tip="Splunk Cloud achieved FedRAMP High authorization (Sep 2024) and DoD IL5 Provisional Authorization from DISA. Hosted in AWS GovCloud.">Splunk Cloud</span> (Syslog/CEF — FedRAMP High / DoD IL5) · CrowdStrike Falcon (REST API — bi-directional IOC exchange) · <span class="tip" data-tip="Dragos' community defense program. Sensors share anonymized threat telemetry — customer identifiers stripped. NSA and CISA participate as trusted advisors.">Neighborhood Keeper</span> (anonymized community defense)</p>
 </div>
 
 <!-- SLIDE 5: COMPLIANCE -->
@@ -122,10 +122,10 @@
   <div class="slide-header">4. Compliance Alignment</div>
   <table>
     <tr><th>Requirement</th><th>Source</th><th>Dragos Coverage</th></tr>
-    <tr><td>OT Asset Inventory</td><td>USACE EP 1130-2-510; CISA BOD 23-01</td><td><span class="check">✓</span> Continuous passive discovery</td></tr>
+    <tr><td>OT Asset Inventory</td><td><span class="tip" data-tip="USACE Engineer Pamphlet 1130-2-510 establishes cybersecurity requirements for USACE hydropower. CISA BOD 23-01 requires federal agencies to maintain continuous asset inventory.">USACE EP 1130-2-510; CISA BOD 23-01</span></td><td><span class="check">✓</span> Continuous passive discovery</td></tr>
     <tr><td>OT Network Monitoring</td><td>NIST 800-82 §5.3; DoD CIO OT Directive</td><td><span class="check">✓</span> 600+ protocol parsers, behavioral analytics</td></tr>
     <tr><td>Vulnerability Management</td><td>NIST 800-53 RA-5; EP 1130-2-510</td><td><span class="check">✓</span> Now/Next/Never prioritization</td></tr>
-    <tr><td>Incident Response</td><td>NIST 800-53 IR-4; CIRCIA</td><td><span class="check">✓</span> PCAP forensics, timeline reconstruction</td></tr>
+    <tr><td>Incident Response</td><td>NIST 800-53 IR-4; <span class="tip" data-tip="Cyber Incident Reporting for Critical Infrastructure Act (2022). Requires critical infrastructure operators to report cyber incidents to CISA within 72 hours. Dragos' forensic capability supports the evidence collection needed for CIRCIA reporting.">CIRCIA</span></td><td><span class="check">✓</span> PCAP forensics, timeline reconstruction</td></tr>
     <tr><td>System Hardening</td><td>DISA STIG</td><td><span class="check">✓</span> Platform 2.x STIG published on public.cyber.mil</td></tr>
   </table>
 </div>
@@ -135,11 +135,11 @@
   <div class="slide-header">5. Risk Assessment — Cost of Inaction</div>
   <div class="risk-grid">
     <div class="risk-card">
-      <h4>VOLTZITE (PRC-linked) Pre-Positioning</h4>
+      <h4><span class="tip" data-tip="Dragos-tracked threat group linked to the People's Republic of China (PRC). Conducts sustained reconnaissance of US electric utilities — targeting GIS data, network diagrams, and SCADA access points. Tracked by CISA as Volt Typhoon.">VOLTZITE</span> (PRC-linked) Pre-Positioning</h4>
       <p>Active reconnaissance of US electric utilities per CISA AA24-038A. Columbia River dams are high-value targets — 40% of US hydroelectric generation. Current detection capability: <strong>zero</strong>.</p>
     </div>
     <div class="risk-card">
-      <h4>CHERNOVITE ICS Attack Framework</h4>
+      <h4><span class="tip" data-tip="Dragos-tracked threat group that developed PIPEDREAM (also called INCONTROLLER by Mandiant) — the first known cross-industry ICS attack framework capable of targeting PLCs from multiple vendors (Schneider, Omron, and OPC-UA-enabled devices).">CHERNOVITE</span> ICS Attack Framework</h4>
       <p>PIPEDREAM/INCONTROLLER targets safety controllers across vendors. First cross-industry ICS malware. Without protocol-level monitoring, this type of attack is invisible to IT security tools.</p>
     </div>
     <div class="risk-card">

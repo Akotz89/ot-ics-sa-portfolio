@@ -33,7 +33,7 @@
     <div class="meta-item"><label>PoC Duration</label><span>7 weeks (Jun 2 – Jul 18, 2026)</span></div>
     <div class="meta-item"><label>Site</label><span>Bonneville Dam — 1,080 MW, 20 units</span></div>
     <div class="meta-item"><label>Sensors Deployed</label><span>2 (L2 process + L3 operations)</span></div>
-    <div class="meta-item"><label>SiteStore</label><span>1× DS-1000 (VM deployment)</span></div>
+    <div class="meta-item"><label>SiteStore</label><span>1× <span class="tip" data-tip="Dragos hardware appliance model sized for sites with up to 500 OT assets. Deployed as a VM during the PoC for faster setup; production deployment uses the physical appliance for performance and STIG compliance.">DS-1000 (VM deployment)</span></span></div>
     <div class="meta-item"><label>Opportunity ID</label><span>DRG-FED-2026-0847</span></div>
     <div class="meta-item"><label>Version</label><span>1.0 — Final Report</span></div>
   </div>
@@ -92,7 +92,7 @@
 </div>
 
 <table>
-  <tr><th>Purdue Level</th><th>Asset Type</th><th>Known (Pre-PoC)</th><th>Discovered</th><th>Delta</th></tr>
+  <tr><th><span class="tip" data-tip="The Purdue Enterprise Reference Architecture defines 5 levels of industrial network segmentation. Level 0-1 = physical process and controllers, Level 2 = HMI/SCADA, Level 3 = site operations, Level 3.5 = industrial DMZ, Level 4-5 = enterprise IT.">Purdue Level</span></th><th>Asset Type</th><th>Known (Pre-PoC)</th><th>Discovered</th><th>Delta</th></tr>
   <tr><td>Level 1</td><td>PLCs / Controllers (GE Mark VIe)</td><td>20</td><td>22</td><td class="check">+2 undocumented I/O modules</td></tr>
   <tr><td>Level 2</td><td>HMIs / SCADA Servers</td><td>8</td><td>12</td><td class="check">+4 (incl. 2 legacy Windows XP HMIs)</td></tr>
   <tr><td>Level 2</td><td>Network Infrastructure</td><td>14</td><td>18</td><td class="check">+4 unmanaged switches</td></tr>
@@ -137,8 +137,8 @@
 
 <table>
   <tr><th>Integration</th><th>Status</th><th>Validation</th></tr>
-  <tr><td><strong>Splunk Cloud</strong> (Syslog/CEF over TLS)</td><td><span class="check">✓ Operational</span></td><td>Alert metadata flowing to Splunk within 30 seconds of detection. 127 events forwarded during PoC. SOC confirmed visibility in existing dashboards.</td></tr>
-  <tr><td><strong>CrowdStrike Falcon</strong> (REST API)</td><td><span class="check">✓ Operational</span></td><td>Bi-directional IOC exchange validated. 14 OT assets correlated with Falcon Discover for IoT endpoint data.</td></tr>
+  <tr><td><strong>Splunk Cloud</strong> (<span class="tip" data-tip="Syslog using Common Event Format (CEF) is the standard for forwarding security alerts to SIEMs. TLS encryption ensures alert metadata is protected in transit. Only alert type, severity, timestamp, and asset ID are forwarded — no raw PCAP.">Syslog/CEF over TLS</span>)</td><td><span class="check">✓ Operational</span></td><td>Alert metadata flowing to Splunk within 30 seconds of detection. 127 events forwarded during PoC. SOC confirmed visibility in existing dashboards.</td></tr>
+  <tr><td><strong>CrowdStrike Falcon</strong> (<span class="tip" data-tip="REST API integration enables bi-directional data exchange. Dragos sends OT IOCs and asset inventory to Falcon; CrowdStrike sends endpoint context (hostname, OS, AD domain) back to enrich Dragos asset records.">REST API</span>)</td><td><span class="check">✓ Operational</span></td><td>Bi-directional IOC exchange validated. 14 OT assets correlated with Falcon Discover for IoT endpoint data.</td></tr>
   <tr><td><strong>Neighborhood Keeper</strong></td><td><span class="check">✓ Enrolled</span></td><td>Anonymized telemetry flowing. Customer identifiers confirmed stripped per NK data handling policy.</td></tr>
 </table>
 
