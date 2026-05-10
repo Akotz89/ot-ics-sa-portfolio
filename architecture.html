@@ -80,7 +80,7 @@
   <div class="site-card">
     <h4>🏭 The Dalles Dam</h4>
     <div class="stat">
-      <strong>Capacity:</strong> <span class="tip" data-tip="1,813 MW is the nameplate rating per USACE NWD fact sheets. The 2,160 MW 'overload' rating referenced in some sources represents maximum short-duration output, not sustained capacity.">1,813 MW nameplate</span> · 22 generating units<br>
+      <strong>Capacity:</strong> <span class="tip" data-tip="1,813 MW is the nameplate rating per USACE NWD fact sheets. The Dalles is the second-largest dam in the Columbia system and the largest by generating unit count (22 units).">1,813 MW nameplate</span> · 22 generating units<br>
       <strong>Controller:</strong> <span class="tip" data-tip="Emerson Ovation is a distributed control system (DCS) commonly used in power generation. It uses OPC-UA for data exchange and Modbus TCP for device integration.">Emerson Ovation DCS</span><br>
       <strong>HMI:</strong> Ovation Operator Workstations<br>
       <strong>Protocols:</strong> OPC-UA, Modbus TCP<br>
@@ -127,13 +127,14 @@
   <h4>CentralStore — NWD Headquarters (Portland, OR)</h4>
   <p>The <span class="tip" data-tip="CentralStore is Dragos' enterprise aggregation component — a 'manager of managers' that collects data from multiple SiteStores to provide unified multi-site visibility, cross-site correlation, and executive reporting.">CentralStore</span> is deployed as a virtual machine in the NWD HQ data center, aggregating data from all 4 SiteStores over encrypted channels. It provides:</p>
   <ul style="margin: 12px 0 0 20px; font-size: 13px; line-height: 1.8;">
-    <li>Unified asset inventory across all 4 dam sites (est. 247 OT assets)</li>
+    <li>Unified asset inventory across all 4 dam sites (est. <span class="tip" data-tip="247 assets were validated at Bonneville alone during the PoC. Extrapolating across all 4 sites based on generating unit count and OT footprint, the total monitored asset count is estimated at 800-1,000 devices.">800–1,000 OT assets</span>)</li>
     <li>Cross-site threat correlation — detect adversary lateral movement between facilities</li>
     <li>Enterprise vulnerability dashboard with <span class="tip" data-tip="Dragos' OT-specific vulnerability prioritization framework. 'Now' = actively exploited or trivially exploitable; 'Next' = exploitable but requires specific conditions; 'Never' = theoretical risk with no practical exploit path. Replaces raw CVSS scoring with operational context.">Now/Next/Never</span> prioritization</li>
     <li>Executive reporting for NWD leadership and USACE HQ</li>
     <li>SIEM integration point (single syslog feed to Splunk Cloud)</li>
   </ul>
-  <p style="margin-top: 12px; font-size: 13px;"><strong>VM Requirements:</strong> 8 vCPU, 32 GB RAM, 2 TB storage, VMware ESXi 7.0+ or RHEL 8.x KVM. DISA STIG baseline applied.</p>
+  <p style="margin-top: 12px; font-size: 13px;"><strong>VM Requirements:</strong> 8 vCPU, 32 GB RAM, 2 TB storage, VMware ESXi 7.0+ or RHEL 8.x KVM. <span class="tip" data-tip="DISA STIG (Security Technical Implementation Guide) is the DoD standard for system hardening. Dragos Platform 2.x STIG is published on public.cyber.mil. Applying the STIG baseline pre-deployment accelerates the ATO process by providing the ISSO a pre-built assessment checklist.">DISA STIG baseline</span> applied.</p>
+  <p style="margin-top: 8px; font-size: 13px;"><strong>Network:</strong> SiteStore → CentralStore: <span class="tip" data-tip="Metadata-only transport between sites. Raw PCAP stays on-site at each SiteStore. Only structured alerts, asset inventory updates, and vulnerability data are forwarded — not full packet captures.">~5–10 Mbps per site</span> (metadata transport over encrypted WAN). <strong>Data Retention:</strong> <span class="tip" data-tip="90-day PCAP retention is sized for the estimated traffic profile. Each SiteStore retains local packet captures for forensic investigation. After 90 days, aging policy rolls oldest captures. Retention can be extended by adding storage.">90-day PCAP</span> per SiteStore (local); 1-year alert/asset history at CentralStore.</p>
 </div>
 
 <!-- SECTION 4: INTEGRATIONS -->
@@ -225,8 +226,31 @@
   </div>
 </div>
 
-<!-- SECTION 7: DEPLOYMENT TIMELINE -->
-<h2>7. Deployment Timeline</h2>
+
+<!-- SECTION 7: ATO / AUTHORIZATION -->
+<h2>7. Authorization to Operate (ATO) Strategy</h2>
+
+<p>All components require <span class="tip" data-tip="Authority to Operate is the formal authorization from the Authorizing Official (AO) that permits a system to operate in a federal environment. Without an ATO, the system cannot be connected to the production network. The ATO process includes security assessment, risk evaluation, and acceptance of residual risk.">ATO</span> before production deployment on USACE networks. The following strategy accelerates the authorization timeline:</p>
+
+<table>
+  <tr><th>Phase</th><th>Authorization Type</th><th>Duration</th><th>Artifacts Provided</th></tr>
+  <tr><td><strong>PoC</strong></td><td><span class="tip" data-tip="An Interim Authority to Test (IATT) or Assessment-Only ATO allows temporary deployment for evaluation purposes. It has a defined expiration (typically 90-180 days) and limited scope. This is the fastest path to getting sensors on-network for the PoC.">IATT / Test Authorization</span></td><td>2-3 weeks</td><td>STIG checklist, network diagram, data flow diagram, ports/protocols matrix</td></tr>
+  <tr><td><strong>Production</strong></td><td><span class="tip" data-tip="Full ATO using the NIST Risk Management Framework (RMF) process defined in NIST SP 800-37. Requires security categorization (FIPS 199), control selection (800-53), assessment, and authorization decision by the AO.">Full ATO (RMF)</span></td><td>3-6 months</td><td>Pre-built STIG results, SSP contribution sections, hardware/software inventory, POAM templates</td></tr>
+</table>
+
+<div class="arch-box">
+  <h4>ATO Acceleration Approach</h4>
+  <ul style="margin: 8px 0 0 20px; font-size: 13px; line-height: 1.8;">
+    <li><strong>Published STIG:</strong> Dragos Platform 2.x STIG is available on <span class="tip" data-tip="DISA's public STIG repository at https://public.cyber.mil. The published STIG means the ISSO has a pre-documented security baseline and doesn't need to assess controls from scratch.">public.cyber.mil</span> — eliminates 3-6 months of control documentation</li>
+    <li><strong>Early ISSO Engagement:</strong> SA coordinates introductory call between Dragos engineering and NWD <span class="tip" data-tip="Information System Security Officer — the government's designated security specialist responsible for ensuring the system meets security requirements. Early ISSO engagement is critical: if you surprise the ISSO at deployment time, expect 6+ month delays.">ISSO</span> during PoC phase</li>
+    <li><strong>Passive-Only Architecture:</strong> Sensors are receive-only (no transmit path to OT network) — significantly reduces risk assessment complexity</li>
+    <li><strong>Precedent:</strong> Dragos has completed ATO at 13+ federal sites — reusable artifact templates available</li>
+  </ul>
+</div>
+
+<!-- SECTION 8: DEPLOYMENT TIMELINE -->
+<h2>8. Deployment Timeline</h2>
+
 
 <table>
   <tr><th>Phase</th><th>Timeline</th><th>Activities</th><th>Gate</th></tr>
