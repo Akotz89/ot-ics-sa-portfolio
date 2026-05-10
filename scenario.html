@@ -59,7 +59,7 @@
   <tr><td>Mission</td><td>Operates 21 hydroelectric dams across the Columbia and Willamette River basins (OR, WA, ID, MT). Generates over 22,000 GWh/year — part of the Federal Columbia River Power System that provides roughly 40% of all U.S. hydroelectric power.</td></tr>
   <tr><td>Sector</td><td>Federal — DoD (Civil Works) / Energy / Water</td></tr>
   <tr><td>Scope</td><td>Initial engagement: <strong>4 dams</strong>. Success → expansion to all 21 NWD dams.</td></tr>
-  <tr><td>Annual OT Budget</td><td>~$2M (cybersecurity portion of SCADA modernization program)</td></tr>
+  <tr><td>Annual OT Budget</td><td><span class="tip" data-tip="~$2M is typical for a mid-size federal OT cybersecurity program. Scoped from the SCADA modernization line item, not a new budget — easier to obligate.">~$2M</span> (cybersecurity portion of SCADA modernization program)</td></tr>
   <tr><td>Existing Relationship</td><td>None with Dragos. CrowdStrike and Splunk on IT side. Dr. Torres attended S4 Conference and heard Robert M. Lee present.</td></tr>
 </table>
 
@@ -73,8 +73,8 @@
       <strong>Commissioned:</strong> 1938 (first powerhouse; second powerhouse 1981)<br>
       <strong>Capacity:</strong> 1,080 MW nameplate / 1,242 MW overload (20 generating units across two powerhouses)<br>
       <strong>Control System:</strong> GE Mark VIe Turbine Controls<br>
-      <strong>HMI:</strong> GE iFIX 6.1 (plant-level SCADA); ControlST/WorkstationST (per-unit)<br>
-      <strong>Historian:</strong> AVEVA PI System<br>
+      <strong>HMI:</strong> <span class="tip" data-tip="iFIX handles plant-level SCADA aggregation. ControlST/WorkstationST is GE's native per-unit turbine interface. Both coexist in hydro — iFIX for operators, ControlST for unit-level control.">GE iFIX 6.1 (plant-level SCADA); ControlST/WorkstationST (per-unit)</span><br>
+      <strong>Historian:</strong> <span class="tip" data-tip="AVEVA acquired OSIsoft in Aug 2021 for $5B. Now 'AVEVA PI System.' Using the old name signals you haven't worked with PI recently.">AVEVA PI System</span><br>
       <strong>Safety:</strong> Woodward Load Sharing<br>
       <strong>Network:</strong> Cisco IE-4010 (SPAN capable)<br>
       <strong>Role:</strong> Primary PoC site — largest, most complex
@@ -103,7 +103,7 @@
       <strong>Historian:</strong> Wonderware Historian<br>
       <strong>Safety:</strong> None identified<br>
       <strong>Network:</strong> HP ProCurve 2920 (limited SPAN — TAP needed)<br>
-      <strong>Risk:</strong> ControlLogix CIP firmware CVE-2023-3595 (RCE via CIP, Dragos-discovered, CVSS 9.8)
+      <strong>Risk:</strong> ControlLogix CIP firmware <span class="tip" data-tip="CVE-2023-3595: Remote code execution via CIP protocol. Dragos discovered this and coordinated disclosure with Rockwell. CVSS 9.8. If John Day hasn't patched, this is an active RCE risk.">CVE-2023-3595</span> (RCE via CIP, Dragos-discovered, CVSS 9.8)
     </div>
   </div>
   <div class="site-card">
@@ -147,7 +147,7 @@
 <div class="persona-card">
   <div class="name">Jennifer Walsh</div>
   <div class="title">Contracting Officer, USACE Portland District</div>
-  <div class="detail">Controls the procurement process. Needs clean SOW, compliant contract vehicle (SEWP VI — successor to SEWP V as of May 2026), and justified sole-source or competitive documentation. She doesn't care about your technology — she cares about FAR compliance and obligation deadlines.</div>
+  <div class="detail">Controls the procurement process. Needs clean SOW, compliant contract vehicle (<span class="tip" data-tip="NASA SEWP is a GWAC — Government-Wide Acquisition Contract. NASA manages the vehicle but ANY federal agency can use it. SEWP V expired Apr 30 2026; SEWP VI is the successor. Carahsoft is a SEWP VI contract holder.">SEWP VI</span> — successor to SEWP V as of May 2026), and justified sole-source or competitive documentation. She doesn't care about your technology — she cares about <span class="tip" data-tip="FAR = Federal Acquisition Regulation. The CO's bible. Every procurement action must comply. Using a pre-competed vehicle like SEWP VI simplifies FAR compliance because the competition already happened at the vehicle level.">FAR compliance</span> and obligation deadlines.</div>
 </div>
 
 <div class="persona-card">
@@ -208,7 +208,7 @@
   </div>
   <div class="event">
     <div class="date">Jun 23–Jul 23 — PoC</div>
-    <div class="desc">30-day Proof of Value at Bonneville Dam. 2 sensors deployed (SPAN × 2 segments — Powerhouse 1 + Powerhouse 2). SPAN change request submitted May 22 — 4-week change control clears Jun 19, sensors racked Jun 20–22.</div>
+    <div class="desc">30-day Proof of Value at Bonneville Dam. <span class="tip" data-tip="Bonneville has 2 separate powerhouses built decades apart with separate OT switch stacks. Each needs its own SPAN session — no TAPs needed because both use Cisco IE-4010 which fully supports SPAN.">2 sensors deployed (SPAN × 2 segments — Powerhouse 1 + Powerhouse 2)</span>. SPAN change request submitted May 22 — <span class="tip" data-tip="Federal dam OT networks require formal change control for any switch configuration change. 4 weeks is typical for USACE. This is the critical-path constraint that drives the entire PoC timeline.">4-week change control</span> clears Jun 19, sensors racked Jun 20–22.</div>
   </div>
   <div class="event">
     <div class="date">Jul 28 — PoC Readout</div>
@@ -220,7 +220,7 @@
   </div>
   <div class="event">
     <div class="date">Sep 15 — Contract Award</div>
-    <div class="desc">FFP contract via NASA SEWP VI (Carahsoft). $780K Year 1. FY26 funds obligated.</div>
+    <div class="desc"><span class="tip" data-tip="Firm Fixed Price — the government pays a locked price with no cost overruns. COs prefer FFP because it reduces financial risk to the government and is faster to award than cost-plus contracts.">FFP</span> contract via <span class="tip" data-tip="NASA manages SEWP but any federal agency can use it. It's pre-competed, so the CO doesn't need to run a new competition — just issue a task order. This saves 3-4 months vs. a full and open competition.">NASA SEWP VI</span> (Carahsoft). $780K Year 1. FY26 funds obligated.</div>
   </div>
   <div class="event">
     <div class="date">Dec 2026 — First Site Live</div>
@@ -237,7 +237,7 @@
 
 <table>
   <tr><th style="width:160px">Threat Group</th><th>Relevance</th></tr>
-  <tr><td><span class="sev-crit">VOLTZITE</span></td><td>Stage 2 group (PRC-linked, overlaps with Volt Typhoon) targeting U.S. electric grid, pipelines, and water systems. Manipulates engineering workstation software to extract config files. CISA advisory AA24-038A covers the PRC pre-positioning campaign; Dragos elevated VOLTZITE to Stage 2 in 2025. <strong>This is the threat driving the deal.</strong></td></tr>
+  <tr><td><span class="sev-crit">VOLTZITE</span></td><td><span class="tip" data-tip="Stage 2 = Dragos has observed this group targeting ICS/OT specifically, not just IT. Stage 1 = IT-focused with potential OT interest. VOLTZITE overlaps with Volt Typhoon (CISA/FBI designation).">Stage 2 group</span> (PRC-linked, overlaps with Volt Typhoon) targeting U.S. electric grid, pipelines, and water systems. Manipulates engineering workstation software to extract config files. CISA advisory AA24-038A covers the PRC pre-positioning campaign; Dragos elevated VOLTZITE to Stage 2 in 2025. <strong>This is the threat driving the deal.</strong></td></tr>
   <tr><td><span class="sev-crit">CHERNOVITE</span></td><td>Developed PIPEDREAM/INCONTROLLER — ICS-specific malware that can target industrial controllers. Relevant because USACE runs PLCs from multiple vendors.</td></tr>
   <tr><td><span class="sev-high">ELECTRUM</span></td><td>Connected to Industroyer malware that targeted electric grid in Ukraine. Relevant to The Dalles Dam's legacy relay protection systems.</td></tr>
   <tr><td><span class="sev-high">SYLVANITE</span></td><td>Access broker that weaponizes VPN/edge device vulnerabilities. Relevant because USACE uses VPN for remote OT access with no MFA.</td></tr>
@@ -258,8 +258,8 @@
   <tr><td>CUI Handling</td><td>All documents are CUI // FOUO. No cloud storage. No emailing findings over unencrypted channels.</td></tr>
   <tr><td>STIG Compliance</td><td>Any hardware deployed must be STIG-hardened. Customer ISSM will validate.</td></tr>
   <tr><td>Fiscal Year</td><td>Funds expire Sep 30, 2026. If contract isn't awarded by then, deal dies and restarts in FY27.</td></tr>
-  <tr><td>Expansion Potential</td><td>Success at 4 dams = expansion to 21 dams ($3M+ follow-on). This is a land-and-expand play.</td></tr>
-  <tr><td>Regulatory Framework</td><td>USACE hydropower generation is <strong>not directly NERC CIP-registered</strong> — compliance is driven by USACE EP 1130-2-510, DoD CIO OT cybersecurity directives, and NIST SP 800-82 Rev. 3 (Guide to OT Security). BPA, which markets the power, is NERC CIP-registered for transmission assets.</td></tr>
+  <tr><td>Expansion Potential</td><td>Success at 4 dams = expansion to 21 dams ($3M+ follow-on). <span class="tip" data-tip="Land-and-expand: win a small initial deployment, prove value, then expand across the enterprise. This is the core federal sales strategy — you never sell all 21 dams on day 1.">This is a land-and-expand play.</span></td></tr>
+  <tr><td>Regulatory Framework</td><td>USACE hydropower generation is <strong>not directly <span class="tip" data-tip="Common misconception. NERC CIP applies to Bulk Electric System (BES) entities registered with NERC. USACE generates power but BPA markets and transmits it. BPA is NERC CIP-registered; USACE generation assets are not. USACE follows EP 1130-2-510 and DoD directives instead.">NERC CIP-registered</span></strong> — compliance is driven by <span class="tip" data-tip="USACE Engineering Pamphlet 1130-2-510 governs hydropower plant operations, including cybersecurity requirements for operational technology systems.">USACE EP 1130-2-510</span>, DoD CIO OT cybersecurity directives, and NIST SP 800-82 Rev. 3 (Guide to OT Security). BPA, which markets the power, is NERC CIP-registered for transmission assets.</td></tr>
   <tr><td>Applicable Standards</td><td>NIST SP 800-53 Rev. 5 (security controls), NIST SP 800-82 Rev. 3 (OT security), DoD Zero Trust Strategy (FY2027 mandate), EO 14028 (Improving the Nation's Cybersecurity), CISA Cross-Sector CPGs.</td></tr>
 </table>
 
