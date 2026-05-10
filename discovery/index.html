@@ -19,7 +19,7 @@
     <div class="meta-item"><label><span class="tip" data-tip="A channel partner is an authorized reseller or distributor that holds the contract vehicle the government uses to purchase. In federal sales, the vendor (Dragos) rarely sells direct — the order flows through the channel partner who holds the GWAC/BPA.">Channel Partner</span></label><span><span class="tip" data-tip="Carahsoft Technology Corp. is one of the largest government IT solutions providers and Dragos' authorized federal distributor. They hold SEWP VI, GSA Schedule, and other federal contract vehicles. Carahsoft handles quoting, order processing, and compliance documentation.">Carahsoft Technology Corp.</span></span></div>
     <div class="meta-item"><label><span class="tip" data-tip="A contract vehicle is a pre-competed agreement (GWAC, IDIQ, BPA, or GSA Schedule) that federal agencies use to streamline procurement. Using an existing vehicle avoids the 6-12 month timeline of a new FAR Part 15 competitive procurement.">Contract Vehicle</span></label><span><span class="tip" data-tip="NASA SEWP VI (Solutions for Enterprise-Wide Procurement) is a Government-Wide Acquisition Contract managed by NASA but available to all federal agencies. SEWP V expired April 30, 2026; SEWP VI is the active successor. Carahsoft is a SEWP VI contract holder, enabling direct task-order issuance.">NASA SEWP VI (via Carahsoft)</span></span></div>
     <div class="meta-item"><label>Date</label><span>May 20, 2026</span></div>
-    <div class="meta-item"><label>Version</label><span>1.2 — Post-Discovery</span></div>
+    <div class="meta-item"><label>Version</label><span>1.4 — Post-Discovery</span></div>
     <div class="meta-item"><label><span class="tip" data-tip="The Opportunity ID is the CRM (Customer Relationship Management) tracking number — typically from Salesforce. It links all deal artifacts (discovery doc, architecture, BoM, PoC results) to a single pipeline entry for forecasting and deal review.">Opportunity ID</span></label><span>DRG-FED-2026-0847</span></div>
     <div class="meta-item"><label><span class="tip" data-tip="A mutual Non-Disclosure Agreement must be executed before sharing sensitive customer environment details (IP addresses, network architecture, control system versions). NDA execution date establishes when protected information exchange began — important for CUI handling compliance.">NDA Status</span></label><span>Executed 2026-04-30</span></div>
   </div>
@@ -45,7 +45,7 @@
 <h3>Customer Stakeholders</h3>
 <table>
   <tr><th>Name</th><th>Title</th><th>Role</th></tr>
-  <tr><td>COL James Harding</td><td>District Commander, Portland District</td><td>Executive Sponsor</td></tr>
+  <tr><td>COL James Harding</td><td>Commander, Northwestern Division (NWD)</td><td>Executive Sponsor</td></tr>
   <tr><td>Dr. Rebecca Torres</td><td>Chief, Cybersecurity Division (NWD)</td><td>Technical Decision Maker</td></tr>
   <tr><td>Mike Osterman</td><td>SCADA Program Manager, Hydropower</td><td>OT Subject Matter Expert</td></tr>
   <tr><td>Jennifer Walsh</td><td>Contracting Officer, USACE Portland District</td><td>Procurement Authority</td></tr>
@@ -101,7 +101,7 @@
 <h3>Control Systems by Site</h3>
 <table>
   <tr><th>Site</th><th>Primary Control</th><th>SCADA / HMI</th><th>Safety</th><th>Historian</th></tr>
-  <tr><td>Bonneville Dam</td><td>GE Mark VIe Turbine Controls</td><td>GE iFIX 6.1 (plant-level SCADA); ControlST/WorkstationST (per-unit)</td><td>Woodward Load Sharing</td><td>AVEVA PI System</td></tr>
+  <tr><td>Bonneville Dam</td><td>GE Mark VIe Turbine Controls</td><td><span class="tip" data-tip="GE CIMPLICITY is the standard HMI/SCADA platform for Mark VIe power generation environments. WorkstationST and ControlST are GE engineering/operator tools that run alongside CIMPLICITY for per-unit control and diagnostics.">GE CIMPLICITY</span> (plant-level SCADA); ControlST/WorkstationST (per-unit)</td><td>Woodward Load Sharing</td><td>AVEVA PI System</td></tr>
   <tr><td>The Dalles Dam</td><td>Emerson Ovation DCS</td><td>Emerson OvationView</td><td>Legacy relay protection</td><td>AVEVA PI System</td></tr>
   <tr><td>John Day Dam</td><td>Allen-Bradley ControlLogix L83</td><td>FactoryTalk View SE (6 stn)</td><td>None identified</td><td>Wonderware</td></tr>
   <tr><td>McNary Dam</td><td>Siemens S7-400 PLCs</td><td>WinCC 7.5 (4 stations)</td><td>None identified</td><td>None (manual)</td></tr>
@@ -263,7 +263,7 @@ Level 1 (Field)         ┌──────────────┴──�
 <h2>8. Decision Criteria &amp; Procurement</h2>
 <table>
   <tr><th style="width:220px">Factor</th><th>Detail</th></tr>
-  <tr><td>Technical Decision Maker</td><td>Dr. Rebecca Torres, Chief Cybersecurity (NWD)</td></tr>
+  <tr><td>Technical Decision Maker</td><td>Dr. Rebecca Torres, Chief, Cybersecurity Division (NWD)</td></tr>
   <tr><td>Budget Authority</td><td>COL Harding (approval) → Jennifer Walsh (contracting)</td></tr>
   <tr><td>Budget Range</td><td>$600K – $1M (FY26 funds, must obligate by Sep 30)</td></tr>
   <tr><td>Procurement Path</td><td><span class="tip" data-tip="NASA SEWP (Solutions for Enterprise-Wide Procurement) VI is a pre-competed GWAC. Any federal agency can issue task orders against it. Carahsoft holds a SEWP VI contract as Dragos' authorized channel partner. Using SEWP eliminates the need for a new competition, saving 3-4 months.">NASA SEWP VI via Carahsoft</span> (successor to SEWP V, which expired Apr 30, 2026)</td></tr>
