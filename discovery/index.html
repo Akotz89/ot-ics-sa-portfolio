@@ -124,16 +124,16 @@
 <h3>OT Protocols Identified</h3>
 <table>
   <tr><th>Protocol</th><th>Usage</th><th>Priority</th></tr>
-  <tr><td>Modbus TCP</td><td>Turbine controls, gate actuators</td><td><span class="sev-crit">Critical</span></td></tr>
-  <tr><td>EtherNet/IP (CIP)</td><td>Allen-Bradley PLCs — John Day</td><td><span class="sev-crit">Critical</span></td></tr>
-  <tr><td>S7comm</td><td>Siemens S7-400 — McNary</td><td><span class="sev-crit">Critical</span></td></tr>
+  <tr><td><span class="tip" data-tip="Modbus TCP is one of the most common OT protocols. Open standard, no authentication, no encryption. Operates on TCP port 502. Widely used for SCADA communications between HMIs and PLCs in power generation.">Modbus TCP</span></td><td>Turbine controls, gate actuators</td><td><span class="sev-crit">Critical</span></td></tr>
+  <tr><td><span class="tip" data-tip="EtherNet/IP uses the Common Industrial Protocol (CIP) at the application layer. Native to Allen-Bradley/Rockwell Automation PLCs. CIP carries configuration, control, and I/O data. CVE-2023-3595 targets this protocol specifically.">EtherNet/IP (CIP)</span></td><td>Allen-Bradley PLCs — John Day</td><td><span class="sev-crit">Critical</span></td></tr>
+  <tr><td><span class="tip" data-tip="S7comm is Siemens' proprietary protocol for S7-300 and S7-400 series PLCs. Runs on TCP port 102. No native encryption or authentication. Dragos Platform can passively parse S7comm to extract asset data, firmware versions, and detect anomalous commands.">S7comm</span></td><td>Siemens S7-400 — McNary</td><td><span class="sev-crit">Critical</span></td></tr>
   <tr><td>OPC-UA</td><td>Historian data collection</td><td><span class="sev-high">High</span></td></tr>
   <tr><td>OPC-DA (Classic)</td><td>Legacy historian — The Dalles</td><td><span class="sev-med">Medium</span></td></tr>
   <tr><td>DNP3</td><td>RTU communications (river monitoring)</td><td><span class="sev-med">Medium</span></td></tr>
   <tr><td>HTTP/HTTPS</td><td>HMI web interfaces, firmware updates</td><td><span class="sev-med">Medium</span></td></tr>
-  <tr><td>RDP</td><td>Remote HMI access</td><td><span class="sev-crit">Critical ⚠</span></td></tr>
+  <tr><td><span class="tip" data-tip="Remote Desktop Protocol — rated Critical because RDP is the #1 lateral movement vector in OT intrusions per Dragos Year in Review data. Adversaries use compromised RDP sessions to move from IT/DMZ into control system networks.">RDP</span></td><td>Remote HMI access</td><td><span class="sev-crit">Critical ⚠</span></td></tr>
   <tr><td>SMB/CIFS</td><td>File shares, backup transfers</td><td><span class="sev-med">Medium</span></td></tr>
-  <tr><td>IEC 61850</td><td>Substation relays (limited deployment)</td><td><span class="sev-low">Low</span></td></tr>
+  <tr><td><span class="tip" data-tip="IEC 61850 is the international standard for substation automation communications. Uses GOOSE (Generic Object Oriented Substation Event) messages for fast protection relay signaling. Relevant to relay monitoring at The Dalles.">IEC 61850</span></td><td>Substation relays (limited deployment)</td><td><span class="sev-low">Low</span></td></tr>
 </table>
 
 <!-- ═══════════════ SECTION 4 ═══════════════ -->
@@ -171,7 +171,7 @@ Level 1 (Field)         ┌──────────────┴──�
 <table>
   <tr><th>ID</th><th>Finding</th><th>Severity</th><th>Detail</th></tr>
   <tr><td>A-1</td><td>No firewall between L4 DMZ and L3 control network</td><td><span class="sev-crit">CRITICAL</span></td><td>L3 and L4 share switch fabric. DMZ compromise = direct SCADA access.</td></tr>
-  <tr><td>A-2</td><td>L3 and L2 are a flat network — no segmentation</td><td><span class="sev-crit">CRITICAL</span></td><td>HMI compromise = direct PLC access. Found in 81% of Dragos assessments.</td></tr>
+  <tr><td>A-2</td><td>L3 and L2 are a flat network — no segmentation</td><td><span class="sev-crit">CRITICAL</span></td><td>HMI compromise = direct PLC access. <span class="tip" data-tip="From the Dragos 2025 Year in Review: 81% of assessed OT environments had insufficient network segmentation between IT and OT. This is the most common architectural gap Dragos finds in field assessments.">Found in 81% of Dragos assessments.</span></td></tr>
   <tr><td>A-3</td><td>RDP enabled on 4 engineering workstations</td><td><span class="sev-crit">CRITICAL</span></td><td>RDP is the #1 lateral movement vector in OT attacks.</td></tr>
   <tr><td>A-4</td><td>30+ IP cameras on OT network</td><td><span class="sev-high">HIGH</span></td><td>IoT devices with poor security expanding OT attack surface.</td></tr>
   <tr><td>A-5</td><td>MPLS WAN connects all 4 sites unfiltered</td><td><span class="sev-high">HIGH</span></td><td>Compromise at one dam can reach all others.</td></tr>
@@ -196,7 +196,7 @@ Level 1 (Field)         ┌──────────────┴──�
   <tr><td>OT Network Monitoring</td><td>NONE</td><td><span class="nocheck">✗</span> Complete blind spot below L4 DMZ.</td></tr>
   <tr><td>Vulnerability Mgmt</td><td>Tenable.sc — IT only. No OT scanning.</td><td><span class="nocheck">✗</span> Zero OT vulnerability visibility.</td></tr>
   <tr><td>Endpoint Protection</td><td>CrowdStrike Falcon on L3/L4 Windows servers only</td><td><span class="partial">⚠</span> No coverage on HMIs or below.</td></tr>
-  <tr><td>SIEM</td><td>Splunk Cloud (FedRAMP IL4) — IT side only</td><td><span class="partial">⚠</span> Exists but has zero OT data feeds.</td></tr>
+  <tr><td>SIEM</td><td><span class="tip" data-tip="Splunk Cloud is authorized under FedRAMP at Impact Level 4, which covers Controlled Unclassified Information (CUI). Deployment model confirmed as cloud-hosted with data residency in CONUS AWS GovCloud regions.">Splunk Cloud (FedRAMP IL4)</span> — IT side only</td><td><span class="partial">⚠</span> Exists but has zero OT data feeds.</td></tr>
   <tr><td>Patch Management</td><td>WSUS for Windows. No OT firmware process.</td><td><span class="nocheck">✗</span> Months/years behind on OT patches.</td></tr>
   <tr><td>Access Control</td><td>Shared local accounts on HMIs. No MFA.</td><td><span class="nocheck">✗</span> "admin/admin" on ≥3 HMI stations.</td></tr>
   <tr><td>Incident Response</td><td>IT-only IR plan. No OT playbooks.</td><td><span class="nocheck">✗</span> No OT tabletop exercises conducted.</td></tr>
@@ -208,12 +208,12 @@ Level 1 (Field)         ┌──────────────┴──�
 <h2>6. Compliance &amp; Regulatory</h2>
 <table>
   <tr><th>Framework</th><th>Applicability</th><th>Status</th></tr>
-  <tr><td>NIST SP 800-82 Rev 3</td><td>Primary OT framework for federal</td><td><span class="sev-crit">Not assessed</span></td></tr>
+  <tr><td><span class="tip" data-tip="NIST Special Publication 800-82 Revision 3 (June 2023): Guide to Operational Technology Security. The primary federal framework for OT security controls. Covers asset management, network architecture, incident response, and vulnerability management specific to ICS/SCADA environments.">NIST SP 800-82 Rev 3</span></td><td>Primary OT framework for federal</td><td><span class="sev-crit">Not assessed</span></td></tr>
   <tr><td>DoD CIO OT Mandate (2026)</td><td>Requires OT monitoring by EOY FY26</td><td><span class="sev-crit">Non-compliant</span></td></tr>
   <tr><td>USACE EP 1130-2-510</td><td>Internal USACE hydropower operations policy — primary compliance driver for generation assets</td><td><span class="sev-crit">Gap — no OT monitoring capability</span></td></tr>
   <tr><td>EO 14028</td><td>Improving the Nation’s Cybersecurity (May 2021) — drives zero-trust and supply chain security</td><td><span class="sev-med">Partial — IT only</span></td></tr>
-  <tr><td>CISA BOD 23-01</td><td>Asset visibility for internet-accessible devices</td><td><span class="sev-med">Partial (IT only)</span></td></tr>
-  <tr><td>FISMA</td><td>Federal baseline</td><td><span class="sev-med">IT covered; OT not in boundary</span></td></tr>
+  <tr><td><span class="tip" data-tip="CISA Binding Operational Directive 23-01 (October 2022): Improving Asset Visibility and Vulnerability Detection on Federal Networks. Requires federal agencies to maintain a complete, accurate inventory of all network-addressable IP assets and identify software vulnerabilities.">CISA BOD 23-01</span></td><td>Asset visibility for internet-accessible devices</td><td><span class="sev-med">Partial (IT only)</span></td></tr>
+  <tr><td><span class="tip" data-tip="Federal Information Security Modernization Act (2014). Requires federal agencies to develop, document, and implement an agency-wide information security program. OT systems are often excluded from FISMA authorization boundaries, creating a governance gap.">FISMA</span></td><td>Federal baseline</td><td><span class="sev-med">IT covered; OT not in boundary</span></td></tr>
   <tr><td>NERC CIP</td><td>Electric reliability — applies to BES; USACE generation assets are not directly NERC CIP-registered (governed by EP 1130-2-510 and DoD directives instead)</td><td><span class="sev-info">Not applicable to generation; BPA handles transmission compliance</span></td></tr>
 </table>
 
@@ -264,8 +264,8 @@ Level 1 (Field)         ┌──────────────┴──�
   <tr><td>Technical Decision Maker</td><td>Dr. Rebecca Torres, Chief Cybersecurity (NWD)</td></tr>
   <tr><td>Budget Authority</td><td>COL Harding (approval) → Jennifer Walsh (contracting)</td></tr>
   <tr><td>Budget Range</td><td>$600K – $1M (FY26 funds, must obligate by Sep 30)</td></tr>
-  <tr><td>Procurement Path</td><td>NASA SEWP VI via Carahsoft (successor to SEWP V, which expired Apr 30, 2026)</td></tr>
-  <tr><td>Contract Type</td><td>Firm Fixed Price (FFP) + option years for subscriptions</td></tr>
+  <tr><td>Procurement Path</td><td><span class="tip" data-tip="NASA SEWP (Solutions for Enterprise-Wide Procurement) VI is a pre-competed GWAC. Any federal agency can issue task orders against it. Carahsoft holds a SEWP VI contract as Dragos' authorized channel partner. Using SEWP eliminates the need for a new competition, saving 3-4 months.">NASA SEWP VI via Carahsoft</span> (successor to SEWP V, which expired Apr 30, 2026)</td></tr>
+  <tr><td>Contract Type</td><td><span class="tip" data-tip="Firm Fixed Price: the government pays a set total price. Vendor absorbs any cost overruns. COs prefer FFP for product/subscription procurements because it minimizes financial risk. Option years allow subscription renewal without re-competing.">Firm Fixed Price (FFP)</span> + option years for subscriptions</td></tr>
   <tr><td>Decision Timeline</td><td>Technical eval: Jun–Jul &nbsp;|&nbsp; Award: Aug–Sep</td></tr>
   <tr><td>Competition</td><td>Claroty contacted, no formal eval started. Nozomi not considered. Strong Dragos brand affinity — customer heard Robert M. Lee at S4 Conference.</td></tr>
   <tr><td>Security Requirements</td><td>CUI handling. FedRAMP preferred. STIG-hardened appliances required.</td></tr>
@@ -289,7 +289,7 @@ Level 1 (Field)         ┌──────────────┴──�
   <tr><th>Target System</th><th>Integration</th><th>Method</th></tr>
   <tr><td>Splunk Cloud</td><td>OT alerts → Splunk</td><td>Syslog/CEF over TLS</td></tr>
   <tr><td>CrowdStrike Falcon</td><td>IOC sharing</td><td>REST API (bi-directional)</td></tr>
-  <tr><td>ITSM (ServiceNow TBC)</td><td>Vulnerability tickets</td><td>REST API — customer to confirm ITSM platform during solution design</td></tr>
+  <tr><td><span class="tip" data-tip="ITSM platform to be confirmed. Customer's IT ticketing system was not identified during discovery. Could be ServiceNow, BMC Remedy, or Jira Service Management. Integration method will be validated during solution design phase.">ITSM (ServiceNow TBC)</span></td><td>Vulnerability tickets</td><td>REST API — customer to confirm ITSM platform during solution design</td></tr>
 </table>
 
 <!-- ═══════════════ SECTION 10 ═══════════════ -->
