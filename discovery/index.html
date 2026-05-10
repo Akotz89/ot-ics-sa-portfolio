@@ -19,7 +19,7 @@
     <div class="meta-item"><label>Channel Partner</label><span>Carahsoft Technology Corp.</span></div>
     <div class="meta-item"><label>Contract Vehicle</label><span>NASA SEWP VI (via Carahsoft)</span></div>
     <div class="meta-item"><label>Date</label><span>May 20, 2026</span></div>
-    <div class="meta-item"><label>Version</label><span>1.0 — Post-Discovery</span></div>
+    <div class="meta-item"><label>Version</label><span>1.1 — Post-Discovery</span></div>
     <div class="meta-item"><label>Opportunity ID</label><span>DRG-FED-2026-0847</span></div>
     <div class="meta-item"><label>NDA Status</label><span>Executed 2026-04-30</span></div>
   </div>
@@ -50,6 +50,14 @@
   <tr><td>Mike Osterman</td><td>SCADA Program Manager, Hydropower</td><td>OT Subject Matter Expert</td></tr>
   <tr><td>Jennifer Walsh</td><td>Contracting Officer, USACE Portland District</td><td>Procurement Authority</td></tr>
   <tr><td>Brian Knox</td><td>OT Network Administrator, GS-12</td><td>Hands-On Evaluator</td></tr>
+</table>
+
+<h3>Dragos Attendees</h3>
+<table>
+  <tr><th>Name</th><th>Title</th><th>Role</th></tr>
+  <tr><td>Aaron Kotz</td><td>Sr. Solutions Architect (Federal)</td><td>Technical Lead — discovery, solution design, demo, PoC</td></tr>
+  <tr><td>[AE Name]</td><td>Account Executive, Public Sector</td><td>Relationship owner — deal strategy, pricing, contract</td></tr>
+  <tr><td>[SE Name]</td><td>Sales Engineer</td><td>Demo environment prep, protocol validation</td></tr>
 </table>
 
 <!-- ═══════════════ SECTION 2 ═══════════════ -->
@@ -202,9 +210,11 @@ Level 1 (Field)         ┌──────────────┴──�
   <tr><th>Framework</th><th>Applicability</th><th>Status</th></tr>
   <tr><td>NIST SP 800-82 Rev 3</td><td>Primary OT framework for federal</td><td><span class="sev-crit">Not assessed</span></td></tr>
   <tr><td>DoD CIO OT Mandate (2026)</td><td>Requires OT monitoring by EOY FY26</td><td><span class="sev-crit">Non-compliant</span></td></tr>
+  <tr><td>USACE EP 1130-2-510</td><td>Internal USACE hydropower operations policy — primary compliance driver for generation assets</td><td><span class="sev-crit">Gap — no OT monitoring capability</span></td></tr>
+  <tr><td>EO 14028</td><td>Improving the Nation’s Cybersecurity (May 2021) — drives zero-trust and supply chain security</td><td><span class="sev-med">Partial — IT only</span></td></tr>
   <tr><td>CISA BOD 23-01</td><td>Asset visibility for internet-accessible devices</td><td><span class="sev-med">Partial (IT only)</span></td></tr>
   <tr><td>FISMA</td><td>Federal baseline</td><td><span class="sev-med">IT covered; OT not in boundary</span></td></tr>
-  <tr><td>NERC CIP</td><td>Electric reliability</td><td><span class="sev-info">Under legal review</span></td></tr>
+  <tr><td>NERC CIP</td><td>Electric reliability — applies to BES; USACE generation assets are not directly NERC CIP-registered (governed by EP 1130-2-510 and DoD directives instead)</td><td><span class="sev-info">Not applicable to generation; BPA handles transmission compliance</span></td></tr>
 </table>
 
 <!-- ═══════════════ SECTION 7 ═══════════════ -->
