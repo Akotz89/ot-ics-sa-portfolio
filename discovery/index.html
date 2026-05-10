@@ -198,7 +198,7 @@ Level 1 (Field)         ┌──────────────┴──�
   <tr><td>OT Network Monitoring</td><td>NONE</td><td><span class="nocheck">✗</span> Complete blind spot below L4 DMZ.</td></tr>
   <tr><td>Vulnerability Mgmt</td><td>Tenable.sc — IT only. No OT scanning.</td><td><span class="nocheck">✗</span> Zero OT vulnerability visibility.</td></tr>
   <tr><td>Endpoint Protection</td><td>CrowdStrike Falcon on L3/L4 Windows servers only</td><td><span class="partial">⚠</span> No coverage on HMIs or below.</td></tr>
-  <tr><td>SIEM</td><td><span class="tip" data-tip="Splunk Cloud is authorized under FedRAMP at Impact Level 4, which covers Controlled Unclassified Information (CUI). Deployment model confirmed as cloud-hosted with data residency in CONUS AWS GovCloud regions.">Splunk Cloud (FedRAMP IL4)</span> — IT side only</td><td><span class="partial">⚠</span> Exists but has zero OT data feeds.</td></tr>
+  <tr><td>SIEM</td><td><span class="tip" data-tip="Splunk Cloud achieved FedRAMP High authorization (September 2024) and DoD IL5 Provisional Authorization from DISA. IL5 covers higher-sensitivity CUI and mission-critical national security systems. Hosted in AWS GovCloud (US) regions for data sovereignty.">Splunk Cloud (FedRAMP High / DoD IL5)</span> — IT side only</td><td><span class="partial">⚠</span> Exists but has zero OT data feeds.</td></tr>
   <tr><td>Patch Management</td><td>WSUS for Windows. No OT firmware process.</td><td><span class="nocheck">✗</span> Months/years behind on OT patches.</td></tr>
   <tr><td>Access Control</td><td>Shared local accounts on HMIs. No MFA.</td><td><span class="nocheck">✗</span> "admin/admin" on ≥3 HMI stations.</td></tr>
   <tr><td>Incident Response</td><td>IT-only IR plan. No OT playbooks.</td><td><span class="nocheck">✗</span> No OT tabletop exercises conducted.</td></tr>
@@ -313,7 +313,7 @@ Level 1 (Field)         ┌──────────────┴──�
 
 <div class="doc-footer">
   <span>Dragos, Inc. — Confidential</span>
-  <span>Technical Discovery Document v1.3 — DRG-FED-2026-0847</span>
+  <span>Technical Discovery Document v1.4 — DRG-FED-2026-0847</span>
 </div>
 
 </div>
