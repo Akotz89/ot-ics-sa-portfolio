@@ -73,7 +73,7 @@
       <strong>Network:</strong> Cisco IE-4010 managed switches<br>
       <strong>Tap Strategy:</strong> <span class="tip" data-tip="SPAN (Switched Port Analyzer) mirrors traffic from selected switch ports to a monitoring port where the Dragos sensor passively captures packets. Uses existing managed switch capability — no additional hardware needed.">SPAN port mirroring</span> — no TAP hardware needed<br>
       <strong>Sensors:</strong> 2 (L2 process network + L3 site operations)<br>
-      <strong>SiteStore:</strong> 1× <span class="tip" data-tip="Dragos hardware appliance model sized for sites with up to 500 OT assets. Includes local storage, analysis engine, and detection capabilities.">DS-1000 appliance</span>
+      <strong>SiteStore:</strong> 1× <span class="tip" data-tip="Dragos SiteStore appliance, sized for sites with up to 500 OT assets. Includes local storage, analysis engine, and detection capabilities. Specific hardware SKU determined during deployment scoping.">SiteStore appliance</span>
     </div>
   </div>
 
@@ -87,7 +87,7 @@
       <strong>Network:</strong> Cisco IE-3400 managed switches<br>
       <strong>Tap Strategy:</strong> SPAN port mirroring<br>
       <strong>Sensors:</strong> 1 (combined L2/L3 — flat OT network)<br>
-      <strong>SiteStore:</strong> 1× DS-1000 appliance
+      <strong>SiteStore:</strong> 1× SiteStore appliance
     </div>
   </div>
 
@@ -101,7 +101,7 @@
       <strong>Network:</strong> <span class="tip" data-tip="HP ProCurve 2920 is a managed switch with limited SPAN capability — it supports basic port mirroring but has restrictions on the number of mirror sessions and monitored ports. A network TAP is recommended for reliable, full-duplex traffic capture.">HP ProCurve 2920</span> (limited SPAN)<br>
       <strong>Tap Strategy:</strong> <span class="tip" data-tip="A network TAP (Test Access Point) is a passive hardware device that creates a physical copy of network traffic. Required here because the HP ProCurve switches lack SPAN capability — you can't mirror ports on an unmanaged switch.">Network TAP required</span> — switches lack SPAN<br>
       <strong>Sensors:</strong> 2 (L1/L2 process + L3 operations)<br>
-      <strong>SiteStore:</strong> 1× DS-1000 appliance
+      <strong>SiteStore:</strong> 1× SiteStore appliance
     </div>
   </div>
 
@@ -115,7 +115,7 @@
       <strong>Network:</strong> <span class="tip" data-tip="Moxa industrial Ethernet switches in unmanaged configuration. No SPAN or mirror capability. A network TAP must be installed inline to provide traffic visibility to the Dragos sensor.">Moxa EDS unmanaged switches</span><br>
       <strong>Tap Strategy:</strong> Network TAP required — unmanaged switches<br>
       <strong>Sensors:</strong> 1 (combined — smaller OT footprint)<br>
-      <strong>SiteStore:</strong> 1× DS-500 appliance
+      <strong>SiteStore:</strong> 1× <span class="tip" data-tip="Smaller SiteStore appliance, sized for McNary's reduced OT footprint (~200 assets). Same software capabilities as the larger appliance with proportionally less storage and compute.">SiteStore appliance (compact)</span>
     </div>
   </div>
 </div>
@@ -174,8 +174,8 @@
 <table>
   <tr><th>Category</th><th>Item</th><th>Qty</th><th>Unit</th><th>Notes</th></tr>
   <tr><td rowspan="3"><strong>Hardware</strong></td><td><span class="tip" data-tip="Dragos sensor appliance for passive network monitoring. Deployed at SPAN/TAP points to capture OT traffic for analysis by the SiteStore.">Dragos Sensor Appliance</span></td><td>6</td><td>Each</td><td>2× Bonneville, 1× Dalles, 2× John Day, 1× McNary</td></tr>
-  <tr><td>Dragos SiteStore DS-1000</td><td>3</td><td>Each</td><td>Bonneville, The Dalles, John Day</td></tr>
-  <tr><td>Dragos SiteStore DS-500</td><td>1</td><td>Each</td><td>McNary (smaller OT footprint)</td></tr>
+  <tr><td>Dragos SiteStore Appliance</td><td>3</td><td>Each</td><td>Bonneville, The Dalles, John Day — sized for 300-500 asset sites</td></tr>
+  <tr><td>Dragos SiteStore Appliance (Compact)</td><td>1</td><td>Each</td><td>McNary — sized for &lt;200 asset site</td></tr>
 
   <tr class="subtotal"><td></td><td colspan="4">Hardware Subtotal — 10 appliances</td></tr>
 
@@ -197,7 +197,7 @@
 
   <tr class="subtotal"><td></td><td colspan="4">Services Subtotal — One-time professional services</td></tr>
 
-  <tr class="total-row"><td></td><td colspan="4">Total Estimated Value: ~$780K FFP Year 1 (via NASA SEWP VI)</td></tr>
+  <tr class="total-row"><td></td><td colspan="4">Total: Priced via Carahsoft quote under NASA SEWP VI — <span class="tip" data-tip="The SA sizes the architecture and submits the BoM to Deal Desk. Pricing is set by Deal Desk and quoted through the channel partner (Carahsoft). The SA never communicates specific dollar amounts to the customer.">FFP Year 1</span></td></tr>
 </table>
 
 <p style="font-size: 12px; color: var(--gray-500); margin-top: 8px;"><em>Note: Pricing is indicative. Final pricing determined by Dragos Deal Desk and quoted through Carahsoft. <span class="tip" data-tip="Firm Fixed Price — a contract type where the price is agreed upon before work begins and does not change regardless of actual costs incurred. Preferred by federal contracting officers because it transfers cost risk to the vendor.">FFP</span> contract type recommended for Year 1 to simplify procurement.</em></p>
