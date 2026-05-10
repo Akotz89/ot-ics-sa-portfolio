@@ -17,7 +17,7 @@
     <div class="meta-item"><label>Prepared By</label><span>Aaron Kotz, Sr. Solutions Architect (Federal)</span></div>
     <div class="meta-item"><label>Account Executive</label><span>[AE Name], Dragos Public Sector</span></div>
     <div class="meta-item"><label>Channel Partner</label><span>Carahsoft Technology Corp.</span></div>
-    <div class="meta-item"><label>Contract Vehicle</label><span>NASA SEWP V</span></div>
+    <div class="meta-item"><label>Contract Vehicle</label><span>NASA SEWP VI (via Carahsoft)</span></div>
     <div class="meta-item"><label>Date</label><span>May 20, 2026</span></div>
     <div class="meta-item"><label>Version</label><span>1.0 — Post-Discovery</span></div>
     <div class="meta-item"><label>Opportunity ID</label><span>DRG-FED-2026-0847</span></div>
@@ -48,8 +48,8 @@
   <tr><td>COL James Harding</td><td>District Commander, Portland District</td><td>Executive Sponsor</td></tr>
   <tr><td>Dr. Rebecca Torres</td><td>Chief, Cybersecurity Division (NWD)</td><td>Technical Decision Maker</td></tr>
   <tr><td>Mike Osterman</td><td>SCADA Program Manager, Hydropower</td><td>OT Subject Matter Expert</td></tr>
-  <tr><td>Jennifer Walsh</td><td>Contracting Officer, USACE CERL</td><td>Procurement Authority</td></tr>
-  <tr><td>TSgt Brian Knox</td><td>OT Network Administrator</td><td>Hands-On Evaluator</td></tr>
+  <tr><td>Jennifer Walsh</td><td>Contracting Officer, USACE Portland District</td><td>Procurement Authority</td></tr>
+  <tr><td>Brian Knox</td><td>OT Network Administrator, GS-12</td><td>Hands-On Evaluator</td></tr>
 </table>
 
 <!-- ═══════════════ SECTION 2 ═══════════════ -->
@@ -58,7 +58,7 @@
 <h3>What Triggered This Engagement</h3>
 <table>
   <tr><th>#</th><th>Driver</th><th>Detail</th></tr>
-  <tr><td>1</td><td>CISA Advisory AA24-290A</td><td>Warning about VOLTZITE targeting U.S. energy/hydro infrastructure</td></tr>
+  <tr><td>1</td><td>CISA Advisory AA24-038A</td><td>Warning about PRC state-sponsored actors (Volt Typhoon / VOLTZITE) pre-positioning in U.S. critical infrastructure including energy and water systems</td></tr>
   <tr><td>2</td><td>DoD CIO Memo (Jan 2026)</td><td>Mandates OT cybersecurity assessment for all Civil Works by EOY FY2026</td></tr>
   <tr><td>3</td><td>Internal Gap Assessment</td><td>IT cybersecurity team confirmed zero OT/ICS visibility below the enterprise DMZ</td></tr>
   <tr><td>4</td><td>Incident — Bonneville Dam</td><td>Q4 2025: unauthorized laptop found connected to SCADA network; no detection capability existed</td></tr>
@@ -234,7 +234,7 @@ Level 1 (Field)         ┌──────────────┴──�
 
 <blockquote>
   "We tried to use our IT Tenable scanner on the OT network once. It crashed two HMIs. Never again."
-  <cite>— TSgt Brian Knox</cite>
+  <cite>— Brian Knox, OT Network Administrator</cite>
 </blockquote>
 
 <h3>SA-Observed Gaps (Not Stated by Customer)</h3>
@@ -254,7 +254,7 @@ Level 1 (Field)         ┌──────────────┴──�
   <tr><td>Technical Decision Maker</td><td>Dr. Rebecca Torres, Chief Cybersecurity (NWD)</td></tr>
   <tr><td>Budget Authority</td><td>COL Harding (approval) → Jennifer Walsh (contracting)</td></tr>
   <tr><td>Budget Range</td><td>$600K – $1M (FY26 funds, must obligate by Sep 30)</td></tr>
-  <tr><td>Procurement Path</td><td>NASA SEWP V via Carahsoft (existing BPA)</td></tr>
+  <tr><td>Procurement Path</td><td>NASA SEWP VI via Carahsoft (successor to SEWP V, which expired Apr 30, 2026)</td></tr>
   <tr><td>Contract Type</td><td>Firm Fixed Price (FFP) + option years for subscriptions</td></tr>
   <tr><td>Decision Timeline</td><td>Technical eval: Jun–Jul &nbsp;|&nbsp; Award: Aug–Sep</td></tr>
   <tr><td>Competition</td><td>Claroty contacted, no formal eval started. Nozomi not considered. Strong Dragos brand affinity — customer heard Robert M. Lee at S4 Conference.</td></tr>
@@ -289,8 +289,8 @@ Level 1 (Field)         ┌──────────────┴──�
   <tr><th>#</th><th>Action</th><th>Owner</th><th>Due</th><th>Status</th></tr>
   <tr><td>1</td><td>Produce Solution Architecture Document</td><td>Aaron Kotz (SA)</td><td>May 30</td><td class="status-open">Open</td></tr>
   <tr><td>2</td><td>Schedule tailored demo for Dr. Torres + OT team</td><td>AE + SA</td><td>Week of Jun 9</td><td class="status-open">Open</td></tr>
-  <tr><td>3</td><td>Engage Carahsoft for SEWP V pricing</td><td>AE</td><td>Jun 6</td><td class="status-open">Open</td></tr>
-  <tr><td>4</td><td>Submit SPAN port change request at Bonneville</td><td>TSgt Knox</td><td>May 22</td><td class="status-pending">Pending</td></tr>
+  <tr><td>3</td><td>Engage Carahsoft for SEWP VI pricing</td><td>AE</td><td>Jun 6</td><td class="status-open">Open</td></tr>
+  <tr><td>4</td><td>Submit SPAN port change request at Bonneville</td><td>Brian Knox</td><td>May 22</td><td class="status-pending">Pending</td></tr>
   <tr><td>5</td><td>Procure Gigamon TAPs for John Day + McNary</td><td>Jennifer Walsh</td><td>Jun 13</td><td class="status-open">Open</td></tr>
   <tr><td>6</td><td>Verify S7comm + Emerson Ovation protocol support</td><td>SA (internal)</td><td>May 27</td><td class="status-open">Open</td></tr>
   <tr><td>7</td><td>Schedule PoC scope meeting (Bonneville pilot)</td><td>SA + Dr. Torres</td><td>Jun 16</td><td class="status-open">Open</td></tr>
