@@ -556,21 +556,21 @@
     <div style="text-align: center; font-size: 7pt; color: var(--text-light); margin-bottom: 8pt; letter-spacing: 0.5px;">Based on Dragos Platform deployment documentation · dragos.com</div>
     
     <!-- 3-tier flow -->
-    <div style="display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 8pt; margin-bottom: 18pt;">
+    <div style="display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: start; gap: 8pt; margin-bottom: 18pt;">
       <!-- Sensors -->
       <div style="text-align: center;">
         <div style="background: var(--steel); color: #fff; padding: 10pt 8pt; border-radius: 4pt; font-weight: 600; font-size: 10pt;">Sensors</div>
         <div style="font-size: 8pt; color: var(--text-muted); margin-top: 4pt; line-height: 1.3;">Passive Network Sensors<br>Deployed via SPAN / TAP<br>Zero active scanning</div>
       </div>
       <!-- Arrow -->
-      <div style="font-size: 16pt; color: var(--steel); font-weight: 700;">→</div>
+      <div style="height: 36pt; display: flex; align-items: center;"><div style="width: 16pt; border-top: 2px solid var(--steel);"></div><div style="width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 8px solid var(--steel);"></div></div>
       <!-- SiteStore -->
       <div style="text-align: center;">
         <div style="background: var(--navy-light); color: #fff; padding: 10pt 8pt; border-radius: 4pt; font-weight: 600; font-size: 10pt;">SiteStore</div>
         <div style="font-size: 8pt; color: var(--text-muted); margin-top: 4pt; line-height: 1.3;">Site-Level Analysis<br>& Storage<br>(1 per facility)</div>
       </div>
       <!-- Arrow -->
-      <div style="font-size: 16pt; color: var(--steel); font-weight: 700;">→</div>
+      <div style="height: 36pt; display: flex; align-items: center;"><div style="width: 16pt; border-top: 2px solid var(--steel);"></div><div style="width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 8px solid var(--steel);"></div></div>
       <!-- CentralStore -->
       <div style="text-align: center;">
         <div style="background: var(--navy); color: #fff; padding: 10pt 8pt; border-radius: 4pt; font-weight: 600; font-size: 10pt;">CentralStore</div>
@@ -884,93 +884,93 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════
-     SECTION 6: MY ARCHITECTURE IS OT
+     SECTION 6: ARCHITECTURE BRIDGE
      ═══════════════════════════════════════════════════════════════ -->
 <div class="page-break section">
-  <h2>6. My Architecture IS OT</h2>
+  <h2>6. Architecture Bridge</h2>
 
-  <p>This section maps my operational environment to the Purdue Model architecture that Dragos deploys into. The zone labels differ, but the architecture, segmentation philosophy, and operational stakes are directly parallel.</p>
+  <p>This section maps my operational environment to the Purdue Model architecture that Dragos deploys into. The zone labels differ, but the architecture, segmentation philosophy, and operational stakes run parallel.</p>
 
   <!-- Inline Purdue Mapping Diagram -->
   <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 4pt; padding: 16pt; margin: 10pt 0 16pt; page-break-inside: avoid;">
     <div style="text-align: center; font-size: 7pt; color: var(--text-light); margin-bottom: 10pt; letter-spacing: 0.5px;">Zone mapping based on ISA-99 / IEC 62443 Purdue Reference Architecture</div>
-    <div style="display: grid; grid-template-columns: 1fr 40px 1fr; gap: 0; align-items: start;">
-      <!-- Left: RPA-SOC -->
-      <div>
-        <div style="text-align: center; font-size: 11pt; font-weight: 700; color: var(--navy); margin-bottom: 10pt;">My Architecture (RPA-SOC)</div>
-        <div style="background: #edf2f7; border: 1px solid var(--border); padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
-          <div style="font-weight: 600; font-size: 9pt; color: var(--navy);">Enterprise / NIPR</div>
-          <div style="font-size: 7.5pt; color: var(--text-muted);">Level 5</div>
-        </div>
-        <div style="background: #edf2f7; border: 1px solid var(--border); padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
-          <div style="font-weight: 600; font-size: 9pt; color: var(--navy);">Enterprise Services</div>
-          <div style="font-size: 7.5pt; color: var(--text-muted);">Level 4</div>
-        </div>
-        <div style="background: #fff5f5; border: 1px solid #fed7d7; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
-          <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">DMZ #2 — Firewall / Router Boundary</div>
-        </div>
-        <div style="background: #e6f7f7; border: 1px solid #a8e8e5; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
-          <div style="font-weight: 600; font-size: 9pt; color: var(--steel);">Collateral Network</div>
-          <div style="font-size: 7.5pt; color: var(--text-muted);">SIEM · ACAS · Mission VMs</div>
-        </div>
-        <div style="background: #fff5f5; border: 1px solid #fed7d7; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
-          <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">DMZ #1 — MISP VNI Boundary</div>
-          <div style="font-size: 7.5pt; color: var(--text-muted);">Dual firewalls · 14 protocol translators</div>
-        </div>
-        <div style="background: #e6f7f7; border: 1px solid #a8e8e5; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
-          <div style="font-weight: 600; font-size: 9pt; color: var(--steel);">GCS / C2 / SPDN Networks</div>
-          <div style="font-size: 7.5pt; color: var(--text-muted);">Level 2 · Isolated control circuits</div>
-        </div>
-        <div style="background: var(--navy); color: #fff; padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
-          <div style="font-weight: 600; font-size: 9pt;">Aircraft / Physical Platform</div>
-          <div style="font-size: 7.5pt; opacity: 0.8;">Level 0-1 · Encrypted fiber · Real-time control</div>
-        </div>
+    <div style="display: grid; grid-template-columns: 1fr 30px 1fr; gap: 3pt 0; align-items: stretch;">
+      <!-- Headers -->
+      <div style="text-align: center; font-size: 11pt; font-weight: 700; color: var(--navy); padding-bottom: 6pt;">My Architecture (RPA-SOC)</div>
+      <div></div>
+      <div style="text-align: center; font-size: 11pt; font-weight: 700; color: var(--navy); padding-bottom: 6pt;">Purdue Model (ICS/OT)</div>
+      <!-- Row 1: L5 -->
+      <div style="background: #edf2f7; border: 1px solid var(--border); padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
+        <div style="font-weight: 600; font-size: 9pt; color: var(--navy);">Enterprise / NIPR</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted);">Level 5</div>
       </div>
-      <!-- Center: Arrows -->
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 30pt; gap: 18pt;">
-        <span style="color: var(--steel); font-size: 12pt;">→</span>
-        <span style="color: var(--steel); font-size: 12pt;">→</span>
-        <span style="color: var(--accent); font-size: 12pt;">→</span>
-        <span style="color: var(--steel); font-size: 12pt;">→</span>
-        <span style="color: var(--accent); font-size: 12pt;">→</span>
-        <span style="color: var(--steel); font-size: 12pt;">→</span>
-        <span style="color: var(--steel); font-size: 12pt;">→</span>
+      <div style="display: flex; align-items: center; justify-content: center;"><div style="width: 8pt; border-top: 2px dashed var(--steel);"></div><div style="width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid var(--steel);"></div></div>
+      <div style="background: #edf2f7; border: 1px solid var(--border); padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
+        <div style="font-weight: 600; font-size: 9pt; color: var(--navy);">Enterprise Network</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted);">Level 5</div>
       </div>
-      <!-- Right: Purdue Model -->
-      <div>
-        <div style="text-align: center; font-size: 11pt; font-weight: 700; color: var(--navy); margin-bottom: 10pt;">Purdue Model (ICS/OT)</div>
-        <div style="background: #edf2f7; border: 1px solid var(--border); padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
-          <div style="font-weight: 600; font-size: 9pt; color: var(--navy);">Enterprise Network</div>
-          <div style="font-size: 7.5pt; color: var(--text-muted);">Level 5</div>
-        </div>
-        <div style="background: #edf2f7; border: 1px solid var(--border); padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
-          <div style="font-weight: 600; font-size: 9pt; color: var(--navy);">Business Planning</div>
-          <div style="font-size: 7.5pt; color: var(--text-muted);">Level 4</div>
-        </div>
-        <div style="background: #fff5f5; border: 1px solid #fed7d7; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
-          <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">Enterprise DMZ</div>
-          <div style="font-size: 7.5pt; color: var(--text-muted);">Level 3.5</div>
-        </div>
-        <div style="background: #e6f7f7; border: 1px solid #a8e8e5; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
-          <div style="font-weight: 600; font-size: 9pt; color: var(--steel);">Site Operations</div>
-          <div style="font-size: 7.5pt; color: var(--text-muted);">Level 3 · HMIs · Historians</div>
-        </div>
-        <div style="background: #fff5f5; border: 1px solid #fed7d7; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
-          <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">Industrial DMZ</div>
-          <div style="font-size: 7.5pt; color: var(--text-muted);">Level 3.5</div>
-        </div>
-        <div style="background: #e6f7f7; border: 1px solid #a8e8e5; padding: 6pt 8pt; margin-bottom: 3pt; border-radius: 2pt; text-align: center;">
-          <div style="font-weight: 600; font-size: 9pt; color: var(--steel);">Supervisory Control</div>
-          <div style="font-size: 7.5pt; color: var(--text-muted);">Level 2 · SCADA / DCS</div>
-        </div>
-        <div style="background: var(--navy); color: #fff; padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
-          <div style="font-weight: 600; font-size: 9pt;">Basic Control / Physical Process</div>
-          <div style="font-size: 7.5pt; opacity: 0.8;">Level 0-1 · PLCs · Sensors · Actuators</div>
-        </div>
+      <!-- Row 2: L4 -->
+      <div style="background: #edf2f7; border: 1px solid var(--border); padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
+        <div style="font-weight: 600; font-size: 9pt; color: var(--navy);">Enterprise Services</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted);">Level 4</div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: center;"><div style="width: 8pt; border-top: 2px dashed var(--steel);"></div><div style="width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid var(--steel);"></div></div>
+      <div style="background: #edf2f7; border: 1px solid var(--border); padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
+        <div style="font-weight: 600; font-size: 9pt; color: var(--navy);">Business Planning</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted);">Level 4</div>
+      </div>
+      <!-- Row 3: DMZ -->
+      <div style="background: #fff5f5; border: 1px solid #fed7d7; padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
+        <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">DMZ #2 — Firewall / Router Boundary</div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: center;"><div style="width: 8pt; border-top: 2px dashed var(--accent);"></div><div style="width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid var(--accent);"></div></div>
+      <div style="background: #fff5f5; border: 1px solid #fed7d7; padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
+        <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">Enterprise DMZ</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted);">Level 3.5</div>
+      </div>
+      <!-- Row 4: L3 -->
+      <div style="background: #e6f7f7; border: 1px solid #a8e8e5; padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
+        <div style="font-weight: 600; font-size: 9pt; color: var(--steel);">Collateral Network</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted);">SIEM · ACAS · Mission VMs</div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: center;"><div style="width: 8pt; border-top: 2px dashed var(--steel);"></div><div style="width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid var(--steel);"></div></div>
+      <div style="background: #e6f7f7; border: 1px solid #a8e8e5; padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
+        <div style="font-weight: 600; font-size: 9pt; color: var(--steel);">Site Operations</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted);">Level 3 · HMIs · Historians</div>
+      </div>
+      <!-- Row 5: Industrial DMZ -->
+      <div style="background: #fff5f5; border: 1px solid #fed7d7; padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
+        <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">DMZ #1 — MISP VNI Boundary</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted);">Dual firewalls · 14 protocol translators</div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: center;"><div style="width: 8pt; border-top: 2px dashed var(--accent);"></div><div style="width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid var(--accent);"></div></div>
+      <div style="background: #fff5f5; border: 1px solid #fed7d7; padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
+        <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">Industrial DMZ</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted);">Level 3.5</div>
+      </div>
+      <!-- Row 6: L2 -->
+      <div style="background: #e6f7f7; border: 1px solid #a8e8e5; padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
+        <div style="font-weight: 600; font-size: 9pt; color: var(--steel);">GCS / C2 / SPDN Networks</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted);">Level 2 · Isolated control circuits</div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: center;"><div style="width: 8pt; border-top: 2px dashed var(--steel);"></div><div style="width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid var(--steel);"></div></div>
+      <div style="background: #e6f7f7; border: 1px solid #a8e8e5; padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
+        <div style="font-weight: 600; font-size: 9pt; color: var(--steel);">Supervisory Control</div>
+        <div style="font-size: 7.5pt; color: var(--text-muted);">Level 2 · SCADA / DCS</div>
+      </div>
+      <!-- Row 7: L0-1 -->
+      <div style="background: var(--navy); color: #fff; padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
+        <div style="font-weight: 600; font-size: 9pt;">Aircraft / Physical Platform</div>
+        <div style="font-size: 7.5pt; opacity: 0.8;">Level 0-1 · Encrypted fiber · Real-time control</div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: center;"><div style="width: 8pt; border-top: 2px dashed #fff;"></div><div style="width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid var(--steel);"></div></div>
+      <div style="background: var(--navy); color: #fff; padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
+        <div style="font-weight: 600; font-size: 9pt;">Basic Control / Physical Process</div>
+        <div style="font-size: 7.5pt; opacity: 0.8;">Level 0-1 · PLCs · Sensors · Actuators</div>
       </div>
     </div>
   </div>
-  <div style="font-size: 8.5pt; color: var(--text-light); font-style: italic; text-align: center; margin-top: -10pt; margin-bottom: 14pt;">Figure 4: Side-by-side mapping. My operational architecture directly parallels the Purdue Model. Same zones, same segmentation philosophy, same stakes.</div>
+  <div style="font-size: 8.5pt; color: var(--text-light); font-style: italic; text-align: center; margin-top: -10pt; margin-bottom: 14pt;">Figure 4: Side-by-side mapping. Same zones, same segmentation philosophy, same stakes.</div>
 
   <h3>Zone-by-Zone Mapping</h3>
   <table>
@@ -1034,7 +1034,7 @@
     </tr>
     <tr>
       <td><strong>Municipal IT &rarr; RPA Communications</strong><br>(Current DoD Role)</td>
-      <td>No prior experience with classified mission systems, remotely piloted aircraft, or the specific protocols and architectures used in military ground control stations.</td>
+      <td>Familiar with classified environments from 5 years of USAF avionics (Secret clearance, flight line operations), but no prior experience with the IT/network architecture of ground control stations or the protocols used in RPA communications systems.</td>
       <td>&bull; Promoted to Cybersecurity &amp; Mission Systems Lead at the Tenax contract transition (Feb 2024)<br>&bull; Built the network documentation from scratch (VLANs, firewall rules, data flows, VM inventories) because none existed<br>&bull; Deployed and now manage a 20+ VM platform across dual-tier firewalls with 14 protocol translators<br>&bull; Manage STIG enforcement, ACAS vulnerability scanning, and ATO compliance across the entire site</td>
     </tr>
   </table>
