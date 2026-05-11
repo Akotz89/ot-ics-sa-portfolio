@@ -212,6 +212,7 @@ for phrase in [
     "largest dedicated OT",
     "Claroty and Nozomi use generic CVSS",
     "portfolio may need update",
+    "Adapted from Dragos pre-sales engagement methodology",
 ]:
     check(f"No stale or overbroad phrase '{phrase}'", phrase.lower() not in (public_text + "\n" + research).lower())
 
@@ -224,6 +225,18 @@ for fname in FILES + ["README.md", "whiteboard/index.html"]:
 
 check("Landing page has Start Here path", "Start Here for Hiring Team" in pages.get("index.html", ""))
 check("Landing page has role-fit section", "Role Fit: Senior Pre-Sales Solution Architect" in pages.get("index.html", ""))
+check("Index uses public-source PoC methodology framing",
+      "Modeled from common federal pre-sales / PoC practices and public Dragos materials" in pages.get("index.html", ""))
+check("Index uses CISA/NSA OT asset inventory guidance for OT-specific asset visibility",
+      "Supports federal asset visibility goals reflected in CISA BOD 23-01 and aligns more directly with CISA/NSA OT asset inventory guidance" in pages.get("index.html", ""))
+check("Discovery frames BOD 23-01 as policy analogue, not primary OT authority",
+      "FCEB/IP-addressable asset visibility" in pages.get("discovery/index.html", "") and
+      "OT guidance primary" in pages.get("discovery/index.html", ""))
+check("ARB includes CISA/NSA OT Asset Inventory Guidance",
+      "CISA/NSA OT Asset Inventory Guidance" in pages.get("arb-brief.html", ""))
+check("Research evidence includes official CISA/NSA OT asset inventory guidance",
+      "Foundations for OT Cybersecurity: Asset Inventory Guidance for Owners and Operators" in research and
+      "https://www.cisa.gov/resources-tools/resources/foundations-ot-cybersecurity-asset-inventory-guidance-owners-and-operators" in research)
 check("Package metadata renamed to ot-ics-sa-portfolio",
       '"name": "ot-ics-sa-portfolio"' in package_json and '"name": "ot-ics-sa-portfolio"' in package_lock)
 check("npm validate script runs portfolio and whiteboard audits",

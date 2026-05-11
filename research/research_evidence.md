@@ -49,9 +49,24 @@
 | Used in | discovery/index.html |
 
 **Key claims verified:**
-- Automated asset discovery every 7 days ✅
-- Vulnerability enumeration every 14 days ✅
-- Upload results to CDM Dashboard within 72 hours ✅
+- Applies to FCEB unclassified federal information systems and IP-addressable networked assets, including IT and OT assets assigned IPv4/IPv6 addresses
+- Automated asset discovery every 7 days
+- Vulnerability enumeration every 14 days
+- Upload results to CDM Dashboard within 72 hours
+
+**Interview qualifier:** Treat BOD 23-01 as a federal asset visibility policy analogue, not the primary OT inventory authority for this scenario.
+
+### 3a. Foundations for OT Cybersecurity: Asset Inventory Guidance for Owners and Operators
+| Field | Value |
+|-------|-------|
+| Published | August 13, 2025 |
+| URL | https://www.cisa.gov/resources-tools/resources/foundations-ot-cybersecurity-asset-inventory-guidance-owners-and-operators |
+| Used in | index.html, discovery/index.html, arb-brief.html |
+
+**Key claims verified:**
+- Directly addresses OT owners/operators across critical infrastructure sectors
+- Covers creating and maintaining OT asset inventories and supplemental taxonomies
+- Better source than BOD 23-01 for OT-specific asset inventory framing
 
 ---
 
