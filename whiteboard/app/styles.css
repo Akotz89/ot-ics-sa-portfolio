@@ -141,6 +141,7 @@
 }
 
 .wb-mode-tabs,
+.wb-tool-button,
 .wb-rule-status,
 .wb-pulse-status {
   pointer-events: auto;
@@ -156,6 +157,7 @@
   border-radius: 8px;
 }
 
+.wb-tool-button,
 .wb-mode-tabs button {
   height: 34px;
   padding: 0 14px;
@@ -165,6 +167,13 @@
   color: #29445f;
   font: 800 12px/1 Inter, Arial, sans-serif;
   cursor: pointer;
+}
+
+.wb-tool-button {
+  border: 1px solid #d6e2ee;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #29445f;
 }
 
 .wb-mode-tabs button:last-child {
@@ -199,6 +208,12 @@
 
 .wb-pulse-status {
   color: #20643b;
+}
+
+.wb-mode-workshop .wb-toolbar {
+  left: auto;
+  right: 168px;
+  justify-content: flex-end;
 }
 
 .ot-zone {

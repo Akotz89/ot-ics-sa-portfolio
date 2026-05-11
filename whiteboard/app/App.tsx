@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Tldraw, type Editor, type TLShapePartial } from 'tldraw'
+import { Box, Tldraw, type Editor, type TLShapePartial } from 'tldraw'
 import { applyStep, fitVisibleContent, seedWhiteboard } from './canvas/seedTldraw'
 import { entityIdFromShapeId, shapeIdForEntity, shapeIdForZone } from './canvas/ids'
 import { customShapeUtils } from './shapes'
@@ -12,11 +12,19 @@ import { RouteOverlay } from './renderer/RouteOverlay'
 
 type Mode = 'presentation' | 'workshop'
 
+const EMPTY_ROUTE_SCENE: RouteSceneLayout = {
+  routes: [],
+  labels: [],
+  errors: [],
+  warnings: [],
+  quality: { visibleRoutes: 0, visibleLabels: 0, bends: 0, crossings: 0 },
+}
+
 export function App() {
   const [mode, setMode] = useState<Mode>('presentation')
   const [stepIndex, setStepIndex] = useState(0)
   const [auditErrors, setAuditErrors] = useState<string[]>(() => validateStaticModel())
-  const [routeScene, setRouteScene] = useState<RouteSceneLayout>({ routes: [], labels: [], errors: [] })
+  const [routeScene, setRouteScene] = useState<RouteSceneLayout>(EMPTY_ROUTE_SCENE)
   const [editorInstance, setEditorInstance] = useState<Editor | null>(null)
   const [pulseLabel, setPulseLabel] = useState('')
   const [pulseLinks, setPulseLinks] = useState<string[]>([])
@@ -68,7 +76,7 @@ export function App() {
       const visibleLinks = new Set(step.visibleLinks)
       const flow = flows.find((item) => item.trigger === entityId && item.links.some((linkId) => visibleLinks.has(linkId)))
       if (!flow) {
-        setPulseLabel('No visible flow is attached to that asset in this step.')
+        setPulseLabel('')
         return
       }
 
@@ -171,13 +179,9 @@ export function App() {
     }
 
     window.addEventListener('ot-node-pulse', handlePulse)
-    window.addEventListener('pointerdown', handleCanvasPick, true)
-    window.addEventListener('pointerup', handleCanvasPick, true)
     window.addEventListener('click', handleCanvasPick, true)
     return () => {
       window.removeEventListener('ot-node-pulse', handlePulse)
-      window.removeEventListener('pointerdown', handleCanvasPick, true)
-      window.removeEventListener('pointerup', handleCanvasPick, true)
       window.removeEventListener('click', handleCanvasPick, true)
     }
   }, [triggerPulse])
@@ -196,11 +200,13 @@ export function App() {
   const hasErrors = auditErrors.length > 0
   const statusText = useMemo(() => {
     if (hasErrors) return `${auditErrors.length} rule issue${auditErrors.length === 1 ? '' : 's'}`
-    return mode === 'presentation' ? 'Presentation-safe' : 'Workshop rules active'
-  }, [auditErrors.length, hasErrors, mode])
+    const routeCount = routeScene.quality.visibleRoutes
+    const crossingText = routeScene.quality.crossings > 0 ? ` · ${routeScene.quality.crossings} crossings` : ''
+    return mode === 'presentation' ? `Presentation-safe · ${routeCount} routes${crossingText}` : `Workshop rules active · ${routeCount} routes${crossingText}`
+  }, [auditErrors.length, hasErrors, mode, routeScene.quality.crossings, routeScene.quality.visibleRoutes])
 
   return (
-    <div className="whiteboard-workshop">
+    <div className={`whiteboard-workshop wb-mode-${mode}`}>
       <div className="wb-toolbar">
         <div className="wb-mode-tabs" aria-label="Whiteboard mode">
           <button
@@ -214,6 +220,9 @@ export function App() {
             Workshop
           </button>
         </div>
+        <button type="button" className="wb-tool-button" onClick={() => editorRef.current && fitVisibleContent(editorRef.current)}>
+          Fit
+        </button>
         <div className={`wb-rule-status ${hasErrors ? 'bad' : 'ok'}`}>{statusText}</div>
         {pulseLabel ? <div className="wb-pulse-status">{pulseLabel}</div> : null}
       </div>
@@ -255,19 +264,92 @@ function repairWorkshopGeometry(editor: Editor) {
     if (x !== shape.x || y !== shape.y) updates.push({ id: shape.id, type: shape.type, x, y } as TLShapePartial)
   }
 
-  const placed: { id: string; bounds: ReturnType<Editor['getShapePageBounds']> }[] = []
+  if (updates.length) editor.updateShapes(updates)
+  repairDeviceCollisions(editor)
+}
+
+function repairDeviceCollisions(editor: Editor) {
+  const visibleDevices = entities
+    .map((entity) => ({ entity, shape: editor.getShape(shapeIdForEntity(entity.id)) }))
+    .filter((item) => item.shape && item.shape.opacity > 0.03)
+
+  const updates: TLShapePartial[] = []
+  const selected = new Set(editor.getSelectedShapeIds())
+  const pairwiseMoved = new Set<string>()
+
+  for (let aIndex = 0; aIndex < visibleDevices.length; aIndex += 1) {
+    const a = visibleDevices[aIndex]
+    const aBounds = editor.getShapePageBounds(a.shape!.id)
+    if (!aBounds) continue
+    for (let bIndex = aIndex + 1; bIndex < visibleDevices.length; bIndex += 1) {
+      const b = visibleDevices[bIndex]
+      if (a.entity.zone !== b.entity.zone) continue
+      const bBounds = editor.getShapePageBounds(b.shape!.id)
+      if (!bBounds || !aBounds.clone().expandBy(20).collides(bBounds)) continue
+      const picked = selected.has(a.shape!.id) ? a : selected.has(b.shape!.id) ? b : b
+      if (pairwiseMoved.has(picked.entity.id)) continue
+      updates.push({ id: picked.shape!.id, type: picked.shape!.type, x: picked.entity.x, y: picked.entity.y } as TLShapePartial)
+      pairwiseMoved.add(picked.entity.id)
+    }
+  }
+
+  if (updates.length) {
+    editor.updateShapes(updates)
+    return
+  }
+
+  const placed: Array<{ id: string; zoneId: string; bounds: NonNullable<ReturnType<Editor['getShapePageBounds']>> }> = []
+
   for (const item of visibleDevices) {
     const shape = item.shape!
     const bounds = editor.getShapePageBounds(shape.id)
-    if (!bounds) continue
-    const collision = placed.find((other) => other.bounds?.clone().expandBy(18).collides(bounds))
-    if (collision) {
-      updates.push({ id: shape.id, type: shape.type, x: shape.x + 36, y: shape.y + 26 } as TLShapePartial)
+    const zone = zones.find((candidate) => candidate.id === item.entity.zone)
+    const zoneBounds = zone ? editor.getShapePageBounds(shapeIdForZone(zone.id)) : undefined
+    if (!bounds || !zoneBounds) continue
+
+    const sameZone = placed.filter((other) => other.zoneId === item.entity.zone)
+    const collision = sameZone.some((other) => other.bounds.clone().expandBy(20).collides(bounds))
+    if (!collision) {
+      placed.push({ id: item.entity.id, zoneId: item.entity.zone, bounds })
+      continue
     }
-    placed.push({ id: shape.id, bounds })
+
+    const next = findOpenSpot(bounds, zoneBounds, sameZone.map((other) => other.bounds), { x: item.entity.x, y: item.entity.y })
+    if (next) {
+      updates.push({ id: shape.id, type: shape.type, x: next.x, y: next.y } as TLShapePartial)
+      placed.push({ id: item.entity.id, zoneId: item.entity.zone, bounds: new Box(next.x, next.y, bounds.w, bounds.h) })
+    } else {
+      placed.push({ id: item.entity.id, zoneId: item.entity.zone, bounds })
+    }
   }
 
   if (updates.length) editor.updateShapes(updates)
+}
+
+function findOpenSpot(
+  bounds: NonNullable<ReturnType<Editor['getShapePageBounds']>>,
+  zoneBounds: NonNullable<ReturnType<Editor['getShapePageBounds']>>,
+  obstacles: Array<NonNullable<ReturnType<Editor['getShapePageBounds']>>>,
+  fallback: { x: number; y: number }
+) {
+  const gap = 28
+  const safe = zoneBounds.clone().expandBy(-24)
+  const candidates = [
+    { x: bounds.x + bounds.w + gap, y: bounds.y },
+    { x: bounds.x - bounds.w - gap, y: bounds.y },
+    { x: bounds.x, y: bounds.y + bounds.h + gap },
+    { x: bounds.x, y: bounds.y - bounds.h - gap },
+    { x: bounds.x + bounds.w + gap, y: bounds.y + bounds.h + gap },
+    { x: bounds.x - bounds.w - gap, y: bounds.y + bounds.h + gap },
+    { x: safe.x, y: bounds.y + bounds.h + gap },
+    { x: Math.max(safe.x, safe.maxX - bounds.w), y: bounds.y + bounds.h + gap },
+    fallback,
+  ]
+
+  return candidates.find((candidate) => {
+    const box = new Box(candidate.x, candidate.y, bounds.w, bounds.h)
+    return safe.contains(box) && !obstacles.some((obstacle) => obstacle.clone().expandBy(20).collides(box))
+  })
 }
 
 function escapeHtml(value: string) {

@@ -28,6 +28,7 @@ export function computeRouteScene(editor: Editor, step: StepModel): RouteSceneLa
   const routes: RouteLayout[] = []
   const labels: RouteLabelLayout[] = []
   const errors: string[] = []
+  const warnings: string[] = []
 
   for (const link of links) {
     if (!visibleLinkIds.has(link.id)) continue
@@ -65,7 +66,21 @@ export function computeRouteScene(editor: Editor, step: StepModel): RouteSceneLa
     }
   }
 
-  return { routes, labels, errors }
+  const crossings = countRouteCrossings(routes)
+  if (crossings > 0) warnings.push(`${crossings} route crossing${crossings === 1 ? '' : 's'} need review`)
+
+  return {
+    routes,
+    labels,
+    errors,
+    warnings,
+    quality: {
+      visibleRoutes: routes.length,
+      visibleLabels: labels.length,
+      bends: routes.reduce((total, route) => total + bends(route.points), 0),
+      crossings,
+    },
+  }
 }
 
 function buildObstacles(editor: Editor, visibleEntityIds: Set<string>, visibleZoneIds: Set<string>) {
@@ -340,6 +355,38 @@ function segmentsFor(points: Point[]) {
     segments.push({ a: points[index - 1], b: points[index] })
   }
   return segments
+}
+
+function countRouteCrossings(routes: RouteLayout[]) {
+  let crossings = 0
+  for (let aIndex = 0; aIndex < routes.length; aIndex += 1) {
+    const a = routes[aIndex]
+    for (let bIndex = aIndex + 1; bIndex < routes.length; bIndex += 1) {
+      const b = routes[bIndex]
+      if (a.sourceId === b.sourceId || a.sourceId === b.targetId || a.targetId === b.sourceId || a.targetId === b.targetId) continue
+      for (const aSegment of segmentsFor(a.points)) {
+        for (const bSegment of segmentsFor(b.points)) {
+          if (segmentsCross(aSegment.a, aSegment.b, bSegment.a, bSegment.b)) crossings += 1
+        }
+      }
+    }
+  }
+  return crossings
+}
+
+function segmentsCross(a1: Point, a2: Point, b1: Point, b2: Point) {
+  const aHorizontal = Math.abs(a1.y - a2.y) < 0.5
+  const bHorizontal = Math.abs(b1.y - b2.y) < 0.5
+  if (aHorizontal === bHorizontal) return false
+  const h1 = aHorizontal ? a1 : b1
+  const h2 = aHorizontal ? a2 : b2
+  const v1 = aHorizontal ? b1 : a1
+  const v2 = aHorizontal ? b2 : a2
+  const hMin = Math.min(h1.x, h2.x)
+  const hMax = Math.max(h1.x, h2.x)
+  const vMin = Math.min(v1.y, v2.y)
+  const vMax = Math.max(v1.y, v2.y)
+  return v1.x > hMin + 6 && v1.x < hMax - 6 && h1.y > vMin + 6 && h1.y < vMax - 6
 }
 
 function routeLength(points: Point[]) {

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -50,7 +50,7 @@
 <!-- SECTION 1: EXECUTIVE SUMMARY -->
 <h2>1. Executive Summary</h2>
 
-<p>This architecture covers the Dragos Platform deployment for the USACE Northwestern Division (NWD) Columbia River hydropower facilities: Bonneville, The Dalles, John Day, and McNary. These four dams generate 6,003 MW combined and currently have no OT network monitoring.</p>
+<p>This architecture covers the Dragos Platform deployment for the USACE Northwestern Division (NWD) Columbia River hydropower facilities: Bonneville, The Dalles, John Day, and McNary. These four dams generate 5,970 MW combined and currently have no OT network monitoring.</p>
 
 <p>The design is based on the Technical Discovery session conducted May 15, 2026 (see Discovery Document v1.4, DRG-FED-2026-0847). <span class="tip" data-tip="Dragos tracks 20+ ICS-specific threat groups. VOLTZITE (PRC-linked) has been observed pre-positioning in US critical infrastructure. CHERNOVITE developed PIPEDREAM/INCONTROLLER, a cross-industry ICS attack framework. ELECTRUM (Sandworm) has demonstrated destructive capability against power grid infrastructure.">Threat context</span> is documented in the Discovery report; key drivers are VOLTZITE pre-positioning activity and the DoD CIO OT monitoring mandate.</p>
 
@@ -83,7 +83,7 @@
   <div class="site-card">
     <h4>🏭 The Dalles Dam</h4>
     <div class="stat">
-      <strong>Capacity:</strong> <span class="tip" data-tip="1,813 MW is the nameplate rating per USACE NWD fact sheets. The Dalles is the second-largest dam in the Columbia system and the largest by generating unit count (22 units).">1,813 MW nameplate</span> · 22 generating units<br>
+      <strong>Capacity:</strong> <span class="tip" data-tip="1,780 MW is the nameplate rating per USACE NWD fact sheets. The Dalles is the second-largest dam in the Columbia system and the largest by generating unit count (22 units).">1,780 MW nameplate</span> · 22 generating units<br>
       <strong>Controller:</strong> <span class="tip" data-tip="Emerson Ovation is a distributed control system (DCS) commonly used in power generation. It uses OPC-UA for data exchange and Modbus TCP for device integration.">Emerson Ovation DCS</span><br>
       <strong>HMI:</strong> Ovation Operator Workstations<br>
       <strong>Protocols:</strong> OPC-UA, Modbus TCP<br>

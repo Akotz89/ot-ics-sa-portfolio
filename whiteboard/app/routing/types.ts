@@ -40,4 +40,11 @@ export interface RouteSceneLayout {
   routes: RouteLayout[]
   labels: RouteLabelLayout[]
   errors: string[]
+  warnings: string[]
+  quality: {
+    visibleRoutes: number
+    visibleLabels: number
+    bends: number
+    crossings: number
+  }
 }
