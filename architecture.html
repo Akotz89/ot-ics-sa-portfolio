@@ -130,14 +130,14 @@
   <h4>CentralStore - NWD Headquarters (Portland, OR)</h4>
   <p>The <span class="tip" data-tip="CentralStore is Dragos' enterprise aggregation component - a 'manager of managers' that collects data from multiple SiteStores to provide unified multi-site visibility, cross-site correlation, and executive reporting.">CentralStore</span> is deployed as a virtual machine in the NWD HQ data center, aggregating data from all 4 SiteStores over encrypted channels. It provides:</p>
   <ul style="margin: 12px 0 0 20px; font-size: 13px; line-height: 1.8;">
-    <li>Unified asset inventory across all 4 dam sites (est. <span class="tip" data-tip="247 assets were validated at Bonneville alone during the PoC. Extrapolating across all 4 sites based on generating unit count and OT footprint, the total monitored asset count is estimated at 800-1,000 devices.">800–1,000 OT assets</span>)</li>
+    <li>Unified asset inventory across all 4 dam sites (est. <span class="tip" data-tip="247 assets were validated at Bonneville alone during the PoC. Extrapolating across all 4 sites based on generating unit count and OT footprint, the total monitored asset count is estimated at 800-1,000 devices.">800-1,000 OT assets</span>)</li>
     <li>Cross-site threat correlation to detect adversary lateral movement between facilities</li>
     <li>Enterprise vulnerability dashboard with <span class="tip" data-tip="Dragos' OT-specific vulnerability prioritization framework. 'Now' = actively exploited or trivially exploitable; 'Next' = exploitable but requires specific conditions; 'Never' = theoretical risk with no practical exploit path. Replaces raw CVSS scoring with operational context.">Now/Next/Never</span> prioritization</li>
     <li>Executive reporting for NWD leadership and USACE HQ</li>
     <li>SIEM integration point (single syslog feed to Splunk Cloud)</li>
   </ul>
   <p style="margin-top: 12px; font-size: 13px;"><strong>VM Requirements:</strong> 8 vCPU, 32 GB RAM, 2 TB storage, VMware ESXi 7.0+ or RHEL 8.x KVM. <span class="tip" data-tip="DISA STIG (Security Technical Implementation Guide) is the DoD standard for system hardening. Dragos Platform 2.x STIG is published on public.cyber.mil. Applying the STIG baseline pre-deployment accelerates the ATO process by providing the ISSO a pre-built assessment checklist.">DISA STIG baseline</span> applied.</p>
-  <p style="margin-top: 8px; font-size: 13px;"><strong>Network:</strong> SiteStore → CentralStore: <span class="tip" data-tip="Metadata-only transport between sites. Raw PCAP stays on-site at each SiteStore. Only structured alerts, asset inventory updates, and vulnerability data are forwarded - not full packet captures.">~5–10 Mbps per site</span> (metadata transport over encrypted WAN). <strong>Data Retention:</strong> <span class="tip" data-tip="90-day PCAP retention is sized for the estimated traffic profile. Each SiteStore retains local packet captures for forensic investigation. After 90 days, aging policy rolls oldest captures. Retention can be extended by adding storage.">90-day PCAP</span> per SiteStore (local); 1-year alert/asset history at CentralStore.</p>
+  <p style="margin-top: 8px; font-size: 13px;"><strong>Network:</strong> SiteStore → CentralStore: <span class="tip" data-tip="Metadata-only transport between sites. Raw PCAP stays on-site at each SiteStore. Only structured alerts, asset inventory updates, and vulnerability data are forwarded - not full packet captures.">~5-10 Mbps per site</span> (metadata transport over encrypted WAN). <strong>Data Retention:</strong> <span class="tip" data-tip="90-day PCAP retention is sized for the estimated traffic profile. Each SiteStore retains local packet captures for forensic investigation. After 90 days, aging policy rolls oldest captures. Retention can be extended by adding storage.">90-day PCAP</span> per SiteStore (local); 1-year alert/asset history at CentralStore.</p>
 </div>
 
 <!-- SECTION 4: INTEGRATIONS -->
@@ -267,14 +267,14 @@
   <ul style="margin: 8px 0 0 20px; font-size: 13px; line-height: 1.8;">
     <li><strong>Published STIG:</strong> Dragos Platform 2.x STIG is available on <span class="tip" data-tip="DISA's public STIG repository at https://public.cyber.mil. The published STIG means the ISSO has a pre-documented security baseline and doesn't need to assess controls from scratch.">public.cyber.mil</span>, eliminating 3-6 months of control documentation</li>
     <li><strong>Early ISSO Engagement:</strong> SA coordinates introductory call between Dragos engineering and NWD <span class="tip" data-tip="Information System Security Officer - the government's designated security specialist responsible for ensuring the system meets security requirements. Early ISSO engagement is critical: if you surprise the ISSO at deployment time, expect 6+ month delays.">ISSO</span> during PoC phase</li>
-    <li><strong>Passive-Only Architecture:</strong> Sensors are receive-only (no transmit path to OT network), which significantly reduces risk assessment complexity</li>
+    <li><strong>Passive-Only Architecture:</strong> Sensors are receive-only (no transmit path to OT network), which reduces risk assessment complexity</li>
     <li><strong>Precedent:</strong> Dragos has completed ATO at 13+ federal sites with reusable artifact templates available</li>
   </ul>
 </div>
 
 <div class="arch-box">
   <h4>Security Impact Analysis (SIA) Approach</h4>
-  <p style="font-size: 13px; line-height: 1.8;">Adding Dragos components to the USACE OT network authorization boundary triggers a <span class="tip" data-tip="Security Impact Analysis per NIST SP 800-128. Evaluates whether a proposed change introduces new risks or weakens existing controls. The ISSO uses the SIA to determine if re-authorization is needed.">Security Impact Analysis</span>. The SA proactively provides SIA artifacts (ports/protocols matrix, data flow diagrams, network diagrams, hardware/software inventory) to the ISSO before deployment. The passive-only sensor architecture significantly reduces SIA complexity because the system cannot affect the monitored OT network, eliminating an entire class of risk controls from the assessment scope.</p>
+  <p style="font-size: 13px; line-height: 1.8;">Adding Dragos components to the USACE OT network authorization boundary triggers a <span class="tip" data-tip="Security Impact Analysis per NIST SP 800-128. Evaluates whether a proposed change introduces new risks or weakens existing controls. The ISSO uses the SIA to determine if re-authorization is needed.">Security Impact Analysis</span>. The SA proactively provides SIA artifacts (ports/protocols matrix, data flow diagrams, network diagrams, hardware/software inventory) to the ISSO before deployment. The passive-only sensor architecture reduces SIA complexity because the system cannot affect the monitored OT network, eliminating an entire class of risk controls from the assessment scope.</p>
 </div>
 
 <div class="arch-box">
@@ -307,11 +307,11 @@
 
 <table>
   <tr><th>Phase</th><th>Timeline</th><th>Activities</th><th>Gate</th></tr>
-  <tr><td><strong>PoC</strong></td><td>Jun–Jul 2026</td><td>Bonneville Dam - 2 sensors + 1 SiteStore. Validate GE SRTP/EGD parsing, asset discovery, Splunk integration.</td><td>Success criteria met (5/5)</td></tr>
+  <tr><td><strong>PoC</strong></td><td>Jun-Jul 2026</td><td>Bonneville Dam - 2 sensors + 1 SiteStore. Validate GE SRTP/EGD parsing, asset discovery, Splunk integration.</td><td>Success criteria met (5/5)</td></tr>
   <tr><td><strong><span class="tip" data-tip="The Architecture Review Board is a governance body that evaluates proposed technology deployments for technical soundness, security compliance, and enterprise architecture alignment. ARB endorsement is typically required before procurement.">ARB Review</span></strong></td><td>Aug 2026</td><td>Present PoC findings + full architecture to NWD Architecture Review Board.</td><td>ARB endorsement</td></tr>
   <tr><td><strong>Contract Award</strong></td><td>Sep 2026</td><td>SEWP V task order via Carahsoft. FFP Year 1.</td><td>CO signature</td></tr>
   <tr><td><strong>First Site Live</strong></td><td>Dec 2026</td><td>Bonneville production deployment + NK enrollment. CentralStore at NWD HQ.</td><td>Site acceptance</td></tr>
-  <tr><td><strong>Remaining Sites</strong></td><td>Jan–Mar 2027</td><td>The Dalles, John Day, McNary - sequential rollout. TAP installation at John Day and McNary during scheduled outage windows.</td><td>Full operational capability</td></tr>
+  <tr><td><strong>Remaining Sites</strong></td><td>Jan-Mar 2027</td><td>The Dalles, John Day, McNary - sequential rollout. TAP installation at John Day and McNary during scheduled outage windows.</td><td>Full operational capability</td></tr>
 </table>
 
 <blockquote>
