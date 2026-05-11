@@ -11,6 +11,9 @@ import { RouteOverlay } from './renderer/RouteOverlay'
 
 type Mode = 'presentation' | 'workshop'
 
+const MIN_SHELL_WIDTH = 320
+const MIN_SHELL_HEIGHT = 420
+
 const STENCIL: Array<{ kind: DiagramEntity['kind']; label: string }> = [
   { kind: 'switch', label: 'Switch' },
   { kind: 'firewall', label: 'Firewall' },
@@ -37,7 +40,7 @@ export function App() {
   const routeScene = useMemo(() => computeRouteScene(layout, step), [layout, step])
   const auditErrors = useMemo(() => [...validateStaticModel(), ...auditDiagram(layout, step, routeScene)], [layout, routeScene, step])
   const pulseLinkSet = useMemo(() => new Set(pulseLinks), [pulseLinks])
-  const shell = { width: Math.max(640, viewport.width - 14), height: Math.max(480, viewport.height - 14) }
+  const shell = { width: Math.max(MIN_SHELL_WIDTH, viewport.width - 14), height: Math.max(MIN_SHELL_HEIGHT, viewport.height - 14) }
   const view = useMemo(() => computeStepView(layout, step, routeScene, shell.width / shell.height), [layout, routeScene, shell.height, shell.width, step])
   const scale = Math.max(0.32, Math.min(shell.width / view.w, shell.height / view.h))
   const focused = useMemo(() => new Set(step.focus ?? step.active ?? []), [step])
@@ -77,7 +80,7 @@ export function App() {
     if (!root) return
     const observer = new ResizeObserver(([entry]) => {
       const box = entry.contentRect
-      setViewport({ width: Math.max(640, box.width), height: Math.max(480, box.height) })
+      setViewport({ width: Math.max(MIN_SHELL_WIDTH, box.width), height: Math.max(MIN_SHELL_HEIGHT, box.height) })
     })
     observer.observe(root)
     return () => observer.disconnect()

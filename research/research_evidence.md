@@ -190,26 +190,15 @@
 
 ## Infrastructure Facts
 
-### 13. Bonneville Dam
-| Field | Value |
-|-------|-------|
-| Source | USACE army.mil (403), wikipedia, washington.edu |
-| Used in | All site cards |
+### 13. Columbia River Hydropower Capacity Basis
+| Facility | Portfolio planning basis | Source posture | Interview qualifier |
+|----------|--------------------------|----------------|---------------------|
+| Bonneville Dam | 1,050 MW / 18 main units | USACE powerhouse figures list PH1 518 MW and PH2 532 MW; some public language also references broader total generating capacity. | "I used the USACE powerhouse figures as a conservative planning basis." |
+| The Dalles Dam | 1,780 MW / 22 units | USACE Quick Facts language differs from some narrative and secondary references. | "I sized the scenario with the USACE Quick Facts figure, not as a final engineering rating." |
+| John Day Dam | 2,160 MW / 16 units | Public-source capacity language varies by installed/project/generator basis. | "I kept one consistent planning basis across all portfolio pages." |
+| McNary Dam | 980 MW / 14 units | Public references are stable enough for scenario sizing. | "The figure is used for impact sizing, not procurement pricing." |
 
-- PH1: 518 MW (10 units) + PH2: 532 MW (8 units + 2 fishway)
-- Total installed: ~1,227 MW
-- **CORRECTED:** Portfolio now states **1,050 MW / 18 units** (nameplate sum: 518+532=1,050) ✅
-- Combined 4-dam total: **6,003 MW** (1,050+1,813+2,160+980)
-
-### 14. The Dalles Dam
-| Field | Value |
-|-------|-------|
-| Source | army.mil, crohms.org, oregonencyclopedia.org |
-| Used in | All site cards |
-
-- 22 main turbine-generators
-- Nameplate: ~1,813 MW
-- **Portfolio states 1,813 MW** ✅
+**Portfolio standard:** Use **5,970 MW planning basis** for the combined four-site exercise. Avoid stronger wording like "exact combined installed capacity" because public source language is not perfectly consistent across USACE fact sheets and other references.
 
 ---
 
@@ -231,7 +220,7 @@
 | McNary first power | 1953 | **1954** | scenario (body + refs) | East Oregonian, USACE records |
 | NIST 800-82 date | June 2023 | **September 2023** | scenario, discovery | csrc.nist.gov |
 | VOLTZITE stage | Stage 1 (index.html) | **Stage 2 ICS** | index.html | Dragos 2025 YIR (published Feb 2026) - elevated 2025 |
-| Combined MW total | 6,033 MW | **6,003 MW** | architecture, arb-brief, rfp-response | Sum of corrected site figures |
+| Combined MW total | Mixed public-source values | **5,970 MW planning basis** | architecture, arb-brief, rfp-response | Sum of portfolio planning-basis site figures |
 
 ## ✅ All Items Resolved
 

@@ -1,45 +1,57 @@
-# OT/ICS Pre-Sales Solution Architect  -  Work Product Portfolio
+# OT/ICS Pre-Sales Solution Architect - Work Product Portfolio
 
 Realistic, fact-checked SA work products for the OT/ICS cybersecurity domain, built around a **USACE Columbia River Hydropower** federal engagement scenario.
 
-## 📄 View the Documents
+## Source of Truth
 
-### **👉 [View the Portfolio](https://akotz89.github.io/ot-ics-sa-portfolio/)**
+This local `06_SA_Document` draft is the canonical showcase for interview review. The GitHub Pages links below are the published snapshot, but local validation should be run from this folder before sharing updates.
+
+```powershell
+python validate_portfolio.py
+npm run audit:whiteboard
+python -m http.server 4179 --bind 127.0.0.1
+```
+
+## View the Documents
+
+### **[View the Portfolio](https://akotz89.github.io/ot-ics-sa-portfolio/)**
 
 | Stage | Document | Direct Link |
 |-------|----------|-------------|
-| 0. Scenario | Engagement Scenario Brief | [View →](https://akotz89.github.io/ot-ics-sa-portfolio/scenario.html) |
-| 1. Discovery | Technical Discovery Document | [View →](https://akotz89.github.io/ot-ics-sa-portfolio/discovery/) |
-| 2. Solution Design | Solution Architecture + Bill of Materials | [View →](https://akotz89.github.io/ot-ics-sa-portfolio/architecture.html) |
-| 3. Demo | Tailored Demo Agenda | [View →](https://akotz89.github.io/ot-ics-sa-portfolio/demo.html) |
-| 4. PoC | Proof of Value Findings Report | [View →](https://akotz89.github.io/ot-ics-sa-portfolio/poc-report.html) |
-| 5. RFP Response | Technical Volume + Requirements Matrix | [View →](https://akotz89.github.io/ot-ics-sa-portfolio/rfp-response.html) |
-| 6. Technical Win | Architecture Review Board Brief | [View →](https://akotz89.github.io/ot-ics-sa-portfolio/arb-brief.html) |
+| 0. Scenario | Scenario Brief | [View](https://akotz89.github.io/ot-ics-sa-portfolio/scenario.html) |
+| 1. Discovery | Technical Discovery Document | [View](https://akotz89.github.io/ot-ics-sa-portfolio/discovery/) |
+| 2. Solution Design | Solution Architecture + Bill of Materials | [View](https://akotz89.github.io/ot-ics-sa-portfolio/architecture.html) |
+| 3. Demo | Tailored Demo Agenda | [View](https://akotz89.github.io/ot-ics-sa-portfolio/demo.html) |
+| 4. PoC | Proof of Value - Findings Report | [View](https://akotz89.github.io/ot-ics-sa-portfolio/poc-report.html) |
+| 5. RFP Response | Technical Volume + Requirements Matrix | [View](https://akotz89.github.io/ot-ics-sa-portfolio/rfp-response.html) |
+| 6. Technical Win | Architecture Review Board Brief | [View](https://akotz89.github.io/ot-ics-sa-portfolio/arb-brief.html) |
 
-### 🛠️ SA Tools
+### SA Tools
 
 | Tool | Description | Direct Link |
 |------|-------------|-------------|
-| Whiteboard | Flagship 24-step customer workshop demo: OT discovery, Dragos placement, passive SPAN, SiteStore/CentralStore, and SOC handoff | [View →](https://akotz89.github.io/ot-ics-sa-portfolio/whiteboard/) |
+| Whiteboard | 24-step customer workshop: OT discovery, Dragos placement, passive SPAN, SiteStore/CentralStore, and SOC handoff | [View](https://akotz89.github.io/ot-ics-sa-portfolio/whiteboard/) |
 
 ## The Scenario
 
-**Customer:** U.S. Army Corps of Engineers  -  Northwestern Division  
-**Sites:** Bonneville, The Dalles, John Day, McNary dams (Columbia River, OR/WA)  
-**Control Systems:** GE Mark VIe · Emerson Ovation DCS · Allen-Bradley ControlLogix · Siemens S7-400  
-**Threat Actors:** VOLTZITE · CHERNOVITE · ELECTRUM · SYLVANITE  
-**Procurement:** NASA SEWP V via Carahsoft · ~$780K FFP  
+**Customer:** U.S. Army Corps of Engineers - Northwestern Division
+**Sites:** Bonneville, The Dalles, John Day, McNary dams (Columbia River, OR/WA)
+**Capacity:** 5,970 MW planning basis across 70 generating units
+**Control Systems:** GE Mark VIe, Emerson Ovation DCS, Allen-Bradley ControlLogix, Siemens S7-400
+**Threat Actors:** VOLTZITE, CHERNOVITE, ELECTRUM, SYLVANITE
+**Procurement:** NASA SEWP V via Carahsoft, ~$780K FFP Year 1
+**Opportunity ID:** DRG-FED-2026-0847
 
-All infrastructure data is fact-checked against USACE, BPA, and EIA sources. All stakeholders, findings, and engagement details are fictional.
+Infrastructure and procurement claims are source-backed where public references exist. Hydropower capacity is used as a **5,970 MW planning basis** for the exercise because public source wording varies by facility and capacity basis. All stakeholders, findings, and engagement details are fictional.
 
 ## What This Demonstrates
 
-Each document includes **interactive tooltips**  -  hover any dotted-underlined term for an explanation of what it means and why it matters. The portfolio covers the full SA sales cycle from initial discovery through technical win, showing:
+Each document includes interactive tooltips - hover any dotted-underlined term for an explanation of what it means and why it matters. The portfolio covers the full SA sales cycle from initial discovery through technical win, showing:
 
-- **Technical depth:** OT protocol knowledge (GE SRTP/EGD, S7comm, EtherNet/IP), customer whiteboarding, Purdue/IEC 62443 architecture literacy, and federal compliance frameworks
-- **Sales methodology:** MEDDPICC qualification, persona-specific messaging, objection handling
-- **Federal acumen:** SEWP V procurement, FedRAMP/IL5 compliance, DISA STIG awareness, ATO process
+- **Technical depth:** OT protocol knowledge (GE SRTP/EGD, S7comm, EtherNet/IP), customer whiteboarding, Purdue/IEC 62443 architecture, federal compliance frameworks (RMF, FIPS 199, DISA STIG)
+- **Sales methodology:** MEDDPICC qualification, persona-specific messaging, objection handling, competitive positioning
+- **Federal acumen:** SEWP V procurement, FedRAMP/IL5 compliance, IATT/ATO process, EP 1130-2-510 regulatory context
 
 ---
 
-*Exercise scenario  -  not a real engagement. All entities, names, and findings are fictional.*
+*Portfolio exercise - not a real engagement. All entities, names, and findings are fictional.*

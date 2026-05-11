@@ -659,14 +659,76 @@
 }
 
 @media (max-width: 900px) {
+  .visio-whiteboard {
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+
+  .wb-board-shell {
+    margin: 6px auto;
+    max-width: calc(100% - 12px);
+    max-height: calc(100% - 12px);
+  }
+
   .wb-toolbar {
     top: 8px;
     left: 8px;
     right: 8px;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: flex-start;
+  }
+
+  .wb-mode-tabs button,
+  .wb-tool-button {
+    height: 32px;
+    padding: 0 10px;
+    font-size: 11px;
+  }
+
+  .wb-rule-status {
+    min-height: 32px;
+    max-width: 210px;
+    padding: 0 9px;
+    white-space: normal;
+    line-height: 1.15;
+  }
+
+  .wb-title-block {
+    width: 560px;
   }
 
   .wb-pulse-status,
   .wb-stencil {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .wb-toolbar {
+    align-items: stretch;
+  }
+
+  .wb-mode-tabs {
+    flex: 1 1 auto;
+  }
+
+  .wb-mode-tabs button {
+    flex: 1 1 0;
+  }
+
+  .wb-tool-button {
+    flex: 0 0 auto;
+  }
+
+  .wb-rule-status {
+    flex: 1 1 100%;
+    max-width: none;
+    justify-content: center;
+    font-size: 10px;
+  }
+
+  .wb-title-block {
+    width: 520px;
   }
 }
