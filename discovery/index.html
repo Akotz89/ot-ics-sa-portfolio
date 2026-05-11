@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Technical Discovery Document — USACE Northwestern Division</title>
+  <title>Technical Discovery Document: USACE Northwestern Division</title>
   <link rel="stylesheet" href="../dragos-theme.css">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="../nav.css">
@@ -12,20 +12,20 @@
 
 <!-- ═══════════════ COVER PAGE ═══════════════ -->
 <div class="cover">
-  <div class="logo-area"><span class="dot"></span> Dragos, Inc. — Public Sector</div>
+  <div class="logo-area"><span class="dot"></span> Dragos, Inc. / Public Sector</div>
   <h1>Technical Discovery Document</h1>
-  <p class="subtitle">U.S. Army Corps of Engineers — Northwestern Division<br>Hydropower OT Cybersecurity Assessment</p>
+  <p class="subtitle">U.S. Army Corps of Engineers, Northwestern Division<br>Hydropower OT Cybersecurity Assessment</p>
   <div class="meta-grid">
     <div class="meta-item"><label>Prepared By</label><span>Aaron Kotz, Sr. Solutions Architect (Federal)</span></div>
     <div class="meta-item"><label>Account Executive</label><span><span class="tip" data-tip="The AE owns the customer relationship, pipeline forecast, and deal strategy. The SA owns the technical win. AE handles pricing negotiation with Deal Desk and coordinates with the channel partner. SA never quotes pricing directly.">[AE Name], Dragos Public Sector</span></span></div>
     <div class="meta-item"><label><span class="tip" data-tip="A channel partner is an authorized reseller or distributor that holds the contract vehicle the government uses to purchase. In federal sales, the vendor (Dragos) rarely sells direct — the order flows through the channel partner who holds the GWAC/BPA.">Channel Partner</span></label><span><span class="tip" data-tip="Carahsoft Technology Corp. is one of the largest government IT solutions providers and Dragos' authorized federal distributor. They hold SEWP VI, GSA Schedule, and other federal contract vehicles. Carahsoft handles quoting, order processing, and compliance documentation.">Carahsoft Technology Corp.</span></span></div>
     <div class="meta-item"><label><span class="tip" data-tip="A contract vehicle is a pre-competed agreement (GWAC, IDIQ, BPA, or GSA Schedule) that federal agencies use to streamline procurement. Using an existing vehicle avoids the 6-12 month timeline of a new FAR Part 15 competitive procurement.">Contract Vehicle</span></label><span><span class="tip" data-tip="NASA SEWP VI (Solutions for Enterprise-Wide Procurement) is a Government-Wide Acquisition Contract managed by NASA but available to all federal agencies. SEWP V expired April 30, 2026; SEWP VI is the active successor. Carahsoft is a SEWP VI contract holder, enabling direct task-order issuance.">NASA SEWP VI (via Carahsoft)</span></span></div>
     <div class="meta-item"><label>Date</label><span>May 20, 2026</span></div>
-    <div class="meta-item"><label>Version</label><span>1.4 — Post-Discovery</span></div>
-    <div class="meta-item"><label><span class="tip" data-tip="The Opportunity ID is the CRM (Customer Relationship Management) tracking number — typically from Salesforce. It links all deal artifacts (discovery doc, architecture, BoM, PoC results) to a single pipeline entry for forecasting and deal review.">Opportunity ID</span></label><span>DRG-FED-2026-0847</span></div>
-    <div class="meta-item"><label><span class="tip" data-tip="A mutual Non-Disclosure Agreement must be executed before sharing sensitive customer environment details (IP addresses, network architecture, control system versions). NDA execution date establishes when protected information exchange began — important for CUI handling compliance.">NDA Status</span></label><span>Executed 2026-04-30</span></div>
+    <div class="meta-item"><label>Version</label><span>1.4, Post-Discovery</span></div>
+    <div class="meta-item"><label><span class="tip" data-tip="The Opportunity ID is the CRM (Customer Relationship Management) tracking number, typically from Salesforce. It links all deal artifacts (discovery doc, architecture, BoM, PoC results) to a single pipeline entry for forecasting and deal review.">Opportunity ID</span></label><span>DRG-FED-2026-0847</span></div>
+    <div class="meta-item"><label><span class="tip" data-tip="A mutual Non-Disclosure Agreement must be executed before sharing sensitive customer environment details (IP addresses, network architecture, control system versions). NDA execution date establishes when protected information exchange began, important for CUI handling compliance.">NDA Status</span></label><span>Executed 2026-04-30</span></div>
   </div>
-  <div class="classification"><span class="tip" data-tip="CUI (Controlled Unclassified Information) per 32 CFR Part 2002. FOUO (For Official Use Only) is the legacy DoD marking being replaced by CUI. Distribution limited to named parties means only Dragos internal staff and Carahsoft (as the authorized channel partner) may access this document. No cloud storage, no unencrypted email.">CUI // FOUO — Distribution Limited to Dragos Internal + Carahsoft</span></div>
+  <div class="classification"><span class="tip" data-tip="CUI (Controlled Unclassified Information) per 32 CFR Part 2002. FOUO (For Official Use Only) is the legacy DoD marking being replaced by CUI. Distribution limited to named parties means only Dragos internal staff and Carahsoft (as the authorized channel partner) may access this document. No cloud storage, no unencrypted email.">CUI // FOUO, Distribution Limited to Dragos Internal + Carahsoft</span></div>
 </div>
 
 <div class="page">
@@ -35,13 +35,13 @@
 
 <table>
   <tr><th style="width:220px">Field</th><th>Detail</th></tr>
-  <tr><td>Customer</td><td>U.S. Army Corps of Engineers — Northwestern Division (NWD)</td></tr>
+  <tr><td>Customer</td><td>U.S. Army Corps of Engineers, Northwestern Division (NWD)</td></tr>
   <tr><td>Mission</td><td>Hydroelectric power generation, navigation locks, flood control, water management</td></tr>
-  <tr><td>Sector</td><td>Federal — DoD (Civil Works) / Energy</td></tr>
+  <tr><td>Sector</td><td>Federal: DoD (Civil Works) / Energy</td></tr>
   <tr><td>Sites in Scope</td><td>4 dams (initial); expandable to 21 across NWD</td></tr>
   <tr><td>Primary Sites</td><td>Bonneville Dam (OR), The Dalles Dam (OR), John Day Dam (OR), McNary Dam (OR/WA)</td></tr>
   <tr><td>Discovery Session</td><td>2026-05-15 | 90 min | MS Teams (NIPR)</td></tr>
-  <tr><td>Classification</td><td>Unclassified // CUI — all OT systems reside on unclassified networks</td></tr>
+  <tr><td>Classification</td><td>Unclassified // CUI; all OT systems reside on unclassified networks</td></tr>
 </table>
 
 <h3>Customer Stakeholders</h3>
@@ -57,8 +57,8 @@
 <h3>Dragos Attendees</h3>
 <table>
   <tr><th>Name</th><th>Title</th><th>Role</th></tr>
-  <tr><td>Aaron Kotz</td><td>Sr. Solutions Architect (Federal)</td><td>Technical Lead — discovery, solution design, demo, PoC</td></tr>
-  <tr><td>[AE Name]</td><td>Account Executive, Public Sector</td><td>Relationship owner — deal strategy, pricing, contract</td></tr>
+  <tr><td>Aaron Kotz</td><td>Sr. Solutions Architect (Federal)</td><td>Technical Lead: discovery, solution design, demo, PoC</td></tr>
+  <tr><td>[AE Name]</td><td>Account Executive, Public Sector</td><td>Relationship owner: deal strategy, pricing, contract</td></tr>
   <tr><td>[SE Name]</td><td>Sales Engineer</td><td>Demo environment prep, protocol validation</td></tr>
 </table>
 
@@ -71,21 +71,21 @@
   <tr><td>1</td><td>CISA Advisory AA24-038A</td><td>Warning about PRC state-sponsored actors (Volt Typhoon / VOLTZITE) pre-positioning in U.S. critical infrastructure including energy and water systems</td></tr>
   <tr><td>2</td><td>DoD CIO Memo (Jan 2026)</td><td>Mandates OT cybersecurity assessment for all Civil Works by EOY FY2026</td></tr>
   <tr><td>3</td><td>Internal Gap Assessment</td><td>IT cybersecurity team confirmed zero OT/ICS visibility below the enterprise DMZ</td></tr>
-  <tr><td>4</td><td>Incident — Bonneville Dam</td><td>Q4 2025: unauthorized laptop found connected to SCADA network; no detection capability existed</td></tr>
+  <tr><td>4</td><td>Incident: Bonneville Dam</td><td>Q4 2025: unauthorized laptop found connected to SCADA network; no detection capability existed</td></tr>
 </table>
 
 <h3>Desired Outcomes (Customer-Stated)</h3>
 <blockquote>
   "We need to know what's on our control networks, who's talking to what, and whether anyone who shouldn't be there is there. Today we're blind."
-  <cite>— Dr. Rebecca Torres, Discovery Call, 2026-05-15</cite>
+  <cite>- Dr. Rebecca Torres, Discovery Call, 2026-05-15</cite>
 </blockquote>
 
 <table>
   <tr><th>#</th><th>Outcome</th></tr>
-  <tr><td>1</td><td><strong>Asset Visibility</strong> — Complete inventory of all OT/ICS devices across 4 dam sites</td></tr>
-  <tr><td>2</td><td><strong>Threat Detection</strong> — Continuous monitoring for malicious/anomalous activity on SCADA networks</td></tr>
-  <tr><td>3</td><td><strong>Compliance</strong> — Meet DoD CIO mandate; align to NIST 800-82 Rev 3</td></tr>
-  <tr><td>4</td><td><strong>Incident Readiness</strong> — Establish baseline for OT-specific incident response</td></tr>
+  <tr><td>1</td><td><strong>Asset Visibility</strong>: Complete inventory of all OT/ICS devices across 4 dam sites</td></tr>
+  <tr><td>2</td><td><strong>Threat Detection</strong>: Continuous monitoring for malicious/anomalous activity on SCADA networks</td></tr>
+  <tr><td>3</td><td><strong>Compliance</strong>: Meet DoD CIO mandate; align to NIST 800-82 Rev 3</td></tr>
+  <tr><td>4</td><td><strong>Incident Readiness</strong>: Establish baseline for OT-specific incident response</td></tr>
 </table>
 
 <h3>Timeline Pressure</h3>
@@ -116,26 +116,26 @@
   <tr><td>Gate/Lock Control PLCs</td><td>24</td><td>Spillway gates, navigation lock controls</td></tr>
   <tr><td>RTUs</td><td>18</td><td>River level, seismic, weather monitoring</td></tr>
   <tr><td>HMI / Operator Stations</td><td>22</td><td>Mix of dedicated workstations and shared terminals</td></tr>
-  <tr><td>Engineering Workstations</td><td>6</td><td>PLC programming — shared, no access control</td></tr>
+  <tr><td>Engineering Workstations</td><td>6</td><td>PLC programming, shared, no access control</td></tr>
   <tr><td>Historians / Data Servers</td><td>6</td><td>AVEVA PI System (2), Wonderware (1), misc</td></tr>
   <tr><td>Network Switches (OT)</td><td>~40</td><td>Mix of managed (Cisco IE) and unmanaged (Moxa)</td></tr>
   <tr><td>IP Cameras on OT Network</td><td>~30</td><td>Physical security cameras routed through OT switches</td></tr>
-  <tr><td><strong>TOTAL</strong></td><td><strong>~194</strong></td><td>Customer estimates 30–40% undocumented. Actual count expected to be higher — primary justification for automated asset discovery.</td></tr>
+  <tr><td><strong>TOTAL</strong></td><td><strong>~194</strong></td><td>Customer estimates 30–40% undocumented. Actual count expected to be higher; primary justification for automated asset discovery.</td></tr>
 </table>
 
 <h3>OT Protocols Identified</h3>
 <table>
   <tr><th>Protocol</th><th>Usage</th><th>Priority</th></tr>
   <tr><td><span class="tip" data-tip="Modbus TCP is one of the most common OT protocols. Open standard, no authentication, no encryption. Operates on TCP port 502. Widely used for SCADA communications between HMIs and PLCs in power generation.">Modbus TCP</span></td><td>Turbine controls, gate actuators</td><td><span class="sev-crit">Critical</span></td></tr>
-  <tr><td><span class="tip" data-tip="GE SRTP (Service Request Transfer Protocol) is a proprietary GE protocol running over TCP. Used by ToolboxST engineering workstations and HMIs to read/write Mark VIe controller memory, perform diagnostics, and download configuration. Dragos Platform supports passive SRTP parsing.">GE SRTP</span></td><td>Mark VIe turbine controllers — Bonneville</td><td><span class="sev-crit">Critical</span></td></tr>
-  <tr><td><span class="tip" data-tip="GE EGD (Ethernet Global Data) is a proprietary multicast UDP protocol for high-speed cyclic data exchange between Mark VIe controllers. Deterministic, broadcast-based. Used for inter-controller communication and status distribution. Dragos Platform supports passive EGD parsing.">GE EGD</span></td><td>Mark VIe inter-controller data — Bonneville</td><td><span class="sev-crit">Critical</span></td></tr>
-  <tr><td><span class="tip" data-tip="EtherNet/IP uses the Common Industrial Protocol (CIP) at the application layer. Native to Allen-Bradley/Rockwell Automation PLCs. CIP carries configuration, control, and I/O data. CVE-2023-3595 targets this protocol specifically.">EtherNet/IP (CIP)</span></td><td>Allen-Bradley PLCs — John Day</td><td><span class="sev-crit">Critical</span></td></tr>
-  <tr><td><span class="tip" data-tip="S7comm is Siemens' proprietary protocol for S7-300 and S7-400 series PLCs. Runs on TCP port 102. No native encryption or authentication. Dragos Platform can passively parse S7comm to extract asset data, firmware versions, and detect anomalous commands.">S7comm</span></td><td>Siemens S7-400 — McNary</td><td><span class="sev-crit">Critical</span></td></tr>
+  <tr><td><span class="tip" data-tip="GE SRTP (Service Request Transfer Protocol) is a proprietary GE protocol running over TCP. Used by ToolboxST engineering workstations and HMIs to read/write Mark VIe controller memory, perform diagnostics, and download configuration. Dragos Platform supports passive SRTP parsing.">GE SRTP</span></td><td>Mark VIe turbine controllers, Bonneville</td><td><span class="sev-crit">Critical</span></td></tr>
+  <tr><td><span class="tip" data-tip="GE EGD (Ethernet Global Data) is a proprietary multicast UDP protocol for high-speed cyclic data exchange between Mark VIe controllers. Deterministic, broadcast-based. Used for inter-controller communication and status distribution. Dragos Platform supports passive EGD parsing.">GE EGD</span></td><td>Mark VIe inter-controller data, Bonneville</td><td><span class="sev-crit">Critical</span></td></tr>
+  <tr><td><span class="tip" data-tip="EtherNet/IP uses the Common Industrial Protocol (CIP) at the application layer. Native to Allen-Bradley/Rockwell Automation PLCs. CIP carries configuration, control, and I/O data. CVE-2023-3595 targets this protocol specifically.">EtherNet/IP (CIP)</span></td><td>Allen-Bradley PLCs, John Day</td><td><span class="sev-crit">Critical</span></td></tr>
+  <tr><td><span class="tip" data-tip="S7comm is Siemens' proprietary protocol for S7-300 and S7-400 series PLCs. Runs on TCP port 102. No native encryption or authentication. Dragos Platform can passively parse S7comm to extract asset data, firmware versions, and detect anomalous commands.">S7comm</span></td><td>Siemens S7-400, McNary</td><td><span class="sev-crit">Critical</span></td></tr>
   <tr><td>OPC-UA</td><td>Historian data collection</td><td><span class="sev-high">High</span></td></tr>
-  <tr><td>OPC-DA (Classic)</td><td>Legacy historian — The Dalles</td><td><span class="sev-med">Medium</span></td></tr>
+  <tr><td>OPC-DA (Classic)</td><td>Legacy historian, The Dalles</td><td><span class="sev-med">Medium</span></td></tr>
   <tr><td>DNP3</td><td>RTU communications (river monitoring)</td><td><span class="sev-med">Medium</span></td></tr>
   <tr><td>HTTP/HTTPS</td><td>HMI web interfaces, firmware updates</td><td><span class="sev-med">Medium</span></td></tr>
-  <tr><td><span class="tip" data-tip="Remote Desktop Protocol — rated Critical because RDP is the #1 lateral movement vector in OT intrusions per Dragos Year in Review data. Adversaries use compromised RDP sessions to move from IT/DMZ into control system networks.">RDP</span></td><td>Remote HMI access</td><td><span class="sev-crit">Critical ⚠</span></td></tr>
+  <tr><td><span class="tip" data-tip="Remote Desktop Protocol, rated Critical because RDP is the #1 lateral movement vector in OT intrusions per Dragos Year in Review data. Adversaries use compromised RDP sessions to move from IT/DMZ into control system networks.">RDP</span></td><td>Remote HMI access</td><td><span class="sev-crit">Critical ⚠</span></td></tr>
   <tr><td>SMB/CIFS</td><td>File shares, backup transfers</td><td><span class="sev-med">Medium</span></td></tr>
   <tr><td><span class="tip" data-tip="IEC 61850 is the international standard for substation automation communications. Uses GOOSE (Generic Object Oriented Substation Event) messages for fast protection relay signaling. Relevant to relay monitoring at The Dalles.">IEC 61850</span></td><td>Substation relays (limited deployment)</td><td><span class="sev-low">Low</span></td></tr>
 </table>
@@ -143,18 +143,18 @@
 <!-- ═══════════════ SECTION 4 ═══════════════ -->
 <h2>4. Network Architecture Assessment</h2>
 
-<h3>Purdue Model — As-Found</h3>
+<h3>Purdue Model: As-Found</h3>
 <div class="arch-diagram">Level 5 (Enterprise)    ┌──────────────────────────────────────┐
   NIPRNet, email,       │  USACE Enterprise Network (NIPRNet)   │
   ATAAPS, finance       └──────────────┬───────────────────────┘
                                        │
                                        ▼  Palo Alto PA-3260 (✓ good)
                         ┌──────────────┴───────────────────────┐
-Level 4 (IT/OT DMZ)    │  DMZ — partially implemented          │
+Level 4 (IT/OT DMZ)    │  DMZ, partially implemented          │
   PI relay, WSUS,       │  AVEVA PI relay, WSUS patch server  │
   AV definitions        └──────────────┬───────────────────────┘
                                        │
-                                       ▼  ⚠ NO FIREWALL — flat L1 switch
+                                       ▼  ⚠ NO FIREWALL, flat L1 switch
                                           (CRITICAL GAP)
                         ┌──────────────┴───────────────────────┐
 Level 3 (Site Ops)      │  SCADA servers, HMIs, eng. workstns   │
@@ -196,11 +196,11 @@ Level 1 (Field)         ┌──────────────┴──�
 
 <table>
   <tr><th>Category</th><th>Current State</th><th>Gap</th></tr>
-  <tr><td>OT Asset Inventory</td><td>Manual spreadsheet — last updated 2023</td><td><span class="nocheck">✗</span> No automated discovery. ~40% undocumented.</td></tr>
+  <tr><td>OT Asset Inventory</td><td>Manual spreadsheet, last updated 2023</td><td><span class="nocheck">✗</span> No automated discovery. ~40% undocumented.</td></tr>
   <tr><td>OT Network Monitoring</td><td>NONE</td><td><span class="nocheck">✗</span> Complete blind spot below L4 DMZ.</td></tr>
-  <tr><td>Vulnerability Mgmt</td><td>Tenable.sc — IT only. No OT scanning.</td><td><span class="nocheck">✗</span> Zero OT vulnerability visibility.</td></tr>
+  <tr><td>Vulnerability Mgmt</td><td>Tenable.sc, IT only. No OT scanning.</td><td><span class="nocheck">✗</span> Zero OT vulnerability visibility.</td></tr>
   <tr><td>Endpoint Protection</td><td>CrowdStrike Falcon on L3/L4 Windows servers only</td><td><span class="partial">⚠</span> No coverage on HMIs or below.</td></tr>
-  <tr><td>SIEM</td><td><span class="tip" data-tip="Splunk Cloud achieved FedRAMP High authorization (September 2024) and DoD IL5 Provisional Authorization from DISA. IL5 covers higher-sensitivity CUI and mission-critical national security systems. Hosted in AWS GovCloud (US) regions for data sovereignty.">Splunk Cloud (FedRAMP High / DoD IL5)</span> — IT side only</td><td><span class="partial">⚠</span> Exists but has zero OT data feeds.</td></tr>
+  <tr><td>SIEM</td><td><span class="tip" data-tip="Splunk Cloud achieved FedRAMP High authorization (September 2024) and DoD IL5 Provisional Authorization from DISA. IL5 covers higher-sensitivity CUI and mission-critical national security systems. Hosted in AWS GovCloud (US) regions for data sovereignty.">Splunk Cloud (FedRAMP High / DoD IL5)</span>, IT side only</td><td><span class="partial">⚠</span> Exists but has zero OT data feeds.</td></tr>
   <tr><td>Patch Management</td><td>WSUS for Windows. No OT firmware process.</td><td><span class="nocheck">✗</span> Months/years behind on OT patches.</td></tr>
   <tr><td>Access Control</td><td>Shared local accounts on HMIs. No MFA.</td><td><span class="nocheck">✗</span> "admin/admin" on ≥3 HMI stations.</td></tr>
   <tr><td>Incident Response</td><td>IT-only IR plan. No OT playbooks.</td><td><span class="nocheck">✗</span> No OT tabletop exercises conducted.</td></tr>
@@ -214,11 +214,11 @@ Level 1 (Field)         ┌──────────────┴──�
   <tr><th>Framework</th><th>Applicability</th><th>Status</th></tr>
   <tr><td><span class="tip" data-tip="NIST Special Publication 800-82 Revision 3 (September 2023): Guide to Operational Technology Security. The primary federal framework for OT security controls. Covers asset management, network architecture, incident response, and vulnerability management specific to ICS/SCADA environments.">NIST SP 800-82 Rev 3</span></td><td>Primary OT framework for federal</td><td><span class="sev-crit">Not assessed</span></td></tr>
   <tr><td>DoD CIO OT Mandate (2026)</td><td>Requires OT monitoring by EOY FY26</td><td><span class="sev-crit">Non-compliant</span></td></tr>
-  <tr><td>USACE EP 1130-2-510</td><td>Internal USACE hydropower operations policy — primary compliance driver for generation assets</td><td><span class="sev-crit">Gap — no OT monitoring capability</span></td></tr>
-  <tr><td>EO 14028</td><td>Improving the Nation’s Cybersecurity (May 2021) — drives zero-trust and supply chain security</td><td><span class="sev-med">Partial — IT only</span></td></tr>
+  <tr><td>USACE EP 1130-2-510</td><td>Internal USACE hydropower operations policy, primary compliance driver for generation assets</td><td><span class="sev-crit">Gap: no OT monitoring capability</span></td></tr>
+  <tr><td>EO 14028</td><td>Improving the Nation’s Cybersecurity (May 2021); drives zero-trust and supply chain security</td><td><span class="sev-med">Partial, IT only</span></td></tr>
   <tr><td><span class="tip" data-tip="CISA Binding Operational Directive 23-01 (October 2022): Improving Asset Visibility and Vulnerability Detection on Federal Networks. Requires federal agencies to maintain a complete, accurate inventory of all network-addressable IP assets and identify software vulnerabilities.">CISA BOD 23-01</span></td><td>Asset visibility for internet-accessible devices</td><td><span class="sev-med">Partial (IT only)</span></td></tr>
   <tr><td><span class="tip" data-tip="Federal Information Security Modernization Act (2014). Requires federal agencies to develop, document, and implement an agency-wide information security program. OT systems are often excluded from FISMA authorization boundaries, creating a governance gap.">FISMA</span></td><td>Federal baseline</td><td><span class="sev-med">IT covered; OT not in boundary</span></td></tr>
-  <tr><td>NERC CIP</td><td>Electric reliability — applies to BES; USACE generation assets are not directly NERC CIP-registered (governed by EP 1130-2-510 and DoD directives instead)</td><td><span class="sev-info">Not applicable to generation; BPA handles transmission compliance</span></td></tr>
+  <tr><td>NERC CIP</td><td>Electric reliability; applies to BES; USACE generation assets are not directly NERC CIP-registered (governed by EP 1130-2-510 and DoD directives instead)</td><td><span class="sev-info">Not applicable to generation; BPA handles transmission compliance</span></td></tr>
 </table>
 
 <!-- ═══════════════ SECTION 7 ═══════════════ -->
@@ -228,27 +228,27 @@ Level 1 (Field)         ┌──────────────┴──�
 
 <blockquote>
   "We have 182+ devices on our control networks and we can only account for maybe 60% of them. We don't know what's talking to what."
-  <cite>— Mike Osterman, SCADA Program Manager</cite>
+  <cite>- Mike Osterman, SCADA Program Manager</cite>
 </blockquote>
 
 <blockquote>
   "The unauthorized laptop at Bonneville scared us. We had no way to detect it — an operator physically saw it plugged in. If it had been remote, we'd never have known."
-  <cite>— Dr. Rebecca Torres</cite>
+  <cite>- Dr. Rebecca Torres</cite>
 </blockquote>
 
 <blockquote>
   "The DoD CIO mandate says we need OT monitoring by end of fiscal year. We have 4 months."
-  <cite>— Dr. Torres</cite>
+  <cite>- Dr. Torres</cite>
 </blockquote>
 
 <blockquote>
   "We can't do anything that disrupts generator operations. If a turbine trips because of a security tool, that's a multi-million dollar event and a national news story."
-  <cite>— Mike Osterman</cite>
+  <cite>- Mike Osterman</cite>
 </blockquote>
 
 <blockquote>
   "We tried to use our IT Tenable scanner on the OT network once. It crashed two HMIs. Never again."
-  <cite>— Brian Knox, OT Network Administrator</cite>
+  <cite>- Brian Knox, OT Network Administrator</cite>
 </blockquote>
 
 <h3>SA-Observed Gaps (Not Stated by Customer)</h3>
@@ -258,7 +258,7 @@ Level 1 (Field)         ┌──────────────┴──�
   <tr><td>G-2</td><td>IP cameras on OT network = unmanaged IoT attack surface</td><td>Cameras are easy pivot points for adversaries</td></tr>
   <tr><td>G-3</td><td>No supply chain security for PLC firmware updates</td><td>Firmware delivered via USB with no integrity verification</td></tr>
   <tr><td>G-4</td><td>Shared engineering workstations are not hardened</td><td>Single compromise = PLC programming access</td></tr>
-  <tr><td>G-5</td><td>"Legacy relay protection" at The Dalles — no digital monitoring</td><td>Relay tampering attack (cf. Industroyer) would be undetected</td></tr>
+  <tr><td>G-5</td><td>"Legacy relay protection" at The Dalles, no digital monitoring</td><td>Relay tampering attack (cf. Industroyer) would be undetected</td></tr>
 </table>
 
 <!-- ═══════════════ SECTION 8 ═══════════════ -->
@@ -271,7 +271,7 @@ Level 1 (Field)         ┌──────────────┴──�
   <tr><td>Procurement Path</td><td><span class="tip" data-tip="NASA SEWP (Solutions for Enterprise-Wide Procurement) VI is a pre-competed GWAC. Any federal agency can issue task orders against it. Carahsoft holds a SEWP VI contract as Dragos' authorized channel partner. Using SEWP eliminates the need for a new competition, saving 3-4 months.">NASA SEWP VI via Carahsoft</span> (successor to SEWP V, which expired Apr 30, 2026)</td></tr>
   <tr><td>Contract Type</td><td><span class="tip" data-tip="Firm Fixed Price: the government pays a set total price. Vendor absorbs any cost overruns. COs prefer FFP for product/subscription procurements because it minimizes financial risk. Option years allow subscription renewal without re-competing.">Firm Fixed Price (FFP)</span> + option years for subscriptions</td></tr>
   <tr><td>Decision Timeline</td><td>Technical eval: Jun–Jul &nbsp;|&nbsp; Award: Aug–Sep</td></tr>
-  <tr><td>Competition</td><td>Claroty contacted, no formal eval started. Nozomi not considered. Strong Dragos brand affinity — customer heard Robert M. Lee at S4 Conference.</td></tr>
+  <tr><td>Competition</td><td>Claroty contacted, no formal eval started. Nozomi not considered. Strong Dragos brand affinity; customer heard Robert M. Lee at S4 Conference.</td></tr>
   <tr><td>Security Requirements</td><td>CUI handling. FedRAMP preferred. STIG-hardened appliances required.</td></tr>
   <tr><td>Deployment Constraints</td><td>No active scanning. No agents on PLCs. Passive only. Change control required for SPAN.</td></tr>
 </table>
@@ -281,10 +281,10 @@ Level 1 (Field)         ┌──────────────┴──�
 
 <table>
   <tr><th>Site</th><th>Sensors</th><th>SiteStore</th><th>Notes</th></tr>
-  <tr><td>Bonneville Dam</td><td>2 (SPAN × 2 segments — Powerhouse 1 + 2)</td><td>1 × Hardware</td><td>Largest facility; 2 powerhouses require separate SPAN sessions on separate switch stacks</td></tr>
-  <tr><td>The Dalles Dam</td><td>1 (L3 SPAN)</td><td>1 × Hardware</td><td>Emerson Ovation — verify OPC-DA/UA and Ovation proprietary protocol parsing</td></tr>
-  <tr><td>John Day Dam</td><td>2 (L3 SPAN + L2 TAP)</td><td>1 × Hardware</td><td>TAP needed — HP ProCurve 2920 has limited SPAN capability per SPAN/TAP assessment</td></tr>
-  <tr><td>McNary Dam</td><td>1 (TAP required)</td><td>1 × Hardware</td><td>Siemens S7 — verify S7comm parsing. Hardware SiteStore required — no existing server infrastructure for VM.</td></tr>
+  <tr><td>Bonneville Dam</td><td>2 (SPAN × 2 segments, Powerhouse 1 + 2)</td><td>1 × Hardware</td><td>Largest facility; 2 powerhouses require separate SPAN sessions on separate switch stacks</td></tr>
+  <tr><td>The Dalles Dam</td><td>1 (L3 SPAN)</td><td>1 × Hardware</td><td>Emerson Ovation; verify OPC-DA/UA and Ovation proprietary protocol parsing</td></tr>
+  <tr><td>John Day Dam</td><td>2 (L3 SPAN + L2 TAP)</td><td>1 × Hardware</td><td>TAP needed; HP ProCurve 2920 has limited SPAN capability per SPAN/TAP assessment</td></tr>
+  <tr><td>McNary Dam</td><td>1 (TAP required)</td><td>1 × Hardware</td><td>Siemens S7; verify S7comm parsing. Hardware SiteStore required, no existing server infrastructure for VM.</td></tr>
   <tr><td><strong>Enterprise (NWD HQ)</strong></td><td>—</td><td>—</td><td><strong>1 × CentralStore (VM on existing NWD data center infrastructure)</strong></td></tr>
 </table>
 
@@ -314,8 +314,8 @@ Level 1 (Field)         ┌──────────────┴──�
 </table>
 
 <div class="doc-footer">
-  <span>Dragos, Inc. — Confidential</span>
-  <span>Technical Discovery Document v1.4 — DRG-FED-2026-0847</span>
+  <span>Dragos, Inc., Confidential</span>
+  <span>Technical Discovery Document v1.4, DRG-FED-2026-0847</span>
 </div>
 
 </div>
