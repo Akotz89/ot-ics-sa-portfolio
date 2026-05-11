@@ -1,4 +1,4 @@
-# GE Vernova Mark VIe Turbine Control System — Product Specifications
+# GE Vernova Mark VIe Turbine Control System  -  Product Specifications
 
 > Source: GE Vernova official product data (gevernova.com, multiple pages)
 > Note: GE Vernova restructured their website in 2025; direct product page URLs are no longer available.
@@ -17,7 +17,7 @@ The Mark VIe is an integrated, 100% Ethernet-based control system designed for h
 |---------------|-------|
 | Controller | Mark VIe UCSE |
 | Operating System | QNX Neutrino RTOS (real-time, multitasking) |
-| Architecture | Modular, stand-alone — no battery or jumper settings |
+| Architecture | Modular, stand-alone  -  no battery or jumper settings |
 | Networking | 100% Ethernet-based |
 | I/O Network | Dedicated full-duplex IONet for deterministic communication |
 | Clock Sync | IEEE 1588 PTP (±100 microseconds) |
@@ -63,19 +63,19 @@ The Mark VIe is an integrated, 100% Ethernet-based control system designed for h
 
 | Parameter | Rating |
 |-----------|--------|
-| Operating Temperature | Up to 65°C–70°C (module dependent) |
+| Operating Temperature | Up to 65°C-70°C (module dependent) |
 | Storage Temperature | -40°C to +85°C (-40°F to +185°F) |
 
 ## Diagnostics & Tooling
 
-- **ToolboxST** — primary engineering/configuration software
-- **ControlST** — control system tuning and monitoring
-- **WorkstationST** — operator interface
+- **ToolboxST**  -  primary engineering/configuration software
+- **ControlST**  -  control system tuning and monitoring
+- **WorkstationST**  -  operator interface
 - Trip History, Dynamic Data Recorders, Trender for root cause analysis
 
 ## Associated HMI
 
-- **GE CIMPLICITY** — standard HMI/SCADA for Mark VIe power generation environments
+- **GE CIMPLICITY**  -  standard HMI/SCADA for Mark VIe power generation environments
 - Runs on Windows; communicates via SRTP and EGD
 - HTML5 capable; enterprise SCADA deployment
 - See: `GE_CIMPLICITY_HMI.md` for detailed CIMPLICITY specs
@@ -89,7 +89,7 @@ The Mark VIe is an integrated, 100% Ethernet-based control system designed for h
 
 ## Source Citations
 
-1. gevernova.com — Mark VIe product pages (multiple, restructured 2025)
-2. GEH-6721 — Mark VIe System Guide (GE technical documentation)
-3. GEA-34191 — Mark VIe Fact Sheet
+1. gevernova.com  -  Mark VIe product pages (multiple, restructured 2025)
+2. GEH-6721  -  Mark VIe System Guide (GE technical documentation)
+3. GEA-34191  -  Mark VIe Fact Sheet
 4. Web search verification: 2026-05-10

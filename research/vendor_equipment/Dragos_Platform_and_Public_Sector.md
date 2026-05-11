@@ -1,4 +1,4 @@
-# Dragos Platform & Public Sector LLC — Product Documentation
+# Dragos Platform & Public Sector LLC  -  Product Documentation
 
 > Source: dragos.com (pages blocked for automated access), Carahsoft partner page, press releases
 > Verified via web search 2026-05-10 from intelligencecommunitynews.com, executivebiz.com, carahsoft.com
@@ -84,8 +84,8 @@ At the time of Dragos Public Sector LLC launch, DISA released the Dragos Platfor
 
 ## Source Citations
 
-1. Carahsoft Dragos partner page — carahsoft.com/dragos (downloaded 2026-05-10)
-2. intelligencecommunitynews.com — Dragos PS LLC launch (Oct 2024)
-3. executivebiz.com — Dragos PS LLC coverage (Oct 2024)
-4. Dragos STS-550-E datasheet — scribd.com hosted (verified 2026-05-10)
-5. dragos.com/threat/voltzite/ — protocol support confirmation (downloaded)
+1. Carahsoft Dragos partner page  -  carahsoft.com/dragos (downloaded 2026-05-10)
+2. intelligencecommunitynews.com  -  Dragos PS LLC launch (Oct 2024)
+3. executivebiz.com  -  Dragos PS LLC coverage (Oct 2024)
+4. Dragos STS-550-E datasheet  -  scribd.com hosted (verified 2026-05-10)
+5. dragos.com/threat/voltzite/  -  protocol support confirmation (downloaded)

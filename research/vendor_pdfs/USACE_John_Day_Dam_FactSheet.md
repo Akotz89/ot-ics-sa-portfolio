@@ -141,7 +141,7 @@ Popular recreational activities at John Day Dam and Lake Umatilla include boatin
 
 ### Fish & Wildlife
 
-John Day Dam has two fish ladders—one on each shore—to provide a passage route for upstream-migrating fish, including adult salmon and steelhead, lamprey, sturgeon, shad, and others. Passage routes operated for downstream-migrating fish are the spillway, two spillway weirs, and a juvenile bypass system.
+John Day Dam has two fish ladders - one on each shore - to provide a passage route for upstream-migrating fish, including adult salmon and steelhead, lamprey, sturgeon, shad, and others. Passage routes operated for downstream-migrating fish are the spillway, two spillway weirs, and a juvenile bypass system.
 
   
 [John Day Dam](https://www.nwd.usace.army.mil/media/fact-sheets/tag/16067/john-day-dam/) 

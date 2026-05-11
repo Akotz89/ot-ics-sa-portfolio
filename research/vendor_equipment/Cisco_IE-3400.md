@@ -101,7 +101,7 @@ For adding more copper ports with PoE to your Catalyst IE3400 Rugged Series base
 ### Catalyst IE3300 expansion modules
 Catalyst IE3400 Rugged Series switches can also use expansion modules for Cisco Catalyst IE3300 Rugged Series switches, with some limitations. Consult the [Catalyst IE3400 Rugged Series data sheet](https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-ie3400-rugged-series/cat-ie3400-rugged-series-ds.html?ccid=cc002430&oid=aagit017357&dtid=odicdc000509) for details.
 
-### A network that connects—and protects
+### A network that connects - and protects
 Streamline and protect your industrial operations by bringing your OT security and networking together.
 [Read blog](https://blogs.cisco.com/internet-of-things/cisco-wins-manufacturing-solution-of-the-year-award-for-integrating-industrial-security-with-networking?dtid=odicdc000509)
 

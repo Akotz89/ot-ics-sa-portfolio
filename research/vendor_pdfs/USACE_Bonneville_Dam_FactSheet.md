@@ -141,7 +141,7 @@ Recreation opportunities are provided at two visitor areas, a fish hatchery, and
 ### Fish & Wildlife
 
 Multiple fish ladders provide a passage route for upstream-migrating fish, including adult salmon and steelhead, lamprey, sturgeon, shad, and others. Passage routes operated for downstream-migrating fish are the corner collector, spillway, juvenile bypass system, and sluiceway.  
- The Bonneville Hatchery on Tanner Creek—one of the oldest hatcheries in Oregon—is funded by the Corps and operated by the Oregon Dept of Fish & Wildlife to mitigate for the loss of spawning habitat that occurred when the reservoir was created. Surrounding lands are managed to provide 200 acres for waterfowl and non-game species habitat, and 682 acres for wildlife habitat at Steigerwald Lake near Camas, Washington.
+ The Bonneville Hatchery on Tanner Creek - one of the oldest hatcheries in Oregon - is funded by the Corps and operated by the Oregon Dept of Fish & Wildlife to mitigate for the loss of spawning habitat that occurred when the reservoir was created. Surrounding lands are managed to provide 200 acres for waterfowl and non-game species habitat, and 682 acres for wildlife habitat at Steigerwald Lake near Camas, Washington.
 
   
 [Bonneville Dam](https://www.nwd.usace.army.mil/media/fact-sheets/tag/16124/bonneville-dam/) 

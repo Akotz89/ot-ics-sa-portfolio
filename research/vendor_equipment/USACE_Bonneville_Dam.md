@@ -211,7 +211,7 @@ https://www.nwd-wc.usace.army.mil/nwp/teacup/rogue/)
 [Email us about Willow Creek](mailto:cenwp-pa@usace.army.mil?subject=Contact%20regarding%20the%20Willow%20Creek%20Dam)
 
 The project office is about 30 miles from Medford, Ore., at William L. Jess Dam at Lost Creek Lake.  
- Office hours are 7 a.m. – 4 p.m., Mon. - Fri.  
+ Office hours are 7 a.m. - 4 p.m., Mon. - Fri.  
  Phone: 541-878-2255
 
 [Email the Rogue River Basin Project](mailto:cenwp-pa@usace.army.mil?subject=Public%20web%20contact%20re:%20Rogue%20River%20Project) 

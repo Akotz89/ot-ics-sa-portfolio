@@ -136,7 +136,7 @@ Nearly 17,000 acres of public lands surrounding Lake Wallula are utilized for re
 
 ### Fish & Wildlife
 
-McNary Dam has two fish ladders—one on each shore—to provide a passage route for upstream-migrating fish, including adult salmon and steelhead, lamprey, sturgeon, shad, and others. Passage routes operated for downstream-migrating fish are the spillway, two spillway weirs, and a juvenile bypass system.  
+McNary Dam has two fish ladders - one on each shore - to provide a passage route for upstream-migrating fish, including adult salmon and steelhead, lamprey, sturgeon, shad, and others. Passage routes operated for downstream-migrating fish are the spillway, two spillway weirs, and a juvenile bypass system.  
  The McNary National Wildlife Refuge is owned and managed by the U.S. Fish & Wildlife Service as part of the larger Mid-Columbia River Refuge Complex.
 
   

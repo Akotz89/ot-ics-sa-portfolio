@@ -1,4 +1,4 @@
-# OT/ICS Pre-Sales Solution Architect — Work Product Portfolio
+# OT/ICS Pre-Sales Solution Architect  -  Work Product Portfolio
 
 Realistic, fact-checked SA work products for the OT/ICS cybersecurity domain, built around a **USACE Columbia River Hydropower** federal engagement scenario.
 
@@ -25,22 +25,22 @@ Realistic, fact-checked SA work products for the OT/ICS cybersecurity domain, bu
 
 ## The Scenario
 
-**Customer:** U.S. Army Corps of Engineers — Northwestern Division  
+**Customer:** U.S. Army Corps of Engineers  -  Northwestern Division  
 **Sites:** Bonneville, The Dalles, John Day, McNary dams (Columbia River, OR/WA)  
 **Control Systems:** GE Mark VIe · Emerson Ovation DCS · Allen-Bradley ControlLogix · Siemens S7-400  
 **Threat Actors:** VOLTZITE · CHERNOVITE · ELECTRUM · SYLVANITE  
-**Procurement:** NASA SEWP VI via Carahsoft · ~$780K FFP  
+**Procurement:** NASA SEWP V via Carahsoft · ~$780K FFP  
 
 All infrastructure data is fact-checked against USACE, BPA, and EIA sources. All stakeholders, findings, and engagement details are fictional.
 
 ## What This Demonstrates
 
-Each document includes **interactive tooltips** — hover any dotted-underlined term for an explanation of what it means and why it matters. The portfolio covers the full SA sales cycle from initial discovery through technical win, showing:
+Each document includes **interactive tooltips**  -  hover any dotted-underlined term for an explanation of what it means and why it matters. The portfolio covers the full SA sales cycle from initial discovery through technical win, showing:
 
 - **Technical depth:** OT protocol knowledge (GE SRTP/EGD, S7comm, EtherNet/IP), Purdue Model architecture, and federal compliance frameworks
 - **Sales methodology:** MEDDPICC qualification, persona-specific messaging, objection handling
-- **Federal acumen:** SEWP VI procurement, FedRAMP/IL5 compliance, DISA STIG awareness, ATO process
+- **Federal acumen:** SEWP V procurement, FedRAMP/IL5 compliance, DISA STIG awareness, ATO process
 
 ---
 
-*Exercise scenario — not a real engagement. All entities, names, and findings are fictional.*
+*Exercise scenario  -  not a real engagement. All entities, names, and findings are fictional.*

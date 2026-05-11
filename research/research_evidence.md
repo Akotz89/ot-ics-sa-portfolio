@@ -1,4 +1,4 @@
-# USACE SA Portfolio — Research Evidence Index
+# USACE SA Portfolio  -  Research Evidence Index
 
 > Compiled: 2026-05-10 | SA: Aaron Kotz
 > Purpose: Defensible source citations for every major technical claim in the 7-doc portfolio.
@@ -8,7 +8,7 @@
 
 ## Federal Advisories & Directives
 
-### 1. CISA Advisory AA24-038A — Volt Typhoon
+### 1. CISA Advisory AA24-038A  -  Volt Typhoon
 | Field | Value |
 |-------|-------|
 | Published | February 7, 2024 |
@@ -25,7 +25,7 @@
 
 ---
 
-### 2. NIST SP 800-82 Rev 3 — OT Security Guide
+### 2. NIST SP 800-82 Rev 3  -  OT Security Guide
 | Field | Value |
 |-------|-------|
 | Published | September 2023 |
@@ -40,7 +40,7 @@
 
 ---
 
-### 3. CISA BOD 23-01 — Asset Visibility
+### 3. CISA BOD 23-01  -  Asset Visibility
 | Field | Value |
 |-------|-------|
 | Issued | October 3, 2022 |
@@ -55,7 +55,7 @@
 
 ---
 
-### 4. CIRCIA — Cyber Incident Reporting (2022)
+### 4. CIRCIA  -  Cyber Incident Reporting (2022)
 | Field | Value |
 |-------|-------|
 | Enacted | 2022 |
@@ -66,11 +66,11 @@
 **Key claims verified:**
 - 72-hour reporting for covered cyber incidents ✅
 - 24-hour reporting for ransom payments ✅
-- ⚠️ Final rule still in development (NPRM April 2024) — note in interviews
+- ⚠️ Final rule still in development (NPRM April 2024)  -  note in interviews
 
 ---
 
-### 5. Executive Order 14028 — Cybersecurity
+### 5. Executive Order 14028  -  Cybersecurity
 | Field | Value |
 |-------|-------|
 | Signed | May 12, 2021 |
@@ -86,7 +86,7 @@
 
 ## Contract & Procurement
 
-### 6. NASA SEWP VI
+### 6. NASA SEWP V
 | Field | Value |
 |-------|-------|
 | URL | https://www.sewp.nasa.gov/ |
@@ -94,9 +94,9 @@
 | Used in | All docs (contract vehicle) |
 
 **Key claims verified:**
-- SEWP VI is successor to SEWP V ✅
+- SEWP V is successor to SEWP V ✅
 - Carahsoft is a SEWP contract holder ✅
-- ⚠️ SEWP V extended past Apr 30, 2026 through Sept 30, 2026 — portfolio may need update
+- ⚠️ SEWP V extended past Apr 30, 2026 through Sept 30, 2026  -  portfolio may need update
 
 ---
 
@@ -148,7 +148,7 @@
 
 ## Technology Verification
 
-### 10. Splunk Cloud — FedRAMP High + DoD IL5
+### 10. Splunk Cloud  -  FedRAMP High + DoD IL5
 | Field | Value |
 |-------|-------|
 | Source | splunk.com compliance page |
@@ -161,7 +161,7 @@
 
 ---
 
-### 11. GE CIMPLICITY — Standard HMI for Mark VIe
+### 11. GE CIMPLICITY  -  Standard HMI for Mark VIe
 | Field | Value |
 |-------|-------|
 | Sources | GE Vernova docs, control.com |
@@ -174,7 +174,7 @@
 
 ---
 
-### 12. HP ProCurve 2920 — SPAN Limitations
+### 12. HP ProCurve 2920  -  SPAN Limitations
 | Field | Value |
 |-------|-------|
 | Sources | arubanetworks.com, hpe.com support docs |
@@ -218,19 +218,19 @@
 ### 15. EP 1130-2-510
 - USACE engineering pamphlet governing hydropower operations
 - army.mil returns 403 (likely requires CAC)
-- Real document — referencing the EP number demonstrates domain knowledge
+- Real document  -  referencing the EP number demonstrates domain knowledge
 - Interview note: "Governed by EP 1130-2-510, not NERC CIP"
 
 ---
 
-## ✅ Corrections Applied (Red-Team Audit — 2026-05-10)
+## ✅ Corrections Applied (Red-Team Audit  -  2026-05-10)
 
 | Issue | Was | Corrected To | Files Changed | Source |
 |-------|-----|-------------|---------------|--------|
 | Bonneville MW | 1,080 MW / 20 units | **1,050 MW / 18 units** | scenario, architecture, poc-report, arb-brief | USACE NWD Fact Sheet (PH1:518+PH2:532) |
 | McNary first power | 1953 | **1954** | scenario (body + refs) | East Oregonian, USACE records |
 | NIST 800-82 date | June 2023 | **September 2023** | scenario, discovery | csrc.nist.gov |
-| VOLTZITE stage | Stage 1 (index.html) | **Stage 2 ICS** | index.html | Dragos 2026 YIR — elevated 2025 |
+| VOLTZITE stage | Stage 1 (index.html) | **Stage 2 ICS** | index.html | Dragos 2026 YIR  -  elevated 2025 |
 | Combined MW total | 6,033 MW | **6,003 MW** | architecture, arb-brief, rfp-response | Sum of corrected site figures |
 
 ## ✅ All Items Resolved
@@ -238,8 +238,8 @@
 | Issue | Status | Notes |
 |-------|--------|-------|
 | Segmentation stat | **VERIFIED** | 81% confirmed from Dragos 2026 YIR (covering 2025 data). Source: dragos.com/year-in-review |
-| SEWP V→VI transition | Acceptable | V extended through Sept 2026; portfolio uses SEWP VI which is correct forward-looking. |
-| EP 1130-2-510 | Acceptable | army.mil returns 403 (CAC-required). Real document — referencing the EP number demonstrates domain knowledge. |
+| SEWP V→VI transition | Acceptable | V extended through Sept 2026; portfolio uses SEWP V which is correct forward-looking. |
+| EP 1130-2-510 | Acceptable | army.mil returns 403 (CAC-required). Real document  -  referencing the EP number demonstrates domain knowledge. |
 
 ---
 
@@ -249,4 +249,4 @@
 - Released by DISA concurrent with Dragos Public Sector LLC launch (Oct 2024)
 - Available on public.cyber.mil (requires login/authentication)
 - Confirmed via press coverage (intelligencecommunitynews.com, executivebiz.com)
-- **Interview note:** "The Dragos Platform has a published DISA STIG on public.cyber.mil — this significantly accelerates the ATO process because the security configuration baseline is already documented and approved by DISA."
+- **Interview note:** "The Dragos Platform has a published DISA STIG on public.cyber.mil  -  this significantly accelerates the ATO process because the security configuration baseline is already documented and approved by DISA."

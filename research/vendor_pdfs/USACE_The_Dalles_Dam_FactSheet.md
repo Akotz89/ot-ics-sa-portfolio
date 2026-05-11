@@ -136,7 +136,7 @@ Popular recreational activities at The Dalles Dam and Lake Celilo include boatin
 
 ### Fish & Wildlife
 
-The Dalles Dam has two fish ladders—one on each shore—to provide a passage route for upstream-migrating fish, including adult salmon and steelhead, lamprey, sturgeon, shad, and others. Passage routes operated for downstream-migrating fish are the spillway and sluiceway.
+The Dalles Dam has two fish ladders - one on each shore - to provide a passage route for upstream-migrating fish, including adult salmon and steelhead, lamprey, sturgeon, shad, and others. Passage routes operated for downstream-migrating fish are the spillway and sluiceway.
 
   
 [The Dalles Dam](https://www.nwd.usace.army.mil/media/fact-sheets/tag/4482/the-dalles-dam/) 

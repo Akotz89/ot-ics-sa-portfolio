@@ -33,7 +33,7 @@
 | NASA_SEWP_Contract_Info.pdf | sewp.nasa.gov/contract_info.shtml | 18 KB | Web capture |
 | BPA_FCRPS_Brochure.pdf | bpa.gov/-/media/Aep/power/hydropower-data-studies/fcrps_brochure_17x11.pdf | 2.0 MB | Official PDF |
 
-## Vendor Equipment — ICS/OT
+## Vendor Equipment  -  ICS/OT
 
 | File | Source URL | Size | Type |
 |------|-----------|------|------|
@@ -58,9 +58,9 @@
 
 | Source | Reason |
 |--------|--------|
-| USACE NWD dam fact sheets (Bonneville, Dalles, John Day, McNary) | army.mil returns 403 — Akamai/CAC gated |
-| USACE McNary Dam Fact Sheet PDF | nww.usace.army.mil returns 403 — access denied |
-| Dragos DISA STIG | public.cyber.mil — requires authentication |
+| USACE NWD dam fact sheets (Bonneville, Dalles, John Day, McNary) | army.mil returns 403  -  Akamai/CAC gated |
+| USACE McNary Dam Fact Sheet PDF | nww.usace.army.mil returns 403  -  access denied |
+| Dragos DISA STIG | public.cyber.mil  -  requires authentication |
 | USACE EP 1130-2-510 | CAC-required USACE engineering pamphlet |
 | CISA BOD 23-01 official PDF | Now web-only on cisa.gov (no downloadable PDF) |
 | Rockwell FactoryTalk View SE product page | Bot blocking by Rockwell |

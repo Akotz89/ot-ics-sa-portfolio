@@ -19,6 +19,8 @@ export type Direction = 'none' | 'one-way' | 'bidirectional' | 'passive'
 export type RouteClass = 'enterprise' | 'service' | 'trunk' | 'protocol-bus' | 'span-feed' | 'metadata-handoff'
 export type DirectionCue = 'none' | 'forward' | 'reverse' | 'both' | 'passive'
 export type PortName = 'left' | 'right' | 'top' | 'bottom' | 'uplink' | 'downlink' | 'service' | 'span' | 'metadata' | 'fieldbus'
+export type RouteLabelPolicy = 'none' | 'first-visible' | 'always'
+export type LanePreference = 'direct' | 'north' | 'south' | 'east' | 'west' | 'bus' | 'external'
 
 export interface ZoneModel {
   id: ZoneKind
@@ -55,8 +57,13 @@ export interface LinkModel {
   targetAnchor?: Anchor
   routeClass?: RouteClass
   directionCue?: DirectionCue
+  sourcePort?: PortName
+  targetPort?: PortName
   preferredSourcePort?: PortName
   preferredTargetPort?: PortName
+  labelPolicy?: RouteLabelPolicy
+  lanePreference?: LanePreference
+  customerMeaning?: string
 }
 
 export interface FlowModel {
@@ -104,27 +111,27 @@ export const entities: EntityModel[] = [
 ]
 
 export const links: LinkModel[] = [
-  { id: 'ad-firewall', source: 'ad', target: 'firewall', kind: 'enterprise', direction: 'one-way', sourceAnchor: 'right', targetAnchor: 'left' },
-  { id: 'gateway-jump', source: 'gateway', target: 'jump', kind: 'enterprise', direction: 'one-way', sourceAnchor: 'right', targetAnchor: 'left' },
-  { id: 'firewall-core', source: 'firewall', target: 'core', kind: 'enterprise', direction: 'bidirectional', sourceAnchor: 'right', targetAnchor: 'left' },
-  { id: 'jump-core', source: 'jump', target: 'core', kind: 'enterprise', direction: 'one-way', sourceAnchor: 'right', targetAnchor: 'left' },
-  { id: 'core-dist', source: 'core', target: 'dist', kind: 'trunk', direction: 'bidirectional', label: 'trunk', sourceAnchor: 'bottom', targetAnchor: 'top' },
-  { id: 'core-historian', source: 'core', target: 'historian', kind: 'service', direction: 'bidirectional', label: 'OPC-UA / historian reads', sourceAnchor: 'right', targetAnchor: 'left' },
-  { id: 'core-patch', source: 'core', target: 'patch', kind: 'service', direction: 'bidirectional', sourceAnchor: 'right', targetAnchor: 'left' },
-  { id: 'core-engineering', source: 'core', target: 'engineering', kind: 'service', direction: 'bidirectional', label: 'engineering access', sourceAnchor: 'bottom', targetAnchor: 'left' },
-  { id: 'dist-scada', source: 'dist', target: 'scada', kind: 'service', direction: 'bidirectional', sourceAnchor: 'right', targetAnchor: 'left' },
-  { id: 'dist-hmi', source: 'dist', target: 'hmi', kind: 'service', direction: 'none', sourceAnchor: 'bottom', targetAnchor: 'top' },
-  { id: 'scada-ge', source: 'scada', target: 'ge', kind: 'protocol', direction: 'bidirectional', label: 'SRTP / EGD', sourceAnchor: 'bottom', targetAnchor: 'right' },
-  { id: 'scada-controllogix', source: 'scada', target: 'controllogix', kind: 'protocol', direction: 'bidirectional', label: 'EtherNet/IP', sourceAnchor: 'bottom', targetAnchor: 'top' },
-  { id: 'hmi-sel', source: 'hmi', target: 'sel', kind: 'protocol', direction: 'bidirectional', sourceAnchor: 'bottom', targetAnchor: 'top' },
-  { id: 'hmi-s7400', source: 'hmi', target: 's7400', kind: 'protocol', direction: 'bidirectional', label: 'S7comm', sourceAnchor: 'bottom', targetAnchor: 'top' },
-  { id: 'historian-mirror', source: 'historian', target: 'mirror', kind: 'service', direction: 'one-way', sourceAnchor: 'bottom', targetAnchor: 'top' },
-  { id: 'firewall-sensor-boundary', source: 'firewall', target: 'sensor-boundary', kind: 'span', direction: 'passive', label: 'SPAN only', sourceAnchor: 'bottom', targetAnchor: 'top' },
-  { id: 'dist-sensor-control', source: 'dist', target: 'sensor-control', kind: 'span', direction: 'passive', sourceAnchor: 'left', targetAnchor: 'right' },
-  { id: 'sensor-boundary-sitestore', source: 'sensor-boundary', target: 'sitestore', kind: 'span', direction: 'one-way', sourceAnchor: 'bottom', targetAnchor: 'top' },
-  { id: 'sensor-control-sitestore', source: 'sensor-control', target: 'sitestore', kind: 'span', direction: 'one-way', sourceAnchor: 'bottom', targetAnchor: 'top' },
-  { id: 'sitestore-centralstore', source: 'sitestore', target: 'centralstore', kind: 'metadata', direction: 'one-way', label: 'metadata + detections', sourceAnchor: 'left', targetAnchor: 'right' },
-  { id: 'tickets-centralstore', source: 'tickets', target: 'centralstore', kind: 'metadata', direction: 'one-way', sourceAnchor: 'left', targetAnchor: 'left' },
+  { id: 'ad-firewall', source: 'ad', target: 'firewall', kind: 'enterprise', direction: 'one-way', sourceAnchor: 'right', targetAnchor: 'left', sourcePort: 'right', targetPort: 'left', routeClass: 'enterprise', directionCue: 'forward', labelPolicy: 'none', lanePreference: 'direct', customerMeaning: 'identity service reaches the boundary only through an allowed path' },
+  { id: 'gateway-jump', source: 'gateway', target: 'jump', kind: 'enterprise', direction: 'one-way', sourceAnchor: 'right', targetAnchor: 'left', sourcePort: 'right', targetPort: 'left', routeClass: 'enterprise', directionCue: 'forward', labelPolicy: 'none', lanePreference: 'direct', customerMeaning: 'approved remote access lands on the jump host, not directly inside OT' },
+  { id: 'firewall-core', source: 'firewall', target: 'core', kind: 'enterprise', direction: 'bidirectional', sourceAnchor: 'right', targetAnchor: 'left', sourcePort: 'right', targetPort: 'left', routeClass: 'enterprise', directionCue: 'none', labelPolicy: 'none', lanePreference: 'direct', customerMeaning: 'controlled firewall path into plant operations' },
+  { id: 'jump-core', source: 'jump', target: 'core', kind: 'enterprise', direction: 'one-way', sourceAnchor: 'right', targetAnchor: 'left', sourcePort: 'right', targetPort: 'left', routeClass: 'enterprise', directionCue: 'forward', labelPolicy: 'none', lanePreference: 'direct', customerMeaning: 'operator-approved jump access into OT operations' },
+  { id: 'core-dist', source: 'core', target: 'dist', kind: 'trunk', direction: 'bidirectional', label: 'trunk', sourceAnchor: 'bottom', targetAnchor: 'top', sourcePort: 'downlink', targetPort: 'uplink', routeClass: 'trunk', directionCue: 'none', labelPolicy: 'first-visible', lanePreference: 'direct', customerMeaning: 'operations-to-control trunk path' },
+  { id: 'core-historian', source: 'core', target: 'historian', kind: 'service', direction: 'bidirectional', label: 'historian reads', sourceAnchor: 'right', targetAnchor: 'left', sourcePort: 'service', targetPort: 'left', routeClass: 'service', directionCue: 'none', labelPolicy: 'none', lanePreference: 'direct', customerMeaning: 'historian access supported from operations network' },
+  { id: 'core-patch', source: 'core', target: 'patch', kind: 'service', direction: 'bidirectional', sourceAnchor: 'right', targetAnchor: 'left', sourcePort: 'service', targetPort: 'left', routeClass: 'service', directionCue: 'none', labelPolicy: 'none', lanePreference: 'north', customerMeaning: 'OT services dependency such as patching and NTP' },
+  { id: 'core-engineering', source: 'core', target: 'engineering', kind: 'service', direction: 'bidirectional', label: 'engineering access', sourceAnchor: 'bottom', targetAnchor: 'left', sourcePort: 'downlink', targetPort: 'left', routeClass: 'service', directionCue: 'none', labelPolicy: 'none', lanePreference: 'south', customerMeaning: 'engineering workstation access to controller tools' },
+  { id: 'dist-scada', source: 'dist', target: 'scada', kind: 'service', direction: 'bidirectional', sourceAnchor: 'right', targetAnchor: 'left', sourcePort: 'service', targetPort: 'left', routeClass: 'service', directionCue: 'none', labelPolicy: 'none', lanePreference: 'direct', customerMeaning: 'SCADA operator traffic through control distribution' },
+  { id: 'dist-hmi', source: 'dist', target: 'hmi', kind: 'service', direction: 'none', sourceAnchor: 'right', targetAnchor: 'left', sourcePort: 'service', targetPort: 'left', routeClass: 'service', directionCue: 'none', labelPolicy: 'none', lanePreference: 'direct', customerMeaning: 'HMI view/alarm path on control network' },
+  { id: 'scada-ge', source: 'scada', target: 'ge', kind: 'protocol', direction: 'bidirectional', label: 'SRTP / EGD', sourceAnchor: 'bottom', targetAnchor: 'top', sourcePort: 'fieldbus', targetPort: 'uplink', routeClass: 'protocol-bus', directionCue: 'none', labelPolicy: 'always', lanePreference: 'bus', customerMeaning: 'controller protocol conversation to GE equipment' },
+  { id: 'scada-controllogix', source: 'scada', target: 'controllogix', kind: 'protocol', direction: 'bidirectional', label: 'EtherNet/IP', sourceAnchor: 'bottom', targetAnchor: 'top', sourcePort: 'fieldbus', targetPort: 'uplink', routeClass: 'protocol-bus', directionCue: 'none', labelPolicy: 'always', lanePreference: 'bus', customerMeaning: 'controller protocol conversation to ControlLogix equipment' },
+  { id: 'hmi-sel', source: 'hmi', target: 'sel', kind: 'protocol', direction: 'bidirectional', sourceAnchor: 'bottom', targetAnchor: 'top', sourcePort: 'fieldbus', targetPort: 'uplink', routeClass: 'protocol-bus', directionCue: 'none', labelPolicy: 'none', lanePreference: 'bus', customerMeaning: 'HMI process view path to SEL RTU' },
+  { id: 'hmi-s7400', source: 'hmi', target: 's7400', kind: 'protocol', direction: 'bidirectional', label: 'S7comm', sourceAnchor: 'bottom', targetAnchor: 'top', sourcePort: 'fieldbus', targetPort: 'uplink', routeClass: 'protocol-bus', directionCue: 'none', labelPolicy: 'always', lanePreference: 'bus', customerMeaning: 'HMI process view path to Siemens controller' },
+  { id: 'historian-mirror', source: 'historian', target: 'mirror', kind: 'service', direction: 'one-way', sourceAnchor: 'bottom', targetAnchor: 'top', sourcePort: 'downlink', targetPort: 'uplink', routeClass: 'service', directionCue: 'none', labelPolicy: 'none', lanePreference: 'direct', customerMeaning: 'local history cache dependency' },
+  { id: 'firewall-sensor-boundary', source: 'firewall', target: 'sensor-boundary', kind: 'span', direction: 'passive', label: 'boundary SPAN', sourceAnchor: 'bottom', targetAnchor: 'top', sourcePort: 'downlink', targetPort: 'uplink', routeClass: 'span-feed', directionCue: 'passive', labelPolicy: 'always', lanePreference: 'external', customerMeaning: 'passive north/south boundary traffic collection' },
+  { id: 'dist-sensor-control', source: 'dist', target: 'sensor-control', kind: 'span', direction: 'passive', label: 'control trunk SPAN', sourceAnchor: 'left', targetAnchor: 'right', sourcePort: 'left', targetPort: 'span', routeClass: 'span-feed', directionCue: 'passive', labelPolicy: 'always', lanePreference: 'external', customerMeaning: 'passive control trunk collection' },
+  { id: 'sensor-boundary-sitestore', source: 'sensor-boundary', target: 'sitestore', kind: 'span', direction: 'one-way', sourceAnchor: 'bottom', targetAnchor: 'top', sourcePort: 'downlink', targetPort: 'uplink', routeClass: 'span-feed', directionCue: 'forward', labelPolicy: 'none', lanePreference: 'bus', customerMeaning: 'boundary sensor feed into local analysis' },
+  { id: 'sensor-control-sitestore', source: 'sensor-control', target: 'sitestore', kind: 'span', direction: 'one-way', sourceAnchor: 'bottom', targetAnchor: 'top', sourcePort: 'downlink', targetPort: 'uplink', routeClass: 'span-feed', directionCue: 'forward', labelPolicy: 'none', lanePreference: 'bus', customerMeaning: 'control sensor feed into local analysis' },
+  { id: 'sitestore-centralstore', source: 'sitestore', target: 'centralstore', kind: 'metadata', direction: 'one-way', label: 'metadata + detections', sourceAnchor: 'left', targetAnchor: 'right', sourcePort: 'metadata', targetPort: 'right', routeClass: 'metadata-handoff', directionCue: 'forward', labelPolicy: 'always', lanePreference: 'direct', customerMeaning: 'local detections and metadata roll up to CentralStore' },
+  { id: 'tickets-centralstore', source: 'centralstore', target: 'tickets', kind: 'metadata', direction: 'one-way', label: 'SOC handoff', sourceAnchor: 'left', targetAnchor: 'left', sourcePort: 'metadata', targetPort: 'left', routeClass: 'metadata-handoff', directionCue: 'forward', labelPolicy: 'always', lanePreference: 'external', customerMeaning: 'detections hand off into the customer ticket process' },
 ]
 
 export const flows: FlowModel[] = [

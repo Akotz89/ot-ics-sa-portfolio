@@ -804,7 +804,7 @@ Yannick Hubert, National Library of France (BNF), Deputy
 Manager of the Technical Facilities
 
 ### Discover the Latest in CIMPLICITY Enterprise SCADA
-Explore the latest capabilities in CIMPLICITY HMI/SCADA and how they can help streamline operations, reduce IT overhead, and support smarter, more connected industrial environments. In this on-demand product update webinar, GE Vernova experts walk through new features, enhancements, and practical use cases—designed to help you modernize your automation strategy and scale with confidence.Whether you’re in operations, engineering, or IT, this session is packed with insights on how CIMPLICITY continues to evolve to meet the demands of modern manufacturing. Watch the webinar to see how CIMPLICITY is helping customers build scalable, secure, and intelligent industrial systems.
+Explore the latest capabilities in CIMPLICITY HMI/SCADA and how they can help streamline operations, reduce IT overhead, and support smarter, more connected industrial environments. In this on-demand product update webinar, GE Vernova experts walk through new features, enhancements, and practical use cases - designed to help you modernize your automation strategy and scale with confidence.Whether you’re in operations, engineering, or IT, this session is packed with insights on how CIMPLICITY continues to evolve to meet the demands of modern manufacturing. Watch the webinar to see how CIMPLICITY is helping customers build scalable, secure, and intelligent industrial systems.
 
 ###### [Watch the Webinar](https://www.gevernova.com/software/resources/webinar/proficy-active-update-cimplicity)
 [Watch the Webinar](https://www.gevernova.com/software/resources/webinar/proficy-active-update-cimplicity)
@@ -827,7 +827,7 @@ Shanghai Automotive Industry Corporation (SAIC) and GM Improve Uptime & Producti
 [View All Customer Stories](https://www.gevernova.com/software/customer-stories)
 
 ### Free Trial Offer & Demos
-Want to see how CIMPLICITY can help you streamline operations, improve visibility, and scale across your enterprise? Start by watching our on-demand demo to explore the latest in HMI/SCADA innovation—from modern HTML5-based visualization to advanced alarm management and secure, centralized control.Then try it for yourself with a free CIMPLICITY trial. Access a full-featured software environment, complete with sample systems and bundled tools like Proficy Historian and Proficy Operations Hub. Each trial includes a renewable 2-hour runtime and a single installer for easy setup.
+Want to see how CIMPLICITY can help you streamline operations, improve visibility, and scale across your enterprise? Start by watching our on-demand demo to explore the latest in HMI/SCADA innovation - from modern HTML5-based visualization to advanced alarm management and secure, centralized control.Then try it for yourself with a free CIMPLICITY trial. Access a full-featured software environment, complete with sample systems and bundled tools like Proficy Historian and Proficy Operations Hub. Each trial includes a renewable 2-hour runtime and a single installer for easy setup.
 
 ###### [Watch the Demo](https://www.gevernova.com/software/resources/video/proficy-hmi-scada-cimplicity-demos)
 [Watch the Demo](https://www.gevernova.com/software/resources/video/proficy-hmi-scada-cimplicity-demos)

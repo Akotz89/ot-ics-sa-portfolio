@@ -129,7 +129,7 @@ The Ovation Distributed Control System is purposely designed for the power gener
 [Advanced Control & Analytics​](https://www.emerson.com/en-us/automation/control-and-safety-systems/distributed-control-systems-dcs/ovation-distributed-control-system#advanced-control)
 [Featured Technologies​](https://www.emerson.com/en-us/automation/control-and-safety-systems/distributed-control-systems-dcs/ovation-distributed-control-system#Tech)
 
-[Distributed Control Systems for Power Generation Global Market Research 2024–2029](https://www.arcweb.com/market-analysis/distributed-control-systems-power-generation-industry)
+[Distributed Control Systems for Power Generation Global Market Research 2024-2029](https://www.arcweb.com/market-analysis/distributed-control-systems-power-generation-industry)
 
 ## Ovation Automation Platform 4.0
 Purposeful, software-defined automation drives innovation for smarter, more efficient power & water industry operations.
