@@ -1,0 +1,27 @@
+{
+  "name": "06_sa_document",
+  "version": "1.0.0",
+  "description": "Realistic, fact-checked SA work products for the OT/ICS cybersecurity domain, built around a **USACE Columbia River Hydropower** federal engagement scenario.",
+  "main": "nav.js",
+  "scripts": {
+    "build:whiteboard": "vite build",
+    "typecheck:whiteboard": "tsc --noEmit",
+    "test:whiteboard": "npm run typecheck:whiteboard && npm run build:whiteboard"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "tldraw": "^5.0.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.11"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "playwright": "^1.59.1"
+  }
+}

@@ -1,4 +1,5 @@
-.wb-stage{flex:1;min-height:0;padding:4px 8px;background:#edf2f6;display:flex;align-items:flex-start;justify-content:center;overflow:hidden}
+.wb-stage{flex:1;min-height:0;padding:6px;background:#edf2f6;display:flex;align-items:stretch;justify-content:stretch;overflow:hidden}
+.whiteboard-root{flex:1;min-width:0;min-height:0}
 .diagram-frame{--board-scale:1;--board-width:1320px;--board-height:720px;width:calc(var(--board-width) * var(--board-scale));height:calc(var(--board-height) * var(--board-scale));flex:0 0 auto;overflow:hidden}
 .diagram{position:relative;width:var(--board-width);height:var(--board-height);min-width:var(--board-width);min-height:var(--board-height);background:#fff;border:1px solid #cbd8e5;border-radius:10px;box-shadow:0 10px 24px rgba(20,42,70,.08);overflow:hidden;transform:scale(var(--board-scale));transform-origin:top left}
 .flow-layer,.enclave-layer,.node-layer,.flow-label-layer,.annotation-layer{position:absolute;left:0;top:0;right:auto;bottom:auto;width:var(--board-width)!important;height:var(--board-height)!important;max-width:none;max-height:none}

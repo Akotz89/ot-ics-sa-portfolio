@@ -114,10 +114,10 @@
       <strong>Commissioned:</strong> 1954 (first power); expanded 1957<br>
       <strong>Capacity:</strong> 980 MW (14 generating units)<br>
       <strong>Control System:</strong> <span class="tip" data-tip="Siemens S7-400 is a legacy PLC platform, now superseded by the S7-1500 series. Still widely deployed in critical infrastructure due to long equipment lifecycles. Communicates via S7comm protocol, which Dragos Platform can parse passively.">Siemens S7-400 PLCs</span><br>
-      <strong>HMI:</strong> <span class="tip" data-tip="Siemens WinCC (Windows Control Center) is Siemens' SCADA/HMI platform. Version 7.5 is a legacy release. Communicates with S7-400 PLCs via S7comm protocol. Runs on Windows — subject to standard Windows patching and STIG hardening requirements.">WinCC 7.5</span> (4 stations)<br>
+      <strong>HMI:</strong> <span class="tip" data-tip="Siemens WinCC (Windows Control Center) is Siemens' SCADA/HMI platform. Version 7.5 is a legacy release. Communicates with S7-400 PLCs via S7comm protocol. Runs on Windows, subject to standard Windows patching and STIG hardening requirements.">WinCC 7.5</span> (4 stations)<br>
       <strong>Historian:</strong> None (manual logs only)<br>
       <strong>Safety:</strong> None identified<br>
-      <strong>Network:</strong> <span class="tip" data-tip="Unmanaged switches have no SPAN/mirror capability and no CLI for configuration. Network visibility requires installing a passive network TAP (Test Access Point) — a hardware device that copies traffic without introducing any active elements to the network.">Unmanaged Moxa switches</span> (no SPAN — TAP required)<br>
+      <strong>Network:</strong> <span class="tip" data-tip="Unmanaged switches have no SPAN/mirror capability and no CLI for configuration. Network visibility requires installing a passive network TAP (Test Access Point), a hardware device that copies traffic without introducing any active elements to the network.">Unmanaged Moxa switches</span> (no SPAN; TAP required)<br>
       <strong>Risk:</strong> Least visibility, most legacy infrastructure
     </div>
   </div>
@@ -131,31 +131,31 @@
 <div class="persona-card">
   <div class="name">COL James Harding</div>
   <div class="title">District Commander, Portland District</div>
-  <div class="detail">Executive sponsor. Army O-6. Cares about mission readiness and compliance. Won't read a 40-page report — needs the 1-page executive summary. Controls the budget approval. You brief him in 5 minutes or less.</div>
+  <div class="detail">Executive sponsor. Army O-6. Focused on mission readiness and compliance. Expects a 1-page executive summary, not a 40-page report. Controls budget approval.</div>
 </div>
 
 <div class="persona-card">
   <div class="name">Dr. Rebecca Torres</div>
   <div class="title">Chief, Cybersecurity Division (NWD)</div>
-  <div class="detail">Your primary technical champion. PhD in CS, former NSA. Understands IT security deeply but openly admits OT is new territory. She's the one who went to S4, heard Rob Lee, and initiated this engagement. She'll evaluate technical depth. She's also under pressure from the <span class="tip" data-tip="The DoD Chief Information Officer issued a January 2026 memo requiring all DoD components (including USACE Civil Works) to conduct OT cybersecurity assessments and implement continuous monitoring by end of FY2026 (September 30, 2026). This is the compliance deadline driving the deal urgency.">DoD CIO mandate</span> — needs a win by Sep 30.</div>
+  <div class="detail">Your primary technical champion. PhD in CS, former NSA. Understands IT security deeply but openly admits OT is new territory. Attended S4, heard Rob Lee, and initiated this engagement. Evaluates technical depth. Under pressure from the <span class="tip" data-tip="The DoD Chief Information Officer issued a January 2026 memo requiring all DoD components (including USACE Civil Works) to conduct OT cybersecurity assessments and implement continuous monitoring by end of FY2026 (September 30, 2026). This is the compliance deadline driving the deal urgency.">DoD CIO mandate</span> and needs a win by Sep 30.</div>
 </div>
 
 <div class="persona-card">
   <div class="name">Mike Osterman</div>
   <div class="title">SCADA Program Manager, Hydropower</div>
-  <div class="detail">30-year USACE veteran. Knows every turbine personally. Deeply skeptical of "IT security people touching his network." His nightmare: a security tool causes a turbine trip and shuts down power generation on the Columbia River. You win Mike, you win the deal. You lose Mike, nothing else matters.</div>
+  <div class="detail">30-year USACE veteran. Knows the turbines, the protocols, and the failure modes. Deeply skeptical of IT security tools in his control network. His concern: a security product causes a turbine trip and shuts down generation on the Columbia River. His endorsement is the single biggest factor in whether this engagement moves forward.</div>
 </div>
 
 <div class="persona-card">
   <div class="name">Jennifer Walsh</div>
   <div class="title">Contracting Officer, USACE Portland District</div>
-  <div class="detail">Controls the procurement process. Needs clean <span class="tip" data-tip="Statement of Work — the formal document defining the scope of work, deliverables, timelines, and acceptance criteria for a federal contract. The SA contributes the technical scope; the AE and contracting team finalize the commercial terms.">SOW</span>, compliant <span class="tip" data-tip="A contract vehicle is a pre-established agreement (like a GWAC, BPA, or IDIQ) that federal agencies use to purchase products and services. Using an existing vehicle (e.g., SEWP VI) avoids the 6-12 month timeline of a new standalone procurement.">contract vehicle</span> (<span class="tip" data-tip="NASA SEWP (Solutions for Enterprise-Wide Procurement) is a Government-Wide Acquisition Contract. Any federal agency can use it. SEWP V expired April 30, 2026; SEWP VI is the active successor. Pre-competed vehicle — enables task-order issuance without a new competition.">SEWP VI</span> — successor to SEWP V as of May 2026), and justified <span class="tip" data-tip="A sole-source procurement bypasses full and open competition. Requires a written justification (J&amp;A — Justification and Approval) demonstrating that only one vendor can meet the requirement. Using a pre-competed GWAC like SEWP VI avoids sole-source justification entirely because competition was satisfied at the vehicle level.">sole-source or competitive</span> documentation. She doesn't care about your technology — she cares about <span class="tip" data-tip="Federal Acquisition Regulation — the governing framework for all federal procurement actions. Using a pre-competed GWAC like SEWP VI simplifies FAR compliance because competition requirements were satisfied at the contract-vehicle level.">FAR compliance</span> and obligation deadlines.</div>
+  <div class="detail">Controls the procurement process. Needs clean <span class="tip" data-tip="Statement of Work: the formal document defining the scope of work, deliverables, timelines, and acceptance criteria for a federal contract. The SA contributes the technical scope; the AE and contracting team finalize the commercial terms.">SOW</span>, compliant <span class="tip" data-tip="A contract vehicle is a pre-established agreement (like a GWAC, BPA, or IDIQ) that federal agencies use to purchase products and services. Using an existing vehicle (e.g., SEWP) avoids the 6-12 month timeline of a new standalone procurement.">contract vehicle</span> (<span class="tip" data-tip="NASA SEWP (Solutions for Enterprise-Wide Procurement) is a Government-Wide Acquisition Contract. Any federal agency can use it. SEWP V ordering period has been extended through at least September 30, 2026, while SEWP VI award decisions are pending due to bid protests. Pre-competed vehicle: enables task-order issuance without a new competition.">SEWP V/VI</span>), and justified <span class="tip" data-tip="A sole-source procurement bypasses full and open competition. Requires a written justification (J&amp;A: Justification and Approval) demonstrating that only one vendor can meet the requirement. Using a pre-competed GWAC like SEWP avoids sole-source justification entirely because competition was satisfied at the vehicle level.">sole-source or competitive</span> documentation. She does not evaluate technology. She evaluates <span class="tip" data-tip="Federal Acquisition Regulation: the governing framework for all federal procurement actions. Using a pre-competed GWAC like SEWP simplifies FAR compliance because competition requirements were satisfied at the contract-vehicle level.">FAR compliance</span> and obligation deadlines.</div>
 </div>
 
 <div class="persona-card">
   <div class="name">Brian Knox</div>
   <div class="title">OT Network Administrator, <span class="tip" data-tip="GS-12 is a mid-career federal civilian pay grade in the General Schedule system. Typical for a senior technician or first-line supervisor with 5-10 years of specialized experience. GS pay scale ranges from GS-1 (entry) to GS-15 (senior executive).">GS-12</span></div>
-  <div class="detail">Your hands-on evaluator. Former Air Force <span class="tip" data-tip="3D1X2 (Cyber Transport Systems) is the USAF specialty code for network infrastructure and cybersecurity. Redesignated to 1D7X1A under the 2024 AFSC restructure. Personnel manage, monitor, and defend AF network infrastructure.">3D1X2</span> (Cyber Transport Systems), 8 years active duty before transitioning to USACE civilian service. Manages the switches, configures the SPAN ports, will physically rack your sensors. If the PoC goes well, it's because Brian made it work. Treat him as a peer — he's the one who told you "we tried Tenable on the OT network once — it crashed two HMIs."</div>
+  <div class="detail">Hands-on evaluator. Former Air Force <span class="tip" data-tip="3D1X2 (Cyber Transport Systems) is the USAF specialty code for network infrastructure and cybersecurity. Redesignated to 1D7X1A under the 2024 AFSC restructure. Personnel manage, monitor, and defend AF network infrastructure.">3D1X2</span> (Cyber Transport Systems), 8 years active duty before transitioning to USACE civilian service. Manages the switches, configures SPAN ports, and will physically rack deployed sensors. Brian is the source of the Tenable incident: "we tried Tenable on the OT network once and it crashed two HMIs."</div>
 </div>
 
 <h3>Dragos Side</h3>
@@ -163,13 +163,13 @@
 <div class="persona-card">
   <div class="name">Aaron Kotz</div>
   <div class="title">Senior Solutions Architect (Federal)</div>
-  <div class="detail">You. Own the technical evaluation. Produce the discovery doc, architecture, demo, PoC, and RFP response. Partner with the AE on deal strategy. Your <span class="tip" data-tip="Top Secret security clearance — required for access to classified national security information. In federal OT sales, a TS clearance enables access to classified threat briefings, SCIF-based discussions, and builds immediate credibility with DoD stakeholders who value 'cleared and read-in' partners.">TS clearance</span> and DoD background give you credibility with COL Harding and Brian Knox that a civilian SA wouldn't have.</div>
+  <div class="detail">SA assigned to this engagement. Owns the technical evaluation: discovery doc, architecture, demo, PoC, and RFP response. Partners with the AE on deal strategy. <span class="tip" data-tip="Top Secret security clearance: required for access to classified national security information. In federal OT sales, a TS clearance enables access to classified threat briefings, SCIF-based discussions, and builds credibility with DoD stakeholders.">TS clearance</span> and 17+ years in classified DoD environments.</div>
 </div>
 
 <div class="persona-card">
   <div class="name">[Account Executive]</div>
   <div class="title">Account Executive, Dragos Public Sector</div>
-  <div class="detail">Owns the relationship and the quota. You own the technology. They handle pricing, negotiation, and Carahsoft coordination. You never quote pricing directly — that goes through AE → <span class="tip" data-tip="Deal Desk is Dragos' internal pricing and commercial operations team. They approve discount levels, validate margin, and ensure commercial terms comply with company policies. The SA provides the technical scope and BoM; Deal Desk sets the price.">Deal Desk</span>.</div>
+  <div class="detail">Owns the relationship and the quota. Handles pricing, negotiation, and Carahsoft coordination. The SA never quotes pricing directly; that goes through AE and <span class="tip" data-tip="Deal Desk is Dragos' internal pricing and commercial operations team. They approve discount levels, validate margin, and ensure commercial terms comply with company policies. The SA provides the technical scope and BoM; Deal Desk sets the price.">Deal Desk</span>.</div>
 </div>
 
 <!-- ═══════════════ THE TIMELINE ═══════════════ -->
@@ -177,59 +177,59 @@
 
 <div class="timeline">
   <div class="event alert">
-    <div class="date">Feb 2024 — Trigger Event</div>
+    <div class="date">Feb 2024: Trigger Event</div>
     <div class="desc">CISA publishes <span class="tip" data-tip="Advisory AA24-038A (February 7, 2024): 'PRC State-Sponsored Actors Compromise and Maintain Persistent Access to U.S. Critical Infrastructure.' Joint advisory from CISA, NSA, and FBI. Documents Volt Typhoon pre-positioning in energy, water, and communications sectors. The advisory that triggered executive-level urgency at USACE.">Advisory AA24-038A</span> warning about PRC state-sponsored actors (Volt Typhoon / tracked by Dragos as VOLTZITE) pre-positioning in U.S. critical infrastructure, including energy and water systems.</div>
   </div>
   <div class="event alert">
-    <div class="date">Nov 2025 — Incident</div>
-    <div class="desc">Unauthorized laptop found connected to SCADA network at Bonneville Dam. Discovered by an operator visually — no technical detection. No evidence of intrusion, but no way to confirm either.</div>
+    <div class="date">Nov 2025: Incident</div>
+    <div class="desc">Unauthorized laptop found connected to SCADA network at Bonneville Dam. Discovered by an operator visually, not by any technical detection. No evidence of intrusion, but no way to confirm either.</div>
   </div>
   <div class="event">
-    <div class="date">Jan 2026 — Mandate</div>
+    <div class="date">Jan 2026: Mandate</div>
     <div class="desc"><span class="tip" data-tip="The Department of Defense Chief Information Officer is the senior DoD official responsible for IT/OT policy, cybersecurity standards, and digital modernization across all DoD components. The CIO has authority to issue binding directives to all DoD agencies including USACE.">DoD CIO</span> issues memo requiring OT cybersecurity assessments for all Civil Works facilities by end of FY2026 (Sep 30, 2026).</div>
   </div>
   <div class="event">
-    <div class="date">Feb 2026 — S4x26 Conference (Miami Beach)</div>
-    <div class="desc">Dr. Torres attends S4x26 Conference (Feb 23–26). Hears Robert M. Lee present on OT threat landscape. Visits Dragos booth and POC Pavilion demo. Contacts Dragos through the website afterward.</div>
+    <div class="date">Feb 2026: S4x26 Conference (Miami Beach)</div>
+    <div class="desc">Dr. Torres attends S4x26 Conference (Feb 24–26, Miami Beach). Hears Robert M. Lee present on OT threat landscape. Visits Dragos booth and PoC Pavilion demo. Contacts Dragos through the website afterward.</div>
   </div>
   <div class="event">
-    <div class="date">Apr 2026 — Initial Contact</div>
+    <div class="date">Apr 2026: Initial Contact</div>
     <div class="desc">Dragos AE reaches out. NDA executed April 30. First intro call scheduled.</div>
   </div>
   <div class="event">
-    <div class="date">May 15 — Discovery Call</div>
-    <div class="desc"><strong>You run the 90-minute technical discovery session.</strong> → Discovery Document produced.</div>
+    <div class="date">May 15: Discovery Call</div>
+    <div class="desc">90-minute technical discovery session conducted. → Discovery Document produced.</div>
   </div>
   <div class="event">
-    <div class="date">May 30 — Solution Design</div>
+    <div class="date">May 30: Solution Design</div>
     <div class="desc">Solution Architecture Document + Bill of Materials delivered to customer.</div>
   </div>
   <div class="event">
-    <div class="date">Jun 9 — Demo</div>
+    <div class="date">Jun 9: Demo</div>
     <div class="desc">90-minute tailored demo for Dr. Torres, Mike Osterman, Brian Knox, and 5 OT engineers.</div>
   </div>
   <div class="event">
-    <div class="date">Jun 23–Jul 23 — PoC</div>
-    <div class="desc">30-day Proof of Value at Bonneville Dam. <span class="tip" data-tip="Bonneville has two separate powerhouses (1938 and 1981) with independent OT switch stacks. Each powerhouse requires its own SPAN session. Both use Cisco IE-4010 switches with full SPAN support — no TAPs required.">2 sensors deployed (SPAN × 2 segments — Powerhouse 1 + Powerhouse 2)</span>. SPAN change request submitted May 22 — <span class="tip" data-tip="Any OT network configuration change at a federal dam requires formal change control approval. 4 weeks is the standard USACE change control cycle for SPAN/TAP modifications. This constraint drives the critical path of the PoC timeline.">4-week change control</span> clears Jun 19, sensors racked Jun 20–22. <span class="tip" data-tip="Neighborhood Keeper is Dragos' community defense program. Participating sites share anonymized threat and vulnerability data, enabling collective defense across critical infrastructure sectors. NSA and CISA participate as trusted advisors.">Neighborhood Keeper</span> enrollment configured during PoC to enable anonymized threat sharing.</div>
+    <div class="date">Jun 23–Jul 23: PoC</div>
+    <div class="desc">30-day Proof of Value at Bonneville Dam. <span class="tip" data-tip="Bonneville has two separate powerhouses (1938 and 1981) with independent OT switch stacks. Each powerhouse requires its own SPAN session. Both use Cisco IE-4010 switches with full SPAN support, no TAPs required.">2 sensors deployed (SPAN × 2 segments: Powerhouse 1 + Powerhouse 2)</span>. SPAN change request submitted May 22. <span class="tip" data-tip="Any OT network configuration change at a federal dam requires formal change control approval. 4 weeks is the standard USACE change control cycle for SPAN/TAP modifications. This constraint drives the critical path of the PoC timeline.">4-week change control</span> clears Jun 19, sensors racked Jun 20–22. <span class="tip" data-tip="Neighborhood Keeper is Dragos' community defense program. Participating sites share anonymized threat and vulnerability data, enabling collective defense across critical infrastructure sectors. NSA and CISA participate as trusted advisors.">Neighborhood Keeper</span> enrollment configured during PoC to enable anonymized threat sharing.</div>
   </div>
   <div class="event">
-    <div class="date">Jul 28 — PoC Readout</div>
-    <div class="desc">Findings presentation to Dr. Torres, Mike Osterman, COL Harding. Data-driven results: <span class="tip" data-tip="PoC readout numbers demonstrate platform value. 247 total assets discovered vs. the customer's 220 known assets validates that automated discovery finds 12% more than manual inventory. 27 previously unknown devices include 2 undocumented I/O modules, 4 unmanaged switches, 2 legacy XP HMIs, and 1 undocumented jump server.">247 OT assets discovered, 27 previously unknown</span>, 34 vulnerabilities identified (2 Now / 8 Next / 24 Never).</div>
+    <div class="date">Jul 28: PoC Readout</div>
+    <div class="desc">Findings presentation to Dr. Torres, Mike Osterman, COL Harding. Results: <span class="tip" data-tip="PoC readout numbers demonstrate platform value. 247 total assets discovered vs. the customer's 220 known assets validates that automated discovery finds 12% more than manual inventory. 27 previously unknown devices include 2 undocumented I/O modules, 4 unmanaged switches, 2 legacy XP HMIs, and 1 undocumented jump server.">247 OT assets discovered, 27 previously unknown</span>, 34 vulnerabilities identified (2 Now / 8 Next / 24 Never).</div>
   </div>
   <div class="event">
-    <div class="date">Aug 11 — Technical Win</div>
-    <div class="desc"><span class="tip" data-tip="An Architecture Review Board (ARB) is a governance body that evaluates and approves technology solutions before procurement. Federal ARBs typically include the CIO, CISO, enterprise architects, and program managers. ARB endorsement is the 'technical win' gate — it means the technical team has formally recommended your solution.">USACE Architecture Review Board</span> endorses Dragos. Technical win achieved. Procurement package submitted to Jennifer Walsh.</div>
+    <div class="date">Aug 11: Technical Win</div>
+    <div class="desc"><span class="tip" data-tip="An Architecture Review Board (ARB) is a governance body that evaluates and approves technology solutions before procurement. Federal ARBs typically include the CIO, CISO, enterprise architects, and program managers. ARB endorsement is the 'technical win' gate, meaning the technical team has formally recommended the proposed solution.">USACE Architecture Review Board</span> endorses Dragos. Technical win achieved. Procurement package submitted to Jennifer Walsh.</div>
   </div>
   <div class="event">
-    <div class="date">Sep 15 — Contract Award</div>
-    <div class="desc"><span class="tip" data-tip="Firm Fixed Price — the government pays a locked total price with no cost-growth risk. Preferred by federal contracting officers because it shifts cost risk to the vendor and simplifies obligation.">FFP</span> contract via <span class="tip" data-tip="Pre-competed Government-Wide Acquisition Contract managed by NASA. Enables task-order issuance without a new competition cycle, saving 3-4 months vs. full and open procurement.">NASA SEWP VI</span> (<span class="tip" data-tip="Carahsoft Technology Corp. is the largest government IT solutions provider and Dragos' authorized federal channel partner. They hold the SEWP VI contract, manage the order logistics, and handle small business subcontracting requirements.">Carahsoft</span>). <span class="tip" data-tip="$780K Year 1 covers 6 sensors (across 4 dams), 4 hardware SiteStores, 1 CentralStore VM, Dragos Platform subscription, Neighborhood Keeper participation, and 1 year of Dragos support. Sized to the 4-dam initial scope with built-in expansion path.">$780K Year 1</span>. FY26 funds obligated.</div>
+    <div class="date">Sep 15: Contract Award</div>
+    <div class="desc"><span class="tip" data-tip="Firm Fixed Price: the government pays a locked total price with no cost-growth risk. Preferred by federal contracting officers because it shifts cost risk to the vendor and simplifies obligation.">FFP</span> contract via <span class="tip" data-tip="Pre-competed Government-Wide Acquisition Contract managed by NASA. Enables task-order issuance without a new competition cycle, saving 3-4 months vs. full and open procurement. SEWP V ordering period extended through Sep 2026 while SEWP VI awards are pending.">NASA SEWP</span> (<span class="tip" data-tip="Carahsoft Technology Corp. is the largest government IT solutions provider and Dragos' authorized federal channel partner. They hold SEWP contract positions, manage order logistics, and handle small business subcontracting requirements.">Carahsoft</span>). <span class="tip" data-tip="$780K Year 1 covers 6 sensors (across 4 dams), 4 hardware SiteStores, 1 CentralStore VM, Dragos Platform subscription, Neighborhood Keeper participation, and 1 year of Dragos support. Sized to the 4-dam initial scope with built-in expansion path.">$780K Year 1</span>. FY26 funds obligated.</div>
   </div>
   <div class="event">
-    <div class="date">Dec 2026 — First Site Live</div>
-    <div class="desc">Bonneville Dam fully operational with continuous OT monitoring. 247 assets discovered, 27 previously unknown (12.3%). Neighborhood Keeper connected — anonymized telemetry flowing to Dragos community intelligence.</div>
+    <div class="date">Dec 2026: First Site Live</div>
+    <div class="desc">Bonneville Dam operational. Continuous OT monitoring active. 247 assets discovered, 27 previously unknown (12.3%). Neighborhood Keeper connected. Anonymized telemetry flowing to Dragos community intelligence.</div>
   </div>
   <div class="event">
-    <div class="date">Mar 2027 — All Sites Live</div>
+    <div class="date">Mar 2027: All Sites Live</div>
     <div class="desc">All 4 dams operational. CentralStore providing unified visibility at NWD HQ.</div>
   </div>
 </div>
@@ -240,7 +240,7 @@
 <table>
   <tr><th style="width:160px">Threat Group</th><th>Relevance</th></tr>
   <tr><td><span class="sev-crit">VOLTZITE</span></td><td><span class="tip" data-tip="Stage 2 in Dragos threat classification means the group has demonstrated capability and intent to target ICS/OT environments specifically, beyond IT reconnaissance. Stage 1 groups show IT-focused activity with potential OT interest.">Stage 2 group</span> (PRC-linked, overlaps with Volt Typhoon) targeting U.S. electric grid, pipelines, and water systems. Manipulates engineering workstation software to extract config files. CISA advisory AA24-038A covers the PRC pre-positioning campaign; Dragos elevated VOLTZITE to Stage 2 in 2025. <strong>This is the threat driving the deal.</strong></td></tr>
-  <tr><td><span class="sev-crit">CHERNOVITE</span></td><td>Developed <span class="tip" data-tip="PIPEDREAM (also tracked as INCONTROLLER) is a modular ICS attack framework capable of interacting with Schneider Electric and OMRON PLCs via native industrial protocols. Discovered by Dragos in early 2022 before deployment. First ICS malware designed to target multiple vendor architectures simultaneously.">PIPEDREAM/INCONTROLLER</span> — ICS-specific malware that can target industrial controllers. Relevant because USACE runs PLCs from multiple vendors.</td></tr>
+  <tr><td><span class="sev-crit">CHERNOVITE</span></td><td>Developed <span class="tip" data-tip="PIPEDREAM (also tracked as INCONTROLLER) is a modular ICS attack framework capable of interacting with Schneider Electric and OMRON PLCs via native industrial protocols. Discovered by Dragos in early 2022 before deployment. First ICS malware designed to target multiple vendor architectures simultaneously.">PIPEDREAM/INCONTROLLER</span>, ICS-specific malware that can target industrial controllers. Relevant because USACE runs PLCs from multiple vendors.</td></tr>
   <tr><td><span class="sev-high">ELECTRUM</span></td><td>Connected to Industroyer malware that targeted electric grid in Ukraine. Relevant to The Dalles Dam's legacy relay protection systems.</td></tr>
   <tr><td><span class="sev-high">SYLVANITE</span></td><td>Access broker that weaponizes VPN/edge device vulnerabilities. Relevant because USACE uses VPN for remote OT access with no MFA.</td></tr>
 </table>
@@ -258,11 +258,11 @@
   <tr><td>Change Control</td><td>Any network change (SPAN config, TAP install) requires a 4-week change control process.</td></tr>
   <tr><td>Passive Only</td><td>Customer burned by Tenable crashing HMIs. They will reject any solution that sends packets into the OT network.</td></tr>
   <tr><td>CUI Handling</td><td>All documents are <span class="tip" data-tip="Controlled Unclassified Information (CUI) // For Official Use Only (FOUO). CUI is the standardized marking for sensitive but unclassified federal information per 32 CFR Part 2002. Requires encrypted storage, encrypted transmission, and access limited to authorized personnel.">CUI // FOUO</span>. No cloud storage. No emailing findings over unencrypted channels.</td></tr>
-  <tr><td>STIG Compliance</td><td>Any hardware deployed must be <span class="tip" data-tip="Security Technical Implementation Guide — DISA-published configuration baselines for hardening systems to DoD security standards. STIGs exist for operating systems, applications, and network devices. ISSM (Information System Security Manager) validates compliance before any system connects to a DoD network.">STIG-hardened</span>. Customer ISSM will validate.</td></tr>
+  <tr><td>STIG Compliance</td><td>Any hardware deployed must be <span class="tip" data-tip="Security Technical Implementation Guide: DISA-published configuration baselines for hardening systems to DoD security standards. STIGs exist for operating systems, applications, and network devices. ISSM (Information System Security Manager) validates compliance before any system connects to a DoD network.">STIG-hardened</span>. Customer ISSM will validate.</td></tr>
   <tr><td>Fiscal Year</td><td>Funds expire Sep 30, 2026. If contract isn't awarded by then, deal dies and restarts in FY27.</td></tr>
   <tr><td>Expansion Potential</td><td>Success at 4 dams = expansion to 21 dams ($3M+ follow-on). <span class="tip" data-tip="Standard federal sales strategy: demonstrate value at a manageable initial scope, then expand across the enterprise based on proven results. Reduces procurement risk for the customer and builds an evidence base for larger funding requests.">This is a land-and-expand play.</span></td></tr>
-  <tr><td>Regulatory Framework</td><td>USACE hydropower generation is <strong>not directly <span class="tip" data-tip="NERC CIP applies to entities registered with NERC as Bulk Electric System (BES) operators. USACE generates power, but BPA markets and transmits it. BPA holds the NERC CIP registration for transmission assets. USACE generation compliance is driven by EP 1130-2-510 and DoD directives.">NERC CIP-registered</span></strong> — compliance is driven by <span class="tip" data-tip="USACE Engineering Pamphlet 1130-2-510: the internal USACE regulation governing hydropower plant operations, maintenance, and cybersecurity requirements for generation assets.">USACE EP 1130-2-510</span>, DoD CIO OT cybersecurity directives, and NIST SP 800-82 Rev. 3 (Guide to OT Security). BPA, which markets the power, is NERC CIP-registered for transmission assets.</td></tr>
-  <tr><td>Applicable Standards</td><td><span class="tip" data-tip="NIST Special Publication 800-53 Revision 5: the master catalog of security and privacy controls for federal information systems. Contains 20 control families (AC, AU, CM, IA, etc.). The ISSM selects and validates applicable controls based on system categorization (Low/Moderate/High).">NIST SP 800-53 Rev. 5</span> (security controls), <span class="tip" data-tip="NIST Special Publication 800-82 Revision 3 (September 2023): Guide to Operational Technology Security. The primary federal framework for OT security, covering ICS architecture, threat landscape, risk management, and specific security controls tailored to OT environments.">NIST SP 800-82 Rev. 3</span> (OT security), <span class="tip" data-tip="Published November 2022. Mandates all DoD systems achieve 'target level' zero trust architecture by FY2027. Seven pillars: User, Device, Network/Environment, Application/Workload, Data, Visibility/Analytics, Automation/Orchestration. Drives the requirement for continuous OT monitoring.">DoD Zero Trust Strategy</span> (FY2027 mandate), <span class="tip" data-tip="Executive Order 14028 (May 12, 2021): Improving the Nation’s Cybersecurity. Mandates zero-trust architecture adoption, software supply chain security, and enhanced federal cybersecurity incident response across all agencies.">EO 14028</span> (Improving the Nation’s Cybersecurity), <span class="tip" data-tip="Cross-Sector Cybersecurity Performance Goals — voluntary baseline practices published by CISA to help critical infrastructure owners prioritize cybersecurity investments. Organized by outcome: account security, device security, data security, governance, vulnerability management, supply chain, response and recovery.">CISA Cross-Sector CPGs</span>.</td></tr>
+  <tr><td>Regulatory Framework</td><td>USACE hydropower generation is <strong>not directly <span class="tip" data-tip="NERC CIP applies to entities registered with NERC as Bulk Electric System (BES) operators. USACE generates power, but BPA markets and transmits it. BPA holds the NERC CIP registration for transmission assets. USACE generation compliance is driven by EP 1130-2-510 and DoD directives.">NERC CIP-registered</span></strong>. Compliance is driven by <span class="tip" data-tip="USACE Engineering Pamphlet 1130-2-510: the internal USACE regulation governing hydropower plant operations, maintenance, and cybersecurity requirements for generation assets.">USACE EP 1130-2-510</span>, DoD CIO OT cybersecurity directives, and NIST SP 800-82 Rev. 3 (Guide to OT Security). BPA, which markets the power, is NERC CIP-registered for transmission assets.</td></tr>
+  <tr><td>Applicable Standards</td><td><span class="tip" data-tip="NIST Special Publication 800-53 Revision 5: the master catalog of security and privacy controls for federal information systems. Contains 20 control families (AC, AU, CM, IA, etc.). The ISSM selects and validates applicable controls based on system categorization (Low/Moderate/High).">NIST SP 800-53 Rev. 5</span> (security controls), <span class="tip" data-tip="NIST Special Publication 800-82 Revision 3 (September 2023): Guide to Operational Technology Security. The primary federal framework for OT security, covering ICS architecture, threat landscape, risk management, and specific security controls tailored to OT environments.">NIST SP 800-82 Rev. 3</span> (OT security), <span class="tip" data-tip="Published November 2022. Mandates all DoD systems achieve 'target level' zero trust architecture by FY2027. Seven pillars: User, Device, Network/Environment, Application/Workload, Data, Visibility/Analytics, Automation/Orchestration. Drives the requirement for continuous OT monitoring.">DoD Zero Trust Strategy</span> (FY2027 mandate), <span class="tip" data-tip="Executive Order 14028 (May 12, 2021): Improving the Nation’s Cybersecurity. Mandates zero-trust architecture adoption, software supply chain security, and enhanced federal cybersecurity incident response across all agencies.">EO 14028</span> (Improving the Nation’s Cybersecurity), <span class="tip" data-tip="Cross-Sector Cybersecurity Performance Goals: voluntary baseline practices published by CISA to help critical infrastructure owners prioritize cybersecurity investments. Organized by outcome: account security, device security, data security, governance, vulnerability management, supply chain, response and recovery.">CISA Cross-Sector CPGs</span>.</td></tr>
 </table>
 
 <!-- ═══════════════ WORK PRODUCTS ═══════════════ -->
@@ -271,7 +271,7 @@
 <table>
   <tr><th>Stage</th><th>Document</th><th>Gate to Advance</th><th>Status</th></tr>
   <tr><td>1. Discovery</td><td>Technical Discovery Document</td><td>Customer validates environment data; NDA executed</td><td><span class="check">✓ Complete</span></td></tr>
-  <tr><td>2. Solution Design</td><td>Architecture Document + <span class="tip" data-tip="Bill of Materials — the itemized list of all hardware, software licenses, subscriptions, and services required for the deployment. The SA sizes the BoM based on the architecture; the AE and Deal Desk price it. The BoM drives the total contract value.">Bill of Materials</span></td><td>SA + AE alignment on pricing; customer accepts architecture</td><td><span class="check">✓ Complete</span></td></tr>
+  <tr><td>2. Solution Design</td><td>Architecture Document + <span class="tip" data-tip="Bill of Materials: the itemized list of all hardware, software licenses, subscriptions, and services required for the deployment. The SA sizes the BoM based on the architecture; the AE and Deal Desk price it. The BoM drives the total contract value.">Bill of Materials</span></td><td>SA + AE alignment on pricing; customer accepts architecture</td><td><span class="check">✓ Complete</span></td></tr>
   <tr><td>3. Demo</td><td>Demo Agenda + Tailored Script</td><td>Demo environment configured with customer-relevant protocols</td><td><span class="check">✓ Complete</span></td></tr>
   <tr><td>4. PoC</td><td>Proof of Value Findings Report</td><td>SPAN/TAP change control cleared; success criteria agreed</td><td><span class="check">✓ Complete</span></td></tr>
   <tr><td>5. RFP Response</td><td><span class="tip" data-tip="The Technical Volume is the portion of an RFP response that describes the proposed solution, architecture, methodology, and technical qualifications. Written primarily by the SA. Evaluated separately from the pricing volume by the government's technical evaluation panel.">Technical Volume</span> + Requirements Matrix</td><td>PoC data validates architecture; customer issues solicitation</td><td><span class="check">✓ Complete</span></td></tr>
@@ -284,7 +284,7 @@
   1. Discover ≥90% of known OT assets within 72 hours of sensor activation<br>
   2. Identify ≥1 previously unknown device or communication path<br>
   3. Demonstrate protocol-specific parsing for ≥3 site-relevant OT protocols (Bonneville target: GE SRTP, EGD, Modbus TCP, OPC-UA)<br>
-  4. Generate zero operational disruptions — no turbine trips, no HMI impacts, no network degradation<br>
+  4. Generate zero operational disruptions: no turbine trips, no HMI impacts, no network degradation<br>
   5. Produce findings report within 5 business days of PoC completion
 </div>
 
@@ -293,35 +293,35 @@
 
 <p style="font-size: 13px; color: var(--gray-700); margin-bottom: 16px;">Every verifiable claim in this scenario is sourced from public data. Control systems, stakeholder names, and engagement findings are fictional; infrastructure specifications and threat intelligence are real.</p>
 
-<h3>Dam Infrastructure — U.S. Army Corps of Engineers</h3>
+<h3>Dam Infrastructure: U.S. Army Corps of Engineers</h3>
 <table>
   <tr><th style="width:200px">Claim</th><th>Source</th></tr>
-  <tr><td>Bonneville Dam — 18 units, 1,050 MW nameplate, commissioned 1938/1981</td><td><a href="https://www.nwd.usace.army.mil/fact-sheets/article/3485127/bonneville-dam-and-lake-bonneville/" target="_blank">USACE NWD Fact Sheet: Bonneville Dam</a> · <a href="https://www.nwd-wc.usace.army.mil/dd/common/projects/www/bon.html" target="_blank">USACE Water Control Data: Bonneville</a> · <a href="https://www.cbr.washington.edu/dart/hydro/bonneville" target="_blank">Columbia Basin Research (Univ. of Washington): Bonneville Hydro Data</a></td></tr>
-  <tr><td>The Dalles Dam — 22 units, 1,813 MW nameplate, Phase I 1957 / Phase II 1973</td><td><a href="https://www.nwd.usace.army.mil/fact-sheets/article/3485297/the-dalles-dam-and-lake-celilo/" target="_blank">USACE NWD Fact Sheet: The Dalles Dam</a> · <a href="https://www.nwd-wc.usace.army.mil/dd/common/projects/www/tda.html" target="_blank">USACE Water Control Data: The Dalles</a></td></tr>
-  <tr><td>John Day Dam — 16 units, 2,160 MW, first power 1968</td><td><a href="https://www.nwd.usace.army.mil/fact-sheets/article/3485190/john-day-dam-and-lake-umatilla/" target="_blank">USACE NWD Fact Sheet: John Day Dam</a> · <a href="https://www.nwd-wc.usace.army.mil/dd/common/projects/www/jda.html" target="_blank">USACE Water Control Data: John Day</a></td></tr>
-  <tr><td>McNary Dam — 14 units, 980 MW, first power 1954</td><td><a href="https://www.nwd.usace.army.mil/fact-sheets/article/3485279/mcnary-dam-and-lake-wallula/" target="_blank">USACE NWD Fact Sheet: McNary Dam</a> · <a href="https://www.nww.usace.army.mil/Portals/28/FINAL%20FS_McNary2021.pdf" target="_blank">USACE Walla Walla District: McNary Fact Sheet (PDF)</a></td></tr>
-  <tr><td>USACE NWD — 21 dams in Columbia/Willamette basins</td><td><a href="https://www.nwd.usace.army.mil/columbia-river/cr-dams/" target="_blank">USACE NWD: Columbia River Basin Dams</a> · <a href="https://www.nwd.usace.army.mil/Media/News-Releases/Article/3329894/" target="_blank">USACE NWD News Release (2023)</a></td></tr>
-  <tr><td>Columbia Basin — ~40% of U.S. hydroelectric generation</td><td><a href="https://www.eia.gov/todayinenergy/detail.php?id=16891" target="_blank">U.S. Energy Information Administration: Columbia River Basin Hydroelectric Generation</a></td></tr>
-  <tr><td>Federal Columbia River Power System — 31 dams, 22,000+ MW</td><td><a href="https://www.bpa.gov/-/media/Aep/power/hydropower-data-studies/fcrps_brochure_17x11.pdf" target="_blank">Bonneville Power Administration: FCRPS Brochure (PDF)</a> · <a href="https://www.usace.army.mil/Missions/Civil-Works/Hydropower/" target="_blank">USACE Hydropower Program</a></td></tr>
+  <tr><td>Bonneville Dam: 18 units, 1,050 MW nameplate, commissioned 1938/1981</td><td><a href="https://www.nwd.usace.army.mil/fact-sheets/article/3485127/bonneville-dam-and-lake-bonneville/" target="_blank">USACE NWD Fact Sheet: Bonneville Dam</a> · <a href="https://www.nwd-wc.usace.army.mil/dd/common/projects/www/bon.html" target="_blank">USACE Water Control Data: Bonneville</a> · <a href="https://www.cbr.washington.edu/dart/hydro/bonneville" target="_blank">Columbia Basin Research (Univ. of Washington): Bonneville Hydro Data</a></td></tr>
+  <tr><td>The Dalles Dam: 22 units, 1,780 MW nameplate, Phase I 1957 / Phase II 1973</td><td><a href="https://www.nwd.usace.army.mil/fact-sheets/article/3485297/the-dalles-dam-and-lake-celilo/" target="_blank">USACE NWD Fact Sheet: The Dalles Dam</a> · <a href="https://www.nwd-wc.usace.army.mil/dd/common/projects/www/tda.html" target="_blank">USACE Water Control Data: The Dalles</a></td></tr>
+  <tr><td>John Day Dam: 16 units, 2,160 MW, first power 1968</td><td><a href="https://www.nwd.usace.army.mil/fact-sheets/article/3485190/john-day-dam-and-lake-umatilla/" target="_blank">USACE NWD Fact Sheet: John Day Dam</a> · <a href="https://www.nwd-wc.usace.army.mil/dd/common/projects/www/jda.html" target="_blank">USACE Water Control Data: John Day</a></td></tr>
+  <tr><td>McNary Dam: 14 units, 980 MW, first power 1954</td><td><a href="https://www.nwd.usace.army.mil/fact-sheets/article/3485279/mcnary-dam-and-lake-wallula/" target="_blank">USACE NWD Fact Sheet: McNary Dam</a> · <a href="https://www.nww.usace.army.mil/Portals/28/FINAL%20FS_McNary2021.pdf" target="_blank">USACE Walla Walla District: McNary Fact Sheet (PDF)</a></td></tr>
+  <tr><td>USACE NWD: 21 dams in Columbia/Willamette basins</td><td><a href="https://www.nwd.usace.army.mil/columbia-river/cr-dams/" target="_blank">USACE NWD: Columbia River Basin Dams</a> · <a href="https://www.nwd.usace.army.mil/Media/News-Releases/Article/3329894/" target="_blank">USACE NWD News Release (2023)</a></td></tr>
+  <tr><td>Columbia Basin: ~40% of U.S. hydroelectric generation</td><td><a href="https://www.eia.gov/todayinenergy/detail.php?id=16891" target="_blank">U.S. Energy Information Administration: Columbia River Basin Hydroelectric Generation</a></td></tr>
+  <tr><td>Federal Columbia River Power System: 31 dams, 22,000+ MW</td><td><a href="https://www.bpa.gov/-/media/Aep/power/hydropower-data-studies/fcrps_brochure_17x11.pdf" target="_blank">Bonneville Power Administration: FCRPS Brochure (PDF)</a> · <a href="https://www.usace.army.mil/Missions/Civil-Works/Hydropower/" target="_blank">USACE Hydropower Program</a></td></tr>
 </table>
 
 <h3>Threat Intelligence</h3>
 <table>
   <tr><th style="width:200px">Claim</th><th>Source</th></tr>
-  <tr><td>CISA Advisory AA24-038A — PRC / Volt Typhoon</td><td><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-038a" target="_blank">CISA: Advisory AA24-038A — PRC State-Sponsored Actors</a></td></tr>
-  <tr><td>VOLTZITE — Dragos Activity Group, Stage 2, PRC-linked</td><td><a href="https://www.dragos.com/threat/voltzite" target="_blank">Dragos: VOLTZITE Threat Group</a> · <a href="https://www.dragos.com/blog/voltzite-threat-group-under-the-radar-cyber-espionage-on-us-critical-systems" target="_blank">Dragos Blog: VOLTZITE Cyber Espionage</a></td></tr>
-  <tr><td>CHERNOVITE — PIPEDREAM / INCONTROLLER ICS malware</td><td><a href="https://www.dragos.com/threat/chernovite" target="_blank">Dragos: CHERNOVITE Threat Group</a> · <a href="https://www.dragos.com/blog/chernovite-pipedream-malware-targeting-industrial-control-systems" target="_blank">Dragos Blog: PIPEDREAM Analysis</a></td></tr>
-  <tr><td>ELECTRUM — Industroyer (Ukraine 2016/2022)</td><td><a href="https://www.dragos.com/threat/electrum" target="_blank">Dragos: ELECTRUM Threat Group</a></td></tr>
-  <tr><td>SYLVANITE — Initial access broker, edge device exploitation</td><td><a href="https://www.dragos.com/resources/press-release/dragos-2026-year-in-review-new-ot-threats-ransomware" target="_blank">Dragos: 2026 OT Cybersecurity Year in Review (Press Release)</a> · <a href="https://www.dragos.com/blog/ot-threat-landscape-2026" target="_blank">Dragos Blog: OT Threat Landscape 2026</a></td></tr>
-  <tr><td>CVE-2023-3595 — Rockwell ControlLogix CIP RCE (CVSS 9.8)</td><td><a href="https://www.dragos.com/blog/dragos-enabled-defense-against-apt-exploits-for-rockwell-automation-controllogix" target="_blank">Dragos: Defense Against ControlLogix Exploits</a> · <a href="https://nvd.nist.gov/vuln/detail/cve-2023-3595" target="_blank">NIST NVD: CVE-2023-3595</a> · <a href="https://www.cisa.gov/news-events/ics-advisories/icsa-23-193-01" target="_blank">CISA ICS Advisory: ICSA-23-193-01</a></td></tr>
+  <tr><td>CISA Advisory AA24-038A: PRC / Volt Typhoon</td><td><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-038a" target="_blank">CISA: Advisory AA24-038A, PRC State-Sponsored Actors</a></td></tr>
+  <tr><td>VOLTZITE: Dragos Activity Group, Stage 2, PRC-linked</td><td><a href="https://www.dragos.com/threat/voltzite" target="_blank">Dragos: VOLTZITE Threat Group</a> · <a href="https://www.dragos.com/blog/voltzite-threat-group-under-the-radar-cyber-espionage-on-us-critical-systems" target="_blank">Dragos Blog: VOLTZITE Cyber Espionage</a></td></tr>
+  <tr><td>CHERNOVITE: PIPEDREAM / INCONTROLLER ICS malware</td><td><a href="https://www.dragos.com/threat/chernovite" target="_blank">Dragos: CHERNOVITE Threat Group</a> · <a href="https://www.dragos.com/blog/chernovite-pipedream-malware-targeting-industrial-control-systems" target="_blank">Dragos Blog: PIPEDREAM Analysis</a></td></tr>
+  <tr><td>ELECTRUM: Industroyer (Ukraine 2016/2022)</td><td><a href="https://www.dragos.com/threat/electrum" target="_blank">Dragos: ELECTRUM Threat Group</a></td></tr>
+  <tr><td>SYLVANITE: Initial access broker, edge device exploitation</td><td><a href="https://www.dragos.com/resources/press-release/dragos-2026-year-in-review-new-ot-threats-ransomware" target="_blank">Dragos: 2026 OT Cybersecurity Year in Review (Press Release)</a> · <a href="https://www.dragos.com/blog/ot-threat-landscape-2026" target="_blank">Dragos Blog: OT Threat Landscape 2026</a></td></tr>
+  <tr><td>CVE-2023-3595: Rockwell ControlLogix CIP RCE (CVSS 9.8)</td><td><a href="https://www.dragos.com/blog/dragos-enabled-defense-against-apt-exploits-for-rockwell-automation-controllogix" target="_blank">Dragos: Defense Against ControlLogix Exploits</a> · <a href="https://nvd.nist.gov/vuln/detail/cve-2023-3595" target="_blank">NIST NVD: CVE-2023-3595</a> · <a href="https://www.cisa.gov/news-events/ics-advisories/icsa-23-193-01" target="_blank">CISA ICS Advisory: ICSA-23-193-01</a></td></tr>
 </table>
 
 <h3>Dragos Platform &amp; Products</h3>
 <table>
   <tr><th style="width:200px">Claim</th><th>Source</th></tr>
-  <tr><td>CentralStore / SiteStore — platform architecture</td><td><a href="https://dragos.brightspotcdn.com/c2/d7/958e53fc4950877e6332124619aa/dragos-br-platform-feb26-r2-2026.pdf" target="_blank">Dragos: Platform Brochure (Feb 2026, PDF)</a> · <a href="https://dragos.brightspotcdn.com/2c/37/63af019a4c58a716542136b856c1/dragos-platform-appliance-models-datasheet-12-25.pdf" target="_blank">Dragos: Appliance Models Datasheet (PDF)</a></td></tr>
+  <tr><td>CentralStore / SiteStore: platform architecture</td><td><a href="https://dragos.brightspotcdn.com/c2/d7/958e53fc4950877e6332124619aa/dragos-br-platform-feb26-r2-2026.pdf" target="_blank">Dragos: Platform Brochure (Feb 2026, PDF)</a> · <a href="https://dragos.brightspotcdn.com/2c/37/63af019a4c58a716542136b856c1/dragos-platform-appliance-models-datasheet-12-25.pdf" target="_blank">Dragos: Appliance Models Datasheet (PDF)</a></td></tr>
   <tr><td>Dragos Platform 2.x DISA STIG</td><td><a href="https://www.businesswire.com/news/home/20241009504960/en/Dragos-Launches-Public-Sector-Subsidiary" target="_blank">BusinessWire: Dragos Public Sector Launch</a></td></tr>
-  <tr><td>Neighborhood Keeper — anonymized threat data sharing</td><td><a href="https://www.dragos.com/neighborhood-keeper/" target="_blank">Dragos: Neighborhood Keeper Program</a></td></tr>
+  <tr><td>Neighborhood Keeper: anonymized threat data sharing</td><td><a href="https://www.dragos.com/neighborhood-keeper/" target="_blank">Dragos: Neighborhood Keeper Program</a></td></tr>
   <tr><td>Dragos threat group methodology (Stage 1 / Stage 2)</td><td><a href="https://www.dragos.com/threat-groups" target="_blank">Dragos: ICS/OT Threat Groups</a></td></tr>
 </table>
 
@@ -329,20 +329,20 @@
 <table>
   <tr><th style="width:200px">Claim</th><th>Source</th></tr>
   <tr><td>NASA SEWP V → SEWP VI transition</td><td><a href="https://www.sewp.nasa.gov/contract_info.shtml" target="_blank">NASA SEWP: Contract Information</a> · <a href="https://www.sewp.nasa.gov/sewpvi/" target="_blank">NASA SEWP VI Home</a></td></tr>
-  <tr><td>Carahsoft — Dragos authorized federal distributor</td><td><a href="https://www.carahsoft.com/dragos" target="_blank">Carahsoft: Dragos Partnership</a></td></tr>
+  <tr><td>Carahsoft: Dragos authorized federal distributor</td><td><a href="https://www.carahsoft.com/dragos" target="_blank">Carahsoft: Dragos Partnership</a></td></tr>
 </table>
 
 <h3>Industry Events</h3>
 <table>
   <tr><th style="width:200px">Claim</th><th>Source</th></tr>
-  <tr><td>S4x26 Conference — Feb 23–26, 2026, Miami Beach</td><td><a href="https://s4xevents.com/poc-pavilion/" target="_blank">S4 Events: POC Pavilion</a> · <a href="https://www.dragos.com/events" target="_blank">Dragos: Upcoming Events</a></td></tr>
-  <tr><td>Robert M. Lee — CEO/Co-Founder, Dragos Inc.</td><td><a href="https://www.sans.org/profiles/robert-m-lee" target="_blank">SANS Institute: Robert M. Lee Faculty Profile</a></td></tr>
+  <tr><td>S4x26 Conference: Feb 24–26, 2026, Miami Beach</td><td><a href="https://s4xevents.com/poc-pavilion/" target="_blank">S4 Events: POC Pavilion</a> · <a href="https://www.dragos.com/events" target="_blank">Dragos: Upcoming Events</a></td></tr>
+  <tr><td>Robert M. Lee: CEO/Co-Founder, Dragos Inc.</td><td><a href="https://www.sans.org/profiles/robert-m-lee" target="_blank">SANS Institute: Robert M. Lee Faculty Profile</a></td></tr>
 </table>
 
 
 <div class="doc-footer">
-  <span>Exercise Scenario — Not a real engagement</span>
-  <span>USACE Columbia River Hydropower — v1.6</span>
+  <span>Exercise Scenario: Not a real engagement</span>
+  <span>USACE Columbia River Hydropower, v1.7</span>
 </div>
 
 </div>

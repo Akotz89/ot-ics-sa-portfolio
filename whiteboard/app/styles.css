@@ -1,0 +1,357 @@
+.whiteboard-workshop {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid #cbd8e5;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(20, 42, 70, 0.08);
+}
+
+.whiteboard-workshop .tl-background {
+  background: #ffffff;
+}
+
+.whiteboard-workshop .tl-hit-test-blocker {
+  pointer-events: none;
+}
+
+.whiteboard-workshop .tl-shape:has(.ot-device) {
+  pointer-events: auto !important;
+}
+
+.wb-toolbar {
+  position: absolute;
+  z-index: 20;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.wb-mode-tabs,
+.wb-rule-status,
+.wb-pulse-status {
+  pointer-events: auto;
+  border: 1px solid #d6e2ee;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 4px 14px rgba(20, 42, 70, 0.12);
+  backdrop-filter: blur(8px);
+}
+
+.wb-mode-tabs {
+  display: flex;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.wb-mode-tabs button {
+  height: 34px;
+  padding: 0 14px;
+  border: 0;
+  border-right: 1px solid #d6e2ee;
+  background: transparent;
+  color: #29445f;
+  font: 800 12px/1 Inter, Arial, sans-serif;
+  cursor: pointer;
+}
+
+.wb-mode-tabs button:last-child {
+  border-right: 0;
+}
+
+.wb-mode-tabs button.active {
+  background: #0f3554;
+  color: #ffffff;
+}
+
+.wb-rule-status,
+.wb-pulse-status {
+  display: flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 8px;
+  color: #28435e;
+  font: 800 12px/1 Inter, Arial, sans-serif;
+}
+
+.wb-rule-status.ok {
+  border-color: #a9d6b5;
+  color: #20643b;
+}
+
+.wb-rule-status.bad {
+  border-color: #eba8a4;
+  color: #a62b27;
+}
+
+.wb-pulse-status {
+  color: #20643b;
+}
+
+.ot-zone {
+  width: 100%;
+  height: 100%;
+  border: 2px dashed #9ab1c8;
+  border-radius: 10px;
+  background: rgba(242, 248, 252, 0.72);
+  color: #17314f;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ot-zone-title {
+  position: absolute;
+  left: 18px;
+  top: 14px;
+  font: 800 18px/1.05 Inter, Arial, sans-serif;
+  letter-spacing: 0;
+}
+
+.ot-zone-subtitle {
+  position: absolute;
+  left: 18px;
+  top: 39px;
+  font: 700 12px/1.1 Inter, Arial, sans-serif;
+  color: #66778a;
+  letter-spacing: 0;
+}
+
+.ot-zone-boundary {
+  border-color: #df5e56;
+  background: rgba(255, 247, 247, 0.7);
+}
+
+.ot-zone-boundary .ot-zone-title {
+  color: #ad2d29;
+}
+
+.ot-zone-operations {
+  border-color: #7db8dc;
+  background: rgba(236, 247, 255, 0.7);
+}
+
+.ot-zone-control {
+  border-color: #75bd8c;
+  background: rgba(239, 251, 243, 0.7);
+}
+
+.ot-zone-field {
+  border-color: #d8b05b;
+  background: rgba(255, 249, 236, 0.76);
+}
+
+.ot-zone-monitoring {
+  border-color: #2b75ad;
+  background: rgba(237, 247, 255, 0.78);
+}
+
+.ot-device {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 0 16px;
+  overflow: hidden;
+  border: 2px solid #b8c7d6;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(20, 42, 70, 0.15);
+  color: #15243a;
+  cursor: pointer;
+  pointer-events: auto;
+  user-select: none;
+}
+
+.ot-device:hover {
+  box-shadow: 0 0 0 4px rgba(47, 111, 160, 0.16), 0 6px 18px rgba(20, 42, 70, 0.18);
+}
+
+.ot-device-dark {
+  background: #123554;
+  border-color: #315f8e;
+  color: #ffffff;
+}
+
+.ot-device-boundary {
+  border-color: #df5e56;
+  color: #a62b27;
+}
+
+.ot-device-controller {
+  border-color: #d6a647;
+  background: #fffdf8;
+}
+
+.ot-device-dragos {
+  background: #0871c9;
+  border-color: #084b83;
+  color: #ffffff;
+}
+
+.ot-device-text {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ot-device-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: 800 14px/1.05 Inter, Arial, sans-serif;
+  letter-spacing: 0;
+}
+
+.ot-device-subtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #647488;
+  font: 700 11px/1.05 Inter, Arial, sans-serif;
+  letter-spacing: 0;
+}
+
+.ot-device-dark .ot-device-subtitle,
+.ot-device-dragos .ot-device-subtitle {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.ot-icon {
+  position: relative;
+  display: block;
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
+  color: currentColor;
+}
+
+.ot-icon-firewall {
+  border: 2px solid currentColor;
+  border-radius: 3px;
+  background: repeating-linear-gradient(0deg, transparent 0 7px, currentColor 7px 8px),
+    repeating-linear-gradient(90deg, transparent 0 10px, currentColor 10px 11px);
+}
+
+.ot-icon-switch {
+  height: 16px;
+  margin-top: 5px;
+  border: 2px solid currentColor;
+  border-radius: 3px;
+}
+
+.ot-icon-switch::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  top: 5px;
+  height: 2px;
+  background: currentColor;
+  box-shadow: 0 5px 0 currentColor;
+}
+
+.ot-icon-server,
+.ot-icon-app {
+  border: 2px solid currentColor;
+  border-radius: 3px;
+}
+
+.ot-icon-server::before,
+.ot-icon-app::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  top: 6px;
+  height: 3px;
+  background: currentColor;
+  box-shadow: 0 7px 0 currentColor;
+}
+
+.ot-icon-workstation {
+  border: 2px solid currentColor;
+  border-radius: 3px 3px 1px 1px;
+}
+
+.ot-icon-workstation::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  bottom: -7px;
+  height: 2px;
+  background: currentColor;
+}
+
+.ot-icon-controller {
+  border: 2px solid currentColor;
+  border-radius: 3px;
+}
+
+.ot-icon-controller::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 5px;
+  height: 5px;
+  background: currentColor;
+  box-shadow: 8px 0 0 currentColor, 0 8px 0 currentColor, 8px 8px 0 currentColor;
+}
+
+.ot-icon-sensor {
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+
+.ot-icon-sensor::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 9px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.25);
+}
+
+.ot-icon-identity,
+.ot-icon-database {
+  border: 2px solid currentColor;
+  border-radius: 50% / 22%;
+}
+
+.ot-icon-identity::after,
+.ot-icon-database::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 7px;
+  height: 8px;
+  border-top: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  border-radius: 50% / 28%;
+}
+
+@media (max-width: 900px) {
+  .wb-toolbar {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+  }
+
+  .wb-pulse-status {
+    display: none;
+  }
+}

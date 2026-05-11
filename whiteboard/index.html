@@ -6,6 +6,7 @@
 <title>SA Whiteboard — Federal OT Network Design</title>
 <link rel="stylesheet" href="../nav.css">
 <link rel="stylesheet" href="whiteboard.css">
+<link rel="stylesheet" href="./assets/whiteboard-app.css">
 </head>
 <body>
 
@@ -27,20 +28,10 @@
 </section>
 
 <main class="wb-stage">
-  <div id="diagram-frame" class="diagram-frame">
-    <div id="diagram" class="diagram" aria-label="Federal OT network diagram">
-      <svg id="flow-layer" class="flow-layer" width="1320" height="720" viewBox="0 0 1320 720" aria-hidden="true">
-        <defs></defs>
-      </svg>
-      <div id="enclave-layer" class="enclave-layer"></div>
-      <div id="node-layer" class="node-layer"></div>
-      <div id="flow-label-layer" class="flow-label-layer"></div>
-      <div id="annotation-layer" class="annotation-layer"></div>
-    </div>
-  </div>
+  <div id="whiteboard-root" class="whiteboard-root" aria-label="Federal OT network whiteboard"></div>
 </main>
 
-<script type="module" src="whiteboard.js?v=engine-22"></script>
+<script type="module" src="./assets/whiteboard-app.js"></script>
 <script src="../nav.js"></script>
 </body>
 </html>
