@@ -1,7 +1,7 @@
 /* nav.css — Shared portfolio navigation bar (uses dragos-theme.css tokens) */
 
 .portfolio-nav{position:sticky;top:0;z-index:9999;background:#0a1212;border-bottom:2px solid #01605e;font-family:'Inter',system-ui,sans-serif;padding:0 20px;display:flex;align-items:center;gap:0;height:44px;box-shadow:0 2px 12px rgba(0,0,0,.3)}
-.portfolio-nav .nav-brand{color:#fff;font-size:13px;font-weight:700;letter-spacing:-.3px;margin-right:24px;white-space:nowrap;text-decoration:none;display:flex;align-items:center;gap:8px}
+.portfolio-nav .nav-brand{color:#049995;font-size:13px;font-weight:700;letter-spacing:-.3px;margin-right:24px;white-space:nowrap;text-decoration:none;display:flex;align-items:center;gap:8px}
 .portfolio-nav .nav-brand span{color:#049995}
 .portfolio-nav .nav-links{display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;flex:1}
 .portfolio-nav .nav-links::-webkit-scrollbar{display:none}

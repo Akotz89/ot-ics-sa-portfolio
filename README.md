@@ -20,8 +20,7 @@ Realistic, fact-checked SA work products for the OT/ICS cybersecurity domain, bu
 
 | Tool | Description | Direct Link |
 |------|-------------|-------------|
-| Whiteboard | Interactive step-through Purdue Model architecture walkthrough (8 steps, keyboard nav) | [View →](https://akotz89.github.io/ot-ics-sa-portfolio/whiteboard/) |
-| Diagrams | Professional SVG Purdue Model + 3-Tier Platform diagrams (print-ready) | [View →](https://akotz89.github.io/ot-ics-sa-portfolio/diagrams.html) |
+| Whiteboard | Flagship 24-step customer workshop demo: OT discovery, Dragos placement, passive SPAN, SiteStore/CentralStore, and SOC handoff | [View →](https://akotz89.github.io/ot-ics-sa-portfolio/whiteboard/) |
 
 ## The Scenario
 
@@ -37,7 +36,7 @@ All infrastructure data is fact-checked against USACE, BPA, and EIA sources. All
 
 Each document includes **interactive tooltips**  -  hover any dotted-underlined term for an explanation of what it means and why it matters. The portfolio covers the full SA sales cycle from initial discovery through technical win, showing:
 
-- **Technical depth:** OT protocol knowledge (GE SRTP/EGD, S7comm, EtherNet/IP), Purdue Model architecture, and federal compliance frameworks
+- **Technical depth:** OT protocol knowledge (GE SRTP/EGD, S7comm, EtherNet/IP), customer whiteboarding, Purdue/IEC 62443 architecture literacy, and federal compliance frameworks
 - **Sales methodology:** MEDDPICC qualification, persona-specific messaging, objection handling
 - **Federal acumen:** SEWP V procurement, FedRAMP/IL5 compliance, DISA STIG awareness, ATO process
 

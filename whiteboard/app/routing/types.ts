@@ -1,4 +1,3 @@
-import type { Box } from 'tldraw'
 import type { DirectionCue, LinkKind, PortName, RouteClass } from '../model/topology'
 
 export interface Point {
@@ -6,10 +5,17 @@ export interface Point {
   y: number
 }
 
+export interface Rect {
+  x: number
+  y: number
+  w: number
+  h: number
+}
+
 export interface Obstacle {
   id: string
-  kind: 'device' | 'zone-header' | 'label' | 'route'
-  box: Box
+  kind: 'device' | 'zone-header' | 'label' | 'route' | 'annotation'
+  box: Rect
   ownerId?: string
 }
 

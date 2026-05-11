@@ -1,3 +1,5 @@
+import type { EvidenceRefId } from './evidence'
+
 export interface StepModel {
   id: string
   label: string
@@ -11,6 +13,7 @@ export interface StepModel {
   dimmed?: string[]
   hidden?: string[]
   focus?: string[]
+  evidenceRefs?: EvidenceRefId[]
 }
 
 const start = ['enterprise', 'boundary', 'operations']
@@ -33,12 +36,17 @@ const stores = ['centralstore', 'sitestore']
 const enterpriseLinks = ['ad-firewall', 'gateway-jump']
 const entryLinks = ['firewall-core', 'jump-core']
 const operationsLinks = ['core-historian', 'core-engineering', 'core-patch']
-const controlLinks = ['core-dist', 'dist-scada', 'dist-hmi', 'historian-mirror']
+const controlLinks = ['core-dist', 'dist-scada']
 const protocolLinks = ['scada-ge', 'scada-controllogix', 'hmi-sel', 'hmi-s7400']
 const monitoringLinks = ['firewall-sensor-boundary', 'dist-sensor-control', 'sensor-boundary-sitestore', 'sensor-control-sitestore']
 const socLinks = ['sitestore-centralstore', 'tickets-centralstore']
 
-export const steps: StepModel[] = [
+const SCENARIO_STEP_REFS: EvidenceRefId[] = ['scenario-overview', 'discovery-as-found', 'nist-800-82']
+const DRAGOS_STEP_REFS: EvidenceRefId[] = ['architecture-design', 'dragos-appliances', 'dragos-centralstore', 'passive-span-tap']
+const PROTOCOL_STEP_REFS: EvidenceRefId[] = ['hydropower-protocols', 'demo-thesis', 'nist-800-82']
+const POC_STEP_REFS: EvidenceRefId[] = ['demo-thesis', 'pov-success', 'research-index']
+
+const stepDefinitions: StepModel[] = [
   {
     id: 'orient',
     label: 'Orient',
@@ -182,11 +190,11 @@ export const steps: StepModel[] = [
     narration:
       'Add SCADA and HMI as operator-facing control services. Keep the service lines quiet so the network conversation stays readable.',
     visibleZones: [...start, 'control'],
-    visibleEntities: [...enterprise, ...boundary, ...operations, ...control],
-    visibleLinks: [...entryLinks, 'core-dist', 'dist-scada', 'dist-hmi'],
-    introduced: ['scada', 'hmi', 'dist-scada', 'dist-hmi'],
-    active: ['dist', 'scada', 'hmi', 'dist-scada', 'dist-hmi'],
-    focus: ['dist', 'scada', 'hmi', 'dist-scada', 'dist-hmi'],
+    visibleEntities: [...enterprise, ...boundary, ...operations, ...controlCore, 'scada', 'hmi'],
+    visibleLinks: [...entryLinks, 'core-dist', 'dist-scada'],
+    introduced: ['scada', 'hmi', 'dist-scada'],
+    active: ['dist', 'scada', 'hmi', 'dist-scada'],
+    focus: ['dist', 'scada', 'hmi', 'dist-scada'],
   },
   {
     id: 'local-history',
@@ -196,10 +204,10 @@ export const steps: StepModel[] = [
       'Add the local mirror or cache as a history dependency. It is useful context, but should not clutter the main control path.',
     visibleZones: [...start, 'control'],
     visibleEntities: [...enterprise, ...boundary, ...operations, ...control],
-    visibleLinks: [...entryLinks, 'core-dist', 'dist-scada', 'dist-hmi', 'historian-mirror'],
-    introduced: ['mirror', 'historian-mirror'],
-    active: ['historian', 'mirror', 'historian-mirror'],
-    focus: ['historian', 'mirror', 'historian-mirror'],
+    visibleLinks: [...entryLinks],
+    introduced: ['mirror'],
+    active: ['historian', 'mirror'],
+    focus: ['historian', 'mirror'],
   },
   {
     id: 'field-process',
@@ -209,7 +217,7 @@ export const steps: StepModel[] = [
       'Place controllers and RTUs as process equipment, then ask which conversations are real. This is where the customer validates the plant view.',
     visibleZones: [...start, 'control', 'field'],
     visibleEntities: [...enterprise, ...boundary, ...operations, ...control, ...field],
-    visibleLinks: [...entryLinks, 'core-dist', 'dist-scada', 'dist-hmi'],
+    visibleLinks: [...entryLinks, 'core-dist', 'dist-scada'],
     introduced: ['field', ...field],
     active: field,
     focus: ['field', ...field],
@@ -222,7 +230,7 @@ export const steps: StepModel[] = [
       'Draw controller protocol conversations as a clean bus and drops. The labels are validation prompts, not decorative stickers.',
     visibleZones: [...start, 'control', 'field'],
     visibleEntities: [...enterprise, ...boundary, ...operations, ...control, ...field],
-    visibleLinks: [...entryLinks, 'core-dist', 'dist-scada', 'dist-hmi', ...protocolLinks],
+    visibleLinks: [...protocolLinks],
     introduced: protocolLinks,
     active: [...field, ...protocolLinks],
     focus: ['scada', 'hmi', ...field, ...protocolLinks],
@@ -235,7 +243,7 @@ export const steps: StepModel[] = [
       'Pause here. Access logs and change records help, but they do not prove what controller traffic crossed the wire during the baseline window.',
     visibleZones: [...start, 'control', 'field'],
     visibleEntities: [...enterprise, ...boundary, ...operations, ...control, ...field],
-    visibleLinks: [...enterpriseLinks, ...entryLinks, 'core-dist', 'dist-scada', 'dist-hmi', ...protocolLinks],
+    visibleLinks: [...enterpriseLinks, ...entryLinks, ...protocolLinks],
     active: ['firewall', 'jump', 'dist', ...field],
     focus: ['firewall', 'jump', 'dist', 'field', ...protocolLinks],
   },
@@ -247,7 +255,7 @@ export const steps: StepModel[] = [
       'Introduce Dragos as passive monitoring architecture. Sensors observe, SiteStore analyzes locally, and CentralStore supports broader visibility.',
     visibleZones: allZones,
     visibleEntities: [...enterprise, ...boundary, ...operations, ...control, ...field, ...monitoring],
-    visibleLinks: [...entryLinks, 'core-dist', 'dist-scada', 'dist-hmi'],
+    visibleLinks: [...entryLinks, 'core-dist', 'dist-scada'],
     introduced: ['monitoring', ...monitoring],
     active: ['monitoring', ...monitoring],
     focus: ['monitoring', ...monitoring],
@@ -259,8 +267,8 @@ export const steps: StepModel[] = [
     narration:
       'Draw the boundary SPAN feed. This gives north/south visibility without placing Dragos inline on the firewall path.',
     visibleZones: allZones,
-    visibleEntities: [...enterprise, ...boundary, ...operations, ...control, ...field, ...monitoring],
-    visibleLinks: [...entryLinks, 'core-dist', 'firewall-sensor-boundary'],
+    visibleEntities: [...boundary, ...operations, ...control, ...field, ...monitoring],
+    visibleLinks: ['firewall-sensor-boundary'],
     introduced: ['firewall-sensor-boundary'],
     active: ['firewall', 'sensor-boundary', 'firewall-sensor-boundary'],
     focus: ['firewall', 'sensor-boundary', 'firewall-sensor-boundary'],
@@ -273,10 +281,10 @@ export const steps: StepModel[] = [
       'Draw the control trunk SPAN feed. This is the passive collection point for SCADA-to-controller visibility.',
     visibleZones: allZones,
     visibleEntities: [...enterprise, ...boundary, ...operations, ...control, ...field, ...monitoring],
-    visibleLinks: ['core-dist', 'dist-scada', 'dist-hmi', ...protocolLinks, 'dist-sensor-control'],
+    visibleLinks: ['core-dist', 'dist-sensor-control'],
     introduced: ['dist-sensor-control'],
-    active: ['dist', 'sensor-control', 'dist-sensor-control', ...protocolLinks],
-    focus: ['dist', 'sensor-control', 'dist-sensor-control', ...protocolLinks],
+    active: ['core', 'dist', 'sensor-control', 'core-dist', 'dist-sensor-control'],
+    focus: ['core', 'dist', 'sensor-control', 'core-dist', 'dist-sensor-control'],
   },
   {
     id: 'sitestore-analysis',
@@ -286,7 +294,7 @@ export const steps: StepModel[] = [
       'Connect passive feeds into SiteStore. This turns observed traffic into local inventory, detections, and proof-of-value evidence.',
     visibleZones: allZones,
     visibleEntities: [...enterprise, ...boundary, ...operations, ...control, ...field, ...monitoring],
-    visibleLinks: ['firewall-sensor-boundary', 'dist-sensor-control', 'sensor-boundary-sitestore', 'sensor-control-sitestore'],
+    visibleLinks: ['sensor-boundary-sitestore', 'sensor-control-sitestore'],
     introduced: ['sensor-boundary-sitestore', 'sensor-control-sitestore'],
     active: [...sensors, 'sitestore', 'sensor-boundary-sitestore', 'sensor-control-sitestore'],
     focus: [...sensors, 'sitestore', 'sensor-boundary-sitestore', 'sensor-control-sitestore'],
@@ -299,7 +307,7 @@ export const steps: StepModel[] = [
       'Connect SiteStore to CentralStore for metadata and detections. Raw packet retention remains a plant governance decision.',
     visibleZones: allZones,
     visibleEntities: [...enterprise, ...boundary, ...operations, ...control, ...field, ...monitoring],
-    visibleLinks: ['sensor-boundary-sitestore', 'sensor-control-sitestore', 'sitestore-centralstore'],
+    visibleLinks: ['sitestore-centralstore'],
     introduced: ['sitestore-centralstore'],
     active: [...stores, 'sitestore-centralstore'],
     focus: [...stores, 'sitestore-centralstore'],
@@ -337,8 +345,20 @@ export const steps: StepModel[] = [
       'Close the technical plan: confirm the approved paths, passive collection points, SOC handoff, baseline window, and what success looks like for the Dragos demo.',
     visibleZones: allZones,
     visibleEntities: [...enterprise, ...boundary, ...operations, ...control, ...field, ...monitoring],
-    visibleLinks: [...enterpriseLinks, ...entryLinks, ...operationsLinks, ...controlLinks, ...protocolLinks, ...monitoringLinks, ...socLinks],
-    active: undefined,
-    focus: undefined,
+    visibleLinks: ['ad-firewall', 'gateway-jump', ...entryLinks, 'core-dist', 'dist-sensor-control', 'sensor-boundary-sitestore', 'sensor-control-sitestore', 'sitestore-centralstore', 'tickets-centralstore'],
+    active: ['firewall', 'jump', 'core', 'dist', ...sensors, 'sitestore', 'centralstore', 'tickets'],
+    focus: ['firewall', 'jump', 'core', 'dist', ...sensors, 'sitestore', 'centralstore', 'tickets'],
   },
 ]
+
+export const steps: StepModel[] = stepDefinitions.map(withStepEvidence)
+
+function withStepEvidence(step: StepModel): StepModel {
+  if (step.evidenceRefs?.length) return step
+  if (step.id.includes('span') || step.id.includes('dragos') || step.id.includes('sitestore') || step.id.includes('centralstore') || step.id.includes('handoff')) {
+    return { ...step, evidenceRefs: DRAGOS_STEP_REFS }
+  }
+  if (step.id.includes('protocol') || step.id.includes('field')) return { ...step, evidenceRefs: PROTOCOL_STEP_REFS }
+  if (step.id.includes('pov') || step.id === 'close') return { ...step, evidenceRefs: POC_STEP_REFS }
+  return { ...step, evidenceRefs: SCENARIO_STEP_REFS }
+}

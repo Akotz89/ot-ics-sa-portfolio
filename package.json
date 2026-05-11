@@ -6,7 +6,9 @@
   "scripts": {
     "build:whiteboard": "vite build",
     "typecheck:whiteboard": "tsc --noEmit",
-    "test:whiteboard": "npm run typecheck:whiteboard && npm run build:whiteboard"
+    "test:whiteboard": "npm run typecheck:whiteboard && npm run build:whiteboard",
+    "audit:whiteboard:scenario": "node scripts/audit-whiteboard-evidence.mjs",
+    "audit:whiteboard": "npm run test:whiteboard && npm run audit:whiteboard:scenario && node scripts/audit-whiteboard.mjs"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +17,6 @@
     "@vitejs/plugin-react": "^6.0.1",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "tldraw": "^5.0.0",
     "typescript": "^6.0.3",
     "vite": "^8.0.11"
   },

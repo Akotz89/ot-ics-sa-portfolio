@@ -1,111 +1,87 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Box, Tldraw, type Editor, type TLShapePartial } from 'tldraw'
-import { applyStep, fitVisibleContent, seedWhiteboard } from './canvas/seedTldraw'
-import { entityIdFromShapeId, shapeIdForEntity, shapeIdForZone } from './canvas/ids'
-import { customShapeUtils } from './shapes'
-import { entities, flows, zones } from './model/topology'
+import { addStencilEntity, computeBoardLayout, createInitialEntities, moveEntityWithRules, toModelPoint } from './engine/layout'
+import { inflate, rectMaxX, rectMaxY } from './engine/geometry'
+import type { DiagramEntity, DragState } from './engine/diagramModel'
+import { flows } from './model/topology'
 import { steps } from './model/steps'
-import { auditEditor, validateStaticModel } from './validation/modelValidation'
 import { computeRouteScene } from './routing/computeRoutes'
-import type { RouteSceneLayout } from './routing/types'
+import { auditDiagram, validateStaticModel } from './validation/modelValidation'
+import { PulseHitLayer } from './renderer/PulseHitLayer'
 import { RouteOverlay } from './renderer/RouteOverlay'
 
 type Mode = 'presentation' | 'workshop'
 
-const EMPTY_ROUTE_SCENE: RouteSceneLayout = {
-  routes: [],
-  labels: [],
-  errors: [],
-  warnings: [],
-  quality: { visibleRoutes: 0, visibleLabels: 0, bends: 0, crossings: 0 },
-}
+const STENCIL: Array<{ kind: DiagramEntity['kind']; label: string }> = [
+  { kind: 'switch', label: 'Switch' },
+  { kind: 'firewall', label: 'Firewall' },
+  { kind: 'server', label: 'Server' },
+  { kind: 'workstation', label: 'Workstation' },
+  { kind: 'controller', label: 'PLC / RTU' },
+  { kind: 'sensor', label: 'Sensor' },
+  { kind: 'store', label: 'Store' },
+]
 
 export function App() {
+  const rootRef = useRef<HTMLDivElement | null>(null)
   const [mode, setMode] = useState<Mode>('presentation')
   const [stepIndex, setStepIndex] = useState(0)
-  const [auditErrors, setAuditErrors] = useState<string[]>(() => validateStaticModel())
-  const [routeScene, setRouteScene] = useState<RouteSceneLayout>(EMPTY_ROUTE_SCENE)
-  const [editorInstance, setEditorInstance] = useState<Editor | null>(null)
-  const [pulseLabel, setPulseLabel] = useState('')
+  const [entities, setEntities] = useState<DiagramEntity[]>(() => createInitialEntities())
+  const [viewport, setViewport] = useState({ width: 1900, height: 940 })
   const [pulseLinks, setPulseLinks] = useState<string[]>([])
-  const editorRef = useRef<Editor | null>(null)
+  const [pulseLabel, setPulseLabel] = useState('')
+  const dragRef = useRef<DragState | null>(null)
   const pulseTimeoutRef = useRef<number | undefined>(undefined)
 
   const step = steps[stepIndex]
+  const layout = useMemo(() => computeBoardLayout(entities, undefined, viewport), [entities, viewport])
+  const routeScene = useMemo(() => computeRouteScene(layout, step), [layout, step])
+  const auditErrors = useMemo(() => [...validateStaticModel(), ...auditDiagram(layout, step, routeScene)], [layout, routeScene, step])
   const pulseLinkSet = useMemo(() => new Set(pulseLinks), [pulseLinks])
+  const shell = { width: Math.max(640, viewport.width - 14), height: Math.max(480, viewport.height - 14) }
+  const view = useMemo(() => computeStepView(layout, step, routeScene, shell.width / shell.height), [layout, routeScene, shell.height, shell.width, step])
+  const scale = Math.max(0.32, Math.min(shell.width / view.w, shell.height / view.h))
+  const focused = useMemo(() => new Set(step.focus ?? step.active ?? []), [step])
+  const focusContainsEntity = useMemo(() => layout.entities.some((entity) => focused.has(entity.id)), [focused, layout.entities])
+  const hasErrors = auditErrors.length > 0
 
-  const refreshRouteAndAudit = useCallback((editor: Editor, currentStep: typeof step) => {
-    const nextRouteScene = computeRouteScene(editor, currentStep)
-    setRouteScene(nextRouteScene)
-    setAuditErrors([...validateStaticModel(), ...auditEditor(editor, nextRouteScene)])
-    return nextRouteScene
+  const setStep = useCallback((nextIndex: number) => {
+    window.clearTimeout(pulseTimeoutRef.current)
+    setPulseLinks([])
+    setPulseLabel('')
+    setStepIndex(Math.max(0, Math.min(steps.length - 1, nextIndex)))
   }, [])
-
-  const setStep = useCallback(
-    (nextIndex: number) => {
-      const clamped = Math.max(0, Math.min(steps.length - 1, nextIndex))
-      window.clearTimeout(pulseTimeoutRef.current)
-      setPulseLabel('')
-      setPulseLinks([])
-      setStepIndex(clamped)
-      const editor = editorRef.current
-      if (editor) {
-        applyStep(editor, steps[clamped], mode === 'workshop')
-        refreshRouteAndAudit(editor, steps[clamped])
-      }
-    },
-    [mode, refreshRouteAndAudit]
-  )
-
-  const onMount = useCallback(
-    (editor: Editor) => {
-      editorRef.current = editor
-      setEditorInstance(editor)
-      seedWhiteboard(editor)
-      applyStep(editor, step, mode === 'workshop')
-      refreshRouteAndAudit(editor, step)
-      queueMicrotask(() => fitVisibleContent(editor))
-    },
-    [mode, refreshRouteAndAudit, step]
-  )
 
   const triggerPulse = useCallback(
     (entityId: string) => {
-      const editor = editorRef.current
-      if (!editor || !step.visibleEntities.includes(entityId)) return
+      if (!step.visibleEntities.includes(entityId)) return
       const visibleLinks = new Set(step.visibleLinks)
       const flow = flows.find((item) => item.trigger === entityId && item.links.some((linkId) => visibleLinks.has(linkId)))
       if (!flow) {
         setPulseLabel('')
         return
       }
-
       window.clearTimeout(pulseTimeoutRef.current)
-      const pulseLinks = flow.links.filter((linkId) => visibleLinks.has(linkId))
-      setPulseLinks(pulseLinks)
+      const nextPulseLinks = flow.links.filter((linkId) => visibleLinks.has(linkId))
+      setPulseLinks(nextPulseLinks)
       setPulseLabel(`Flow pulse: ${flow.label}`)
       pulseTimeoutRef.current = window.setTimeout(() => {
         setPulseLinks([])
         setPulseLabel('')
       }, 1400)
     },
-    [mode, step]
+    [step]
   )
 
   useEffect(() => {
-    const editor = editorRef.current
-    if (!editor) return
-    applyStep(editor, step, mode === 'workshop')
-    refreshRouteAndAudit(editor, step)
-  }, [mode, refreshRouteAndAudit, step])
-
-  useEffect(() => {
-    const editor = editorInstance
-    if (!editor) return
-    return editor.store.listen(() => {
-      refreshRouteAndAudit(editor, steps[stepIndex])
+    const root = rootRef.current
+    if (!root) return
+    const observer = new ResizeObserver(([entry]) => {
+      const box = entry.contentRect
+      setViewport({ width: Math.max(640, box.width), height: Math.max(480, box.height) })
     })
-  }, [editorInstance, refreshRouteAndAudit, stepIndex])
+    observer.observe(root)
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     const next = document.querySelector<HTMLButtonElement>('#btn-next')
@@ -113,15 +89,10 @@ export function App() {
     const reset = document.querySelector<HTMLButtonElement>('#btn-reset')
     const indicator = document.querySelector<HTMLElement>('.step-indicator')
     const narration = document.querySelector<HTMLElement>('.narration')
-
     if (indicator) indicator.textContent = `${step.label} ${stepIndex + 1}/${steps.length}`
     if (next) next.disabled = stepIndex >= steps.length - 1
     if (prev) prev.disabled = stepIndex <= 0
-    if (narration) {
-      narration.innerHTML = `<p><span class="tag ${step.tag.toLowerCase()}">${step.tag}</span> ${escapeHtml(
-        step.narration
-      )}</p>`
-    }
+    if (narration) narration.innerHTML = `<p><span class="tag ${step.tag.toLowerCase()}">${step.tag}</span> ${escapeHtml(step.narration)}</p>`
 
     const handleNext = () => setStep(stepIndex + 1)
     const handlePrev = () => setStep(stepIndex - 1)
@@ -139,7 +110,6 @@ export function App() {
     prev?.addEventListener('click', handlePrev)
     reset?.addEventListener('click', handleReset)
     window.addEventListener('keydown', handleKey)
-
     return () => {
       next?.removeEventListener('click', handleNext)
       prev?.removeEventListener('click', handlePrev)
@@ -148,208 +118,183 @@ export function App() {
     }
   }, [setStep, step, stepIndex])
 
-  useEffect(() => {
-    const stage = document.querySelector('.wb-stage')
-    const editor = editorRef.current
-    if (!stage || !editor) return
-    const resizeObserver = new ResizeObserver(() => fitVisibleContent(editor))
-    resizeObserver.observe(stage)
-    return () => resizeObserver.disconnect()
-  }, [])
-
-  useEffect(() => {
-    const handlePulse = (event: Event) => {
-      const entityId = (event as CustomEvent<{ entityId: string }>).detail?.entityId
-      if (entityId) triggerPulse(entityId)
-    }
-
-    const handleCanvasPick = (event: Event) => {
-      const target = event.target instanceof Element ? event.target : null
-      if (!target?.closest('.tl-container')) return
-      const device = target.closest<HTMLElement>('[data-entity-id]')
-      if (device?.dataset.entityId) {
-        triggerPulse(device.dataset.entityId)
-        return
-      }
-      window.setTimeout(() => {
-        const selected = editorRef.current?.getSelectedShapeIds()[0]
-        const entityId = selected ? entityIdFromShapeId(selected) : undefined
-        if (entityId) triggerPulse(entityId)
-      }, 0)
-    }
-
-    window.addEventListener('ot-node-pulse', handlePulse)
-    window.addEventListener('click', handleCanvasPick, true)
-    return () => {
-      window.removeEventListener('ot-node-pulse', handlePulse)
-      window.removeEventListener('click', handleCanvasPick, true)
-    }
-  }, [triggerPulse])
-
-  useEffect(() => {
+  const handlePointerDown = (event: React.PointerEvent, entity: DiagramEntity) => {
     if (mode !== 'workshop') return
-    const interval = window.setInterval(() => {
-      const editor = editorRef.current
-      if (!editor) return
-      repairWorkshopGeometry(editor)
-      refreshRouteAndAudit(editor, step)
-    }, 450)
-    return () => window.clearInterval(interval)
-  }, [mode, refreshRouteAndAudit, step])
+    event.currentTarget.setPointerCapture(event.pointerId)
+    dragRef.current = { id: entity.id, pointerId: event.pointerId, startX: event.clientX, startY: event.clientY, originX: entity.x, originY: entity.y }
+  }
 
-  const hasErrors = auditErrors.length > 0
-  const statusText = useMemo(() => {
-    if (hasErrors) return `${auditErrors.length} rule issue${auditErrors.length === 1 ? '' : 's'}`
-    const routeCount = routeScene.quality.visibleRoutes
-    const crossingText = routeScene.quality.crossings > 0 ? ` · ${routeScene.quality.crossings} crossings` : ''
-    return mode === 'presentation' ? `Presentation-safe · ${routeCount} routes${crossingText}` : `Workshop rules active · ${routeCount} routes${crossingText}`
-  }, [auditErrors.length, hasErrors, mode, routeScene.quality.crossings, routeScene.quality.visibleRoutes])
+  const handlePointerMove = (event: React.PointerEvent) => {
+    const drag = dragRef.current
+    if (!drag || drag.pointerId !== event.pointerId || mode !== 'workshop') return
+    const dx = (event.clientX - drag.startX) / scale
+    const dy = (event.clientY - drag.startY) / scale
+    const modelPoint = toModelPoint({ x: drag.originX + dx, y: drag.originY + dy }, viewport)
+    setEntities((current) => moveEntityWithRules(current, drag.id, modelPoint))
+  }
+
+  const stopDrag = (event: React.PointerEvent) => {
+    if (dragRef.current?.pointerId === event.pointerId) dragRef.current = null
+  }
+
+  const statusText = hasErrors
+    ? `${auditErrors.length} rule issue${auditErrors.length === 1 ? '' : 's'}`
+    : mode === 'presentation'
+      ? `Presentation-safe · ${routeScene.quality.visibleRoutes} bound routes`
+      : `Grid + snap + ports active · ${routeScene.quality.visibleRoutes} bound routes`
 
   return (
-    <div className={`whiteboard-workshop wb-mode-${mode}`}>
+    <div ref={rootRef} className={`visio-whiteboard wb-mode-${mode}`} onPointerMove={handlePointerMove} onPointerUp={stopDrag} onPointerCancel={stopDrag}>
       <div className="wb-toolbar">
         <div className="wb-mode-tabs" aria-label="Whiteboard mode">
-          <button
-            type="button"
-            className={mode === 'presentation' ? 'active' : ''}
-            onClick={() => setMode('presentation')}
-          >
+          <button type="button" className={mode === 'presentation' ? 'active' : ''} onClick={() => setMode('presentation')}>
             Presentation
           </button>
           <button type="button" className={mode === 'workshop' ? 'active' : ''} onClick={() => setMode('workshop')}>
             Workshop
           </button>
         </div>
-        <button type="button" className="wb-tool-button" onClick={() => editorRef.current && fitVisibleContent(editorRef.current)}>
-          Fit
+        <button type="button" className="wb-tool-button" onClick={() => setEntities(createInitialEntities())}>
+          Reset Layout
         </button>
         <div className={`wb-rule-status ${hasErrors ? 'bad' : 'ok'}`}>{statusText}</div>
         {pulseLabel ? <div className="wb-pulse-status">{pulseLabel}</div> : null}
       </div>
-      <Tldraw
-        shapeUtils={customShapeUtils}
-        onMount={onMount}
-        hideUi
-        persistenceKey={undefined}
-        options={{ maxPages: 1 }}
-      />
-      <RouteOverlay editor={editorInstance} layout={routeScene} step={step} pulseLinks={pulseLinkSet} />
+      {mode === 'workshop' ? (
+        <aside className="wb-stencil" aria-label="Workshop stencil">
+          <div className="wb-stencil-title">OT stencil</div>
+          {STENCIL.map((item) => (
+            <button key={item.kind} type="button" onClick={() => setEntities((current) => addStencilEntity(current, item.kind))}>
+              <span className={`node-icon ${iconClass(item.kind)}`} />
+              {item.label}
+            </button>
+          ))}
+        </aside>
+      ) : null}
+      <div className="wb-board-shell" style={{ width: shell.width, height: shell.height }}>
+        <div
+          className="wb-board"
+          style={{
+            width: layout.width,
+            height: layout.height,
+            transform: `scale(${scale}) translate(${-view.x}px, ${-view.y}px)`,
+          }}
+        >
+          <div className="wb-grid" />
+          <div className="wb-title-block">
+            <h2>Federal OT Network Whiteboard</h2>
+            <p>Customer topology, boundary paths, passive collection points, and SOC handoff are modeled as bound diagram entities.</p>
+          </div>
+          {layout.zones
+            .filter((zone) => step.visibleZones.includes(zone.id))
+            .map((zone) => (
+              <section key={zone.id} className={`wb-zone wb-zone-${zone.id} ${focused.has(zone.id) ? 'focused' : ''}`} style={{ left: zone.x, top: zone.y, width: zone.w, height: zone.h }}>
+                <h3>{zone.title}</h3>
+                <p>{zone.subtitle}</p>
+              </section>
+            ))}
+          <RouteOverlay layout={routeScene} step={step} pulseLinks={pulseLinkSet} width={layout.width} height={layout.height} />
+          <div className="wb-device-layer">
+            {layout.entities
+              .filter((entity) => step.visibleEntities.includes(entity.id) || (mode === 'workshop' && entity.runtime))
+              .map((entity) => (
+                <DeviceNode
+                  key={entity.id}
+                  entity={entity}
+                  focused={focused.has(entity.id)}
+                  dimmed={focusContainsEntity && focused.size > 0 && !focused.has(entity.id)}
+                  workshop={mode === 'workshop'}
+                  onPulse={triggerPulse}
+                  onPointerDown={handlePointerDown}
+                />
+              ))}
+          </div>
+          {step.id === 'pov-checklist' || step.id === 'close' ? <CloseCard /> : null}
+          {mode === 'presentation' ? <PulseHitLayer layout={layout} step={step} onPulse={triggerPulse} /> : null}
+        </div>
+      </div>
       {hasErrors ? <div className="qa-failure-overlay">Whiteboard QA failed: {auditErrors.slice(0, 5).join(' | ')}</div> : null}
     </div>
   )
 }
 
-function repairWorkshopGeometry(editor: Editor) {
-  const updates: TLShapePartial[] = []
-  const visibleDevices = entities
-    .map((entity) => ({ entity, shape: editor.getShape(shapeIdForEntity(entity.id)) }))
-    .filter((item) => item.shape && item.shape.opacity > 0.03)
-
-  for (const item of visibleDevices) {
-    const shape = item.shape!
-    const zone = zones.find((candidate) => candidate.id === item.entity.zone)
-    if (!zone) continue
-    const bounds = editor.getShapePageBounds(shape.id)
-    const zoneBounds = editor.getShapePageBounds(shapeIdForZone(zone.id))
-    if (!bounds || !zoneBounds) continue
-
-    const safeZone = zoneBounds.clone().expandBy(-18)
-    let x = shape.x
-    let y = shape.y
-    if (bounds.x < safeZone.x) x += safeZone.x - bounds.x
-    if (bounds.y < safeZone.y + 38) y += safeZone.y + 38 - bounds.y
-    if (bounds.maxX > safeZone.maxX) x -= bounds.maxX - safeZone.maxX
-    if (bounds.maxY > safeZone.maxY) y -= bounds.maxY - safeZone.maxY
-
-    if (x !== shape.x || y !== shape.y) updates.push({ id: shape.id, type: shape.type, x, y } as TLShapePartial)
-  }
-
-  if (updates.length) editor.updateShapes(updates)
-  repairDeviceCollisions(editor)
+function DeviceNode({
+  entity,
+  focused,
+  dimmed,
+  workshop,
+  onPulse,
+  onPointerDown,
+}: {
+  entity: DiagramEntity
+  focused: boolean
+  dimmed: boolean
+  workshop: boolean
+  onPulse: (entityId: string) => void
+  onPointerDown: (event: React.PointerEvent, entity: DiagramEntity) => void
+}) {
+  return (
+    <button
+      type="button"
+      className={`wb-device wb-device-${entity.role ?? entity.kind} ${focused ? 'focused' : ''} ${dimmed ? 'dimmed' : ''} ${workshop ? 'workshop' : ''}`}
+      style={{ left: entity.x, top: entity.y, width: entity.w ?? 180, height: entity.h ?? 70 }}
+      onClick={() => onPulse(entity.id)}
+      onPointerDown={(event) => onPointerDown(event, entity)}
+      data-entity-id={entity.id}
+    >
+      <span className={`node-icon ${iconClass(entity.kind)}`} />
+      <span className="wb-device-text">
+        <strong>{entity.label}</strong>
+        <span>{entity.subtitle}</span>
+      </span>
+      {workshop ? <Ports /> : null}
+    </button>
+  )
 }
 
-function repairDeviceCollisions(editor: Editor) {
-  const visibleDevices = entities
-    .map((entity) => ({ entity, shape: editor.getShape(shapeIdForEntity(entity.id)) }))
-    .filter((item) => item.shape && item.shape.opacity > 0.03)
-
-  const updates: TLShapePartial[] = []
-  const selected = new Set(editor.getSelectedShapeIds())
-  const pairwiseMoved = new Set<string>()
-
-  for (let aIndex = 0; aIndex < visibleDevices.length; aIndex += 1) {
-    const a = visibleDevices[aIndex]
-    const aBounds = editor.getShapePageBounds(a.shape!.id)
-    if (!aBounds) continue
-    for (let bIndex = aIndex + 1; bIndex < visibleDevices.length; bIndex += 1) {
-      const b = visibleDevices[bIndex]
-      if (a.entity.zone !== b.entity.zone) continue
-      const bBounds = editor.getShapePageBounds(b.shape!.id)
-      if (!bBounds || !aBounds.clone().expandBy(20).collides(bBounds)) continue
-      const picked = selected.has(a.shape!.id) ? a : selected.has(b.shape!.id) ? b : b
-      if (pairwiseMoved.has(picked.entity.id)) continue
-      updates.push({ id: picked.shape!.id, type: picked.shape!.type, x: picked.entity.x, y: picked.entity.y } as TLShapePartial)
-      pairwiseMoved.add(picked.entity.id)
-    }
-  }
-
-  if (updates.length) {
-    editor.updateShapes(updates)
-    return
-  }
-
-  const placed: Array<{ id: string; zoneId: string; bounds: NonNullable<ReturnType<Editor['getShapePageBounds']>> }> = []
-
-  for (const item of visibleDevices) {
-    const shape = item.shape!
-    const bounds = editor.getShapePageBounds(shape.id)
-    const zone = zones.find((candidate) => candidate.id === item.entity.zone)
-    const zoneBounds = zone ? editor.getShapePageBounds(shapeIdForZone(zone.id)) : undefined
-    if (!bounds || !zoneBounds) continue
-
-    const sameZone = placed.filter((other) => other.zoneId === item.entity.zone)
-    const collision = sameZone.some((other) => other.bounds.clone().expandBy(20).collides(bounds))
-    if (!collision) {
-      placed.push({ id: item.entity.id, zoneId: item.entity.zone, bounds })
-      continue
-    }
-
-    const next = findOpenSpot(bounds, zoneBounds, sameZone.map((other) => other.bounds), { x: item.entity.x, y: item.entity.y })
-    if (next) {
-      updates.push({ id: shape.id, type: shape.type, x: next.x, y: next.y } as TLShapePartial)
-      placed.push({ id: item.entity.id, zoneId: item.entity.zone, bounds: new Box(next.x, next.y, bounds.w, bounds.h) })
-    } else {
-      placed.push({ id: item.entity.id, zoneId: item.entity.zone, bounds })
-    }
-  }
-
-  if (updates.length) editor.updateShapes(updates)
+function Ports() {
+  return (
+    <>
+      <span className="wb-port left" />
+      <span className="wb-port right" />
+      <span className="wb-port top" />
+      <span className="wb-port bottom" />
+    </>
+  )
 }
 
-function findOpenSpot(
-  bounds: NonNullable<ReturnType<Editor['getShapePageBounds']>>,
-  zoneBounds: NonNullable<ReturnType<Editor['getShapePageBounds']>>,
-  obstacles: Array<NonNullable<ReturnType<Editor['getShapePageBounds']>>>,
-  fallback: { x: number; y: number }
-) {
-  const gap = 28
-  const safe = zoneBounds.clone().expandBy(-24)
-  const candidates = [
-    { x: bounds.x + bounds.w + gap, y: bounds.y },
-    { x: bounds.x - bounds.w - gap, y: bounds.y },
-    { x: bounds.x, y: bounds.y + bounds.h + gap },
-    { x: bounds.x, y: bounds.y - bounds.h - gap },
-    { x: bounds.x + bounds.w + gap, y: bounds.y + bounds.h + gap },
-    { x: bounds.x - bounds.w - gap, y: bounds.y + bounds.h + gap },
-    { x: safe.x, y: bounds.y + bounds.h + gap },
-    { x: Math.max(safe.x, safe.maxX - bounds.w), y: bounds.y + bounds.h + gap },
-    fallback,
-  ]
+function CloseCard() {
+  return (
+    <div className="wb-close-card">
+      <h3>Close the technical plan</h3>
+      <p>Ports, SPAN source, baseline window, SOC handoff, success criteria.</p>
+    </div>
+  )
+}
 
-  return candidates.find((candidate) => {
-    const box = new Box(candidate.x, candidate.y, bounds.w, bounds.h)
-    return safe.contains(box) && !obstacles.some((obstacle) => obstacle.clone().expandBy(20).collides(box))
-  })
+function iconClass(kind: DiagramEntity['kind']) {
+  switch (kind) {
+    case 'firewall':
+      return 'icon-firewall'
+    case 'switch':
+      return 'icon-switch'
+    case 'server':
+    case 'broker':
+      return 'icon-server'
+    case 'workstation':
+    case 'jump':
+      return 'icon-workstation'
+    case 'controller':
+      return 'icon-controller'
+    case 'sensor':
+      return 'icon-sensor'
+    case 'store':
+      return 'icon-analytics'
+    case 'identity':
+      return 'icon-identity'
+    default:
+      return 'icon-app'
+  }
 }
 
 function escapeHtml(value: string) {
@@ -367,4 +312,51 @@ function escapeHtml(value: string) {
         return '&#39;'
     }
   })
+}
+
+function computeStepView(
+  layout: ReturnType<typeof computeBoardLayout>,
+  step: (typeof steps)[number],
+  routeScene: ReturnType<typeof computeRouteScene>,
+  targetAspect: number
+) {
+  const boxes = [
+    { x: 16, y: 14, w: 660, h: 62 },
+    ...step.visibleZones.map((id) => layout.zoneBoxes[id]).filter(Boolean),
+    ...step.visibleEntities.map((id) => layout.entityBoxes[id]).filter(Boolean),
+    ...routeScene.labels,
+  ]
+
+  for (const route of routeScene.routes) {
+    const xs = route.points.map((point) => point.x)
+    const ys = route.points.map((point) => point.y)
+    boxes.push({ x: Math.min(...xs), y: Math.min(...ys), w: Math.max(...xs) - Math.min(...xs), h: Math.max(...ys) - Math.min(...ys) })
+  }
+
+  const minX = Math.max(0, Math.min(...boxes.map((box) => box.x)) - 28)
+  const minY = Math.max(0, Math.min(...boxes.map((box) => box.y)) - 28)
+  const maxX = Math.min(layout.width, Math.max(...boxes.map((box) => rectMaxX(box))) + 28)
+  const maxY = Math.min(layout.height, Math.max(...boxes.map((box) => rectMaxY(box))) + 28)
+  return expandViewToAspect({ x: minX, y: minY, w: Math.max(720, maxX - minX), h: Math.max(420, maxY - minY) }, targetAspect, layout.width, layout.height)
+}
+
+function expandViewToAspect(view: { x: number; y: number; w: number; h: number }, targetAspect: number, boardWidth: number, boardHeight: number) {
+  let next = { ...view }
+  const currentAspect = next.w / next.h
+  if (currentAspect > targetAspect) {
+    const desiredH = next.w / targetAspect
+    next.y -= (desiredH - next.h) / 2
+    next.h = desiredH
+  } else {
+    const desiredW = next.h * targetAspect
+    next.x -= (desiredW - next.w) / 2
+    next.w = desiredW
+  }
+  if (next.x < 0) next.x = 0
+  if (next.y < 0) next.y = 0
+  if (rectMaxX(next) > boardWidth) next.x = Math.max(0, boardWidth - next.w)
+  if (rectMaxY(next) > boardHeight) next.y = Math.max(0, boardHeight - next.h)
+  next.w = Math.min(next.w, boardWidth)
+  next.h = Math.min(next.h, boardHeight)
+  return inflate(next, 0)
 }

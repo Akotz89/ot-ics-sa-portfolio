@@ -206,6 +206,21 @@
   }
   .card p { font-size: 13px; margin-bottom: 0; color: var(--text-muted); }
 
+  .flagship-demo {
+    border: 1px solid rgba(1,96,94,.28);
+    border-left: 4px solid var(--steel);
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin: 16px 0 20px;
+    background: linear-gradient(90deg, rgba(1,96,94,.08), rgba(255,255,255,.96));
+  }
+  .flagship-demo a {
+    color: var(--steel);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .flagship-demo a:hover { text-decoration: underline; }
+
   /* ── Stage Flow ─────────────────────────────── */
   .stage-flow {
     display: grid;
@@ -306,11 +321,11 @@
 <div class="cover">
   <div class="cover-logo">Technical Readiness Document</div>
   <h1>Federal Solution Architect</h1>
-  <div class="subtitle">Pre-Sales Technical Competency & POC Methodology</div>
+  <div class="subtitle">Work Product Exercises for Federal Pre-Sales</div>
   <div class="cover-rule"></div>
   <div class="meta-line"><strong>Aaron Kotz</strong></div>
-  <div class="meta-line">Senior Pre-Sales Solution Architect (Federal)</div>
-  <div class="meta-line">18+ Years DoD Mission Systems · Cybersecurity & Mission Systems Lead (13+ Remotely Piloted Aircraft Mission Sites) · TS/SCI Operations</div>
+  <div class="meta-line">Candidate - Federal Solution Architect</div>
+  <div class="meta-line">18-Year Career: USAF Active Duty, ANG Cyber Operations, DoD Contractor · Cybersecurity & Mission Systems Lead (1 of 13+ RPA Mission Sites) · TS/SCI Operations</div>
   <div class="clearance-badge">TS/SCI Cleared</div>
   <div style="margin-top: 32pt;">
     <div class="meta-line" style="color: var(--text-light); font-size: 9pt;">
@@ -321,22 +336,40 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════
+     ABOUT THIS PORTFOLIO
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break section">
+  <h2>About This Portfolio</h2>
+
+  <div class="callout" style="border-left: 4px solid var(--dragos-accent); background: var(--gray-50); padding: 16pt 20pt;">
+    <p><strong>What this is:</strong> A set of sample work products I created to demonstrate how I would approach the Federal Solution Architect role at Dragos. The scenario, stakeholders, and engagement details are fictional exercises. No Dragos proprietary data was used.</p>
+    <p><strong>What I actually bring:</strong> 18 years operating in and securing the exact types of classified, availability-critical environments that Dragos sells into. I currently serve as the Cybersecurity and Mission Systems Lead at one of 13+ RPA mission sites. I manage TS/SCI and Secret enclaves, enforce STIGs, run ACAS scans, maintain ATOs, and coordinate across a program with dual-tier firewalls, 14 protocol translators, and 20+ VMs. I have built this kind of infrastructure from nothing and understand what these customers need because I am one of them.</p>
+    <p><strong>What I am ramping on:</strong> I am new to OT/ICS cybersecurity and the Dragos platform. My OT knowledge comes from self-study during interview preparation, not from field experience. The product details are based on publicly available Dragos documentation, webinars, and the 2025 Year in Review.</p>
+    <p><strong>Why I built this:</strong> Nobody asked me to. Reading a resume tells you where I have been. This portfolio shows how I think, how I structure technical work, and how quickly I can ramp on a new domain. Section 6 maps my actual classified infrastructure directly to the Purdue Model to show how the experience transfers.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
      SECTION 1: EXECUTIVE SUMMARY
      ═══════════════════════════════════════════════════════════════ -->
 <div class="page-break section">
   <h2>1. Executive Summary</h2>
 
-  <p>This portfolio demonstrates my understanding of the Solution Architect pre-sales motion, the OT/ICS cybersecurity landscape, the Dragos product portfolio, and how I would execute a federal proof-of-concept engagement. Each page walks through a stage of the sales cycle with real work products, from discovery through architecture, demo, POC report, RFP response, and ARB brief. It complements my resume and gives the hiring team a clear view of my technical readiness for the Senior Pre-Sales Solution Architect (Federal) role.</p>
+  <p>This portfolio demonstrates my understanding of the Solution Architect pre-sales motion, the OT/ICS cybersecurity landscape, the Dragos product portfolio, and how I would execute a federal proof-of-concept engagement. Each page walks through a stage of the sales cycle with real work products, from discovery through architecture, demo, POC report, RFP response, and ARB brief. It complements my resume and gives the hiring team a clear view of my technical readiness for the Federal Solution Architect role.</p>
+
+  <div class="flagship-demo">
+    <p><strong>Flagship interactive demo:</strong> The <a href="whiteboard/">Federal OT Network Whiteboard</a> is a 24-step customer workshop surface that ties this portfolio together: discovery questions, boundary paths, passive SPAN collection, Dragos sensor placement, SiteStore/CentralStore aggregation, SOC handoff, and proof-of-value close criteria.</p>
+  </div>
 
   <div class="callout">
-    <p><strong>My core value proposition:</strong> I've spent my entire 18-year career in classified DoD environments. I currently serve as the Cybersecurity and Mission Systems Lead at one of 13+ remotely piloted aircraft mission sites, managing TS/SCI and Secret enclaves, vulnerability programs, and STIG enforcement. I want to bring that operational perspective to the pre-sales role because I understand these customers' constraints, speak their language, and can map Dragos capabilities directly to problems I've encountered firsthand.</p>
+    <p><strong>My core value proposition:</strong> I've spent the majority of my 18-year career in classified DoD environments. I currently serve as the Cybersecurity and Mission Systems Lead at one of 13+ remotely piloted aircraft mission sites, managing TS/SCI and Secret enclaves, vulnerability programs, and STIG enforcement. I want to bring that operational perspective to the pre-sales role because I understand these customers' constraints, speak their language, and can map Dragos capabilities directly to problems I've encountered firsthand.</p>
   </div>
 
   <h3>What I Bring From Day One</h3>
   <div class="card-grid">
     <div class="card">
       <h4>Federal Mission Credibility</h4>
-      <p>Active TS/SCI clearance. Career arc from USAF avionics and COMSEC (2008), through ANG cyber operations (2013), to leading cybersecurity and mission systems across 13+ remotely piloted aircraft mission sites today. I run STIG enforcement, ACAS scanning, ATO compliance, and syslog collection across multiple enclaves.</p>
+      <p>Active TS/SCI clearance. Career arc from USAF avionics and COMSEC (2008), through ANG cyber operations (2013), to serving as the Cybersecurity and Mission Systems Lead at one of 13+ remotely piloted aircraft mission sites today. I run STIG enforcement, ACAS scanning, ATO compliance, and syslog collection across multiple enclaves.</p>
     </div>
     <div class="card">
       <h4>Architecture That Maps to OT</h4>
@@ -344,11 +377,11 @@
     </div>
     <div class="card">
       <h4>Technical Depth for Pre-Sales</h4>
-      <p>Cisco and Juniper firewalls, OpenShift, VMware, SIEM deployment, vulnerability scanning, multi-VLAN networks, Linux CLI, real-time sensor data processing. I design deployment architectures across segmented, multi-enclave networks and can explain the rationale for each component placement.</p>
+      <p>Cisco and Juniper firewalls, OpenShift, VMware, SIEM deployment, vulnerability scanning, multi-VLAN networks, Linux CLI, Python scripting for automation and log analysis, real-time sensor data processing. I design deployment architectures across segmented, multi-enclave networks and can explain the rationale for each component placement.</p>
     </div>
     <div class="card">
       <h4>Stakeholder Communication</h4>
-      <p>I brief military leadership on risk posture, present my site's status in program-wide reviews covering all 13+ sites, deliver technical training, and mentor ISSOs on compliance. Adjusting technical depth for the audience is part of the job.</p>
+      <p>I brief military leadership on risk posture, present my site's status in program-wide reviews covering all 13+ program sites, deliver technical training, and mentor ISSOs on compliance. Adjusting technical depth for the audience is part of the job.</p>
     </div>
   </div>
 
@@ -358,8 +391,10 @@
     <tr><td><strong>2. SA Presales Motion</strong></td><td>Understanding of the go-to-market motion and where the SA fits</td><td>"Engage in pre- and post-sales processes"</td></tr>
     <tr><td><strong>3. Industry Landscape</strong></td><td>OT/ICS threat landscape awareness and regulatory drivers</td><td>"Familiarity with the ICS/OT discipline"</td></tr>
     <tr><td><strong>4. Dragos Platform</strong></td><td>Product architecture, deployment model, and portfolio depth</td><td>"Conduct tailored product demonstrations"</td></tr>
+    <tr><td><strong>Interactive Whiteboard</strong></td><td>Customer-grade live whiteboarding: topology, data flows, Dragos placement, and PoV close</td><td>"Conduct tailored product demonstrations"</td></tr>
     <tr><td><strong>5. POC Methodology</strong></td><td>How I would execute a federal proof-of-concept</td><td>"Execute proof-of-concept deployments"</td></tr>
     <tr><td><strong>6. Architecture Bridge</strong></td><td>Direct mapping of my environment to OT/ICS</td><td>"Strong foundation in networking and systems"</td></tr>
+    <tr><td><strong>7. Research Depth</strong></td><td>Source citations, competitive analysis, and research methodology</td><td>Demonstrates preparation depth and analytical rigor</td></tr>
   </table>
 </div>
 
@@ -369,7 +404,7 @@
 <div class="page-break section">
   <h2>2. The SA Pre-Sales Motion</h2>
 
-  <p>The Solution Architect owns the technical side of the sales cycle. While the Account Manager owns the relationship and pipeline, the SA owns technical credibility, from first conversation through deployment design. Here is how the 6-stage motion works and where my experience maps at each stage.</p>
+  <p>The Solution Architect owns the technical side of the sales cycle. While the Account Manager owns the relationship and pipeline, the SA owns technical credibility, from first conversation through deployment design. Here is how the 7-stage motion works and where my experience maps at each stage.</p>
 
   <div class="stage-flow">
     <div class="stage">
@@ -402,6 +437,11 @@
       <h4>Win the Deal</h4>
       <p>Support the AM with technical sections of the proposal, RFP/RFI responses, SOW development, and POC execution.</p>
     </div>
+    <div class="stage">
+      <div class="stage-number">Stage 7</div>
+      <h4>Expand &amp; Renew</h4>
+      <p>Post-deployment QBRs, platform health checks, adoption metrics, and expansion planning for additional sites or capabilities.</p>
+    </div>
   </div>
 
   <h3>How My Experience Maps to Each Stage</h3>
@@ -410,7 +450,7 @@
     <tr>
       <td><strong>Earn Trust</strong></td>
       <td>Prove you have operated in their world: classified networks, compliance pressure, real consequences</td>
-      <td>TS/SCI cleared. I operate across JWICS, SIPRNet, and unclassified enclaves. I enforce STIGs, run ACAS scans, manage ATOs, and coordinate with other site leads across 13+ remotely piloted aircraft mission sites.</td>
+      <td>TS/SCI cleared. I operate across JWICS, SIPRNet, and unclassified enclaves. I enforce STIGs, run ACAS scans, manage ATOs, and coordinate with site leads at the other 12+ RPA mission sites in the program.</td>
     </tr>
     <tr>
       <td><strong>Listen</strong></td>
@@ -432,11 +472,47 @@
       <td>Support proposals, RFP responses, and POC execution through the federal procurement process</td>
       <td>I work under FAR-governed DoD contracts, have authored technical documentation for 10 IT programs, and coordinate multi-site deployments with federal stakeholders. I understand the procurement cadence, approval chains, and documentation requirements.</td>
     </tr>
+    <tr>
+      <td><strong>Expand</strong></td>
+      <td>Post-deployment health checks, QBRs, usage adoption, and expansion planning</td>
+      <td>I conduct quarterly program reviews across 13+ sites, track platform adoption metrics, identify capability gaps, and plan phased expansions. Same cadence an SA uses to drive renewals and upsell.</td>
+    </tr>
   </table>
 
   <div class="callout">
-    <p><strong>The Trust Advantage:</strong> "I've spent 18 years in classified DoD environments. I currently serve as the Cybersecurity and Mission Systems Lead at one of 13+ remotely piloted aircraft mission sites, running STIG enforcement, syslog collection, multi-vendor firewalls, and real-time sensor data across TS/SCI and Secret enclaves."</p>
+    <p><strong>The Trust Advantage:</strong> "I've spent 18 years working in and around classified DoD environments. I currently serve as the Cybersecurity and Mission Systems Lead at one of 13+ RPA mission sites, running STIG enforcement, syslog collection, multi-vendor firewalls, and real-time sensor data across TS/SCI and Secret enclaves."</p>
   </div>
+
+  <h3>How the SA Actually Works</h3>
+  <p>The portfolio pages show work products. This section shows how the SA operates day-to-day: the tools, the cadences, and the internal collaboration that make the sales motion work.</p>
+  <table>
+    <tr><th>Activity</th><th>What It Involves</th><th>My Equivalent Today</th></tr>
+    <tr>
+      <td><strong>Opportunity Qualification</strong></td>
+      <td>Evaluate whether an opportunity is worth SA engagement. Assess deal size, technical fit, timeline, competitive landscape, and customer readiness. Communicate go/no-go to the AE.</td>
+      <td>I evaluate technical risk for every system change in my environment. I determine scope, resource requirements, and whether the work aligns with mission priorities before committing resources.</td>
+    </tr>
+    <tr>
+      <td><strong>Internal Collaboration</strong></td>
+      <td>Weekly SA team syncs, AE/SA pipeline reviews, product feedback loops to engineering, competitive intelligence sharing across the SA org.</td>
+      <td>I coordinate weekly with 12+ site leads across the program, participate in program-wide reviews, and provide technical feedback to the prime contractor's engineering team.</td>
+    </tr>
+    <tr>
+      <td><strong>CRM Discipline</strong></td>
+      <td>Update Salesforce opportunity stages, log technical win status, document customer requirements, forecast accuracy for quarterly commits.</td>
+      <td>I maintain asset inventories, vulnerability tracking, POA&amp;M status, and compliance dashboards across multiple systems. Same discipline of maintaining accurate records for leadership visibility.</td>
+    </tr>
+    <tr>
+      <td><strong>Competitive Handling</strong></td>
+      <td>Know the battle cards. Position Dragos strengths against Claroty, Nozomi, Microsoft D4IoT. Acknowledge competitor strengths honestly, then redirect to Dragos differentiators.</td>
+      <td>I evaluate vendor solutions against mission requirements and present trade-off analyses to leadership. I understand that positioning requires honesty about limitations, not just feature lists.</td>
+    </tr>
+    <tr>
+      <td><strong>Post-Sale Handoff</strong></td>
+      <td>Transition from SA to Professional Services for deployment. Document customer environment, architecture decisions, and success criteria. Stay engaged for QBRs and expansion.</td>
+      <td>I hand off operational systems to incoming site leads with full documentation: network diagrams, firewall rules, STIG baselines, and operational procedures. Clean handoffs prevent re-work.</td>
+    </tr>
+  </table>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════
@@ -634,14 +710,14 @@
     <!-- Level 5: Enterprise -->
     <div style="background: #edf2f7; border: 1.5px solid #cbd5e0; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6pt;">
       <div>
-        <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 4pt;" data-tip="ISA 62443 Level 5: Enterprise network zone. External connections, corporate services, and internet-facing systems.">LEVEL 5 · ENTERPRISE</div>
+        <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 4pt;">LEVEL 5 · ENTERPRISE</div>
         <div style="display: flex; gap: 4pt; flex-wrap: wrap;">
-          <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;" data-tip="L5: Enterprise messaging and name resolution. No direct OT connectivity.">Email / DNS</div>
-          <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;" data-tip="L5: Enterprise identity and authentication services. Separate forest from OT AD if present.">Active Directory</div>
-          <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;" data-tip="L5: Enterprise SIEM aggregates syslog from Dragos CentralStore. Receives OT alerts without direct L0-3 access.">SIEM / Splunk</div>
+          <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;">Email / DNS</div>
+          <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;">Active Directory</div>
+          <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;">SIEM / Splunk</div>
         </div>
       </div>
-      <div style="background: #0a1212; border: 2px solid #01605e; border-radius: 5pt; padding: 6pt 14pt; text-align: center;" data-tip="Dragos CentralStore: Enterprise-level 'manager of managers.' Aggregates metadata from all SiteStores for cross-site correlation, fleet-wide asset inventory, and unified threat visibility. Placed at L5 per Dragos deployment architecture (dragos.com).">
+      <div style="background: #0a1212; border: 2px solid #01605e; border-radius: 5pt; padding: 6pt 14pt; text-align: center;">
         <div style="font-size: 10pt; font-weight: 700; color: #fff;">⬢ Dragos CentralStore</div>
         <div style="font-size: 7pt; color: #a8e8e5;">Enterprise Dashboard · Cross-Site Correlation</div>
       </div>
@@ -650,44 +726,44 @@
     <!-- Metadata flow indicator -->
     <div style="display: flex; justify-content: flex-end; padding-right: 80pt;">
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <div style="font-size: 6.5pt; color: #049995; margin-bottom: 1pt;" data-tip="SiteStore sends only processed metadata (not raw PCAP) upstream to CentralStore. Encrypted in transit. No raw OT traffic leaves the site.">▲ Encrypted Metadata</div>
+        <div style="font-size: 6.5pt; color: #049995; margin-bottom: 1pt;">▲ Encrypted Metadata</div>
         <div style="width: 0; height: 12pt; border-left: 2.5px dashed #049995;"></div>
       </div>
     </div>
 
     <!-- Level 4: Business -->
     <div style="background: #f7fafc; border: 1.5px solid #cbd5e0; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt;">
-      <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 4pt;" data-tip="ISA 62443 Level 4: Business planning and logistics. Systems here support business operations but do not directly control OT processes.">LEVEL 4 · BUSINESS</div>
+      <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 4pt;">LEVEL 4 · BUSINESS</div>
       <div style="display: flex; gap: 4pt;">
-        <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;" data-tip="L4: Enterprise Resource Planning. Business logistics, scheduling, and inventory. No direct control path to OT.">ERP</div>
+        <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;">ERP</div>
       </div>
     </div>
 
     <!-- DMZ -->
     <div style="background: #fff5f5; border: 2px dashed #e53e3e; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt;">
-      <div style="font-size: 8pt; font-weight: 700; color: #e53e3e; letter-spacing: 1px; margin-bottom: 4pt;" data-tip="ISA 62443 Level 3.5: Industrial DMZ. Buffer zone between IT (L4-5) and OT (L0-3). No direct traffic traversal - all communication brokered through DMZ services.">LEVEL 3.5 · INDUSTRIAL DMZ</div>
+      <div style="font-size: 8pt; font-weight: 700; color: #e53e3e; letter-spacing: 1px; margin-bottom: 4pt;">LEVEL 3.5 · INDUSTRIAL DMZ</div>
       <div style="display: flex; gap: 4pt; flex-wrap: wrap;">
-        <div style="background: #fff; border: 1px solid #e53e3e; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #c53030;" data-tip="L3.5: Stateful inspection firewall enforcing IT/OT boundary. Per ISA 62443 conduit requirements.">Firewall</div>
-        <div style="background: #fff; border: 1px solid #e53e3e; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #c53030;" data-tip="L3.5: Controlled remote access point. All vendor/admin access to OT zones must route through this bastion host.">Jump Server / VPN</div>
-        <div style="background: #fff; border: 1px solid #e53e3e; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #c53030;" data-tip="L3.5: Unidirectional gateway. Enforces one-way data flow from OT to IT. Common in federal/DoD OT environments.">Data Diode</div>
+        <div style="background: #fff; border: 1px solid #e53e3e; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #c53030;">Firewall</div>
+        <div style="background: #fff; border: 1px solid #e53e3e; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #c53030;">Jump Server / VPN</div>
+        <div style="background: #fff; border: 1px solid #e53e3e; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #c53030;">Data Diode</div>
       </div>
     </div>
 
     <!-- Level 3: Site Operations -->
     <div style="background: #e6f7f7; border: 1.5px solid #7dd3d0; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6pt;">
       <div>
-        <div style="font-size: 8pt; font-weight: 700; color: #01605e; letter-spacing: 1px; margin-bottom: 4pt;" data-tip="ISA 62443 Level 3: Site manufacturing operations and management. Historians, engineering workstations, and site-level analytics live here.">LEVEL 3 · SITE OPERATIONS</div>
+        <div style="font-size: 8pt; font-weight: 700; color: #01605e; letter-spacing: 1px; margin-bottom: 4pt;">LEVEL 3 · SITE OPERATIONS</div>
         <div style="display: flex; gap: 4pt; flex-wrap: wrap; align-items: center;">
-          <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;" data-tip="L3: Process data historian. Stores time-series data from L1-2 controllers. Per ISA 62443 and Fortinet/Dragos reference architectures.">Historian</div>
-          <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;" data-tip="L3: Engineering workstation for PLC/DCS programming, firmware updates, and configuration management.">Eng. Workstation</div>
-          <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;" data-tip="L3: OT-specific patch management. Vendor-validated updates staged here before deployment to L1-2 controllers.">Patch Server</div>
+          <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;">Historian</div>
+          <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;">Eng. Workstation</div>
+          <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;">Patch Server</div>
           <div style="display: flex; align-items: center; margin-left: 4pt;"><div style="width: 10pt; border-top: 2px solid #dd6b20;"></div><div style="width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid #dd6b20;"></div></div>
-          <div style="background: #f6ad55; border: 2px solid #dd6b20; border-radius: 5pt; padding: 5pt 10pt; font-size: 9pt; font-weight: 700; color: #fff;" data-tip="Dragos Sensor at L3: Passive monitoring via SPAN/mirror port. Captures traffic between L3 systems and the DMZ. Supports 600+ industrial protocols via DPI. Zero active scanning.">◉ Sensor (SPAN)</div>
+          <div style="background: #f6ad55; border: 2px solid #dd6b20; border-radius: 5pt; padding: 5pt 10pt; font-size: 9pt; font-weight: 700; color: #fff;">◉ Sensor (SPAN)</div>
         </div>
       </div>
       <div style="display: flex; align-items: center; gap: 4pt;">
         <div style="display: flex; align-items: center;"><div style="width: 12pt; border-top: 2px solid #049995;"></div><div style="width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid #049995;"></div></div>
-        <div style="background: #01605e; border: 2px solid #049995; border-radius: 5pt; padding: 8pt 14pt; text-align: center;" data-tip="Dragos SiteStore at L3: Site-level aggregation console. Correlates sensor metadata, builds asset inventory, runs threat detections, and manages vulnerability workflows. One per site. Sends only metadata (not raw PCAP) to CentralStore.">
+        <div style="background: #01605e; border: 2px solid #049995; border-radius: 5pt; padding: 8pt 14pt; text-align: center;">
           <div style="font-size: 10pt; font-weight: 700; color: #fff;">⬢ Dragos SiteStore</div>
           <div style="font-size: 7pt; color: #a8e8e5;">Analysis · Detection · Asset Inventory</div>
         </div>
@@ -696,31 +772,31 @@
 
     <!-- Level 2: Supervisory Control -->
     <div style="background: #f0fff4; border: 1.5px solid #9ae6b4; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt;">
-      <div style="font-size: 8pt; font-weight: 700; color: #276749; letter-spacing: 1px; margin-bottom: 4pt;" data-tip="ISA 62443 Level 2: Supervisory control. SCADA servers, HMIs, and operator consoles that aggregate data from L1 controllers and provide process visualization.">LEVEL 2 · SUPERVISORY CONTROL</div>
+      <div style="font-size: 8pt; font-weight: 700; color: #276749; letter-spacing: 1px; margin-bottom: 4pt;">LEVEL 2 · SUPERVISORY CONTROL</div>
       <div style="display: flex; gap: 4pt; flex-wrap: wrap; align-items: center;">
-        <div style="background: #fff; border: 1px solid #9ae6b4; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #276749;" data-tip="L2: SCADA server. Supervisory control and data acquisition. Polls L1 controllers (PLCs/RTUs) and provides centralized process management.">SCADA Server</div>
-        <div style="background: #fff; border: 1px solid #9ae6b4; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #276749;" data-tip="L2: Human-Machine Interface. Operator console for real-time process visualization and setpoint control.">HMI #1</div>
-        <div style="background: #fff; border: 1px solid #9ae6b4; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #276749;" data-tip="L2: Redundant HMI. Separate operator station for backup visibility or different process area.">HMI #2</div>
+        <div style="background: #fff; border: 1px solid #9ae6b4; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #276749;">SCADA Server</div>
+        <div style="background: #fff; border: 1px solid #9ae6b4; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #276749;">HMI #1</div>
+        <div style="background: #fff; border: 1px solid #9ae6b4; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #276749;">HMI #2</div>
         <div style="display: flex; align-items: center; margin-left: 4pt;"><div style="width: 10pt; border-top: 2px solid #dd6b20;"></div><div style="width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid #dd6b20;"></div></div>
-        <div style="background: #f6ad55; border: 2px solid #dd6b20; border-radius: 5pt; padding: 5pt 10pt; font-size: 9pt; font-weight: 700; color: #fff;" data-tip="Dragos Sensor at L2: Passive monitoring via network TAP. Captures east-west traffic between SCADA, HMIs, and L1 controllers. TAP ensures full-duplex, lossless capture without impacting control traffic.">◉ Sensor (TAP)</div>
+        <div style="background: #f6ad55; border: 2px solid #dd6b20; border-radius: 5pt; padding: 5pt 10pt; font-size: 9pt; font-weight: 700; color: #fff;">◉ Sensor (TAP)</div>
       </div>
     </div>
 
     <!-- Level 1: Basic Control -->
     <div style="background: #fffff0; border: 1.5px solid #fefcbf; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt;">
-      <div style="font-size: 8pt; font-weight: 700; color: #975a16; letter-spacing: 1px; margin-bottom: 4pt;" data-tip="ISA 62443 Level 1: Basic control. Controllers that execute automation logic and communicate directly with L0 field devices.">LEVEL 1 · BASIC CONTROL</div>
+      <div style="font-size: 8pt; font-weight: 700; color: #975a16; letter-spacing: 1px; margin-bottom: 4pt;">LEVEL 1 · BASIC CONTROL</div>
       <div style="display: flex; gap: 4pt; flex-wrap: wrap;">
-        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;" data-tip="L1: Programmable Logic Controller. Executes ladder logic / function blocks to control L0 actuators and read L0 sensors.">PLC #1</div>
+        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;">PLC #1</div>
         <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;">PLC #2</div>
-        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;" data-tip="L1: Remote Terminal Unit. Field-deployed controller for remote/distributed sites. Communicates via serial or IP to SCADA.">RTU</div>
-        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;" data-tip="L1: Distributed Control System controller. Continuous process control (refining, chemical, power gen). Integrated with proprietary I/O.">DCS Controller</div>
-        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;" data-tip="L1: Safety Instrumented System. Independent safety controller (IEC 61511). Triggers emergency shutdown if process exceeds safe limits. Must be logically isolated from basic control.">SIS</div>
+        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;">RTU</div>
+        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;">DCS Controller</div>
+        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;">SIS</div>
       </div>
     </div>
 
     <!-- Level 0: Physical Process -->
     <div style="background: #f7fafc; border: 1.5px solid #e2e8f0; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 10pt;">
-      <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 2pt;" data-tip="ISA 62443 Level 0: Physical process. Field instrumentation that directly interacts with the physical world. No IP connectivity - wired 4-20mA, HART, or fieldbus.">LEVEL 0 · PHYSICAL PROCESS</div>
+      <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 2pt;">LEVEL 0 · PHYSICAL PROCESS</div>
       <div style="font-size: 8pt; color: #a0aec0;">Valves · Pumps · Motors · Actuators · Sensors · Transmitters</div>
     </div>
 
@@ -732,7 +808,7 @@
       <div style="display: flex; align-items: center; gap: 4pt;"><div style="width: 14px; height: 14px; background: #fff5f5; border: 1px dashed #e53e3e; border-radius: 3pt;"></div><span style="font-size: 8pt; color: #4a5568;">DMZ Boundary</span></div>
     </div>
   </div>
-  <div style="font-size: 8.5pt; color: var(--text-light); font-style: italic; text-align: center; margin-top: -10pt; margin-bottom: 14pt;">Figure 2: Customer whiteboard sketch. Passive sensors at L2 and L3 monitoring points, SiteStore at site operations, syslog forwarding to enterprise SIEM.</div>
+  <div style="font-size: 8.5pt; color: var(--text-light); font-style: italic; text-align: center; margin-top: -10pt; margin-bottom: 14pt;">Figure 2: Reference deployment mapping. Passive sensors at L2 and L3 monitoring points, SiteStore at site operations, syslog forwarding to enterprise SIEM.</div>
 
   <h3>The Four Pillars</h3>
   <table>
@@ -767,8 +843,67 @@
     <tr><td><strong>OT Watch</strong></td><td>Managed detection service. Dragos analysts monitor customer environments 24/7</td><td>For customers without OT SOC capability (most federal agencies)</td></tr>
     <tr><td><strong>Neighborhood Keeper</strong></td><td>Community defense program for anonymized threat data sharing across participants. NSA/CISA are trusted advisors.</td><td>Unique federal value: collective defense for critical infrastructure sectors</td></tr>
     <tr><td><strong>Professional Services</strong></td><td>Architecture assessment, penetration testing, tabletop exercises, incident response retainer</td><td>Supports SANS Control 1 (ICS IR) and NIST CSF assessment requirements</td></tr>
-    <tr><td><strong>Dragos Public Sector LLC</strong></td><td>Subsidiary launched Oct 2024, dedicated to federal and SLTT customers. SAM registered, Carahsoft contract vehicles.</td><td>Procurement pathway: NASA SEWP V (active; SEWP V pending bid protests), Carahsoft as channel partner</td></tr>
+    <tr><td><strong>Dragos Public Sector LLC</strong></td><td>Subsidiary launched Oct 2024, dedicated to federal and SLTT customers. SAM registered, Carahsoft contract vehicles.</td><td>Procurement pathway: NASA SEWP V (extended through Sep 30, 2026; option periods to Apr 2027. SEWP VI not yet awarded due to active GAO protests), Carahsoft as channel partner</td></tr>
   </table>
+
+  <h3>Competitive Landscape</h3>
+  <p>An SA must position honestly. Acknowledging competitor strengths builds credibility; then you redirect to where Dragos wins. Here is how I would position Dragos against the field in a federal engagement.</p>
+  <table>
+    <tr><th>Capability</th><th>Dragos</th><th>Claroty</th><th>Nozomi</th><th>MSFT D4IoT</th></tr>
+    <tr>
+      <td><strong>Dedicated OT Threat Intel</strong></td>
+      <td>WorldView: 20+ named threat groups, sector advisories, IOC feeds</td>
+      <td>Team82: strong vuln research, limited threat group tracking</td>
+      <td>Smaller OT intel team; relies on anomaly detection</td>
+      <td>IT-centric; Section 52 team limited on OT</td>
+    </tr>
+    <tr>
+      <td><strong>Managed OT Detection</strong></td>
+      <td>OT Watch: dedicated OT analysts 24/7</td>
+      <td>No equivalent</td>
+      <td>No equivalent</td>
+      <td>No equivalent</td>
+    </tr>
+    <tr>
+      <td><strong>OT Incident Response</strong></td>
+      <td>Dedicated PS team (former NSA/DoD)</td>
+      <td>Partner-dependent</td>
+      <td>Partner-dependent</td>
+      <td>Partner-dependent</td>
+    </tr>
+    <tr>
+      <td><strong>Published DISA STIG</strong></td>
+      <td>Yes (public.cyber.mil)</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No (D4IoT sensors)</td>
+    </tr>
+    <tr>
+      <td><strong>Federal ATO Precedent</strong></td>
+      <td>13+ sites completed</td>
+      <td>Growing</td>
+      <td>Limited</td>
+      <td>Via Azure Gov (IL4/5)</td>
+    </tr>
+    <tr>
+      <td><strong>Deep ICS Protocol Parsing</strong></td>
+      <td>100+ protocols (GE SRTP/EGD, Ovation, S7comm)</td>
+      <td>Broad but shallow</td>
+      <td>Strong</td>
+      <td>Common protocols only</td>
+    </tr>
+    <tr>
+      <td><strong>Community Defense</strong></td>
+      <td>Neighborhood Keeper (NSA/CISA advisors)</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+  </table>
+
+  <div class="callout">
+    <p><strong>Positioning Example (Claroty):</strong> "Claroty is a strong platform when the customer's primary need is broad IoT/OT asset visibility across a converged enterprise. Where Dragos differentiates is threat-intelligence-driven defense for high-consequence environments. We track the adversaries, not just the assets. For a hydropower facility where the threat is a nation-state actor, you need threat group tracking, deep protocol parsing, and IR capability."</p>
+  </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════
@@ -1063,13 +1198,13 @@
     <tr><th>Transition</th><th>What I Walked Into</th><th>What I Delivered</th></tr>
     <tr>
       <td><strong>Avionics &rarr; Municipal Cybersecurity</strong><br>(City of La Marque, TX)</td>
-      <td>Zero municipal IT experience. Hired to manage city infrastructure and inherited an environment with no segmentation, no centralized security, and an active ransomware threat.</td>
+      <td>Zero municipal IT experience. Hired to manage city infrastructure and inherited an environment with no segmentation, no centralized security, and an active ransomware threat. I was there for six months.</td>
       <td>&bull; Stood up the city's cybersecurity program with no existing baseline<br>&bull; Designed network segmentation with unified security gateways at each city site<br>&bull; Deployed LAN encryption hardware for all wireless traffic<br>&bull; Built hot/cold storage backup schema that recovered the wastewater treatment department's data after a ransomware attack hit before full security implementation was complete<br>&bull; Prevented phishing attacks targeting the finance department<br>&bull; Isolated the wastewater treatment SCADA system after the incident, using the same network isolation approach applied in OT environments</td>
     </tr>
     <tr>
       <td><strong>13 Years at the RPA Mission</strong><br>(2013 - Present)</td>
       <td>Joined the TX ANG RPA SOC unit in 2013 straight from active duty avionics and never left. Progressed through every status the Guard offers: traditional guardsman, full-time Title 10, GS-11 dual-status technician, then transitioned to contractor (Cape Fox 2019, Tenax 2024). Promoted to site lead at the Tenax contract transition.</td>
-      <td>&bull; Own security posture for the entire site across TS/SCI and Secret enclaves<br>&bull; Built the network documentation from scratch (VLANs, firewall rules, data flows, VM inventories) because none existed<br>&bull; Deploy and manage a 20+ VM platform across dual-tier firewalls with 14 protocol translators<br>&bull; Manage STIG enforcement, ACAS vulnerability scanning, and ATO compliance<br>&bull; Authored 10 IT management program books for the site<br>&bull; Mentor the site ISSO and coordinate across all 13+ program sites</td>
+      <td>&bull; Own security posture for the entire site across TS/SCI and Secret enclaves<br>&bull; Built the network documentation from scratch (VLANs, firewall rules, data flows, VM inventories) because none existed<br>&bull; Deploy and manage a 20+ VM platform across dual-tier firewalls with 14 protocol translators<br>&bull; Manage STIG enforcement, ACAS vulnerability scanning, and ATO compliance<br>&bull; Authored 10 IT management program books for the site<br>&bull; Mentor the site ISSO and coordinate with leads at the other 12+ program sites</td>
     </tr>
   </table>
   <p>Each transition followed the same pattern: understand the architecture, map existing cybersecurity knowledge to the new domain, and deliver while ramping on the specifics.</p>
@@ -1077,6 +1212,63 @@
   <blockquote>
     <p>"I don't operate PLCs, but I operate a four-zone architecture with two hard firewall boundaries, isolated circuits, protocol translation, and controlled data flows. Aircraft control runs on dedicated encrypted fiber, logically isolated from everything else. Mission processing networks are behind boundary protection. The collateral operations zone runs our SIEM and vulnerability scanning. Then another firewall boundary separates all of that from enterprise. That maps directly to the Purdue Model. The protocols differ, but the architecture, the segmentation philosophy, and the stakes are the same."</p>
   </blockquote>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 7: RESEARCH & SOURCES
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break section">
+  <h2>7. Research Depth</h2>
+
+  <p>Every technical claim in this portfolio is sourced from public data. The scenario page contains full hyperlinked citations. This section summarizes the research foundation behind the work products.</p>
+
+  <table>
+    <tr><th>Category</th><th>Sources</th><th>Examples</th></tr>
+    <tr>
+      <td><strong>Dam Infrastructure</strong></td>
+      <td>USACE NWD fact sheets, BPA FCRPS brochure, Columbia Basin Research (UW), EIA hydroelectric data</td>
+      <td>All MW capacities, generating unit counts, and commission dates verified against USACE primary sources</td>
+    </tr>
+    <tr>
+      <td><strong>Control Systems</strong></td>
+      <td>GE Vernova (Mark VIe), Emerson (Ovation DCS), Rockwell (ControlLogix), Siemens (S7-400) product documentation</td>
+      <td>Controller models, HMI platforms, and protocol stacks verified against vendor datasheets</td>
+    </tr>
+    <tr>
+      <td><strong>Threat Intelligence</strong></td>
+      <td>CISA AA24-038A (Volt Typhoon), Dragos threat group pages (VOLTZITE, CHERNOVITE, ELECTRUM, SYLVANITE), NVD CVE data</td>
+      <td>Threat group attributions, TTPs, and sector targeting verified against Dragos public threat intel and CISA advisories</td>
+    </tr>
+    <tr>
+      <td><strong>Dragos Platform</strong></td>
+      <td>Dragos Platform Brochure (Feb 2026), Appliance Models Datasheet, Neighborhood Keeper overview, Dragos Public Sector LLC announcement</td>
+      <td>SiteStore/CentralStore architecture, protocol support, STIG availability, and federal deployment count</td>
+    </tr>
+    <tr>
+      <td><strong>Federal Procurement</strong></td>
+      <td>NASA SEWP contract info page, Carahsoft/Dragos partnership page, SEWP VI status updates, GAO protest docket</td>
+      <td>SEWP V extension timeline and SEWP VI delay verified against NASA SEWP primary site</td>
+    </tr>
+    <tr>
+      <td><strong>Compliance Frameworks</strong></td>
+      <td>NIST SP 800-82 Rev 3, CISA BOD 23-01, CIRCIA, EO 14028, SANS 5 Critical Controls</td>
+      <td>Control mappings and regulatory timelines verified against NIST CSRC and Federal Register</td>
+    </tr>
+    <tr>
+      <td><strong>Network Equipment</strong></td>
+      <td>Cisco IE-4010, Cisco IE-3400, HPE Aruba 2920, Moxa EDS-205 product pages</td>
+      <td>Switch models and SPAN/TAP capabilities verified for each dam site's network architecture</td>
+    </tr>
+    <tr>
+      <td><strong>Competitive Intelligence</strong></td>
+      <td>Claroty xDome, Nozomi Guardian/Vantage, Microsoft Defender for IoT, Forescout eyeInspect, Tenable OT</td>
+      <td>Competitive positioning based on Gartner/Forrester reports, vendor documentation, and Dragos public differentiation materials</td>
+    </tr>
+  </table>
+
+  <div class="callout">
+    <p><strong>Full source citations with hyperlinks:</strong> See <a href="scenario.html" style="color: var(--dragos-accent); text-decoration: underline;">Scenario Brief, Section 8: References</a> for every claim-to-source mapping with direct links to primary sources.</p>
+  </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════

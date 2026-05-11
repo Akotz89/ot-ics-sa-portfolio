@@ -1,4 +1,4 @@
-@import url('./styles/base.css');
-@import url('./styles/controls.css');
-@import url('./styles/diagram.css');
-@import url('./styles/responsive.css');
+@import url('./styles/base.css?v=portfolio-theme-2');
+@import url('./styles/controls.css?v=portfolio-theme-2');
+@import url('./styles/diagram.css?v=portfolio-theme-2');
+@import url('./styles/responsive.css?v=portfolio-theme-2');
