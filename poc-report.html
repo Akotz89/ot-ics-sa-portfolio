@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PoC Findings Report — Bonneville Dam</title>
+  <title>PoC Findings Report - Bonneville Dam</title>
   <link rel="stylesheet" href="dragos-theme.css"><link rel="stylesheet" href="discovery/style.css">
   <style>
     .score-grid { display: grid; grid-template-columns: 1fr; gap: 8px; margin: 16px 0; }
@@ -25,27 +25,27 @@
 <body>
 
 <div class="cover">
-  <div class="logo-area"><span class="dot"></span> Dragos, Inc. — Public Sector</div>
-  <h1>Proof of Value — Findings Report</h1>
-  <p class="subtitle">U.S. Army Corps of Engineers — Bonneville Dam<br>Dragos Platform PoC · June 2 – July 18, 2026</p>
+  <div class="logo-area"><span class="dot"></span> Dragos, Inc. - Public Sector</div>
+  <h1>Proof of Value - Findings Report</h1>
+  <p class="subtitle">U.S. Army Corps of Engineers - Bonneville Dam<br>Dragos Platform PoC · June 2 – July 18, 2026</p>
   <div class="meta-grid">
     <div class="meta-item"><label>Prepared By</label><span>Aaron Kotz, Sr. Solutions Architect (Federal)</span></div>
     <div class="meta-item"><label>Customer Champion</label><span>Dr. Rebecca Torres, Chief, Cybersecurity Division (NWD)</span></div>
     <div class="meta-item"><label>PoC Duration</label><span>7 weeks (Jun 2 – Jul 18, 2026)</span></div>
-    <div class="meta-item"><label>Site</label><span>Bonneville Dam — 1,050 MW, 18 units</span></div>
+    <div class="meta-item"><label>Site</label><span>Bonneville Dam - 1,050 MW, 18 units</span></div>
     <div class="meta-item"><label>Sensors Deployed</label><span>2 (L2 process + L3 operations)</span></div>
     <div class="meta-item"><label>SiteStore</label><span>1× <span class="tip" data-tip="Dragos hardware appliance model sized for sites with up to 500 OT assets. Deployed as a VM during the PoC for faster setup; production deployment uses the physical appliance for performance and STIG compliance.">DS-1000 (VM deployment)</span></span></div>
     <div class="meta-item"><label>Opportunity ID</label><span>DRG-FED-2026-0847</span></div>
-    <div class="meta-item"><label>Version</label><span>1.0 — Final Report</span></div>
+    <div class="meta-item"><label>Version</label><span>1.0 - Final Report</span></div>
   </div>
-  <div class="classification">CUI // FOUO — Distribution Limited to Named Parties</div>
+  <div class="classification">CUI // FOUO - Distribution Limited to Named Parties</div>
 </div>
 
 <div class="page">
 
 <h2>1. Executive Summary</h2>
 
-<p>Over a 7-week <span class="tip" data-tip="Dragos uses 'Proof of Value' rather than 'Proof of Concept' to emphasize that the evaluation demonstrates measurable business and security value, not just technical function.">Proof of Value</span> engagement at Bonneville Dam, the Dragos Platform exceeded all five agreed-upon success criteria. The platform discovered <strong>247 OT assets</strong> (12% more than the customer's manual inventory), identified <strong>3 previously unknown communication paths</strong>, and demonstrated deep protocol parsing across all four site-relevant protocols — with <strong>zero operational disruptions</strong>.</p>
+<p>Over a 7-week <span class="tip" data-tip="Dragos uses 'Proof of Value' rather than 'Proof of Concept' to emphasize that the evaluation demonstrates measurable business and security value, not just technical function.">Proof of Value</span> engagement at Bonneville Dam, the Dragos Platform exceeded all five agreed-upon success criteria. The platform discovered <strong>247 OT assets</strong> (12% more than the customer's manual inventory), identified <strong>3 previously unknown communication paths</strong>, and demonstrated deep protocol parsing across all four site-relevant protocols - with <strong>zero operational disruptions</strong>.</p>
 
 <blockquote>
   <strong>Bottom Line:</strong> The Dragos Platform provides the OT visibility that USACE NWD currently lacks, validated at the most complex site in the Columbia River system. The architecture is proven and ready for full deployment across all four dam sites.
@@ -59,7 +59,7 @@
   <div class="score-row highlight">
     <div class="num">1</div>
     <div>Discover ≥90% of known OT assets within 72 hours of sensor activation</div>
-    <div class="score-pass">✓ 97% (214/220) — exceeded in 48 hours</div>
+    <div class="score-pass">✓ 97% (214/220) - exceeded in 48 hours</div>
   </div>
   <div class="score-row highlight">
     <div class="num">2</div>
@@ -73,7 +73,7 @@
   </div>
   <div class="score-row highlight">
     <div class="num">4</div>
-    <div>Generate zero operational disruptions — no turbine trips, no HMI impacts</div>
+    <div>Generate zero operational disruptions - no turbine trips, no HMI impacts</div>
     <div class="score-pass">✓ Zero disruptions across 7 weeks</div>
   </div>
   <div class="score-row highlight">
@@ -107,7 +107,7 @@
 <div class="two-col">
   <div class="finding-card">
     <h4><span class="sev-crit">CRITICAL</span> Undocumented Jump Server</h4>
-    <p>Discovery identified an undocumented Windows Server 2016 host bridging the L3/L4 boundary with active RDP sessions. This device was not in the customer's asset inventory and had no associated <span class="tip" data-tip="Authority to Operate — the formal authorization to run a system on a federal network. Any system without an ATO is technically operating in violation of FISMA and the agency's cybersecurity policy.">ATO</span>. Recommendation: immediate investigation and remediation.</p>
+    <p>Discovery identified an undocumented Windows Server 2016 host bridging the L3/L4 boundary with active RDP sessions. This device was not in the customer's asset inventory and had no associated <span class="tip" data-tip="Authority to Operate - the formal authorization to run a system on a federal network. Any system without an ATO is technically operating in violation of FISMA and the agency's cybersecurity policy.">ATO</span>. Recommendation: immediate investigation and remediation.</p>
   </div>
   <div class="finding-card">
     <h4><span class="sev-high">HIGH</span> Legacy Windows XP HMIs</h4>
@@ -115,30 +115,30 @@
   </div>
   <div class="finding-card">
     <h4><span class="sev-high">HIGH</span> Unexpected Cross-Zone Traffic</h4>
-    <p>Dragos detected <span class="tip" data-tip="SMB (Server Message Block) is a Windows file-sharing protocol. SMB traffic crossing from IT (L4) to OT (L2) networks indicates inadequate segmentation — a key indicator that an attacker could use the same path for lateral movement.">SMB file-sharing traffic</span> traversing from the L4 enterprise zone directly to L2 process network HMIs. This traffic bypasses the industrial DMZ and indicates a segmentation gap. Recommendation: firewall rule audit + ACL hardening.</p>
+    <p>Dragos detected <span class="tip" data-tip="SMB (Server Message Block) is a Windows file-sharing protocol. SMB traffic crossing from IT (L4) to OT (L2) networks indicates inadequate segmentation - a key indicator that an attacker could use the same path for lateral movement.">SMB file-sharing traffic</span> traversing from the L4 enterprise zone directly to L2 process network HMIs. This traffic bypasses the industrial DMZ and indicates a segmentation gap. Recommendation: firewall rule audit + ACL hardening.</p>
   </div>
   <div class="finding-card">
     <h4><span class="sev-med">MEDIUM</span> Vendor Laptop Connections</h4>
-    <p>Two vendor laptop MAC addresses observed connecting to the L3 engineering workstation VLAN during maintenance windows. These connections were authorized but not logged by existing controls. Recommendation: implement <span class="tip" data-tip="Secure Remote Access monitoring detects and alerts on all remote or transient connections to the OT network — including vendor laptops, VPN sessions, and maintenance ports. Aligns with SANS ICS Critical Control #4.">secure remote access monitoring</span> per SANS Critical Control #4.</p>
+    <p>Two vendor laptop MAC addresses observed connecting to the L3 engineering workstation VLAN during maintenance windows. These connections were authorized but not logged by existing controls. Recommendation: implement <span class="tip" data-tip="Secure Remote Access monitoring detects and alerts on all remote or transient connections to the OT network - including vendor laptops, VPN sessions, and maintenance ports. Aligns with SANS ICS Critical Control #4.">secure remote access monitoring</span> per SANS Critical Control #4.</p>
   </div>
 </div>
 
 <h2>5. Vulnerability Assessment</h2>
 
-<p>The platform identified 34 vulnerabilities across Bonneville OT assets, prioritized using Dragos' <span class="tip" data-tip="Now: actively exploited in the wild or trivially exploitable with public tools — patch immediately. Next: exploitable under specific conditions — schedule for next maintenance window. Never: theoretical risk with no practical exploit path in this environment — monitor only.">Now/Next/Never</span> framework:</p>
+<p>The platform identified 34 vulnerabilities across Bonneville OT assets, prioritized using Dragos' <span class="tip" data-tip="Now: actively exploited in the wild or trivially exploitable with public tools - patch immediately. Next: exploitable under specific conditions - schedule for next maintenance window. Never: theoretical risk with no practical exploit path in this environment - monitor only.">Now/Next/Never</span> framework:</p>
 
 <table>
   <tr><th>Priority</th><th>Count</th><th>Example</th><th>Action</th></tr>
-  <tr><td><span class="sev-crit">NOW</span></td><td>2</td><td>CVE-2023-3595 — ControlLogix CIP RCE (CVSS 9.8). <em>Note: affects John Day's AB controllers, not Bonneville, but critical for future deployment planning.</em></td><td>Patch during next outage window (John Day)</td></tr>
+  <tr><td><span class="sev-crit">NOW</span></td><td>2</td><td>CVE-2023-3595 - ControlLogix CIP RCE (CVSS 9.8). <em>Note: affects John Day's AB controllers, not Bonneville, but critical for future deployment planning.</em></td><td>Patch during next outage window (John Day)</td></tr>
   <tr><td><span class="sev-high">NEXT</span></td><td>8</td><td>GE Mark VIe firmware versions with known auth bypass (GE advisory GES-2024-003)</td><td>Schedule firmware update with GE field service</td></tr>
-  <tr><td><span class="sev-med">NEVER</span></td><td>24</td><td>Informational CVEs requiring physical access or specific configurations not present</td><td>Monitor — no action required</td></tr>
+  <tr><td><span class="sev-med">NEVER</span></td><td>24</td><td>Informational CVEs requiring physical access or specific configurations not present</td><td>Monitor - no action required</td></tr>
 </table>
 
 <h2>6. Integration Validation</h2>
 
 <table>
   <tr><th>Integration</th><th>Status</th><th>Validation</th></tr>
-  <tr><td><strong>Splunk Cloud</strong> (<span class="tip" data-tip="Syslog using Common Event Format (CEF) is the standard for forwarding security alerts to SIEMs. TLS encryption ensures alert metadata is protected in transit. Only alert type, severity, timestamp, and asset ID are forwarded — no raw PCAP.">Syslog/CEF over TLS</span>)</td><td><span class="check">✓ Operational</span></td><td>Alert metadata flowing to Splunk within 30 seconds of detection. 127 events forwarded during PoC. SOC confirmed visibility in existing dashboards.</td></tr>
+  <tr><td><strong>Splunk Cloud</strong> (<span class="tip" data-tip="Syslog using Common Event Format (CEF) is the standard for forwarding security alerts to SIEMs. TLS encryption ensures alert metadata is protected in transit. Only alert type, severity, timestamp, and asset ID are forwarded - no raw PCAP.">Syslog/CEF over TLS</span>)</td><td><span class="check">✓ Operational</span></td><td>Alert metadata flowing to Splunk within 30 seconds of detection. 127 events forwarded during PoC. SOC confirmed visibility in existing dashboards.</td></tr>
   <tr><td><strong>CrowdStrike Falcon</strong> (<span class="tip" data-tip="REST API integration enables bi-directional data exchange. Dragos sends OT IOCs and asset inventory to Falcon; CrowdStrike sends endpoint context (hostname, OS, AD domain) back to enrich Dragos asset records.">REST API</span>)</td><td><span class="check">✓ Operational</span></td><td>Bi-directional IOC exchange validated. 14 OT assets correlated with Falcon Discover for IoT endpoint data.</td></tr>
   <tr><td><strong>Neighborhood Keeper</strong></td><td><span class="check">✓ Enrolled</span></td><td>Anonymized telemetry flowing. Customer identifiers confirmed stripped per NK data handling policy.</td></tr>
 </table>
@@ -147,11 +147,11 @@
 
 <table>
   <tr><th>#</th><th>Recommendation</th><th>Priority</th><th>Timeline</th></tr>
-  <tr><td>1</td><td><strong>Proceed to full deployment</strong> — all success criteria met. Architecture validated at the most complex site.</td><td><span class="sev-crit">IMMEDIATE</span></td><td>ARB Brief → Aug 2026</td></tr>
-  <tr><td>2</td><td><strong>Remediate undocumented jump server</strong> — investigate, ATO or decommission.</td><td><span class="sev-crit">IMMEDIATE</span></td><td>Within 30 days</td></tr>
-  <tr><td>3</td><td><strong>Segment Windows XP HMIs</strong> — implement compensating controls until replacement.</td><td><span class="sev-high">HIGH</span></td><td>Within 60 days</td></tr>
-  <tr><td>4</td><td><strong>Close SMB cross-zone path</strong> — firewall rule audit, remove unnecessary L4→L2 traffic.</td><td><span class="sev-high">HIGH</span></td><td>Within 60 days</td></tr>
-  <tr><td>5</td><td><strong>Initiate TAP procurement</strong> for John Day and McNary — long lead time for change control.</td><td><span class="sev-med">MEDIUM</span></td><td>Begin immediately</td></tr>
+  <tr><td>1</td><td><strong>Proceed to full deployment</strong> - all success criteria met. Architecture validated at the most complex site.</td><td><span class="sev-crit">IMMEDIATE</span></td><td>ARB Brief → Aug 2026</td></tr>
+  <tr><td>2</td><td><strong>Remediate undocumented jump server</strong> - investigate, ATO or decommission.</td><td><span class="sev-crit">IMMEDIATE</span></td><td>Within 30 days</td></tr>
+  <tr><td>3</td><td><strong>Segment Windows XP HMIs</strong> - implement compensating controls until replacement.</td><td><span class="sev-high">HIGH</span></td><td>Within 60 days</td></tr>
+  <tr><td>4</td><td><strong>Close SMB cross-zone path</strong> - firewall rule audit, remove unnecessary L4→L2 traffic.</td><td><span class="sev-high">HIGH</span></td><td>Within 60 days</td></tr>
+  <tr><td>5</td><td><strong>Initiate TAP procurement</strong> for John Day and McNary - long lead time for change control.</td><td><span class="sev-med">MEDIUM</span></td><td>Begin immediately</td></tr>
 </table>
 
 <blockquote>
@@ -161,7 +161,7 @@
 </div>
 
 <div style="margin-top: 40px; padding: 12px 48px; font-size: 11px; color: var(--gray-500); text-align: center; border-top: 1px solid var(--gray-200);">
-  CUI // FOUO — Distribution Limited to Named Parties · PoC Findings Report v1.0 · DRG-FED-2026-0847
+  CUI // FOUO - Distribution Limited to Named Parties · PoC Findings Report v1.0 · DRG-FED-2026-0847
 </div>
 
 <script src="nav.js"></script>

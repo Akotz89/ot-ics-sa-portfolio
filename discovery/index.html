@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -112,7 +112,7 @@
 <h3>Estimated Asset Inventory</h3>
 <table>
   <tr><th>Device Type</th><th>Est. Count</th><th>Notes</th></tr>
-  <tr><td>Turbine Control PLCs / DCS Controllers</td><td>48</td><td>Per-unit controllers at Bonneville (Mark VIe); shared DCS/PLC groups at other sites. 70 generating units total — actual controller count TBV during PoC asset discovery.</td></tr>
+  <tr><td>Turbine Control PLCs / DCS Controllers</td><td>48</td><td>Per-unit controllers at Bonneville (Mark VIe); shared DCS/PLC groups at other sites. 70 generating units total - actual controller count TBV during PoC asset discovery.</td></tr>
   <tr><td>Gate/Lock Control PLCs</td><td>24</td><td>Spillway gates, navigation lock controls</td></tr>
   <tr><td>RTUs</td><td>18</td><td>River level, seismic, weather monitoring</td></tr>
   <tr><td>HMI / Operator Stations</td><td>22</td><td>Mix of dedicated workstations and shared terminals</td></tr>
@@ -176,7 +176,7 @@
 
   <!-- Boundary: CRITICAL GAP -->
   <div style="background: #fff5f5; border: 2.5px dashed #e53e3e; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt; text-align: center;">
-    <span style="font-size: 9pt; font-weight: 700; color: #e53e3e;">⚠ CRITICAL GAP — No firewall between L4 DMZ and L3 control network</span>
+    <span style="font-size: 9pt; font-weight: 700; color: #e53e3e;">⚠ CRITICAL GAP - No firewall between L4 DMZ and L3 control network</span>
   </div>
 
   <!-- Level 3: Site Operations -->
@@ -188,12 +188,12 @@
       <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;">Eng. Workstations (6)</div>
       <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;">Historians (AVEVA PI, Wonderware)</div>
     </div>
-    <div style="font-size: 7pt; color: #01605e; margin-top: 4pt; font-style: italic;">All 4 dam sites interconnected via DISA MPLS WAN — single trust domain</div>
+    <div style="font-size: 7pt; color: #01605e; margin-top: 4pt; font-style: italic;">All 4 dam sites interconnected via DISA MPLS WAN - single trust domain</div>
   </div>
 
   <!-- Boundary: FLAT NETWORK -->
   <div style="background: #fff5f5; border: 2.5px dashed #e53e3e; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt; text-align: center;">
-    <span style="font-size: 9pt; font-weight: 700; color: #e53e3e;">⚠ FLAT — No segmentation between L3 and L2, same broadcast domain</span>
+    <span style="font-size: 9pt; font-weight: 700; color: #e53e3e;">⚠ FLAT - No segmentation between L3 and L2, same broadcast domain</span>
   </div>
 
   <!-- Level 2: Control -->
@@ -218,7 +218,7 @@
 <table>
   <tr><th>ID</th><th>Finding</th><th>Severity</th><th>Detail</th></tr>
   <tr><td>A-1</td><td>No firewall between L4 DMZ and L3 control network</td><td><span class="sev-crit">CRITICAL</span></td><td>L3 and L4 share switch fabric. DMZ compromise = direct SCADA access.</td></tr>
-  <tr><td>A-2</td><td>L3 and L2 are a flat network — no segmentation</td><td><span class="sev-crit">CRITICAL</span></td><td>HMI compromise = direct PLC access. <span class="tip" data-tip="From the Dragos 2026 Year in Review (covering 2025 data): 81% of assessed OT environments had insufficient network segmentation between IT and OT. This is the most common architectural gap Dragos finds in field assessments.">Found in 81% of Dragos assessments.</span></td></tr>
+  <tr><td>A-2</td><td>L3 and L2 are a flat network - no segmentation</td><td><span class="sev-crit">CRITICAL</span></td><td>HMI compromise = direct PLC access. <span class="tip" data-tip="From the Dragos 2026 Year in Review (covering 2025 data): 81% of assessed OT environments had insufficient network segmentation between IT and OT. This is the most common architectural gap Dragos finds in field assessments.">Found in 81% of Dragos assessments.</span></td></tr>
   <tr><td>A-3</td><td>RDP enabled on 4 engineering workstations</td><td><span class="sev-crit">CRITICAL</span></td><td>RDP is the #1 lateral movement vector in OT attacks.</td></tr>
   <tr><td>A-4</td><td>30+ IP cameras on OT network</td><td><span class="sev-high">HIGH</span></td><td>IoT devices with poor security expanding OT attack surface.</td></tr>
   <tr><td>A-5</td><td>MPLS WAN connects all 4 sites unfiltered</td><td><span class="sev-high">HIGH</span></td><td>Compromise at one dam can reach all others.</td></tr>
@@ -275,7 +275,7 @@
 </blockquote>
 
 <blockquote>
-  "The unauthorized laptop at Bonneville scared us. We had no way to detect it — an operator physically saw it plugged in. If it had been remote, we'd never have known."
+  "The unauthorized laptop at Bonneville scared us. We had no way to detect it - an operator physically saw it plugged in. If it had been remote, we'd never have known."
   <cite>- Dr. Rebecca Torres</cite>
 </blockquote>
 
@@ -328,7 +328,7 @@
   <tr><td>The Dalles Dam</td><td>1 (L3 SPAN)</td><td>1 × Hardware</td><td>Emerson Ovation; verify OPC-DA/UA and Ovation proprietary protocol parsing</td></tr>
   <tr><td>John Day Dam</td><td>2 (L3 SPAN + L2 TAP)</td><td>1 × Hardware</td><td>TAP needed; HP ProCurve 2920 has limited SPAN capability per SPAN/TAP assessment</td></tr>
   <tr><td>McNary Dam</td><td>1 (TAP required)</td><td>1 × Hardware</td><td>Siemens S7; verify S7comm parsing. Hardware SiteStore required, no existing server infrastructure for VM.</td></tr>
-  <tr><td><strong>Enterprise (NWD HQ)</strong></td><td>—</td><td>—</td><td><strong>1 × CentralStore (VM on existing NWD data center infrastructure)</strong></td></tr>
+  <tr><td><strong>Enterprise (NWD HQ)</strong></td><td> - </td><td> - </td><td><strong>1 × CentralStore (VM on existing NWD data center infrastructure)</strong></td></tr>
 </table>
 
 <h3>Integration Points</h3>
@@ -336,7 +336,7 @@
   <tr><th>Target System</th><th>Integration</th><th>Method</th></tr>
   <tr><td>Splunk Cloud</td><td>OT alerts → Splunk</td><td>Syslog/CEF over TLS</td></tr>
   <tr><td>CrowdStrike Falcon</td><td>IOC sharing</td><td>REST API (bi-directional)</td></tr>
-  <tr><td><span class="tip" data-tip="ITSM platform to be confirmed. Customer's IT ticketing system was not identified during discovery. Could be ServiceNow, BMC Remedy, or Jira Service Management. Integration method will be validated during solution design phase.">ITSM (ServiceNow TBC)</span></td><td>Vulnerability tickets</td><td>REST API — customer to confirm ITSM platform during solution design</td></tr>
+  <tr><td><span class="tip" data-tip="ITSM platform to be confirmed. Customer's IT ticketing system was not identified during discovery. Could be ServiceNow, BMC Remedy, or Jira Service Management. Integration method will be validated during solution design phase.">ITSM (ServiceNow TBC)</span></td><td>Vulnerability tickets</td><td>REST API - customer to confirm ITSM platform during solution design</td></tr>
 </table>
 
 <!-- ═══════════════ SECTION 10 ═══════════════ -->
@@ -350,9 +350,9 @@
   <tr><td>4</td><td>Submit SPAN port change request at Bonneville (4-week change control → clears Jun 19)</td><td>Brian Knox</td><td>May 22</td><td class="status-pending">Pending</td></tr>
   <tr><td>5</td><td>Procure Gigamon TAPs for John Day + McNary</td><td>Jennifer Walsh</td><td>Jun 13</td><td class="status-open">Open</td></tr>
   <tr><td>6</td><td>Verify S7comm + Emerson Ovation protocol support</td><td>SA (internal)</td><td>May 27</td><td class="status-open">Open</td></tr>
-  <tr><td>7</td><td>Schedule PoC scope meeting (Bonneville pilot — target start Jun 23 after SPAN clears)</td><td>SA + Dr. Torres</td><td>Jun 16</td><td class="status-open">Open</td></tr>
+  <tr><td>7</td><td>Schedule PoC scope meeting (Bonneville pilot - target start Jun 23 after SPAN clears)</td><td>SA + Dr. Torres</td><td>Jun 16</td><td class="status-open">Open</td></tr>
   <tr><td>8</td><td>Draft PoC success criteria document</td><td>SA</td><td>Jun 20</td><td class="status-open">Open</td></tr>
-  <tr><td>9</td><td>Internal Dragos review — pricing + services scoping</td><td>SA + AE + Deal Desk</td><td>Jun 2</td><td class="status-open">Open</td></tr>
+  <tr><td>9</td><td>Internal Dragos review - pricing + services scoping</td><td>SA + AE + Deal Desk</td><td>Jun 2</td><td class="status-open">Open</td></tr>
   <tr><td>10</td><td>Provide FedRAMP / ATO documentation package</td><td>SA (internal)</td><td>Jun 6</td><td class="status-open">Open</td></tr>
 </table>
 

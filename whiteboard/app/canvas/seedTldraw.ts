@@ -102,7 +102,6 @@ export function applyStep(editor: Editor, step: StepModel, workshop = false) {
   ])
   const visibleZones = new Set(step.visibleZones)
   const visibleEntities = new Set(step.visibleEntities)
-  const visibleLinks = new Set(step.visibleLinks)
   const focus = new Set(step.focus ?? [])
   const hasFocus = focus.size > 0
 
@@ -117,11 +116,10 @@ export function applyStep(editor: Editor, step: StepModel, workshop = false) {
     } as unknown as TLShapePartial)
   }
   for (const link of links) {
-    const visible = visibleLinks.has(link.id)
     updates.push({
       id: shapeIdForLink(link.id),
       type: 'arrow',
-      opacity: visible ? opacityFor(link.id, hasFocus, focus) : 0,
+      opacity: 0,
       isLocked: !workshop,
     } as unknown as TLShapePartial)
   }
@@ -200,6 +198,7 @@ function normalized(anchor: Anchor) {
 
 function arrowPropsFor(link: LinkModel, start: { x: number; y: number }, end: { x: number; y: number }): TLArrowShape['props'] {
   const style = styleForLink(link.kind)
+  const arrowheads = arrowheadsForLink(link)
   return {
     kind: 'elbow',
     labelColor: 'black',
@@ -207,17 +206,29 @@ function arrowPropsFor(link: LinkModel, start: { x: number; y: number }, end: { 
     fill: 'none',
     dash: style.dash,
     size: style.size,
-    arrowheadStart: link.direction === 'bidirectional' ? 'arrow' : 'none',
-    arrowheadEnd: link.direction === 'none' || link.direction === 'passive' ? 'none' : 'arrow',
+    arrowheadStart: arrowheads.arrowheadStart,
+    arrowheadEnd: arrowheads.arrowheadEnd,
     font: 'sans',
     start,
     end,
     bend: 0,
-    richText: toRichText(link.label ?? ''),
+    richText: toRichText(renderedRouteLabel(link)),
     labelPosition: 0.5,
     scale: 0.78,
     elbowMidPoint: 0.5,
   }
+}
+
+function renderedRouteLabel(link: LinkModel) {
+  if (!link.label) return ''
+  if (link.kind === 'service') return ''
+  return link.label
+}
+
+function arrowheadsForLink(link: LinkModel): Pick<TLArrowShape['props'], 'arrowheadStart' | 'arrowheadEnd'> {
+  if (link.direction !== 'one-way') return { arrowheadStart: 'none', arrowheadEnd: 'none' }
+  if (link.kind === 'enterprise' || link.kind === 'metadata') return { arrowheadStart: 'none', arrowheadEnd: 'arrow' }
+  return { arrowheadStart: 'none', arrowheadEnd: 'none' }
 }
 
 function styleForLink(kind: LinkKind): Pick<TLArrowShape['props'], 'color' | 'dash' | 'size'> {

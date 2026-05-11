@@ -1,11 +1,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Tldraw, type Editor, type TLShapePartial } from 'tldraw'
 import { applyStep, fitVisibleContent, seedWhiteboard } from './canvas/seedTldraw'
-import { entityIdFromShapeId, shapeIdForEntity, shapeIdForLink, shapeIdForZone } from './canvas/ids'
+import { entityIdFromShapeId, shapeIdForEntity, shapeIdForZone } from './canvas/ids'
 import { customShapeUtils } from './shapes'
-import { entities, flows, links, zones } from './model/topology'
+import { entities, flows, zones } from './model/topology'
 import { steps } from './model/steps'
 import { auditEditor, validateStaticModel } from './validation/modelValidation'
+import { computeRouteScene } from './routing/computeRoutes'
+import type { RouteSceneLayout } from './routing/types'
+import { RouteOverlay } from './renderer/RouteOverlay'
 
 type Mode = 'presentation' | 'workshop'
 
@@ -13,36 +16,49 @@ export function App() {
   const [mode, setMode] = useState<Mode>('presentation')
   const [stepIndex, setStepIndex] = useState(0)
   const [auditErrors, setAuditErrors] = useState<string[]>(() => validateStaticModel())
+  const [routeScene, setRouteScene] = useState<RouteSceneLayout>({ routes: [], labels: [], errors: [] })
+  const [editorInstance, setEditorInstance] = useState<Editor | null>(null)
   const [pulseLabel, setPulseLabel] = useState('')
+  const [pulseLinks, setPulseLinks] = useState<string[]>([])
   const editorRef = useRef<Editor | null>(null)
   const pulseTimeoutRef = useRef<number | undefined>(undefined)
 
   const step = steps[stepIndex]
+  const pulseLinkSet = useMemo(() => new Set(pulseLinks), [pulseLinks])
+
+  const refreshRouteAndAudit = useCallback((editor: Editor, currentStep: typeof step) => {
+    const nextRouteScene = computeRouteScene(editor, currentStep)
+    setRouteScene(nextRouteScene)
+    setAuditErrors([...validateStaticModel(), ...auditEditor(editor, nextRouteScene)])
+    return nextRouteScene
+  }, [])
 
   const setStep = useCallback(
     (nextIndex: number) => {
       const clamped = Math.max(0, Math.min(steps.length - 1, nextIndex))
       window.clearTimeout(pulseTimeoutRef.current)
       setPulseLabel('')
+      setPulseLinks([])
       setStepIndex(clamped)
       const editor = editorRef.current
       if (editor) {
         applyStep(editor, steps[clamped], mode === 'workshop')
-        setAuditErrors([...validateStaticModel(), ...auditEditor(editor)])
+        refreshRouteAndAudit(editor, steps[clamped])
       }
     },
-    [mode]
+    [mode, refreshRouteAndAudit]
   )
 
   const onMount = useCallback(
     (editor: Editor) => {
       editorRef.current = editor
+      setEditorInstance(editor)
       seedWhiteboard(editor)
       applyStep(editor, step, mode === 'workshop')
-      setAuditErrors([...validateStaticModel(), ...auditEditor(editor)])
+      refreshRouteAndAudit(editor, step)
       queueMicrotask(() => fitVisibleContent(editor))
     },
-    [mode, step]
+    [mode, refreshRouteAndAudit, step]
   )
 
   const triggerPulse = useCallback(
@@ -58,17 +74,10 @@ export function App() {
 
       window.clearTimeout(pulseTimeoutRef.current)
       const pulseLinks = flow.links.filter((linkId) => visibleLinks.has(linkId))
-      editor.updateShapes(
-        pulseLinks.map((linkId) => ({
-          id: shapeIdForLink(linkId),
-          type: 'arrow',
-          opacity: 1,
-          props: { size: 'xl', color: 'green' },
-        }))
-      )
+      setPulseLinks(pulseLinks)
       setPulseLabel(`Flow pulse: ${flow.label}`)
       pulseTimeoutRef.current = window.setTimeout(() => {
-        applyStep(editor, step, mode === 'workshop')
+        setPulseLinks([])
         setPulseLabel('')
       }, 1400)
     },
@@ -79,8 +88,16 @@ export function App() {
     const editor = editorRef.current
     if (!editor) return
     applyStep(editor, step, mode === 'workshop')
-    setAuditErrors([...validateStaticModel(), ...auditEditor(editor)])
-  }, [mode, step])
+    refreshRouteAndAudit(editor, step)
+  }, [mode, refreshRouteAndAudit, step])
+
+  useEffect(() => {
+    const editor = editorInstance
+    if (!editor) return
+    return editor.store.listen(() => {
+      refreshRouteAndAudit(editor, steps[stepIndex])
+    })
+  }, [editorInstance, refreshRouteAndAudit, stepIndex])
 
   useEffect(() => {
     const next = document.querySelector<HTMLButtonElement>('#btn-next')
@@ -171,10 +188,10 @@ export function App() {
       const editor = editorRef.current
       if (!editor) return
       repairWorkshopGeometry(editor)
-      setAuditErrors([...validateStaticModel(), ...auditEditor(editor)])
+      refreshRouteAndAudit(editor, step)
     }, 450)
     return () => window.clearInterval(interval)
-  }, [mode])
+  }, [mode, refreshRouteAndAudit, step])
 
   const hasErrors = auditErrors.length > 0
   const statusText = useMemo(() => {
@@ -207,6 +224,7 @@ export function App() {
         persistenceKey={undefined}
         options={{ maxPages: 1 }}
       />
+      <RouteOverlay editor={editorInstance} layout={routeScene} step={step} pulseLinks={pulseLinkSet} />
       {hasErrors ? <div className="qa-failure-overlay">Whiteboard QA failed: {auditErrors.slice(0, 5).join(' | ')}</div> : null}
     </div>
   )

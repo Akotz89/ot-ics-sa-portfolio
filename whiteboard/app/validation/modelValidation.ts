@@ -2,6 +2,7 @@ import type { Editor } from 'tldraw'
 import { entities, flows, links, zones } from '../model/topology'
 import { steps } from '../model/steps'
 import { shapeIdForEntity, shapeIdForLink, shapeIdForZone } from '../canvas/ids'
+import type { RouteSceneLayout } from '../routing/types'
 
 export function validateStaticModel() {
   const errors: string[] = []
@@ -43,7 +44,7 @@ export function validateStaticModel() {
   return errors
 }
 
-export function auditEditor(editor: Editor) {
+export function auditEditor(editor: Editor, routeScene?: RouteSceneLayout) {
   const errors: string[] = []
 
   for (const zone of zones) {
@@ -82,6 +83,14 @@ export function auditEditor(editor: Editor) {
       const bBounds = editor.getShapePageBounds(bShape.id)
       if (!bBounds || bShape.opacity < 0.03) continue
       if (aBounds.clone().expandBy(12).collides(bBounds)) errors.push(`${a.id} overlaps ${b.id}`)
+    }
+  }
+
+  if (routeScene) {
+    for (const error of routeScene.errors) errors.push(error)
+    for (const route of routeScene.routes) {
+      if (route.points.length < 2) errors.push(`${route.id} has no drawable route`)
+      if (route.label && route.label.linkId !== route.id) errors.push(`${route.label.id} is orphaned`)
     }
   }
 

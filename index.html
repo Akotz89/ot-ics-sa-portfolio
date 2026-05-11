@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aaron Kotz — Federal SA Technical Readiness</title>
+<title>Aaron Kotz - Federal SA Technical Readiness</title>
 <link rel="stylesheet" href="dragos-theme.css"><link rel="stylesheet" href="discovery/style.css">
 <style>
   /* ═══════════════════════════════════════════════════════════════
-     INDEX PAGE — Layout & page-specific styles
+     INDEX PAGE - Layout & page-specific styles
      Brand tokens inherited from dragos-theme.css
      ═══════════════════════════════════════════════════════════════ */
 
@@ -665,7 +665,7 @@
 
     <!-- DMZ -->
     <div style="background: #fff5f5; border: 2px dashed #e53e3e; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt;">
-      <div style="font-size: 8pt; font-weight: 700; color: #e53e3e; letter-spacing: 1px; margin-bottom: 4pt;" data-tip="ISA 62443 Level 3.5: Industrial DMZ. Buffer zone between IT (L4-5) and OT (L0-3). No direct traffic traversal — all communication brokered through DMZ services.">LEVEL 3.5 · INDUSTRIAL DMZ</div>
+      <div style="font-size: 8pt; font-weight: 700; color: #e53e3e; letter-spacing: 1px; margin-bottom: 4pt;" data-tip="ISA 62443 Level 3.5: Industrial DMZ. Buffer zone between IT (L4-5) and OT (L0-3). No direct traffic traversal - all communication brokered through DMZ services.">LEVEL 3.5 · INDUSTRIAL DMZ</div>
       <div style="display: flex; gap: 4pt; flex-wrap: wrap;">
         <div style="background: #fff; border: 1px solid #e53e3e; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #c53030;" data-tip="L3.5: Stateful inspection firewall enforcing IT/OT boundary. Per ISA 62443 conduit requirements.">Firewall</div>
         <div style="background: #fff; border: 1px solid #e53e3e; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #c53030;" data-tip="L3.5: Controlled remote access point. All vendor/admin access to OT zones must route through this bastion host.">Jump Server / VPN</div>
@@ -720,7 +720,7 @@
 
     <!-- Level 0: Physical Process -->
     <div style="background: #f7fafc; border: 1.5px solid #e2e8f0; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 10pt;">
-      <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 2pt;" data-tip="ISA 62443 Level 0: Physical process. Field instrumentation that directly interacts with the physical world. No IP connectivity — wired 4-20mA, HART, or fieldbus.">LEVEL 0 · PHYSICAL PROCESS</div>
+      <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 2pt;" data-tip="ISA 62443 Level 0: Physical process. Field instrumentation that directly interacts with the physical world. No IP connectivity - wired 4-20mA, HART, or fieldbus.">LEVEL 0 · PHYSICAL PROCESS</div>
       <div style="font-size: 8pt; color: #a0aec0;">Valves · Pumps · Motors · Actuators · Sensors · Transmitters</div>
     </div>
 
@@ -883,7 +883,7 @@
   </table>
 
   <div class="callout">
-    <p><strong>Why My Background Matters for POC Execution:</strong> I manage platform deployments, firewall rule coordination, ATO documentation, ISSO approvals, and STIG enforcement across classified enclaves every day. Federal POC timelines are governed by process as much as technology — coordinating network changes through ISSOs, aligning with contracting timelines, and navigating classification constraints. That process navigation is my current job.</p>
+    <p><strong>Why My Background Matters for POC Execution:</strong> I manage platform deployments, firewall rule coordination, ATO documentation, ISSO approvals, and STIG enforcement across classified enclaves every day. Federal POC timelines are governed by process as much as technology - coordinating network changes through ISSOs, aligning with contracting timelines, and navigating classification constraints. That process navigation is my current job.</p>
   </div>
 
   <h3>Federal-Specific POC Considerations</h3>
@@ -945,7 +945,7 @@
       </div>
       <!-- Row 3: DMZ -->
       <div style="background: #fff5f5; border: 1px solid #fed7d7; padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
-        <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">DMZ #2 — Firewall / Router Boundary</div>
+        <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">DMZ #2 - Firewall / Router Boundary</div>
       </div>
       <div style="display: flex; align-items: center; justify-content: center;"><div style="width: 8pt; border-top: 2px dashed var(--accent);"></div><div style="width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid var(--accent);"></div></div>
       <div style="background: #fff5f5; border: 1px solid #fed7d7; padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
@@ -964,7 +964,7 @@
       </div>
       <!-- Row 5: Industrial DMZ -->
       <div style="background: #fff5f5; border: 1px solid #fed7d7; padding: 6pt 8pt; border-radius: 2pt; text-align: center;">
-        <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">DMZ #1 — MISP VNI Boundary</div>
+        <div style="font-weight: 700; font-size: 9pt; color: var(--accent);">DMZ #1 - MISP VNI Boundary</div>
         <div style="font-size: 7.5pt; color: var(--text-muted);">Dual firewalls · 14 protocol translators</div>
       </div>
       <div style="display: flex; align-items: center; justify-content: center;"><div style="width: 8pt; border-top: 2px dashed var(--accent);"></div><div style="width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid var(--accent);"></div></div>
@@ -1000,22 +1000,22 @@
   <table>
     <tr><th>My Environment</th><th>Purdue Equivalent</th><th>Why It Matters to Dragos</th></tr>
     <tr>
-      <td><strong>Aircraft / Physical Platform</strong> — encrypted fiber, real-time control</td>
+      <td><strong>Aircraft / Physical Platform</strong> - encrypted fiber, real-time control</td>
       <td>Level 0-1: Physical Process / Basic Control</td>
       <td>Logically isolated on dedicated encrypted fiber. No external network access permitted. Same isolation model as SIS/PLC networks in industrial environments.</td>
     </tr>
     <tr>
-      <td><strong>GCS with C2 & SPDN circuits</strong> — isolated control networks</td>
+      <td><strong>GCS with C2 & SPDN circuits</strong> - isolated control networks</td>
       <td>Level 2: Supervisory Control</td>
       <td>Where process control happens. Separate circuits for separate functions. Same as DCS/SCADA control networks.</td>
     </tr>
     <tr>
-      <td><strong>MISP VNI Boundary</strong> — dual firewalls, 14 protocol translators, load balancer</td>
+      <td><strong>MISP VNI Boundary</strong> - dual firewalls, 14 protocol translators, load balancer</td>
       <td>Level 3.5: Industrial DMZ</td>
       <td>This is the boundary Dragos monitors. Controlled bidirectional traffic, protocol translation, data inspection.</td>
     </tr>
     <tr>
-      <td><strong>Collateral Network</strong> — SIEM, ACAS, mission VMs, CAVOK</td>
+      <td><strong>Collateral Network</strong> - SIEM, ACAS, mission VMs, CAVOK</td>
       <td>Level 3: Site Operations</td>
       <td>Where humans view data and make decisions. SCADA servers, HMIs, analysis workstations.</td>
     </tr>

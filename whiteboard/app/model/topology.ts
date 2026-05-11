@@ -16,6 +16,9 @@ export type EntityKind =
 export type ZoneKind = 'enterprise' | 'boundary' | 'operations' | 'control' | 'field' | 'monitoring'
 export type LinkKind = 'enterprise' | 'service' | 'trunk' | 'protocol' | 'span' | 'metadata'
 export type Direction = 'none' | 'one-way' | 'bidirectional' | 'passive'
+export type RouteClass = 'enterprise' | 'service' | 'trunk' | 'protocol-bus' | 'span-feed' | 'metadata-handoff'
+export type DirectionCue = 'none' | 'forward' | 'reverse' | 'both' | 'passive'
+export type PortName = 'left' | 'right' | 'top' | 'bottom' | 'uplink' | 'downlink' | 'service' | 'span' | 'metadata' | 'fieldbus'
 
 export interface ZoneModel {
   id: ZoneKind
@@ -38,6 +41,7 @@ export interface EntityModel {
   w?: number
   h?: number
   role?: 'dark' | 'dragos' | 'boundary' | 'controller' | 'normal'
+  ports?: PortName[]
 }
 
 export interface LinkModel {
@@ -49,6 +53,10 @@ export interface LinkModel {
   label?: string
   sourceAnchor?: Anchor
   targetAnchor?: Anchor
+  routeClass?: RouteClass
+  directionCue?: DirectionCue
+  preferredSourcePort?: PortName
+  preferredTargetPort?: PortName
 }
 
 export interface FlowModel {
@@ -83,7 +91,7 @@ export const entities: EntityModel[] = [
   { id: 'engineering', kind: 'workstation', label: 'Engineering WS', subtitle: 'PLC tools', zone: 'operations', x: 1290, y: 260, w: 180, h: 72 },
   { id: 'dist', kind: 'switch', label: 'Control Dist Switch', subtitle: 'control trunk point', zone: 'control', x: 875, y: 450, w: 285, h: 78, role: 'dark' },
   { id: 'scada', kind: 'server', label: 'SCADA Server', subtitle: 'operator control', zone: 'control', x: 1290, y: 450, w: 180, h: 72 },
-  { id: 'hmi', kind: 'workstation', label: 'HMI Pair', subtitle: 'view / alarm', zone: 'control', x: 1635, y: 450, w: 180, h: 72 },
+  { id: 'hmi', kind: 'workstation', label: 'HMI Pair', subtitle: 'view / alarm', zone: 'control', x: 1635, y: 535, w: 180, h: 72 },
   { id: 'mirror', kind: 'server', label: 'Local Mirror', subtitle: 'history cache', zone: 'control', x: 1435, y: 545, w: 180, h: 72 },
   { id: 'sensor-boundary', kind: 'sensor', label: 'Dragos Sensor', subtitle: 'boundary SPAN', zone: 'monitoring', x: 88, y: 610, w: 220, h: 78, role: 'dragos' },
   { id: 'sensor-control', kind: 'sensor', label: 'Dragos Sensor', subtitle: 'control trunk', zone: 'monitoring', x: 348, y: 610, w: 220, h: 78, role: 'dragos' },
@@ -105,8 +113,8 @@ export const links: LinkModel[] = [
   { id: 'core-patch', source: 'core', target: 'patch', kind: 'service', direction: 'bidirectional', sourceAnchor: 'right', targetAnchor: 'left' },
   { id: 'core-engineering', source: 'core', target: 'engineering', kind: 'service', direction: 'bidirectional', label: 'engineering access', sourceAnchor: 'bottom', targetAnchor: 'left' },
   { id: 'dist-scada', source: 'dist', target: 'scada', kind: 'service', direction: 'bidirectional', sourceAnchor: 'right', targetAnchor: 'left' },
-  { id: 'dist-hmi', source: 'dist', target: 'hmi', kind: 'service', direction: 'bidirectional', sourceAnchor: 'right', targetAnchor: 'left' },
-  { id: 'scada-ge', source: 'scada', target: 'ge', kind: 'protocol', direction: 'bidirectional', label: 'SRTP / EGD', sourceAnchor: 'bottom', targetAnchor: 'top' },
+  { id: 'dist-hmi', source: 'dist', target: 'hmi', kind: 'service', direction: 'none', sourceAnchor: 'bottom', targetAnchor: 'top' },
+  { id: 'scada-ge', source: 'scada', target: 'ge', kind: 'protocol', direction: 'bidirectional', label: 'SRTP / EGD', sourceAnchor: 'bottom', targetAnchor: 'right' },
   { id: 'scada-controllogix', source: 'scada', target: 'controllogix', kind: 'protocol', direction: 'bidirectional', label: 'EtherNet/IP', sourceAnchor: 'bottom', targetAnchor: 'top' },
   { id: 'hmi-sel', source: 'hmi', target: 'sel', kind: 'protocol', direction: 'bidirectional', sourceAnchor: 'bottom', targetAnchor: 'top' },
   { id: 'hmi-s7400', source: 'hmi', target: 's7400', kind: 'protocol', direction: 'bidirectional', label: 'S7comm', sourceAnchor: 'bottom', targetAnchor: 'top' },

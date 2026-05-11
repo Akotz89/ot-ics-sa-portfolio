@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ARB Brief — USACE Columbia River Hydropower</title>
+  <title>ARB Brief - USACE Columbia River Hydropower</title>
   <link rel="stylesheet" href="dragos-theme.css"><link rel="stylesheet" href="discovery/style.css">
   <style>
     .slide { background: #fff; border: 1px solid var(--gray-200); border-radius: 8px; padding: 32px 40px; margin-bottom: 24px; page-break-inside: avoid; }
@@ -33,18 +33,18 @@
 <body>
 
 <div class="cover">
-  <div class="logo-area"><span class="dot"></span> Dragos, Inc. — Public Sector</div>
+  <div class="logo-area"><span class="dot"></span> Dragos, Inc. - Public Sector</div>
   <h1>Architecture Review Board Brief</h1>
-  <p class="subtitle">U.S. Army Corps of Engineers — Northwestern Division<br>OT Cybersecurity Program — Dragos Platform Deployment</p>
+  <p class="subtitle">U.S. Army Corps of Engineers - Northwestern Division<br>OT Cybersecurity Program - Dragos Platform Deployment</p>
   <div class="meta-grid">
     <div class="meta-item"><label>Presented By</label><span>Aaron Kotz, Sr. Solutions Architect (Federal)</span></div>
     <div class="meta-item"><label>Sponsor</label><span>COL James Harding, NWD Commander</span></div>
     <div class="meta-item"><label>Champion</label><span>Dr. Rebecca Torres, Chief, Cybersecurity Division (NWD)</span></div>
     <div class="meta-item"><label>Date</label><span>August 14, 2026</span></div>
-    <div class="meta-item"><label><span class="tip" data-tip="The Architecture Review Board is a governance body that evaluates proposed technology deployments for technical soundness, security compliance, and enterprise architecture alignment. ARB endorsement is required before procurement can proceed.">ARB</span> Session</label><span>NWD IT Governance — Quarterly Review</span></div>
+    <div class="meta-item"><label><span class="tip" data-tip="The Architecture Review Board is a governance body that evaluates proposed technology deployments for technical soundness, security compliance, and enterprise architecture alignment. ARB endorsement is required before procurement can proceed.">ARB</span> Session</label><span>NWD IT Governance - Quarterly Review</span></div>
     <div class="meta-item"><label>Decision Requested</label><span>Endorsement for full 4-site deployment procurement</span></div>
   </div>
-  <div class="classification">CUI // FOUO — Distribution Limited to ARB Members</div>
+  <div class="classification">CUI // FOUO - Distribution Limited to ARB Members</div>
 </div>
 
 <div class="page">
@@ -54,13 +54,13 @@
   <div class="slide-header">Agenda</div>
   <table>
     <tr><th style="width:60px">#</th><th>Topic</th><th style="width:80px">Time</th></tr>
-    <tr><td>1</td><td>Problem Statement — Current OT Visibility Gaps</td><td>5 min</td></tr>
-    <tr><td>2</td><td>Proof of Value Results — Bonneville Dam</td><td>10 min</td></tr>
-    <tr><td>3</td><td>Proposed Architecture — 4-Site Deployment</td><td>10 min</td></tr>
+    <tr><td>1</td><td>Problem Statement - Current OT Visibility Gaps</td><td>5 min</td></tr>
+    <tr><td>2</td><td>Proof of Value Results - Bonneville Dam</td><td>10 min</td></tr>
+    <tr><td>3</td><td>Proposed Architecture - 4-Site Deployment</td><td>10 min</td></tr>
     <tr><td>4</td><td>Compliance Alignment</td><td>5 min</td></tr>
-    <tr><td>5</td><td>Risk Assessment — Cost of Inaction</td><td>5 min</td></tr>
+    <tr><td>5</td><td>Risk Assessment - Cost of Inaction</td><td>5 min</td></tr>
     <tr><td>6</td><td>Budget &amp; Timeline</td><td>5 min</td></tr>
-    <tr><td>7</td><td>Decision — ARB Endorsement</td><td>5 min</td></tr>
+    <tr><td>7</td><td>Decision - ARB Endorsement</td><td>5 min</td></tr>
   </table>
 </div>
 
@@ -77,13 +77,13 @@
   </div>
 
   <blockquote>
-    <strong>Current State:</strong> If an adversary gained access to a turbine controller today, NWD would have no way to detect, investigate, or respond. The first indication would be a physical failure — by which point the attack has already succeeded.
+    <strong>Current State:</strong> If an adversary gained access to a turbine controller today, NWD would have no way to detect, investigate, or respond. The first indication would be a physical failure - by which point the attack has already succeeded.
   </blockquote>
 </div>
 
 <!-- SLIDE 3: POC RESULTS -->
 <div class="slide">
-  <div class="slide-header">2. Proof of Value Results — Bonneville Dam</div>
+  <div class="slide-header">2. Proof of Value Results - Bonneville Dam</div>
   <div class="slide-subheader">7-week evaluation (Jun 2 – Jul 18, 2026) · All 5 success criteria met</div>
 
   <div class="kpi-row">
@@ -115,7 +115,7 @@
     <tr style="font-weight:700; background: var(--gray-100);"><td>CentralStore</td><td colspan="2">NWD HQ (Portland)</td><td>VM</td><td>Aggregation + SIEM integration</td></tr>
   </table>
 
-  <p style="font-size: 13px; margin-top: 12px;"><strong>Integration:</strong> <span class="tip" data-tip="Splunk Cloud achieved FedRAMP High authorization (Sep 2024) and DoD IL5 Provisional Authorization from DISA. Hosted in AWS GovCloud.">Splunk Cloud</span> (Syslog/CEF — FedRAMP High / DoD IL5) · CrowdStrike Falcon (REST API — bi-directional IOC exchange) · <span class="tip" data-tip="Dragos' community defense program. Sensors share anonymized threat telemetry — customer identifiers stripped. NSA and CISA participate as trusted advisors.">Neighborhood Keeper</span> (anonymized community defense)</p>
+  <p style="font-size: 13px; margin-top: 12px;"><strong>Integration:</strong> <span class="tip" data-tip="Splunk Cloud achieved FedRAMP High authorization (Sep 2024) and DoD IL5 Provisional Authorization from DISA. Hosted in AWS GovCloud.">Splunk Cloud</span> (Syslog/CEF - FedRAMP High / DoD IL5) · CrowdStrike Falcon (REST API - bi-directional IOC exchange) · <span class="tip" data-tip="Dragos' community defense program. Sensors share anonymized threat telemetry - customer identifiers stripped. NSA and CISA participate as trusted advisors.">Neighborhood Keeper</span> (anonymized community defense)</p>
 </div>
 
 <!-- SLIDE 5: COMPLIANCE -->
@@ -133,14 +133,14 @@
 
 <!-- SLIDE 6: RISK -->
 <div class="slide">
-  <div class="slide-header">5. Risk Assessment — Cost of Inaction</div>
+  <div class="slide-header">5. Risk Assessment - Cost of Inaction</div>
   <div class="risk-grid">
     <div class="risk-card">
-      <h4><span class="tip" data-tip="Dragos-tracked threat group linked to the People's Republic of China (PRC). Conducts sustained reconnaissance of US electric utilities — targeting GIS data, network diagrams, and SCADA access points. Tracked by CISA as Volt Typhoon.">VOLTZITE</span> (PRC-linked) Pre-Positioning</h4>
-      <p>Active reconnaissance of US electric utilities per CISA AA24-038A. Columbia River dams are high-value targets — 40% of US hydroelectric generation. Current detection capability: <strong>zero</strong>.</p>
+      <h4><span class="tip" data-tip="Dragos-tracked threat group linked to the People's Republic of China (PRC). Conducts sustained reconnaissance of US electric utilities - targeting GIS data, network diagrams, and SCADA access points. Tracked by CISA as Volt Typhoon.">VOLTZITE</span> (PRC-linked) Pre-Positioning</h4>
+      <p>Active reconnaissance of US electric utilities per CISA AA24-038A. Columbia River dams are high-value targets - 40% of US hydroelectric generation. Current detection capability: <strong>zero</strong>.</p>
     </div>
     <div class="risk-card">
-      <h4><span class="tip" data-tip="Dragos-tracked threat group that developed PIPEDREAM (also called INCONTROLLER by Mandiant) — the first known cross-industry ICS attack framework capable of targeting PLCs from multiple vendors (Schneider, Omron, and OPC-UA-enabled devices).">CHERNOVITE</span> ICS Attack Framework</h4>
+      <h4><span class="tip" data-tip="Dragos-tracked threat group that developed PIPEDREAM (also called INCONTROLLER by Mandiant) - the first known cross-industry ICS attack framework capable of targeting PLCs from multiple vendors (Schneider, Omron, and OPC-UA-enabled devices).">CHERNOVITE</span> ICS Attack Framework</h4>
       <p>PIPEDREAM/INCONTROLLER targets safety controllers across vendors. First cross-industry ICS malware. Without protocol-level monitoring, this type of attack is invisible to IT security tools.</p>
     </div>
     <div class="risk-card">
@@ -187,13 +187,13 @@
 <div class="slide">
   <div class="slide-header">7. Decision Requested</div>
   <div class="decision-box">
-    <h3>ARB Endorsement — Full 4-Site Deployment</h3>
+    <h3>ARB Endorsement - Full 4-Site Deployment</h3>
     <p>We request the Architecture Review Board endorse the proposed Dragos Platform deployment for procurement via NASA SEWP V:</p>
     <ul>
-      <li>Architecture technically sound — validated by 7-week PoC at most complex site</li>
-      <li>Compliance requirements addressed — EP 1130-2-510, NIST 800-82, DoD CIO OT Directive</li>
-      <li>Integration validated — Splunk Cloud, CrowdStrike Falcon, Neighborhood Keeper operational</li>
-      <li>Procurement path clear — SEWP V task order via Carahsoft, ~$780K FFP Year 1</li>
+      <li>Architecture technically sound - validated by 7-week PoC at most complex site</li>
+      <li>Compliance requirements addressed - EP 1130-2-510, NIST 800-82, DoD CIO OT Directive</li>
+      <li>Integration validated - Splunk Cloud, CrowdStrike Falcon, Neighborhood Keeper operational</li>
+      <li>Procurement path clear - SEWP V task order via Carahsoft, ~$780K FFP Year 1</li>
     </ul>
     <p style="margin-top: 12px;"><strong>Upon endorsement:</strong> Procurement package forwarded to Jennifer Walsh (Contracting Officer) for SEWP V task order initiation. Target contract award: September 2026.</p>
   </div>
@@ -202,7 +202,7 @@
 </div>
 
 <div style="margin-top: 40px; padding: 12px 48px; font-size: 11px; color: var(--gray-500); text-align: center; border-top: 1px solid var(--gray-200);">
-  CUI // FOUO — ARB Members Only · Architecture Review Board Brief v1.0 · DRG-FED-2026-0847
+  CUI // FOUO - ARB Members Only · Architecture Review Board Brief v1.0 · DRG-FED-2026-0847
 </div>
 
 <script src="nav.js"></script>

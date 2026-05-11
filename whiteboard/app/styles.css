@@ -21,6 +21,113 @@
   pointer-events: auto !important;
 }
 
+.ot-route-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#ot-route-arrow-dark path {
+  fill: #32475d;
+}
+
+#ot-route-arrow-blue path {
+  fill: #1f66a7;
+}
+
+#ot-route-arrow-orange path {
+  fill: #c56a1a;
+}
+
+.ot-route {
+  fill: none;
+  stroke: #3a4e63;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  transition: opacity 160ms ease, stroke-width 160ms ease;
+}
+
+.ot-route-enterprise {
+  stroke: #3a4e63;
+  stroke-width: 2.4;
+}
+
+.ot-route-service {
+  stroke: #8da0b3;
+  stroke-width: 2;
+}
+
+.ot-route-trunk {
+  stroke: #0f3554;
+  stroke-width: 3.2;
+}
+
+.ot-route-protocol {
+  stroke: #2e6dab;
+  stroke-width: 2;
+  stroke-dasharray: 8 7;
+}
+
+.ot-route-span {
+  stroke: #c96a18;
+  stroke-width: 2.4;
+  stroke-dasharray: 10 8;
+}
+
+.ot-route-metadata {
+  stroke: #2367aa;
+  stroke-width: 2.4;
+  stroke-dasharray: 9 7;
+}
+
+.ot-route.is-dimmed,
+.ot-route-label-wrap.is-dimmed {
+  opacity: 0.18;
+}
+
+.ot-route.is-pulsing {
+  stroke: #168a43;
+  stroke-width: 4.4;
+  filter: drop-shadow(0 0 5px rgba(22, 138, 67, 0.38));
+  animation: route-pulse 700ms ease-in-out infinite alternate;
+}
+
+.ot-route-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% / var(--route-label-scale));
+  height: calc(100% / var(--route-label-scale));
+  overflow: hidden;
+  padding: 0 8px;
+  border: 1px solid #c9d9e8;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.96);
+  color: #245b92;
+  font: 800 12px/1 Inter, Arial, sans-serif;
+  letter-spacing: 0;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-shadow: 0 1px 4px rgba(20, 42, 70, 0.08);
+  transform: scale(var(--route-label-scale));
+  transform-origin: 0 0;
+}
+
+@keyframes route-pulse {
+  from {
+    opacity: 0.72;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 .wb-toolbar {
   position: absolute;
   z-index: 20;
