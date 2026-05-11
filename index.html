@@ -6,6 +6,36 @@
 <title>Aaron Kotz — Federal SA Technical Readiness</title>
 <link rel="stylesheet" href="dragos-theme.css">
 <style>
+  /* ── Instant hover tooltips for diagram components ── */
+  [data-tip] {
+    position: relative;
+    cursor: help;
+  }
+  [data-tip]::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a202c;
+    color: #e2e8f0;
+    font-size: 8pt;
+    font-weight: 400;
+    line-height: 1.4;
+    padding: 6pt 10pt;
+    border-radius: 4pt;
+    white-space: normal;
+    width: max-content;
+    max-width: 280px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 100;
+  }
+  [data-tip]:hover::after {
+    opacity: 1;
+  }
   /* ═══════════════════════════════════════════════════════════════
      INDEX PAGE — Layout & page-specific styles
      Brand tokens inherited from dragos-theme.css
@@ -634,14 +664,14 @@
     <!-- Level 5: Enterprise -->
     <div style="background: #edf2f7; border: 1.5px solid #cbd5e0; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6pt;">
       <div>
-        <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 4pt;" title="ISA 62443 Level 5: Enterprise network zone. External connections, corporate services, and internet-facing systems.">LEVEL 5 · ENTERPRISE</div>
+        <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 4pt;" data-tip="ISA 62443 Level 5: Enterprise network zone. External connections, corporate services, and internet-facing systems.">LEVEL 5 · ENTERPRISE</div>
         <div style="display: flex; gap: 4pt; flex-wrap: wrap;">
-          <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;" title="L5: Enterprise messaging and name resolution. No direct OT connectivity.">Email / DNS</div>
-          <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;" title="L5: Enterprise identity and authentication services. Separate forest from OT AD if present.">Active Directory</div>
-          <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;" title="L5: Enterprise SIEM aggregates syslog from Dragos CentralStore. Receives OT alerts without direct L0-3 access.">SIEM / Splunk</div>
+          <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;" data-tip="L5: Enterprise messaging and name resolution. No direct OT connectivity.">Email / DNS</div>
+          <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;" data-tip="L5: Enterprise identity and authentication services. Separate forest from OT AD if present.">Active Directory</div>
+          <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;" data-tip="L5: Enterprise SIEM aggregates syslog from Dragos CentralStore. Receives OT alerts without direct L0-3 access.">SIEM / Splunk</div>
         </div>
       </div>
-      <div style="background: #0a1212; border: 2px solid #01605e; border-radius: 5pt; padding: 6pt 14pt; text-align: center;" title="Dragos CentralStore: Enterprise-level 'manager of managers.' Aggregates metadata from all SiteStores for cross-site correlation, fleet-wide asset inventory, and unified threat visibility. Placed at L5 per Dragos deployment architecture (dragos.com).">
+      <div style="background: #0a1212; border: 2px solid #01605e; border-radius: 5pt; padding: 6pt 14pt; text-align: center;" data-tip="Dragos CentralStore: Enterprise-level 'manager of managers.' Aggregates metadata from all SiteStores for cross-site correlation, fleet-wide asset inventory, and unified threat visibility. Placed at L5 per Dragos deployment architecture (dragos.com).">
         <div style="font-size: 10pt; font-weight: 700; color: #fff;">⬢ Dragos CentralStore</div>
         <div style="font-size: 7pt; color: #a8e8e5;">Enterprise Dashboard · Cross-Site Correlation</div>
       </div>
@@ -650,44 +680,44 @@
     <!-- Metadata flow indicator -->
     <div style="display: flex; justify-content: flex-end; padding-right: 80pt;">
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <div style="font-size: 6.5pt; color: #049995; margin-bottom: 1pt;" title="SiteStore sends only processed metadata (not raw PCAP) upstream to CentralStore. Encrypted in transit. No raw OT traffic leaves the site.">▲ Encrypted Metadata</div>
+        <div style="font-size: 6.5pt; color: #049995; margin-bottom: 1pt;" data-tip="SiteStore sends only processed metadata (not raw PCAP) upstream to CentralStore. Encrypted in transit. No raw OT traffic leaves the site.">▲ Encrypted Metadata</div>
         <div style="width: 0; height: 12pt; border-left: 2.5px dashed #049995;"></div>
       </div>
     </div>
 
     <!-- Level 4: Business -->
     <div style="background: #f7fafc; border: 1.5px solid #cbd5e0; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt;">
-      <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 4pt;" title="ISA 62443 Level 4: Business planning and logistics. Systems here support business operations but do not directly control OT processes.">LEVEL 4 · BUSINESS</div>
+      <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 4pt;" data-tip="ISA 62443 Level 4: Business planning and logistics. Systems here support business operations but do not directly control OT processes.">LEVEL 4 · BUSINESS</div>
       <div style="display: flex; gap: 4pt;">
-        <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;" title="L4: Enterprise Resource Planning. Business logistics, scheduling, and inventory. No direct control path to OT.">ERP</div>
+        <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;" data-tip="L4: Enterprise Resource Planning. Business logistics, scheduling, and inventory. No direct control path to OT.">ERP</div>
       </div>
     </div>
 
     <!-- DMZ -->
     <div style="background: #fff5f5; border: 2px dashed #e53e3e; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt;">
-      <div style="font-size: 8pt; font-weight: 700; color: #e53e3e; letter-spacing: 1px; margin-bottom: 4pt;" title="ISA 62443 Level 3.5: Industrial DMZ. Buffer zone between IT (L4-5) and OT (L0-3). No direct traffic traversal — all communication brokered through DMZ services.">LEVEL 3.5 · INDUSTRIAL DMZ</div>
+      <div style="font-size: 8pt; font-weight: 700; color: #e53e3e; letter-spacing: 1px; margin-bottom: 4pt;" data-tip="ISA 62443 Level 3.5: Industrial DMZ. Buffer zone between IT (L4-5) and OT (L0-3). No direct traffic traversal — all communication brokered through DMZ services.">LEVEL 3.5 · INDUSTRIAL DMZ</div>
       <div style="display: flex; gap: 4pt; flex-wrap: wrap;">
-        <div style="background: #fff; border: 1px solid #e53e3e; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #c53030;" title="L3.5: Stateful inspection firewall enforcing IT/OT boundary. Per ISA 62443 conduit requirements.">Firewall</div>
-        <div style="background: #fff; border: 1px solid #e53e3e; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #c53030;" title="L3.5: Controlled remote access point. All vendor/admin access to OT zones must route through this bastion host.">Jump Server / VPN</div>
-        <div style="background: #fff; border: 1px solid #e53e3e; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #c53030;" title="L3.5: Unidirectional gateway. Enforces one-way data flow from OT to IT. Common in federal/DoD OT environments.">Data Diode</div>
+        <div style="background: #fff; border: 1px solid #e53e3e; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #c53030;" data-tip="L3.5: Stateful inspection firewall enforcing IT/OT boundary. Per ISA 62443 conduit requirements.">Firewall</div>
+        <div style="background: #fff; border: 1px solid #e53e3e; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #c53030;" data-tip="L3.5: Controlled remote access point. All vendor/admin access to OT zones must route through this bastion host.">Jump Server / VPN</div>
+        <div style="background: #fff; border: 1px solid #e53e3e; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #c53030;" data-tip="L3.5: Unidirectional gateway. Enforces one-way data flow from OT to IT. Common in federal/DoD OT environments.">Data Diode</div>
       </div>
     </div>
 
     <!-- Level 3: Site Operations -->
     <div style="background: #e6f7f7; border: 1.5px solid #7dd3d0; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6pt;">
       <div>
-        <div style="font-size: 8pt; font-weight: 700; color: #01605e; letter-spacing: 1px; margin-bottom: 4pt;" title="ISA 62443 Level 3: Site manufacturing operations and management. Historians, engineering workstations, and site-level analytics live here.">LEVEL 3 · SITE OPERATIONS</div>
+        <div style="font-size: 8pt; font-weight: 700; color: #01605e; letter-spacing: 1px; margin-bottom: 4pt;" data-tip="ISA 62443 Level 3: Site manufacturing operations and management. Historians, engineering workstations, and site-level analytics live here.">LEVEL 3 · SITE OPERATIONS</div>
         <div style="display: flex; gap: 4pt; flex-wrap: wrap; align-items: center;">
-          <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;" title="L3: Process data historian. Stores time-series data from L1-2 controllers. Per ISA 62443 and Fortinet/Dragos reference architectures.">Historian</div>
-          <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;" title="L3: Engineering workstation for PLC/DCS programming, firmware updates, and configuration management.">Eng. Workstation</div>
-          <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;" title="L3: OT-specific patch management. Vendor-validated updates staged here before deployment to L1-2 controllers.">Patch Server</div>
+          <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;" data-tip="L3: Process data historian. Stores time-series data from L1-2 controllers. Per ISA 62443 and Fortinet/Dragos reference architectures.">Historian</div>
+          <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;" data-tip="L3: Engineering workstation for PLC/DCS programming, firmware updates, and configuration management.">Eng. Workstation</div>
+          <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;" data-tip="L3: OT-specific patch management. Vendor-validated updates staged here before deployment to L1-2 controllers.">Patch Server</div>
           <div style="display: flex; align-items: center; margin-left: 4pt;"><div style="width: 10pt; border-top: 2px solid #dd6b20;"></div><div style="width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid #dd6b20;"></div></div>
-          <div style="background: #f6ad55; border: 2px solid #dd6b20; border-radius: 5pt; padding: 5pt 10pt; font-size: 9pt; font-weight: 700; color: #fff;" title="Dragos Sensor at L3: Passive monitoring via SPAN/mirror port. Captures traffic between L3 systems and the DMZ. Supports 600+ industrial protocols via DPI. Zero active scanning.">◉ Sensor (SPAN)</div>
+          <div style="background: #f6ad55; border: 2px solid #dd6b20; border-radius: 5pt; padding: 5pt 10pt; font-size: 9pt; font-weight: 700; color: #fff;" data-tip="Dragos Sensor at L3: Passive monitoring via SPAN/mirror port. Captures traffic between L3 systems and the DMZ. Supports 600+ industrial protocols via DPI. Zero active scanning.">◉ Sensor (SPAN)</div>
         </div>
       </div>
       <div style="display: flex; align-items: center; gap: 4pt;">
         <div style="display: flex; align-items: center;"><div style="width: 12pt; border-top: 2px solid #049995;"></div><div style="width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid #049995;"></div></div>
-        <div style="background: #01605e; border: 2px solid #049995; border-radius: 5pt; padding: 8pt 14pt; text-align: center;" title="Dragos SiteStore at L3: Site-level aggregation console. Correlates sensor metadata, builds asset inventory, runs threat detections, and manages vulnerability workflows. One per site. Sends only metadata (not raw PCAP) to CentralStore.">
+        <div style="background: #01605e; border: 2px solid #049995; border-radius: 5pt; padding: 8pt 14pt; text-align: center;" data-tip="Dragos SiteStore at L3: Site-level aggregation console. Correlates sensor metadata, builds asset inventory, runs threat detections, and manages vulnerability workflows. One per site. Sends only metadata (not raw PCAP) to CentralStore.">
           <div style="font-size: 10pt; font-weight: 700; color: #fff;">⬢ Dragos SiteStore</div>
           <div style="font-size: 7pt; color: #a8e8e5;">Analysis · Detection · Asset Inventory</div>
         </div>
@@ -696,31 +726,31 @@
 
     <!-- Level 2: Supervisory Control -->
     <div style="background: #f0fff4; border: 1.5px solid #9ae6b4; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt;">
-      <div style="font-size: 8pt; font-weight: 700; color: #276749; letter-spacing: 1px; margin-bottom: 4pt;" title="ISA 62443 Level 2: Supervisory control. SCADA servers, HMIs, and operator consoles that aggregate data from L1 controllers and provide process visualization.">LEVEL 2 · SUPERVISORY CONTROL</div>
+      <div style="font-size: 8pt; font-weight: 700; color: #276749; letter-spacing: 1px; margin-bottom: 4pt;" data-tip="ISA 62443 Level 2: Supervisory control. SCADA servers, HMIs, and operator consoles that aggregate data from L1 controllers and provide process visualization.">LEVEL 2 · SUPERVISORY CONTROL</div>
       <div style="display: flex; gap: 4pt; flex-wrap: wrap; align-items: center;">
-        <div style="background: #fff; border: 1px solid #9ae6b4; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #276749;" title="L2: SCADA server. Supervisory control and data acquisition. Polls L1 controllers (PLCs/RTUs) and provides centralized process management.">SCADA Server</div>
-        <div style="background: #fff; border: 1px solid #9ae6b4; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #276749;" title="L2: Human-Machine Interface. Operator console for real-time process visualization and setpoint control.">HMI #1</div>
-        <div style="background: #fff; border: 1px solid #9ae6b4; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #276749;" title="L2: Redundant HMI. Separate operator station for backup visibility or different process area.">HMI #2</div>
+        <div style="background: #fff; border: 1px solid #9ae6b4; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #276749;" data-tip="L2: SCADA server. Supervisory control and data acquisition. Polls L1 controllers (PLCs/RTUs) and provides centralized process management.">SCADA Server</div>
+        <div style="background: #fff; border: 1px solid #9ae6b4; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #276749;" data-tip="L2: Human-Machine Interface. Operator console for real-time process visualization and setpoint control.">HMI #1</div>
+        <div style="background: #fff; border: 1px solid #9ae6b4; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #276749;" data-tip="L2: Redundant HMI. Separate operator station for backup visibility or different process area.">HMI #2</div>
         <div style="display: flex; align-items: center; margin-left: 4pt;"><div style="width: 10pt; border-top: 2px solid #dd6b20;"></div><div style="width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid #dd6b20;"></div></div>
-        <div style="background: #f6ad55; border: 2px solid #dd6b20; border-radius: 5pt; padding: 5pt 10pt; font-size: 9pt; font-weight: 700; color: #fff;" title="Dragos Sensor at L2: Passive monitoring via network TAP. Captures east-west traffic between SCADA, HMIs, and L1 controllers. TAP ensures full-duplex, lossless capture without impacting control traffic.">◉ Sensor (TAP)</div>
+        <div style="background: #f6ad55; border: 2px solid #dd6b20; border-radius: 5pt; padding: 5pt 10pt; font-size: 9pt; font-weight: 700; color: #fff;" data-tip="Dragos Sensor at L2: Passive monitoring via network TAP. Captures east-west traffic between SCADA, HMIs, and L1 controllers. TAP ensures full-duplex, lossless capture without impacting control traffic.">◉ Sensor (TAP)</div>
       </div>
     </div>
 
     <!-- Level 1: Basic Control -->
     <div style="background: #fffff0; border: 1.5px solid #fefcbf; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt;">
-      <div style="font-size: 8pt; font-weight: 700; color: #975a16; letter-spacing: 1px; margin-bottom: 4pt;" title="ISA 62443 Level 1: Basic control. Controllers that execute automation logic and communicate directly with L0 field devices.">LEVEL 1 · BASIC CONTROL</div>
+      <div style="font-size: 8pt; font-weight: 700; color: #975a16; letter-spacing: 1px; margin-bottom: 4pt;" data-tip="ISA 62443 Level 1: Basic control. Controllers that execute automation logic and communicate directly with L0 field devices.">LEVEL 1 · BASIC CONTROL</div>
       <div style="display: flex; gap: 4pt; flex-wrap: wrap;">
-        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;" title="L1: Programmable Logic Controller. Executes ladder logic / function blocks to control L0 actuators and read L0 sensors.">PLC #1</div>
+        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;" data-tip="L1: Programmable Logic Controller. Executes ladder logic / function blocks to control L0 actuators and read L0 sensors.">PLC #1</div>
         <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;">PLC #2</div>
-        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;" title="L1: Remote Terminal Unit. Field-deployed controller for remote/distributed sites. Communicates via serial or IP to SCADA.">RTU</div>
-        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;" title="L1: Distributed Control System controller. Continuous process control (refining, chemical, power gen). Integrated with proprietary I/O.">DCS Controller</div>
-        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;" title="L1: Safety Instrumented System. Independent safety controller (IEC 61511). Triggers emergency shutdown if process exceeds safe limits. Must be logically isolated from basic control.">SIS</div>
+        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;" data-tip="L1: Remote Terminal Unit. Field-deployed controller for remote/distributed sites. Communicates via serial or IP to SCADA.">RTU</div>
+        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;" data-tip="L1: Distributed Control System controller. Continuous process control (refining, chemical, power gen). Integrated with proprietary I/O.">DCS Controller</div>
+        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;" data-tip="L1: Safety Instrumented System. Independent safety controller (IEC 61511). Triggers emergency shutdown if process exceeds safe limits. Must be logically isolated from basic control.">SIS</div>
       </div>
     </div>
 
     <!-- Level 0: Physical Process -->
     <div style="background: #f7fafc; border: 1.5px solid #e2e8f0; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 10pt;">
-      <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 2pt;" title="ISA 62443 Level 0: Physical process. Field instrumentation that directly interacts with the physical world. No IP connectivity — wired 4-20mA, HART, or fieldbus.">LEVEL 0 · PHYSICAL PROCESS</div>
+      <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 2pt;" data-tip="ISA 62443 Level 0: Physical process. Field instrumentation that directly interacts with the physical world. No IP connectivity — wired 4-20mA, HART, or fieldbus.">LEVEL 0 · PHYSICAL PROCESS</div>
       <div style="font-size: 8pt; color: #a0aec0;">Valves · Pumps · Motors · Actuators · Sensors · Transmitters</div>
     </div>
 
