@@ -18,7 +18,7 @@ body { font-family: 'Inter', sans-serif; color: var(--gray-900); line-height: 1.
 .cover .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 .cover .meta-item label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,.4); margin-bottom: 4px; }
 .cover .meta-item span { font-size: 14px; color: rgba(255,255,255,.85); }
-.cover .classification { margin-top: 40px; padding: 10px 16px; border: 1px solid rgba(255,255,255,.2); border-radius: 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--dragos-amber); text-align: center; }
+.cover .classification { margin-top: 40px; padding: 10px 16px; border: 1px solid rgba(255,255,255,.25); border-radius: 4px; font-size: 12px; letter-spacing: .5px; color: rgba(255,255,255,.7); text-align: center; }
 
 /* Headings */
 h2 { font-size: 20px; font-weight: 700; color: var(--dragos-blue); border-bottom: 2px solid var(--dragos-accent); padding-bottom: 8px; margin: 40px 0 20px; }

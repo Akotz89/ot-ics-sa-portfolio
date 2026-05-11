@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exercise Scenario — USACE Columbia River Hydropower</title>
+  <title>Exercise Scenario: USACE Columbia River Hydropower</title>
   <link rel="stylesheet" href="dragos-theme.css"><link rel="stylesheet" href="discovery/style.css">
   <style>
     .scenario-banner { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 4px; padding: 24px 32px; margin-bottom: 32px; }
@@ -34,82 +34,82 @@
 <div class="cover">
   <div class="logo-area"><span class="dot"></span> SA Work Product Exercise</div>
   <h1>Scenario Brief</h1>
-  <p class="subtitle">USACE Columbia River Hydropower — OT Cybersecurity Program<br>A realistic federal engagement scenario for SA portfolio development</p>
+  <p class="subtitle">USACE Columbia River Hydropower: OT Cybersecurity Program<br>Federal engagement scenario for SA portfolio development</p>
   <div class="meta-grid">
     <div class="meta-item"><label>Purpose</label><span>Provide consistent context for all work products across all 7 sales cycle stages</span></div>
     <div class="meta-item"><label>Based On</label><span>Real USACE infrastructure, Dragos YIR statistics, actual federal procurement paths</span></div>
     <div class="meta-item"><label>Created</label><span>May 2026</span></div>
-    <div class="meta-item"><label>Classification</label><span>EXERCISE — Not a real engagement</span></div>
+    <div class="meta-item"><label>Classification</label><span>EXERCISE: Not a real engagement</span></div>
   </div>
-  <div class="classification">Exercise Scenario — All entities, names, and findings are fictional</div>
+  <div class="classification">Exercise Scenario: Stakeholder names, control system configurations, and engagement findings are fictional. Dam infrastructure and threat intelligence are sourced from public data.</div>
 </div>
 
 <div class="page">
 
 <div class="scenario-banner">
-  <h2>Why This Scenario</h2>
-  <p>This scenario is designed to exercise every skill a Dragos Federal SA needs: federal procurement, DoD stakeholders, multi-site OT architecture, mixed vendor environments, compliance mandates, and a real threat actor driving urgency. Every work product in this portfolio references this single scenario for consistency.</p>
+  <h2>Scenario Overview</h2>
+  <p>This scenario provides a single consistent backdrop for every work product in the portfolio: a Dragos Federal SA engagement covering federal procurement, DoD stakeholders, multi-site OT architecture, mixed vendor environments, compliance mandates, and an active threat actor.</p>
 </div>
 
 <!-- ═══════════════ THE CUSTOMER ═══════════════ -->
-<h2>The Customer</h2>
+<h2>1. The Customer</h2>
 
 <table>
   <tr><th style="width:200px">Field</th><th>Detail</th></tr>
-  <tr><td>Organization</td><td><strong>U.S. Army Corps of Engineers (USACE)</strong> — <span class="tip" data-tip="Northwestern Division is one of 9 USACE divisions. NWD oversees the Portland, Seattle, Walla Walla, Kansas City, and Omaha districts. NWD HQ in Portland, OR manages the Columbia River hydropower portfolio — the largest federal hydro system in the U.S.">Northwestern Division (NWD)</span></td></tr>
-  <tr><td>Mission</td><td>Operates 21 hydroelectric dams across the Columbia and Willamette River basins (OR, WA, ID, MT). Part of the <span class="tip" data-tip="FCRPS is the collective name for 31 federal dams operated by USACE and Bureau of Reclamation in the Columbia River basin. Combined generating capacity exceeds 22,000 MW. BPA (Bonneville Power Administration) markets and transmits the power.">Federal Columbia River Power System (FCRPS)</span> — 31 federal dams with a combined capacity of over 22,000 MW. The Columbia River basin as a whole provides roughly 40% of all U.S. hydroelectric power.</td></tr>
-  <tr><td>Sector</td><td>Federal — <span class="tip" data-tip="USACE Civil Works is the non-combat mission set: flood control, navigation, hydropower, environmental stewardship. Distinct from USACE Military Programs (base construction). Civil Works is funded through the Energy and Water appropriations bill, not DoD base budget.">DoD (Civil Works)</span> / Energy / Water</td></tr>
+  <tr><td>Organization</td><td><strong>U.S. Army Corps of Engineers (USACE)</strong>, <span class="tip" data-tip="Northwestern Division is one of 8 USACE regional divisions. NWD oversees the Portland, Seattle, Walla Walla, Kansas City, and Omaha districts. NWD HQ in Portland, OR manages the Columbia River hydropower portfolio, the largest federal hydro system in the U.S.">Northwestern Division (NWD)</span></td></tr>
+  <tr><td>Mission</td><td>Operates 21 hydroelectric dams across the Columbia and Willamette River basins (OR, WA, ID, MT). Generates over 22,000 GWh/year, part of the <span class="tip" data-tip="FCRPS is the collective name for 31 federal dams operated by USACE and Bureau of Reclamation in the Columbia River basin. BPA (Bonneville Power Administration) markets and transmits the power. Together they are the largest hydroelectric system in North America.">Federal Columbia River Power System</span> that provides roughly 40% of all U.S. hydroelectric power.</td></tr>
+  <tr><td>Sector</td><td>Federal: <span class="tip" data-tip="USACE Civil Works is the non-combat mission set: flood control, navigation, hydropower, environmental stewardship. Distinct from USACE Military Programs (base construction). Civil Works is funded through the Energy and Water appropriations bill, not DoD base budget.">DoD (Civil Works)</span> / Energy / Water</td></tr>
   <tr><td>Scope</td><td>Initial engagement: <strong>4 dams</strong>. Success → expansion to all 21 NWD dams.</td></tr>
-  <tr><td>Annual OT Budget</td><td><span class="tip" data-tip="Sourced from the existing SCADA modernization line item — not a new budget request. Using existing program funding accelerates obligation and avoids the 1-2 year POM cycle for new requirements.">~$2M</span> (cybersecurity portion of SCADA modernization program)</td></tr>
-  <tr><td>Existing Relationship</td><td>None with Dragos. CrowdStrike and Splunk on IT side. Dr. Torres attended <span class="tip" data-tip="S4 is the premier ICS/SCADA security conference, held annually in Miami Beach. Features vendor-neutral technical content and a PoC Pavilion where companies demo live on real PLCs. High-value networking for federal OT decision-makers.">S4 Conference</span> and heard <span class="tip" data-tip="Robert M. Lee is the CEO and co-founder of Dragos, Inc. Former NSA operator and SANS ICS instructor. Widely recognized as a leading authority on ICS/OT cybersecurity.">Robert M. Lee</span> present.</td></tr>
+  <tr><td>Annual OT Budget</td><td><span class="tip" data-tip="Sourced from the existing SCADA modernization line item, not a new budget request. Using existing program funding accelerates obligation and avoids the 1-2 year POM cycle for new requirements.">~$2M</span> (cybersecurity portion of SCADA modernization program)</td></tr>
+  <tr><td>Existing Relationship</td><td>None with Dragos. CrowdStrike and Splunk on IT side. Dr. Torres attended <span class="tip" data-tip="S4 is the largest ICS/SCADA security conference, held annually in Miami Beach. Features vendor-neutral technical content and a PoC Pavilion where companies demo live on real PLCs. High-value networking for federal OT decision-makers.">S4 Conference</span> and heard <span class="tip" data-tip="Robert M. Lee is the CEO and co-founder of Dragos, Inc. Former NSA operator and SANS ICS instructor.">Robert M. Lee</span> present.</td></tr>
 </table>
 
 <!-- ═══════════════ THE SITES ═══════════════ -->
-<h2>The Sites</h2>
-
+<h2>2. The Sites</h2>
+<p style="font-size: 13px; color: var(--gray-600); margin-bottom: 16px;">Control system vendors and configurations below are fictional. Each assignment uses vendors common in federal hydroelectric facilities to create a realistic mixed-vendor environment for the exercise.</p>
 <div class="site-grid">
   <div class="site-card">
-    <h4>🏭 Bonneville Dam — OR</h4>
+    <h4>🏭 Bonneville Dam, OR</h4>
     <div class="stat">
       <strong>Commissioned:</strong> 1938 (first powerhouse; second powerhouse 1981)<br>
       <strong>Capacity:</strong> 1,050 MW nameplate / 1,200+ MW overload (18 generating units across two powerhouses)<br>
       <strong>Control System:</strong> <span class="tip" data-tip="GE Mark VIe is GE Vernova's current-generation turbine control platform. The 'VI' designates the sixth generation of GE's Mark series; 'e' denotes the Ethernet-based variant. Widely deployed in gas, steam, and hydro turbine applications.">GE Mark VIe</span> Turbine Controls<br>
       <strong>HMI:</strong> <span class="tip" data-tip="GE CIMPLICITY is the standard HMI/SCADA platform for Mark VIe power generation environments. WorkstationST and ControlST are GE engineering/operator tools that run alongside CIMPLICITY for per-unit control and diagnostics.">GE CIMPLICITY</span> (plant-level SCADA); ControlST/WorkstationST (per-unit)<br>
-      <strong>Historian:</strong> <span class="tip" data-tip="AVEVA acquired OSIsoft in August 2021. The PI System is now part of the AVEVA industrial software portfolio. PI is the most widely deployed historian in the energy sector.">AVEVA PI System</span><br>
-      <strong>Safety:</strong> <span class="tip" data-tip="Woodward is a major turbine controls manufacturer. Load sharing systems distribute electrical load across multiple generating units to prevent overloading and maintain grid frequency stability. Critical safety function in multi-unit hydro plants.">Woodward Load Sharing</span><br>
+      <strong>Historian:</strong> <span class="tip" data-tip="AVEVA acquired OSIsoft in August 2021. The PI System is now part of the AVEVA industrial software portfolio. PI is the dominant historian in the energy sector.">AVEVA PI System</span><br>
+      <strong>Safety:</strong> <span class="tip" data-tip="Woodward manufactures turbine control and load sharing systems. Load sharing distributes electrical load across multiple generating units to prevent overloading and maintain grid frequency stability. Critical safety function in multi-unit hydro plants.">Woodward Load Sharing</span><br>
       <strong>Protocols:</strong> <span class="tip" data-tip="GE SRTP (Service Request Transfer Protocol) runs over TCP and is used by ToolboxST and HMIs to read/write controller memory. EGD (Ethernet Global Data) is GE's proprietary multicast UDP protocol for high-speed cyclic data exchange between Mark VIe controllers. Both are supported by Dragos Platform for passive parsing.">GE SRTP, EGD</span>, Modbus TCP, OPC-UA<br>
       <strong>Network:</strong> Cisco IE-4010 (SPAN capable)<br>
-      <strong>Role:</strong> Primary PoC site — largest, most complex
+      <strong>Role:</strong> Primary PoC site, largest of the four
     </div>
   </div>
   <div class="site-card">
-    <h4>🏭 The Dalles Dam — OR</h4>
+    <h4>🏭 The Dalles Dam, OR</h4>
     <div class="stat">
-      <strong>Commissioned:</strong> 1957 (Phase I, 14 units); 1973 (Phase II, 8 units)<br>
-      <strong>Capacity:</strong> 1,813 MW nameplate / 2,160 MW overload (22 generating units)<br>
-      <strong>Control System:</strong> <span class="tip" data-tip="Distributed Control System (DCS) — unlike discrete PLCs, a DCS provides integrated control across an entire plant with centralized engineering and operator interface. Emerson Ovation is widely used in power generation, especially hydro and fossil plants.">Emerson Ovation DCS</span><br>
+      <strong>Commissioned:</strong> 1957 (dam completed); generators: 14 units by 1960, 8 additional by 1973<br>
+      <strong>Capacity:</strong> 1,780 MW nameplate / 2,080 MW overload (22 generating units)<br>
+      <strong>Control System:</strong> <span class="tip" data-tip="Distributed Control System (DCS): unlike discrete PLCs, a DCS provides integrated control across an entire plant with centralized engineering and operator interface. Emerson Ovation is common in power generation, especially hydro and fossil plants.">Emerson Ovation DCS</span><br>
       <strong>HMI:</strong> Emerson OvationView<br>
       <strong>Historian:</strong> AVEVA PI System<br>
-      <strong>Safety:</strong> <span class="tip" data-tip="Electromechanical protection relays predate digital monitoring. They operate based on physical mechanisms (springs, magnets, bimetallic strips) with no network connectivity or logging. Tampering or malfunction is undetectable without physical inspection — directly relevant to Industroyer-style relay manipulation attacks.">Legacy relay protection</span> (no digital monitoring)<br>
+      <strong>Safety:</strong> <span class="tip" data-tip="Electromechanical protection relays predate digital monitoring. They operate based on physical mechanisms (springs, magnets, bimetallic strips) with no network connectivity or logging. Tampering or malfunction is undetectable without physical inspection. Directly relevant to Industroyer-style relay manipulation attacks.">Legacy relay protection</span> (no digital monitoring)<br>
       <strong>Network:</strong> Cisco IE-3400 (SPAN capable)<br>
       <strong>Risk:</strong> Legacy relays vulnerable to <span class="tip" data-tip="Industroyer (also called CrashOverride) is ICS-specific malware used in the 2016 and 2022 Ukraine power grid attacks. It manipulates protection relay communications to trip breakers and cause outages. Directly relevant to any plant using legacy relay protection without digital monitoring.">Industroyer-style attacks</span>
     </div>
   </div>
   <div class="site-card">
-    <h4>🏭 John Day Dam — OR</h4>
+    <h4>🏭 John Day Dam, OR</h4>
     <div class="stat">
       <strong>Commissioned:</strong> 1968 (first power); completed 1971<br>
       <strong>Capacity:</strong> 2,160 MW (16 generating units)<br>
-      <strong>Control System:</strong> <span class="tip" data-tip="Allen-Bradley ControlLogix is Rockwell Automation's flagship PLC platform for process control. The L83 is a high-performance controller in the 5580 series. Communicates via EtherNet/IP (CIP protocol). Subject to CVE-2023-3595 (RCE via CIP, CVSS 9.8, Dragos-discovered).">Allen-Bradley ControlLogix L83</span><br>
-      <strong>HMI:</strong> <span class="tip" data-tip="FactoryTalk View Site Edition is Rockwell Automation's enterprise-class SCADA/HMI platform. Runs on Windows. SE (Site Edition) supports distributed client-server architecture — multiple operator stations connecting to a shared data server.">FactoryTalk View SE</span> (6 stations)<br>
-      <strong>Historian:</strong> <span class="tip" data-tip="Wonderware (now AVEVA) Historian is a time-series database for industrial process data. Competitor to AVEVA PI System. The presence of a different historian vendor at John Day vs. Bonneville/Dalles demonstrates the mixed-vendor environment typical of federal facilities with decades of independent procurement.">Wonderware Historian</span><br>
+      <strong>Control System:</strong> <span class="tip" data-tip="Allen-Bradley ControlLogix is Rockwell Automation's high-end PLC platform for process control. The L83 is a high-performance controller in the 5580 series. Communicates via EtherNet/IP (CIP protocol). Subject to CVE-2023-3595 (RCE via CIP, CVSS 9.8, Dragos-discovered).">Allen-Bradley ControlLogix L83</span><br>
+      <strong>HMI:</strong> <span class="tip" data-tip="FactoryTalk View Site Edition is Rockwell Automation's distributed SCADA/HMI platform. Runs on Windows. SE (Site Edition) supports client-server architecture: multiple operator stations connecting to a shared data server.">FactoryTalk View SE</span> (6 stations)<br>
+      <strong>Historian:</strong> <span class="tip" data-tip="Wonderware (now AVEVA) Historian is a time-series database for industrial process data. Competitor to AVEVA PI System. A different historian vendor at John Day vs. Bonneville/Dalles reflects the mixed-vendor procurement common in federal facilities.">Wonderware Historian</span><br>
       <strong>Safety:</strong> None identified<br>
-      <strong>Network:</strong> <span class="tip" data-tip="HP ProCurve 2920 is a managed enterprise switch, not designed for industrial environments. Its SPAN (port mirroring) implementation has limited session support and cannot mirror traffic from all VLANs simultaneously. A network TAP provides a reliable passive alternative.">HP ProCurve 2920</span> (limited SPAN — TAP needed)<br>
-      <strong>Risk:</strong> ControlLogix CIP firmware <span class="tip" data-tip="CVE-2023-3595: Remote code execution via CIP protocol. Discovered by Dragos and coordinated with Rockwell Automation. CVSS 9.8 — critical. Affects ControlLogix 5580 and earlier firmware. Dragos published detection signatures and mitigation guidance.">CVE-2023-3595</span> (RCE via CIP, Dragos-discovered, CVSS 9.8)
+      <strong>Network:</strong> <span class="tip" data-tip="HP ProCurve 2920 is a managed enterprise switch, not designed for industrial environments. Its SPAN (port mirroring) implementation has limited session support and cannot mirror traffic from all VLANs simultaneously. A network TAP provides a reliable passive alternative.">HP ProCurve 2920</span> (limited SPAN, TAP needed)<br>
+      <strong>Risk:</strong> ControlLogix CIP firmware <span class="tip" data-tip="CVE-2023-3595: Remote code execution via CIP protocol. Discovered by Dragos and coordinated with Rockwell Automation. CVSS 9.8 (critical). Affects ControlLogix 5580 and earlier firmware. Dragos published detection signatures and mitigation guidance.">CVE-2023-3595</span> (RCE via CIP, Dragos-discovered, CVSS 9.8)
     </div>
   </div>
   <div class="site-card">
-    <h4>🏭 McNary Dam — OR/WA</h4>
+    <h4>🏭 McNary Dam, OR/WA</h4>
     <div class="stat">
       <strong>Commissioned:</strong> 1954 (first power); expanded 1957<br>
       <strong>Capacity:</strong> 980 MW (14 generating units)<br>
@@ -124,7 +124,7 @@
 </div>
 
 <!-- ═══════════════ THE PEOPLE ═══════════════ -->
-<h2>The People</h2>
+<h2>3. The People</h2>
 
 <h3>Customer Side</h3>
 
@@ -149,7 +149,7 @@
 <div class="persona-card">
   <div class="name">Jennifer Walsh</div>
   <div class="title">Contracting Officer, USACE Portland District</div>
-  <div class="detail">Controls the procurement process. Needs clean <span class="tip" data-tip="Statement of Work — the formal document defining the scope of work, deliverables, timelines, and acceptance criteria for a federal contract. The SA contributes the technical scope; the AE and contracting team finalize the commercial terms.">SOW</span>, compliant <span class="tip" data-tip="A contract vehicle is a pre-established agreement (like a GWAC, BPA, or IDIQ) that federal agencies use to purchase products and services. Using an existing vehicle (e.g., SEWP VI) avoids the 6-12 month timeline of a new standalone procurement.">contract vehicle</span> (<span class="tip" data-tip="NASA SEWP (Solutions for Enterprise-Wide Procurement) is a Government-Wide Acquisition Contract. Any federal agency can use it. SEWP V ordering period extended through Sep 30, 2026 due to SEWP VI bid protests. SEWP VI awards pending GAO rulings (expected late May/June 2026). Pre-competed vehicle — enables task-order issuance without a new competition.">SEWP V</span> — ordering period extended through Sep 2026; SEWP VI awards pending), and justified <span class="tip" data-tip="A sole-source procurement bypasses full and open competition. Requires a written justification (J&amp;A — Justification and Approval) demonstrating that only one vendor can meet the requirement. Using a pre-competed GWAC like SEWP VI avoids sole-source justification entirely because competition was satisfied at the vehicle level.">sole-source or competitive</span> documentation. She doesn't care about your technology — she cares about <span class="tip" data-tip="Federal Acquisition Regulation — the governing framework for all federal procurement actions. Using a pre-competed GWAC like SEWP VI simplifies FAR compliance because competition requirements were satisfied at the contract-vehicle level.">FAR compliance</span> and obligation deadlines.</div>
+  <div class="detail">Controls the procurement process. Needs clean <span class="tip" data-tip="Statement of Work — the formal document defining the scope of work, deliverables, timelines, and acceptance criteria for a federal contract. The SA contributes the technical scope; the AE and contracting team finalize the commercial terms.">SOW</span>, compliant <span class="tip" data-tip="A contract vehicle is a pre-established agreement (like a GWAC, BPA, or IDIQ) that federal agencies use to purchase products and services. Using an existing vehicle (e.g., SEWP VI) avoids the 6-12 month timeline of a new standalone procurement.">contract vehicle</span> (<span class="tip" data-tip="NASA SEWP (Solutions for Enterprise-Wide Procurement) is a Government-Wide Acquisition Contract. Any federal agency can use it. SEWP V expired April 30, 2026; SEWP VI is the active successor. Pre-competed vehicle — enables task-order issuance without a new competition.">SEWP VI</span> — successor to SEWP V as of May 2026), and justified <span class="tip" data-tip="A sole-source procurement bypasses full and open competition. Requires a written justification (J&amp;A — Justification and Approval) demonstrating that only one vendor can meet the requirement. Using a pre-competed GWAC like SEWP VI avoids sole-source justification entirely because competition was satisfied at the vehicle level.">sole-source or competitive</span> documentation. She doesn't care about your technology — she cares about <span class="tip" data-tip="Federal Acquisition Regulation — the governing framework for all federal procurement actions. Using a pre-competed GWAC like SEWP VI simplifies FAR compliance because competition requirements were satisfied at the contract-vehicle level.">FAR compliance</span> and obligation deadlines.</div>
 </div>
 
 <div class="persona-card">
@@ -173,7 +173,7 @@
 </div>
 
 <!-- ═══════════════ THE TIMELINE ═══════════════ -->
-<h2>The Timeline — How This Deal Unfolds</h2>
+<h2>4. The Timeline</h2>
 
 <div class="timeline">
   <div class="event alert">
@@ -189,8 +189,8 @@
     <div class="desc"><span class="tip" data-tip="The Department of Defense Chief Information Officer is the senior DoD official responsible for IT/OT policy, cybersecurity standards, and digital modernization across all DoD components. The CIO has authority to issue binding directives to all DoD agencies including USACE.">DoD CIO</span> issues memo requiring OT cybersecurity assessments for all Civil Works facilities by end of FY2026 (Sep 30, 2026).</div>
   </div>
   <div class="event">
-    <div class="date">Feb 2026 — S4x26 Conference (Miami South Beach)</div>
-    <div class="desc">Dr. Torres attends S4x26 Conference (Feb 24–26). Hears Robert M. Lee present on OT threat landscape. Visits Dragos booth and POC Pavilion demo. Contacts Dragos through the website afterward.</div>
+    <div class="date">Feb 2026 — S4x26 Conference (Miami Beach)</div>
+    <div class="desc">Dr. Torres attends S4x26 Conference (Feb 23–26). Hears Robert M. Lee present on OT threat landscape. Visits Dragos booth and POC Pavilion demo. Contacts Dragos through the website afterward.</div>
   </div>
   <div class="event">
     <div class="date">Apr 2026 — Initial Contact</div>
@@ -222,7 +222,7 @@
   </div>
   <div class="event">
     <div class="date">Sep 15 — Contract Award</div>
-    <div class="desc"><span class="tip" data-tip="Firm Fixed Price — the government pays a locked total price with no cost-growth risk. Preferred by federal contracting officers because it shifts cost risk to the vendor and simplifies obligation.">FFP</span> contract via <span class="tip" data-tip="Pre-competed Government-Wide Acquisition Contract managed by NASA. SEWP V ordering period extended through Sep 30, 2026. Enables task-order issuance without a new competition cycle, saving 3-4 months vs. full and open procurement.">NASA SEWP V</span> (<span class="tip" data-tip="Carahsoft Technology Corp. is the largest government IT solutions provider and Dragos' authorized federal channel partner. They hold the SEWP VI contract, manage the order logistics, and handle small business subcontracting requirements.">Carahsoft</span>). <span class="tip" data-tip="$780K Year 1 covers 6 sensors (across 4 dams), 4 hardware SiteStores, 1 CentralStore VM, Dragos Platform subscription, Neighborhood Keeper participation, and 1 year of Dragos support. Sized to the 4-dam initial scope with built-in expansion path.">$780K Year 1</span>. FY26 funds obligated.</div>
+    <div class="desc"><span class="tip" data-tip="Firm Fixed Price — the government pays a locked total price with no cost-growth risk. Preferred by federal contracting officers because it shifts cost risk to the vendor and simplifies obligation.">FFP</span> contract via <span class="tip" data-tip="Pre-competed Government-Wide Acquisition Contract managed by NASA. Enables task-order issuance without a new competition cycle, saving 3-4 months vs. full and open procurement.">NASA SEWP VI</span> (<span class="tip" data-tip="Carahsoft Technology Corp. is the largest government IT solutions provider and Dragos' authorized federal channel partner. They hold the SEWP VI contract, manage the order logistics, and handle small business subcontracting requirements.">Carahsoft</span>). <span class="tip" data-tip="$780K Year 1 covers 6 sensors (across 4 dams), 4 hardware SiteStores, 1 CentralStore VM, Dragos Platform subscription, Neighborhood Keeper participation, and 1 year of Dragos support. Sized to the 4-dam initial scope with built-in expansion path.">$780K Year 1</span>. FY26 funds obligated.</div>
   </div>
   <div class="event">
     <div class="date">Dec 2026 — First Site Live</div>
@@ -235,7 +235,7 @@
 </div>
 
 <!-- ═══════════════ THE THREAT ═══════════════ -->
-<h2>The Threat — Why This Is Urgent</h2>
+<h2>5. The Threat</h2>
 
 <table>
   <tr><th style="width:160px">Threat Group</th><th>Relevance</th></tr>
@@ -246,7 +246,7 @@
 </table>
 
 <!-- ═══════════════ KEY CONSTRAINTS ═══════════════ -->
-<h2>Key Constraints &amp; Rules of Engagement</h2>
+<h2>6. Constraints and Rules of Engagement</h2>
 
 <div class="callout">
   <strong>⚠ Non-Negotiable:</strong> No active scanning. No agents on PLCs. Passive monitoring ONLY. A turbine trip caused by a security tool is a career-ending event for everyone involved.
@@ -266,7 +266,7 @@
 </table>
 
 <!-- ═══════════════ WORK PRODUCTS ═══════════════ -->
-<h2>Work Products Produced From This Scenario</h2>
+<h2>7. Work Products</h2>
 
 <table>
   <tr><th>Stage</th><th>Document</th><th>Gate to Advance</th><th>Status</th></tr>
@@ -289,7 +289,7 @@
 </div>
 
 <!-- ═══════════════ REFERENCES ═══════════════ -->
-<h2>References &amp; Sources</h2>
+<h2>8. References</h2>
 
 <p style="font-size: 13px; color: var(--gray-700); margin-bottom: 16px;">Every verifiable claim in this scenario is sourced from public data. Control systems, stakeholder names, and engagement findings are fictional; infrastructure specifications and threat intelligence are real.</p>
 

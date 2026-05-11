@@ -4,38 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aaron Kotz — Federal SA Technical Readiness</title>
-<link rel="stylesheet" href="dragos-theme.css">
+<link rel="stylesheet" href="dragos-theme.css"><link rel="stylesheet" href="discovery/style.css">
 <style>
-  /* ── Instant hover tooltips for diagram components ── */
-  [data-tip] {
-    position: relative;
-    cursor: help;
-  }
-  [data-tip]::after {
-    content: attr(data-tip);
-    position: absolute;
-    bottom: calc(100% + 6px);
-    left: 50%;
-    transform: translateX(-50%);
-    background: #1a202c;
-    color: #e2e8f0;
-    font-size: 8pt;
-    font-weight: 400;
-    line-height: 1.4;
-    padding: 6pt 10pt;
-    border-radius: 4pt;
-    white-space: normal;
-    width: max-content;
-    max-width: 280px;
-    box-shadow: 0 4px 12px rgba(0,0,0,.25);
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.15s;
-    z-index: 100;
-  }
-  [data-tip]:hover::after {
-    opacity: 1;
-  }
   /* ═══════════════════════════════════════════════════════════════
      INDEX PAGE — Layout & page-specific styles
      Brand tokens inherited from dragos-theme.css
