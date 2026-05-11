@@ -229,7 +229,7 @@ export function App() {
       <Tldraw
         shapeUtils={customShapeUtils}
         onMount={onMount}
-        hideUi={mode === 'presentation'}
+        hideUi
         persistenceKey={undefined}
         options={{ maxPages: 1 }}
       />
