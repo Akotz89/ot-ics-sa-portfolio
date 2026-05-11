@@ -19,6 +19,7 @@ const ROUTE_CLEARANCE = 8
 const LABEL_W_PAD = 28
 const LABEL_H = 24
 const LABEL_GAP = 14
+const ENDPOINT_STUB = 34
 
 export function computeRouteScene(editor: Editor, step: StepModel): RouteSceneLayout {
   const visibleEntityIds = new Set(step.visibleEntities)
@@ -123,8 +124,9 @@ function routeLink(editor: Editor, link: LinkModel, obstacles: Obstacle[]): Rout
   const source = anchorFor(sourceBounds, sourcePort, 0)
   const target = anchorFor(targetBounds, targetPort, cueFor(link) === 'forward' ? 10 : 0)
   const blocked = obstacles.filter((obstacle) => obstacle.ownerId !== link.source && obstacle.ownerId !== link.target)
-  const candidates = candidatePaths(source, target, sourceBounds, targetBounds, routeClassFor(link))
+  const candidates = candidatePaths(source, target, sourceBounds, targetBounds, routeClassFor(link), sourcePort, targetPort)
     .map(cleanPath)
+    .filter((path) => terminalSegmentsRespectPorts(path, sourcePort, targetPort))
     .filter((path) => path.length >= 2)
   const clean = candidates
     .map((points) => ({ points, score: routeScore(points, blocked) }))
@@ -203,58 +205,118 @@ function anchorFor(bounds: Box, port: PortName, arrowClearance: number): Point {
   }
 }
 
-function candidatePaths(source: Point, target: Point, sourceBounds: Box, targetBounds: Box, routeClass: RouteClass) {
-  const midX = round((source.x + target.x) / 2)
-  const midY = round((source.y + target.y) / 2)
+function candidatePaths(
+  source: Point,
+  target: Point,
+  sourceBounds: Box,
+  targetBounds: Box,
+  routeClass: RouteClass,
+  sourcePort: PortName,
+  targetPort: PortName,
+) {
+  const start = endpointStub(source, sourcePort)
+  const end = endpointStub(target, targetPort)
+  const midX = round((start.x + end.x) / 2)
+  const midY = round((start.y + end.y) / 2)
   const leftLane = round(Math.min(sourceBounds.x, targetBounds.x) - 48)
   const rightLane = round(Math.max(sourceBounds.maxX, targetBounds.maxX) + 48)
   const topLane = round(Math.min(sourceBounds.y, targetBounds.y) - 42)
   const bottomLane = round(Math.max(sourceBounds.maxY, targetBounds.maxY) + 42)
   const paths: Point[][] = [
-    [source, target],
-    [source, { x: target.x, y: source.y }, target],
-    [source, { x: source.x, y: target.y }, target],
-    [source, { x: midX, y: source.y }, { x: midX, y: target.y }, target],
-    [source, { x: source.x, y: midY }, { x: target.x, y: midY }, target],
-    [source, { x: leftLane, y: source.y }, { x: leftLane, y: target.y }, target],
-    [source, { x: rightLane, y: source.y }, { x: rightLane, y: target.y }, target],
-    [source, { x: source.x, y: topLane }, { x: target.x, y: topLane }, target],
-    [source, { x: source.x, y: bottomLane }, { x: target.x, y: bottomLane }, target],
+    [source, start, end, target],
+    [source, start, { x: end.x, y: start.y }, end, target],
+    [source, start, { x: start.x, y: end.y }, end, target],
+    [source, start, { x: midX, y: start.y }, { x: midX, y: end.y }, end, target],
+    [source, start, { x: start.x, y: midY }, { x: end.x, y: midY }, end, target],
+    [source, start, { x: leftLane, y: start.y }, { x: leftLane, y: end.y }, end, target],
+    [source, start, { x: rightLane, y: start.y }, { x: rightLane, y: end.y }, end, target],
+    [source, start, { x: start.x, y: topLane }, { x: end.x, y: topLane }, end, target],
+    [source, start, { x: start.x, y: bottomLane }, { x: end.x, y: bottomLane }, end, target],
   ]
 
   if (routeClass === 'protocol-bus') {
     const busY = round(Math.max(sourceBounds.maxY + 56, targetBounds.y - 30))
-    paths.unshift([source, { x: source.x, y: busY }, { x: target.x, y: busY }, target])
+    paths.unshift([source, start, { x: start.x, y: busY }, { x: end.x, y: busY }, end, target])
   }
 
   if (routeClass === 'span-feed' || routeClass === 'metadata-handoff') {
-    const laneY = routeClass === 'span-feed' ? round(Math.min(source.y, target.y) + 70) : round(Math.max(source.y, target.y) - 42)
-    paths.unshift([source, { x: source.x, y: laneY }, { x: target.x, y: laneY }, target])
+    const laneY = routeClass === 'span-feed' ? round(Math.min(start.y, end.y) + 70) : round(Math.max(start.y, end.y) - 42)
+    paths.unshift([source, start, { x: start.x, y: laneY }, { x: end.x, y: laneY }, end, target])
     if (routeClass === 'span-feed') {
       const sourceGutterX = round(sourceBounds.x - 42)
       const exteriorX = round(Math.min(sourceBounds.x, targetBounds.x) - 84)
-      const stagingY = round(target.y - 110)
-      const targetApproachY = round(target.y - 44)
+      const stagingY = round(end.y - 110)
+      const targetApproachY = round(end.y - 44)
       paths.unshift([
         source,
-        { x: sourceGutterX, y: source.y },
+        start,
+        { x: sourceGutterX, y: start.y },
         { x: sourceGutterX, y: stagingY },
         { x: exteriorX, y: stagingY },
-        { x: exteriorX, y: target.y },
+        { x: exteriorX, y: end.y },
+        end,
         target,
       ])
       paths.unshift([
         source,
-        { x: sourceGutterX, y: source.y },
+        start,
+        { x: sourceGutterX, y: start.y },
         { x: sourceGutterX, y: targetApproachY },
-        { x: target.x, y: targetApproachY },
+        { x: end.x, y: targetApproachY },
+        end,
         target,
       ])
-      paths.unshift([source, { x: sourceGutterX, y: source.y }, { x: sourceGutterX, y: target.y }, target])
+      paths.unshift([source, start, { x: sourceGutterX, y: start.y }, { x: sourceGutterX, y: end.y }, end, target])
     }
   }
 
   return paths
+}
+
+function endpointStub(point: Point, port: PortName): Point {
+  const vector = outwardVector(port)
+  return { x: round(point.x + vector.x * ENDPOINT_STUB), y: round(point.y + vector.y * ENDPOINT_STUB) }
+}
+
+function terminalSegmentsRespectPorts(points: Point[], sourcePort: PortName, targetPort: PortName) {
+  if (points.length < 2) return false
+  return firstSegmentLeavesPort(points[0], points[1], sourcePort) && lastSegmentEntersPort(points[points.length - 2], points[points.length - 1], targetPort)
+}
+
+function firstSegmentLeavesPort(source: Point, next: Point, port: PortName) {
+  const vector = outwardVector(port)
+  return directionMatches(source, next, vector)
+}
+
+function lastSegmentEntersPort(prev: Point, target: Point, port: PortName) {
+  const vector = outwardVector(port)
+  return directionMatches(target, prev, vector)
+}
+
+function directionMatches(origin: Point, next: Point, vector: Point) {
+  if (vector.x !== 0) {
+    return Math.abs(origin.y - next.y) < 0.5 && (next.x - origin.x) * vector.x > 0
+  }
+  return Math.abs(origin.x - next.x) < 0.5 && (next.y - origin.y) * vector.y > 0
+}
+
+function outwardVector(port: PortName): Point {
+  switch (port) {
+    case 'left':
+    case 'metadata':
+      return { x: -1, y: 0 }
+    case 'right':
+    case 'service':
+    case 'span':
+      return { x: 1, y: 0 }
+    case 'top':
+    case 'uplink':
+      return { x: 0, y: -1 }
+    case 'bottom':
+    case 'downlink':
+    case 'fieldbus':
+      return { x: 0, y: 1 }
+  }
 }
 
 function routeScore(points: Point[], obstacles: Obstacle[]) {
