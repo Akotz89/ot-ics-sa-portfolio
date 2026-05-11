@@ -41,7 +41,7 @@
     <div class="meta-item"><label>Created</label><span>May 2026</span></div>
     <div class="meta-item"><label>Classification</label><span>EXERCISE: Not a real engagement</span></div>
   </div>
-  <div class="classification">PORTFOLIO EXERCISE - Sample work product created for interview preparation. Not a Dragos engagement.<br>Stakeholder names, control system configurations, and engagement findings are fictional. Dam infrastructure and threat intelligence are sourced from public data.</div>
+  <div class="classification">Fictional future-state simulation built from public sources; not a real Dragos/customer engagement.<br>Stakeholder names, control system configurations, engagement findings, dates, and procurement milestones are fictional. Dam infrastructure and threat intelligence are sourced from public data.</div>
 </div>
 
 <div class="page">
@@ -142,7 +142,7 @@
 <div class="persona-card">
   <div class="name">Dr. Rebecca Torres</div>
   <div class="title">Chief, Cybersecurity Division (NWD)</div>
-  <div class="detail">Your primary technical champion. PhD in CS, former NSA. Understands IT security deeply but openly admits OT is new territory. Attended S4, heard Rob Lee, and initiated this engagement. Evaluates technical depth. Under pressure from the DoD CIO mandate and needs a win by Sep 30.</div>
+  <div class="detail">Your primary technical champion. PhD in CS, former NSA. Understands IT security deeply but openly admits OT is new territory. Attended S4, heard Rob Lee, and initiated this engagement. Evaluates technical depth. Under pressure from the fictional FY26 OT monitoring driver in this exercise and needs a win by Sep 30.</div>
 </div>
 
 <div class="persona-card">
@@ -187,11 +187,11 @@
   </div>
   <div class="event alert">
     <div class="date">Nov 2025: Incident</div>
-    <div class="desc">Unauthorized laptop found connected to SCADA network at Bonneville Dam. Discovered by an operator visually, not by any technical detection. No evidence of intrusion, but no way to confirm either.</div>
+    <div class="desc">Unauthorized laptop found connected to SCADA network at Bonneville Dam. Discovered by an operator visually, not by any technical detection. No evidence of intrusion, but limited telemetry to confirm scope.</div>
   </div>
   <div class="event">
-    <div class="date">Jan 2026: Mandate</div>
-    <div class="desc">DoD CIO issues memo requiring OT cybersecurity assessments for all Civil Works facilities by end of FY2026 (Sep 30, 2026).</div>
+    <div class="date">Jan 2026: Scenario Driver</div>
+    <div class="desc">Fictional FY26 OT monitoring driver used for this exercise: USACE leadership requests OT cybersecurity assessments for Civil Works facilities by end of FY2026 (Sep 30, 2026).</div>
   </div>
   <div class="event">
     <div class="date">Feb 2026: S4x26 Conference (Miami Beach)</div>
@@ -215,7 +215,7 @@
   </div>
   <div class="event">
     <div class="date">Jun 23-Jul 23: PoC</div>
-    <div class="desc">30-day Proof of Value at Bonneville Dam. 2 sensors deployed (SPAN × 2 segments: Powerhouse 1 + Powerhouse 2). SPAN change request submitted May 22. 4-week change control clears Jun 19. IATT granted Jun 18. Sensors racked Jun 20-22. Neighborhood Keeper enrollment configured during PoC to enable anonymized threat sharing.</div>
+    <div class="desc">30-day Proof of Value at Bonneville Dam. 2 sensors deployed (SPAN × 2 segments: Powerhouse 1 + Powerhouse 2). SPAN change request submitted May 22. 4-week change control clears Jun 19. Customer test authorization target Jun 18. Sensors racked Jun 20-22. Neighborhood Keeper enrollment configured during PoC to enable anonymized threat sharing.</div>
   </div>
   <div class="event">
     <div class="date">Jul 28: PoC Readout</div>
@@ -264,14 +264,14 @@
   <tr><td>Passive Only</td><td>Customer burned by Tenable crashing HMIs. They will reject any solution that sends packets into the OT network.</td></tr>
   <tr><td>Data Handling</td><td>All engagement documents are CUI. No cloud storage. No emailing findings over unencrypted channels.</td></tr>
   <tr><td>STIG Compliance</td><td>Any hardware deployed must be STIG-hardened. Customer ISSM will validate.</td></tr>
-  <tr><td>RMF / ATO Process</td><td>Full deployment requires ATO per NIST SP 800-37. PoC operates under IATT (90-day). Dragos Platform 2.x STIG on public.cyber.mil accelerates both paths. SA provides architecture artifacts for eMASS package.</td></tr>
+  <tr><td>RMF / ATO Process</td><td>Full deployment would follow the customer-owned RMF/ATO process per NIST SP 800-37. A PoC may require IATT or another customer-approved test authorization. Dragos Platform 2.x STIG on public.cyber.mil can reduce the hardening-evidence burden, but the customer ISSO/AO owns approval. SA provides supporting architecture artifacts for the eMASS package.</td></tr>
   <tr><td>Fiscal Year</td><td>Funds expire Sep 30, 2026. If contract isn't awarded by then, deal dies and restarts in FY27.</td></tr>
   <tr><td>Expansion Potential</td><td>Success at 4 dams = expansion to all 21 NWD dams ($3M+ follow-on). This is a land-and-expand play.</td></tr>
-  <tr><td>Regulatory Framework</td><td>USACE hydropower generation is <strong>not directly NERC CIP-registered</strong>. Compliance is driven by USACE EP 1130-2-510, DoD CIO OT cybersecurity directives, and NIST SP 800-82 Rev. 3 (Guide to OT Security). BPA, which markets the power, is NERC CIP-registered for transmission assets.</td></tr>
+  <tr><td>Regulatory Framework</td><td>This fictional scenario is framed around USACE/DoD/RMF governance. NERC CIP/BPA/WECC applicability would be confirmed during discovery with customer compliance counsel and the contracting team. Public research suggests BPA, which markets the power, is NERC CIP-registered for transmission assets.</td></tr>
   <tr><td>Applicable Standards</td><td>NIST SP 800-53 Rev. 5 (security controls), NIST SP 800-82 Rev. 3 (OT security), DoD Zero Trust Strategy (FY2027 mandate), EO 14028 (Improving the Nation's Cybersecurity), CISA Cross-Sector CPGs.</td></tr>
-  <tr><td>Supply Chain (§889)</td><td>All Dragos hardware must comply with Section 889 NDAA and FASCSA requirements. No prohibited telecommunications components. Dragos provides a supply chain compliance letter upon request. Hardware is Dell/HPE with documented provenance.</td></tr>
+  <tr><td>Supply Chain (§889)</td><td>Final bill-of-materials compliance would be validated through Dragos, Carahsoft, and hardware-vendor documentation at quote time. The SA should identify Section 889 and FASCSA evidence needs early so the contracting officer can review them before award.</td></tr>
   <tr><td>Site Access</td><td>Bonneville, The Dalles, John Day, and McNary are restricted federal installations. All Dragos personnel require PIV/CAC or government escort. SA coordinates access requests through NWD Physical Security 14 days prior to any site visit. DD Form 254 on file for classified access if needed.</td></tr>
-  <tr><td>System Categorization</td><td>Dragos Platform will be categorized under FIPS 199 as Moderate Confidentiality / Moderate Integrity / High Availability. The HIGH availability component (safety-critical infrastructure monitoring) drives the overall system to a HIGH baseline, requiring the full NIST 800-53 HIGH control set.</td></tr>
+  <tr><td>System Categorization</td><td>Recommended starting point: Moderate Confidentiality / Moderate Integrity / High Availability under FIPS 199 because availability is the primary mission concern. Final categorization and control baseline require customer ISSO/AO concurrence.</td></tr>
   <tr><td>SSP / POA&M</td><td>SA provides technical sections for the System Security Plan (architecture, data flows, encryption, access controls). Residual risks documented in POA&M for AO risk acceptance. SA ensures all artifacts are formatted for eMASS upload.</td></tr>
   <tr><td>Contract Structure</td><td>SEWP V task order structured with CLINs for software, hardware, services, and managed detection. CDRLs define required deliverables (status reports, asset inventories, vulnerability summaries). SA reviews CDRL scope to ensure technical feasibility before proposal submission.</td></tr>
 </table>

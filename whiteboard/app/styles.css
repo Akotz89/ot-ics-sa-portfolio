@@ -63,6 +63,7 @@
 
 .wb-mode-tabs,
 .wb-tool-button,
+.wb-state-status,
 .wb-rule-status,
 .wb-pulse-status {
   pointer-events: auto;
@@ -106,6 +107,7 @@
 }
 
 .wb-rule-status,
+.wb-state-status,
 .wb-pulse-status {
   display: flex;
   align-items: center;
@@ -114,6 +116,11 @@
   border-radius: 8px;
   color: var(--text-muted, #4a5568);
   font: 700 12px/1 Inter, Arial, sans-serif;
+}
+
+.wb-state-status {
+  color: var(--dragos-dark, #0a1212);
+  background: rgba(255, 255, 255, 0.94);
 }
 
 .wb-rule-status.ok {
@@ -686,7 +693,8 @@
     font-size: 11px;
   }
 
-  .wb-rule-status {
+  .wb-rule-status,
+  .wb-state-status {
     min-height: 32px;
     max-width: 210px;
     padding: 0 9px;
@@ -699,6 +707,7 @@
   }
 
   .wb-pulse-status,
+  .wb-state-status,
   .wb-stencil {
     display: none;
   }

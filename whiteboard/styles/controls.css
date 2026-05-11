@@ -1,6 +1,7 @@
 .wb-header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 20px;background:#0a1212!important;border-bottom:2px solid #01605e;flex-shrink:0;box-shadow:0 2px 12px rgba(0,0,0,.22)}
 .eyebrow{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#049995}
 .wb-header h1{font-size:18px;line-height:1.2;font-weight:700;color:#fff;letter-spacing:-.02em}
+.wb-sim-note{margin-top:4px;font-size:11px;line-height:1.35;color:rgba(255,255,255,.72);max-width:720px}
 .step-controls{display:flex;align-items:center;gap:8px}
 .step-btn{height:34px;min-width:74px;border:1px solid rgba(125,211,208,.28);border-radius:4px;background:rgba(255,255,255,.04);color:#fff;font:700 12px/1 Inter,Arial,sans-serif;cursor:pointer;transition:background .15s,border-color .15s}
 .step-btn:hover:not(:disabled){background:rgba(4,153,149,.14);border-color:rgba(125,211,208,.5)}

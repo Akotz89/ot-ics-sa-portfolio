@@ -1,5 +1,5 @@
 {
-  "name": "06_sa_document",
+  "name": "ot-ics-sa-portfolio",
   "version": "1.0.0",
   "description": "Realistic, fact-checked SA work products for the OT/ICS cybersecurity domain, built around a **USACE Columbia River Hydropower** federal engagement scenario.",
   "main": "nav.js",
@@ -8,7 +8,8 @@
     "typecheck:whiteboard": "tsc --noEmit",
     "test:whiteboard": "npm run typecheck:whiteboard && npm run build:whiteboard",
     "audit:whiteboard:scenario": "node scripts/audit-whiteboard-evidence.mjs",
-    "audit:whiteboard": "npm run test:whiteboard && npm run audit:whiteboard:scenario && node scripts/audit-whiteboard.mjs"
+    "audit:whiteboard": "npm run test:whiteboard && npm run audit:whiteboard:scenario && node scripts/audit-whiteboard.mjs",
+    "validate": "python validate_portfolio.py && npm run audit:whiteboard"
   },
   "keywords": [],
   "author": "",

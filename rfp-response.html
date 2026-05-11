@@ -37,7 +37,7 @@
     <div class="meta-item"><label>Submission Date</label><span>August 1, 2026</span></div>
     <div class="meta-item"><label>Opportunity ID</label><span>DRG-FED-2026-0847</span></div>
   </div>
-  <div class="classification">PORTFOLIO EXERCISE - Sample work product created for interview preparation. Not a Dragos engagement.</div>
+  <div class="classification">Fictional future-state simulation built from public sources; not a real Dragos/customer engagement.<br>Stakeholder names, findings, dates, solicitation details, past performance examples, and procurement milestones are simulated unless explicitly sourced.</div>
 </div>
 
 <div class="page">
@@ -62,9 +62,9 @@
 <ul style="margin: 8px 0 16px 20px; font-size: 13px; line-height: 1.7;">
   <li><strong>Zero operational disruption</strong> - turbines cannot be scanned, crashed, or interrupted. Passive monitoring is non-negotiable.</li>
   <li><strong>Multi-vendor environment</strong> - GE Mark VIe, Emerson Ovation, AB ControlLogix, and Siemens S7-400 controllers require protocol-native parsing.</li>
-  <li><strong>Federal compliance</strong> - USACE EP 1130-2-510, DoD CIO OT Directive, NIST 800-82 Rev 3, and NIST 800-53 Rev 5 controls.</li>
+  <li><strong>Federal compliance</strong> - USACE EP 1130-2-510, NIST 800-82 Rev 3, NIST 800-53 Rev 5 controls, and the fictional FY26 OT monitoring driver used for this exercise.</li>
   <li><strong>Existing security tools</strong> - solution must integrate with Splunk Cloud (FedRAMP High / DoD IL5) and CrowdStrike Falcon.</li>
-  <li><strong>Not NERC CIP</strong> - federal hydropower facilities under USACE operate under DoD authority, not FERC/NERC. Compliance framework is EP 1130-2-510 and DoD CIO guidance.</li>
+  <li><strong>Governance nuance</strong> - this fictional scenario is framed around USACE/DoD/RMF governance. NERC CIP/BPA/WECC applicability would be confirmed during discovery with customer compliance counsel and the contracting team.</li>
 </ul>
 
 <!-- SECTION 2 -->
@@ -74,7 +74,7 @@
 
 <table>
   <tr><th>Component</th><th>Quantity</th><th>Placement</th><th>Function</th></tr>
-  <tr><td>Passive Sensors</td><td>6</td><td>L1-L3 at each dam site</td><td>Traffic capture via SPAN/TAP, 600+ protocol parsers</td></tr>
+  <tr><td>Passive Sensors</td><td>6</td><td>L1-L3 at each dam site</td><td>Traffic capture via SPAN/TAP, broad industrial protocol coverage for the protocols used in this scenario</td></tr>
   <tr><td>SiteStore</td><td>4</td><td>1 per dam facility</td><td>Local analysis, detection, asset inventory</td></tr>
   <tr><td>CentralStore</td><td>1</td><td>NWD HQ (Portland)</td><td>Enterprise aggregation, cross-site correlation, SIEM integration</td></tr>
 </table>
@@ -116,9 +116,9 @@
 <table>
   <tr><th>Risk</th><th>Probability</th><th>Impact</th><th>Mitigation</th></tr>
   <tr><td>TAP installation delays (change control)</td><td><span class="sev-med">MEDIUM</span></td><td>Schedule slip</td><td>Initiate change control requests during pre-deployment phase; coordinate with dam maintenance schedules</td></tr>
-  <tr><td>ATO timeline extension</td><td><span class="sev-med">MEDIUM</span></td><td>Deployment delay</td><td>DISA STIG pre-built; IATT for PoC, full ATO for production. ATO artifact package prepared during Phase 1; early ISSO engagement for eMASS submission</td></tr>
-  <tr><td>Protocol parsing gaps</td><td><span class="sev-low">LOW</span></td><td>Reduced visibility</td><td>All 4 controller platforms (GE, Emerson, AB, Siemens) are natively supported; validated during PoC</td></tr>
-  <tr><td>Staff clearance requirements</td><td><span class="sev-low">LOW</span></td><td>Personnel delay</td><td>All proposed key personnel hold active clearances; Dragos maintains cleared bench depth</td></tr>
+  <tr><td>Authorization timeline extension</td><td><span class="sev-med">MEDIUM</span></td><td>Deployment delay</td><td>Customer ISSO/AO owns schedule and approval. Published DISA STIG can reduce hardening-evidence burden; IATT or test authorization for PoC confirmed during Phase 1; early ISSO engagement for eMASS-formatted artifacts.</td></tr>
+  <tr><td>Protocol parsing gaps</td><td><span class="sev-low">LOW</span></td><td>Reduced visibility</td><td>Protocol fit for GE, Emerson, AB, and Siemens environments validated against current Dragos documentation and during PoC traffic review.</td></tr>
+  <tr><td>Staff clearance requirements</td><td><span class="sev-low">LOW</span></td><td>Personnel delay</td><td>Proposed staffing plan would be validated against site access, escort, and clearance requirements before deployment.</td></tr>
 </table>
 
 <!-- SECTION 6 -->
@@ -129,7 +129,7 @@
 <table>
   <tr><th style="width:60px">Req ID</th><th>Requirement</th><th style="width:80px">Status</th><th>Proposed Solution</th></tr>
   <tr><td>SOW-01</td><td>Continuous passive OT network monitoring across all 4 dam sites</td><td><span class="req-full">FULL</span></td><td>6 passive sensors deployed via SPAN/TAP. Zero active scanning. 24/7 monitoring via OT Watch.</td></tr>
-  <tr><td>SOW-02</td><td>Automated OT asset discovery and inventory management</td><td><span class="req-full">FULL</span></td><td>Passive asset discovery with 600+ protocol parsers. Continuous inventory updates. PoC validated 97% discovery in 48 hours.</td></tr>
+  <tr><td>SOW-02</td><td>Automated OT asset discovery and inventory management</td><td><span class="req-full">FULL</span></td><td>Passive asset discovery with broad industrial protocol coverage for the protocols used in this scenario. Continuous inventory updates. PoC validated 97% discovery in 48 hours.</td></tr>
   <tr><td>SOW-03</td><td>OT vulnerability identification and prioritization</td><td><span class="req-full">FULL</span></td><td>Now/Next/Never prioritization framework with Dragos WorldView threat intelligence context. OT-corrected CVSS scoring.</td></tr>
   <tr><td>SOW-04</td><td>Integration with existing SIEM (Splunk Cloud)</td><td><span class="req-full">FULL</span></td><td>Syslog/CEF over TLS from CentralStore. Alert metadata only - no raw PCAP exported. Validated during PoC.</td></tr>
   <tr><td>SOW-05</td><td>Integration with existing EDR (CrowdStrike Falcon)</td><td><span class="req-full">FULL</span></td><td>REST API bi-directional integration. OT IOCs → Falcon; EDR context → Dragos asset enrichment.</td></tr>
@@ -138,18 +138,18 @@
   <tr><td>SOW-08</td><td>Incident response forensic capability</td><td><span class="req-full">FULL</span></td><td>Full PCAP replay, protocol-aware search, timeline reconstruction. On-prem evidence retention.</td></tr>
   <tr><td>SOW-09</td><td>Air-gapped operation capability</td><td><span class="req-partial">PARTIAL</span></td><td>Platform operates fully offline. Content updates (threat signatures, vulnerability advisories) require manual secure media transfer on a defined schedule. Automated update mechanisms are not available in air-gapped mode. NK enrollment requires outbound connectivity and is not available in fully air-gapped deployments.</td></tr>
   <tr><td>SOW-10</td><td>24/7 managed monitoring service</td><td><span class="req-partial">PARTIAL</span></td><td>OT Watch managed detection service available for sites with outbound connectivity to Dragos cloud infrastructure. Air-gapped sites (if applicable) would require on-site analyst staffing or periodic PCAP export for remote analysis. OT Watch connectivity requirements should be validated against site network policy during deployment planning.</td></tr>
-  <tr><td>SOW-11</td><td>Supply chain compliance (§889 NDAA)</td><td><span class="req-full">FULL</span></td><td>All Dragos hardware (Dell/HPE platforms) certified §889-compliant. Supply chain provenance documentation available. No prohibited telecommunications components.</td></tr>
-  <tr><td>SOW-12</td><td>RMF authorization support artifacts</td><td><span class="req-full">FULL</span></td><td>Published DISA STIG (public.cyber.mil). Pre-built SSP contribution sections, POA&M templates, FIPS 199 categorization guidance, and PPSM registration data. SA provides direct ISSO support through ATO.</td></tr>
+  <tr><td>SOW-11</td><td>Supply chain compliance (§889 NDAA)</td><td><span class="req-full">FULL</span></td><td>Final bill-of-materials compliance validated through Dragos, Carahsoft, and hardware-vendor documentation at quote time. Section 889/FASCSA evidence needs identified before award.</td></tr>
+  <tr><td>SOW-12</td><td>RMF authorization support artifacts</td><td><span class="req-full">FULL</span></td><td>Published DISA STIG (public.cyber.mil). SSP contribution sections, POA&amp;M inputs, FIPS 199 categorization recommendation, and PPSM data prepared for customer ISSO/AO review.</td></tr>
 </table>
 
 <!-- SECTION 7 -->
-<div class="vol-header">Section 7: Past Performance (Sanitized)</div>
+<div class="vol-header">Section 7: Representative Example Profiles (Fictional)</div>
 
 <table>
   <tr><th>Reference</th><th>Sector</th><th>Scope</th><th>Outcome</th></tr>
-  <tr><td>Federal Electric Utility (DoD)</td><td>Energy / Defense</td><td>Multi-site OT monitoring, 12 substations</td><td>Full deployment, renewed Year 2. Zero operational disruptions.</td></tr>
-  <tr><td>Federal Water Authority</td><td>Water / Wastewater</td><td>SCADA monitoring, 8 treatment plants</td><td>Identified 3 critical vulnerabilities in first 72 hours. Platform credited with preventing potential incident.</td></tr>
-  <tr><td>Defense Industrial Base</td><td>Manufacturing / Defense</td><td>OT visibility for classified manufacturing</td><td>Air-gapped deployment. Met all ATO requirements. Integrated with existing SIEM.</td></tr>
+  <tr><td>Federal Electric Utility (DoD)</td><td>Energy / Defense</td><td>Multi-site OT monitoring, 12 substations</td><td>Illustrative multi-site deployment profile; final outcomes would be supplied by the contracts team.</td></tr>
+  <tr><td>Federal Water Authority</td><td>Water / Wastewater</td><td>SCADA monitoring, 8 treatment plants</td><td>Illustrative SCADA monitoring profile with vulnerability triage workflow.</td></tr>
+  <tr><td>Defense Industrial Base</td><td>Manufacturing / Defense</td><td>OT visibility for classified manufacturing</td><td>Illustrative air-gapped deployment profile; authorization outcomes would require verified customer references.</td></tr>
 </table>
 
 <p style="font-size: 12px; color: var(--gray-500); margin-top: 8px;"><em>Past performance references above are representative engagement profiles created for this portfolio exercise. In a real RFP response, this section would be populated by the contracts team with verified CPARS-rated references. The SA's role is to ensure the technical scope descriptions accurately reflect delivered capabilities. These examples illustrate the types of federal OT engagements Dragos would reference.</em></p>

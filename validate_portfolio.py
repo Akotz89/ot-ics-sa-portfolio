@@ -6,11 +6,17 @@ import re
 import os
 import sys
 
-PORTFOLIO_DIR = r"C:\Users\Aaron\Dragos Job\06_SA_Document"
+PORTFOLIO_DIR = os.path.dirname(os.path.abspath(__file__))
 FILES = [
     "index.html", "scenario.html", "architecture.html", "arb-brief.html",
     "rfp-response.html", "poc-report.html", "demo.html", "discovery/index.html"
 ]
+SUPPORT_FILES = [
+    "README.md", "nav.js", "whiteboard/index.html",
+    "whiteboard/app/model/steps.ts", "research/research_evidence.md",
+    "scripts/audit-whiteboard-evidence.mjs", "package.json", "package-lock.json"
+]
+PUBLIC_COPY_FILES = FILES + ["README.md", "nav.js", "whiteboard/index.html"]
 
 errors = []
 warnings = []
@@ -41,7 +47,17 @@ pages = {}
 for f in FILES:
     pages[f] = read_file(f)
 
+support = {}
+for f in SUPPORT_FILES:
+    support[f] = read_file(f)
+
 all_text = "\n".join(pages.values())
+public_text = "\n".join([pages.get(f, "") for f in FILES] + [
+    support.get("README.md", ""),
+    support.get("nav.js", ""),
+    support.get("whiteboard/index.html", "")
+])
+review_text = "\n".join([all_text] + list(support.values()))
 
 print("=" * 70)
 print("PORTFOLIO CONSISTENCY VALIDATOR")
@@ -74,9 +90,9 @@ for fname, content in pages.items():
     if "980" in content and "McNary" in content:
         check(f"{fname}: McNary MW = 980", True)
 
-# Check no wrong MW values appear
+# Check no wrong MW values appear in public or supporting review evidence
 for wrong in ["5,960", "5,980", "5,971", "1,813"]:
-    check(f"No incorrect MW value '{wrong}' anywhere", wrong not in all_text)
+    check(f"No incorrect MW value '{wrong}' anywhere", wrong not in review_text)
 
 # ---- ASSET / VULN CHECKS ----
 print("\n--- Asset & Vulnerability Checks ---")
@@ -159,6 +175,105 @@ check("diagrams.html deleted (orphan removed)", not diagrams_exists)
 # Check nav.js doesn't reference diagrams
 nav_content = read_file("nav.js")
 check("nav.js doesn't link to diagrams.html", "diagrams" not in nav_content.lower())
+check("No public copy references deleted diagrams.html", "diagrams.html" not in public_text.lower())
+
+# ---- CANONICAL DRAFT / EVIDENCE CHECKS ----
+print("\n--- Canonical Draft & Evidence Checks ---")
+readme = support.get("README.md", "")
+research = support.get("research/research_evidence.md", "")
+steps_ts = support.get("whiteboard/app/model/steps.ts", "")
+whiteboard_audit = support.get("scripts/audit-whiteboard-evidence.mjs", "")
+package_json = support.get("package.json", "")
+package_lock = support.get("package-lock.json", "")
+
+check("README identifies local 06_SA_Document as source of truth",
+      "06_SA_Document" in readme and "canonical showcase" in readme)
+check("README frames real vs fictional content",
+      "source-backed" in readme and "fictional" in readme)
+check("README references 24-step whiteboard",
+      "24-step" in readme and "8-step" not in readme.lower())
+check("Research evidence uses 5,970 MW planning basis",
+      "5,970 MW planning basis" in research)
+for stale in ["6,003 MW", "6,033 MW", "Portfolio states 1,813", "1,813 MW"]:
+    check(f"Research evidence has no stale capacity phrase '{stale}'", stale not in research)
+check("Public capacity claims qualify 5,970 MW as planning basis",
+      "5,970 MW planning basis" in readme and
+      "5,970 MW planning basis" in pages.get("architecture.html", "") and
+      "5,970 MW planning basis" in pages.get("arb-brief.html", "") and
+      "5,970 MW planning basis" in pages.get("rfp-response.html", ""))
+
+step_ids = re.findall(r"^\s*id:\s*['\"][a-z0-9-]+['\"],", steps_ts, re.MULTILINE)
+check(f"Whiteboard model has 24 steps (found {len(step_ids)})", len(step_ids) == 24)
+check("Whiteboard audit enforces 24-step model", "steps.length !== 24" in whiteboard_audit)
+
+for phrase in [
+    "8-step whiteboard",
+    "Purdue Model architecture walkthrough",
+    "largest dedicated OT",
+    "Claroty and Nozomi use generic CVSS",
+    "portfolio may need update",
+]:
+    check(f"No stale or overbroad phrase '{phrase}'", phrase.lower() not in (public_text + "\n" + research).lower())
+
+# ---- PRE-SEND HARDENING CHECKS ----
+print("\n--- Pre-Send Hardening Checks ---")
+simulation_phrase = "Fictional future-state simulation built from public sources; not a real Dragos/customer engagement."
+for fname in FILES + ["README.md", "whiteboard/index.html"]:
+    content = pages.get(fname, support.get(fname, ""))
+    check(f"{fname}: has visible fictional simulation label", simulation_phrase in content)
+
+check("Landing page has Start Here path", "Start Here for Hiring Team" in pages.get("index.html", ""))
+check("Landing page has role-fit section", "Role Fit: Senior Pre-Sales Solution Architect" in pages.get("index.html", ""))
+check("Package metadata renamed to ot-ics-sa-portfolio",
+      '"name": "ot-ics-sa-portfolio"' in package_json and '"name": "ot-ics-sa-portfolio"' in package_lock)
+check("npm validate script runs portfolio and whiteboard audits",
+      '"validate"' in package_json and "validate_portfolio.py" in package_json and "audit:whiteboard" in package_json)
+
+validator_text = read_file("validate_portfolio.py")
+hardcoded_windows_path = "C:" + "\\Users\\Aaron"
+check("Validator uses relative project root",
+      "os.path.dirname(os.path.abspath(__file__))" in validator_text and hardcoded_windows_path not in validator_text)
+
+public_lower = public_text.lower()
+for phrase in [
+    "no equivalent",
+    "broad but shallow",
+    "common protocols only",
+    "smaller ot intel",
+    "dod cio ot directive",
+    "dod cio ot mandate",
+    "not directly nerc cip-registered",
+    "not nerc cip",
+    "full ato artifacts pre-built",
+    "emass-ready",
+    "all dragos hardware",
+    "certified §889",
+    "platform credited",
+    "renewed year 2",
+    "met all ato requirements",
+    "jwics",
+    "siprnet",
+    "dual-tier firewalls",
+    "14 protocol translators",
+    "20+ vm",
+    "gcs / c2 / spdn",
+    "aircraft / physical platform",
+    "encrypted fiber",
+    "zero ot/ics visibility",
+    "zero ot network visibility",
+    "zero ot data feeds",
+    "no way to detect",
+]:
+    check(f"No risky public phrase '{phrase}'", phrase not in public_lower)
+
+check("Public copy avoids unstable Dragos protocol support counts",
+      re.search(r"\b(?:100|600)\+\s+(?:industrial\s+)?protocol", public_text, re.IGNORECASE) is None)
+check("NERC CIP language is discovery-driven",
+      "NERC CIP/BPA/WECC applicability would be confirmed during discovery" in public_text)
+check("Authorization caveat names customer ISSO/AO ownership",
+      "customer ISSO/AO owns" in public_text or "customer ISSO/AO process owns" in public_text)
+check("Supply-chain caveat validates final BOM at quote time",
+      "quote time" in public_lower and ("carahsoft" in public_lower and "hardware-vendor" in public_lower))
 
 # ---- STAGE COUNT CHECK ----
 print("\n--- Sales Motion Consistency ---")
@@ -168,8 +283,7 @@ check("Scenario has 7 work product stages", "7. Post-Sales" in pages.get("scenar
 # ---- CLASSIFICATION BANNER CHECK ----
 print("\n--- Classification Banners ---")
 for fname, content in pages.items():
-    if "PORTFOLIO EXERCISE" in content:
-        check(f"{fname}: Has portfolio exercise disclaimer", True)
+    check(f"{fname}: Has portfolio exercise disclaimer", simulation_phrase in content)
 
 # ---- SiteStore CONSISTENCY ----
 print("\n--- SiteStore Type Consistency ---")

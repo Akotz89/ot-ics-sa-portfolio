@@ -41,7 +41,7 @@
     <div class="meta-item"><label>Opportunity ID</label><span>DRG-FED-2026-0847</span></div>
     <div class="meta-item"><label>Based On</label><span>Technical Discovery Document (DRG-FED-2026-0847)</span></div>
   </div>
-  <div class="classification">PORTFOLIO EXERCISE - Sample work product created for interview preparation. Not a Dragos engagement.</div>
+  <div class="classification">Fictional future-state simulation built from public sources; not a real Dragos/customer engagement.<br>Stakeholder names, findings, dates, authorization milestones, and procurement details are simulated unless explicitly sourced.</div>
 </div>
 
 <div class="page">
@@ -49,9 +49,9 @@
 <!-- SECTION 1: EXECUTIVE SUMMARY -->
 <h2>1. Executive Summary</h2>
 
-<p>This architecture covers the Dragos Platform deployment for the USACE Northwestern Division (NWD) Columbia River hydropower facilities: Bonneville, The Dalles, John Day, and McNary. This exercise uses a 5,970 MW planning basis across four dams that currently have no OT network monitoring.</p>
+<p>This architecture covers the Dragos Platform deployment for the USACE Northwestern Division (NWD) Columbia River hydropower facilities: Bonneville, The Dalles, John Day, and McNary. This exercise uses a 5,970 MW planning basis across four dams that currently have limited protocol-aware OT network monitoring.</p>
 
-<p>The design is based on the Technical Discovery session conducted May 15, 2026 (see Technical Discovery Document, DRG-FED-2026-0847). Threat context is documented in the Discovery report; key drivers are VOLTZITE pre-positioning activity and the DoD CIO OT monitoring mandate.</p>
+<p>The design is based on the fictional Technical Discovery session conducted May 15, 2026 (see Technical Discovery Document, DRG-FED-2026-0847). Threat context is documented in the Discovery report; key drivers are VOLTZITE pre-positioning activity and the scenario OT monitoring milestone.</p>
 
 <blockquote>
   <strong>Design Principle:</strong> All OT data stays on-premises. Only structured alert metadata leaves the local network via encrypted channels to existing enterprise security tools. No raw PCAP, asset data, or process telemetry goes to any cloud service.
@@ -116,7 +116,7 @@
       <strong>Protocols:</strong> S7comm, Modbus TCP<br>
       <strong>Network:</strong> Moxa EDS unmanaged switches<br>
       <strong>Tap Strategy:</strong> Network TAP required (unmanaged switches)<br>
-      <strong>Sensors:</strong> 1 (combined, smaller OT footprint)<br>
+      <strong>Sensors:</strong> 1 (combined, compact OT footprint)<br>
       <strong>SiteStore:</strong> 1× SiteStore appliance (compact)
     </div>
   </div>
@@ -186,7 +186,7 @@
 </table>
 
 <blockquote>
-  <strong>Key Point:</strong> The Sensor → OT Network row is intentionally blank. Dragos sensors are physically configured as receive-only; there is no transmit path to the monitored OT network. This passive-only architecture is the foundation for a streamlined Security Impact Analysis and accelerated ATO timeline.
+  <strong>Key Point:</strong> The Sensor → OT Network row is intentionally blank. Dragos sensors are physically configured as receive-only; there is no transmit path to the monitored OT network. This passive-only architecture supports the customer's Security Impact Analysis and reduces one class of operational risk, but the customer ISSO/AO process owns final authorization.
 </blockquote>
 
 <!-- SECTION 5: BILL OF MATERIALS -->
@@ -253,8 +253,8 @@
     <p>ICS security guidance. Platform addresses network monitoring (§5.3), access control validation (§5.5), and incident response capability (§6.2).</p>
   </div>
   <div class="comp-card">
-    <h4>DoD CIO OT Security Directive</h4>
-    <p>Mandates OT cybersecurity programs across all DoD components. This deployment covers the asset visibility and network monitoring requirements.</p>
+    <h4>Scenario OT Monitoring Driver</h4>
+    <p>Fictional FY26 exercise driver used to create timeline pressure. This deployment covers the asset visibility and network monitoring requirements that would be validated during discovery.</p>
   </div>
   <div class="comp-card">
     <h4>NIST SP 800-53 Rev 5</h4>
@@ -264,27 +264,27 @@
 
 
 <!-- SECTION 7: ATO / AUTHORIZATION -->
-<h2>7. Authorization to Operate (ATO) Strategy</h2>
+<h2>7. RMF Authorization Support Strategy</h2>
 
-<p>All components require ATO before production deployment on USACE networks. The following strategy accelerates the authorization timeline:</p>
+<p>Production deployment would follow the customer-owned RMF authorization process before systems are placed on USACE networks. The SA can reduce friction by preparing clean evidence early, but the customer ISSO/AO owns approval, schedule, and residual-risk decisions.</p>
 
 <table>
   <tr><th>Phase</th><th>Authorization Type</th><th>Duration</th><th>Artifacts Provided</th></tr>
-  <tr><td><strong>RMF Step 1</strong></td><td>System Categorization (FIPS 199)</td><td>Pre-PoC</td><td>Recommended categorization: Moderate-Moderate-High (availability drives HIGH baseline due to safety-critical infrastructure)</td></tr>
-  <tr><td><strong>PoC</strong></td><td>IATT / Test Authorization</td><td>2-3 weeks</td><td>STIG checklist, network diagram, data flow diagram, ports/protocols matrix</td></tr>
-  <tr><td><strong>Production</strong></td><td>Full ATO (RMF)</td><td>3-6 months</td><td>Pre-built STIG results, SSP contribution sections, hardware/software inventory, POA&M templates</td></tr>
+  <tr><td><strong>RMF Step 1</strong></td><td>System Categorization (FIPS 199)</td><td>Pre-PoC</td><td>Recommended starting point: Moderate-Moderate-High because availability is the primary mission concern; final categorization requires ISSO/AO concurrence</td></tr>
+  <tr><td><strong>PoC</strong></td><td>IATT / Test Authorization if required</td><td>Customer-defined</td><td>STIG checklist, network diagram, data flow diagram, ports/protocols matrix</td></tr>
+  <tr><td><strong>Production</strong></td><td>Full ATO (RMF)</td><td>Customer-defined</td><td>STIG results, SSP contribution sections, hardware/software inventory, POA&amp;M templates</td></tr>
   <tr><td><strong>Ongoing</strong></td><td>Continuous Authorization</td><td>Ongoing</td><td>Automated compliance evidence: continuous asset inventory, vulnerability tracking, threat detection logs. Supports ISSO's ongoing authorization reporting requirements.</td></tr>
 </table>
 
 <div class="arch-box">
-  <h4>ATO Acceleration Approach</h4>
+  <h4>RMF Support Approach</h4>
   <ul style="margin: 8px 0 0 20px; font-size: 13px; line-height: 1.8;">
-    <li><strong>Published STIG:</strong> Dragos Platform 2.x STIG is available on public.cyber.mil, eliminating 3-6 months of control documentation</li>
+    <li><strong>Published STIG:</strong> Dragos Platform 2.x STIG is available on public.cyber.mil, reducing the hardening-evidence burden compared with a product that has no published benchmark</li>
     <li><strong>Early ISSO Engagement:</strong> SA coordinates introductory call between Dragos engineering and NWD ISSO during PoC phase. SA provides architecture artifacts formatted for eMASS submission</li>
     <li><strong>Passive-Only Architecture:</strong> Sensors are receive-only (no transmit path to OT network), which reduces risk assessment complexity</li>
-    <li><strong>Precedent:</strong> Dragos has completed ATO at 13+ federal sites with reusable artifact templates available</li>
+    <li><strong>Evidence Discipline:</strong> The SA packages reusable diagrams, ports/protocols matrices, inventory, STIG outputs, and SSP contribution language so the customer's ISSO can review rather than reconstruct the technical baseline</li>
   </ul>
-  <p style="font-size: 13px; line-height: 1.8; margin-top: 10px; font-style: italic; color: var(--gray-600);">In my current role, I coordinate IATT packages and eMASS submissions as part of our site's RMF compliance cycle. I have walked through this exact process for new systems entering our authorization boundary, including FIPS 199 categorization, STIG application, and POA&amp;M management. The same workflow applies here.</p>
+  <p style="font-size: 13px; line-height: 1.8; margin-top: 10px; font-style: italic; color: var(--gray-600);">In my current role, I coordinate RMF evidence, STIG application, vulnerability data, POA&amp;M tracking, and authorization documentation for classified mission-system environments. The same workflow discipline applies here.</p>
 </div>
 
 <div class="arch-box">
@@ -294,7 +294,7 @@
 
 <div class="arch-box">
   <h4>Supply Chain Compliance (§889 NDAA)</h4>
-  <p style="font-size: 13px; line-height: 1.8;">All Dragos hardware appliances (SiteStore, sensors) are built on Dell PowerEdge / HPE ProLiant server platforms with documented supply chain provenance. No Section 889-prohibited components. Dragos provides a supply chain compliance certification letter for inclusion in the procurement package. Network TAPs (Gigamon) and managed switches (Cisco IE-4010) are also §889-compliant with US-based supply chains.</p>
+  <p style="font-size: 13px; line-height: 1.8;">Final bill-of-materials compliance would be validated through Dragos, Carahsoft, and hardware-vendor documentation at quote time. The SA should identify Section 889, FASCSA, country-of-origin, and supply-chain evidence needs early so the contracting officer can review the final hardware, TAP, and switch list before award.</p>
 </div>
 
 <div class="arch-box">

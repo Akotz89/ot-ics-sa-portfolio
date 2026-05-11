@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { addStencilEntity, computeBoardLayout, createInitialEntities, moveEntityWithRules, toModelPoint } from './engine/layout'
 import { inflate, rectMaxX, rectMaxY } from './engine/geometry'
 import type { DiagramEntity, DragState } from './engine/diagramModel'
+import { loadWorkshopDraft, resetWorkshopDraft, sameEntityLayout, saveWorkshopDraft } from './engine/workshopDraft'
 import { flows } from './model/topology'
 import { steps } from './model/steps'
 import { computeRouteScene } from './routing/computeRoutes'
@@ -28,7 +29,8 @@ export function App() {
   const rootRef = useRef<HTMLDivElement | null>(null)
   const [mode, setMode] = useState<Mode>('presentation')
   const [stepIndex, setStepIndex] = useState(0)
-  const [entities, setEntities] = useState<DiagramEntity[]>(() => createInitialEntities())
+  const presentationEntities = useMemo(() => createInitialEntities(), [])
+  const [workshopEntities, setWorkshopEntities] = useState<DiagramEntity[]>(() => loadWorkshopDraft(presentationEntities))
   const [viewport, setViewport] = useState({ width: 1900, height: 940 })
   const [pulseLinks, setPulseLinks] = useState<string[]>([])
   const [pulseLabel, setPulseLabel] = useState('')
@@ -36,9 +38,11 @@ export function App() {
   const pulseTimeoutRef = useRef<number | undefined>(undefined)
 
   const step = steps[stepIndex]
-  const layout = useMemo(() => computeBoardLayout(entities, undefined, viewport), [entities, viewport])
+  const activeEntities = mode === 'presentation' ? presentationEntities : workshopEntities
+  const layout = useMemo(() => computeBoardLayout(activeEntities, undefined, viewport), [activeEntities, viewport])
   const routeScene = useMemo(() => computeRouteScene(layout, step), [layout, step])
-  const auditErrors = useMemo(() => [...validateStaticModel(), ...auditDiagram(layout, step, routeScene)], [layout, routeScene, step])
+  const stateGuardErrors = useMemo(() => auditPresentationState(mode, activeEntities, presentationEntities), [activeEntities, mode, presentationEntities])
+  const auditErrors = useMemo(() => [...validateStaticModel(), ...auditDiagram(layout, step, routeScene), ...stateGuardErrors], [layout, routeScene, stateGuardErrors, step])
   const pulseLinkSet = useMemo(() => new Set(pulseLinks), [pulseLinks])
   const shell = { width: Math.max(MIN_SHELL_WIDTH, viewport.width - 14), height: Math.max(MIN_SHELL_HEIGHT, viewport.height - 14) }
   const view = useMemo(() => computeStepView(layout, step, routeScene, shell.width / shell.height), [layout, routeScene, shell.height, shell.width, step])
@@ -54,8 +58,20 @@ export function App() {
     setStepIndex(Math.max(0, Math.min(steps.length - 1, nextIndex)))
   }, [])
 
+  const clearPulseState = useCallback(() => {
+    window.clearTimeout(pulseTimeoutRef.current)
+    setPulseLinks([])
+    setPulseLabel('')
+  }, [])
+
+  const resetWorkshop = useCallback(() => {
+    clearPulseState()
+    setWorkshopEntities(resetWorkshopDraft(presentationEntities))
+  }, [clearPulseState, presentationEntities])
+
   const triggerPulse = useCallback(
     (entityId: string) => {
+      if (mode !== 'presentation') return
       if (!step.visibleEntities.includes(entityId)) return
       const visibleLinks = new Set(step.visibleLinks)
       const flow = flows.find((item) => item.trigger === entityId && item.links.some((linkId) => visibleLinks.has(linkId)))
@@ -72,7 +88,7 @@ export function App() {
         setPulseLabel('')
       }, 1400)
     },
-    [step]
+    [mode, step]
   )
 
   useEffect(() => {
@@ -85,6 +101,15 @@ export function App() {
     observer.observe(root)
     return () => observer.disconnect()
   }, [])
+
+  useEffect(() => {
+    clearPulseState()
+    dragRef.current = null
+  }, [clearPulseState, mode])
+
+  useEffect(() => {
+    saveWorkshopDraft(workshopEntities)
+  }, [workshopEntities])
 
   useEffect(() => {
     const next = document.querySelector<HTMLButtonElement>('#btn-next')
@@ -133,7 +158,7 @@ export function App() {
     const dx = (event.clientX - drag.startX) / scale
     const dy = (event.clientY - drag.startY) / scale
     const modelPoint = toModelPoint({ x: drag.originX + dx, y: drag.originY + dy }, viewport)
-    setEntities((current) => moveEntityWithRules(current, drag.id, modelPoint))
+    setWorkshopEntities((current) => moveEntityWithRules(current, drag.id, modelPoint))
   }
 
   const stopDrag = (event: React.PointerEvent) => {
@@ -145,6 +170,7 @@ export function App() {
     : mode === 'presentation'
       ? `Presentation-safe · ${routeScene.quality.visibleRoutes} bound routes`
       : `Grid + snap + ports active · ${routeScene.quality.visibleRoutes} bound routes`
+  const stateText = mode === 'presentation' ? 'Presentation baseline locked' : 'Workshop draft saved'
 
   return (
     <div ref={rootRef} className={`visio-whiteboard wb-mode-${mode}`} onPointerMove={handlePointerMove} onPointerUp={stopDrag} onPointerCancel={stopDrag}>
@@ -157,9 +183,10 @@ export function App() {
             Workshop
           </button>
         </div>
-        <button type="button" className="wb-tool-button" onClick={() => setEntities(createInitialEntities())}>
-          Reset Layout
+        <button type="button" className="wb-tool-button" onClick={resetWorkshop}>
+          Reset Workshop
         </button>
+        <div className="wb-state-status">{stateText}</div>
         <div className={`wb-rule-status ${hasErrors ? 'bad' : 'ok'}`}>{statusText}</div>
         {pulseLabel ? <div className="wb-pulse-status">{pulseLabel}</div> : null}
       </div>
@@ -167,7 +194,7 @@ export function App() {
         <aside className="wb-stencil" aria-label="Workshop stencil">
           <div className="wb-stencil-title">OT stencil</div>
           {STENCIL.map((item) => (
-            <button key={item.kind} type="button" onClick={() => setEntities((current) => addStencilEntity(current, item.kind))}>
+            <button key={item.kind} type="button" onClick={() => setWorkshopEntities((current) => addStencilEntity(current, item.kind))}>
               <span className={`node-icon ${iconClass(item.kind)}`} />
               {item.label}
             </button>
@@ -315,6 +342,14 @@ function escapeHtml(value: string) {
         return '&#39;'
     }
   })
+}
+
+function auditPresentationState(mode: Mode, activeEntities: DiagramEntity[], presentationEntities: DiagramEntity[]) {
+  if (mode !== 'presentation') return []
+  const errors: string[] = []
+  if (!sameEntityLayout(activeEntities, presentationEntities)) errors.push('presentation is not using the locked baseline')
+  if (activeEntities.some((entity) => entity.runtime)) errors.push('workshop runtime entity leaked into presentation')
+  return errors
 }
 
 function computeStepView(

@@ -22,4 +22,15 @@
   .portfolio-nav .nav-brand span{display:none}
   .portfolio-nav .nav-link{padding:6px;font-size:8.5px}
 }
+@media(max-width:700px){
+  html,body{max-width:100%;overflow-x:hidden}
+  .page,.section,.page-break{width:100%;max-width:100%;padding-left:18px!important;padding-right:18px!important}
+  .cover{padding-left:24px!important;padding-right:24px!important}
+  .cover h1{font-size:34px!important;line-height:1.12}
+  .cover .subtitle{font-size:16px!important}
+  .cover .meta-grid,.site-grid,.int-grid,.compliance-grid,.card-grid,.two-col{grid-template-columns:1fr!important}
+  table{display:block!important;max-width:100%!important;overflow-x:auto!important;-webkit-overflow-scrolling:touch}
+  th,td{overflow-wrap:anywhere}
+  .arch-diagram{max-width:100%;font-size:11px}
+}
 @media print{.portfolio-nav{display:none!important}}

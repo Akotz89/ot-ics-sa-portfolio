@@ -96,7 +96,7 @@
 **Key claims verified:**
 - SEWP VI is successor to SEWP V (transition in progress) ✅
 - Carahsoft is a SEWP contract holder ✅
-- ⚠️ SEWP V extended past Apr 30, 2026 through Sept 30, 2026  -  portfolio may need update
+- SEWP V extended through Sept 30, 2026, with additional option periods documented through Apr 30, 2027; portfolio uses SEWP V with a September 2026 award target. ✅
 
 ---
 
@@ -208,7 +208,7 @@
 - USACE engineering pamphlet governing hydropower operations
 - army.mil returns 403 (likely requires CAC)
 - Real document  -  referencing the EP number demonstrates domain knowledge
-- Interview note: "Governed by EP 1130-2-510, not NERC CIP"
+- Interview note: "The scenario is framed around USACE/DoD/RMF governance. NERC CIP/BPA/WECC applicability should be confirmed during discovery with customer compliance counsel and the contracting team."
 
 ---
 
@@ -238,7 +238,7 @@
 - Released by DISA concurrent with Dragos Public Sector LLC launch (Oct 2024)
 - Available on public.cyber.mil (requires login/authentication)
 - Confirmed via press coverage (intelligencecommunitynews.com, executivebiz.com)
-- **Interview note:** "The Dragos Platform has a published DISA STIG on public.cyber.mil  -  this significantly accelerates the ATO process because the security configuration baseline is already documented and approved by DISA."
+- **Interview note:** "The Dragos Platform has a published DISA STIG on public.cyber.mil. That can reduce the hardening-evidence burden because the security configuration baseline is documented, but the customer ISSO/AO still owns authorization approval and schedule."
 
 ---
 
@@ -260,7 +260,7 @@
 | Place of Performance | Hanover, MD 21076 (Dragos HQ) |
 | USAspending URL | https://www.usaspending.gov/award/CONT_AWD_W912HQ23C0035_9700_-NONE-_-NONE- |
 
-**Why this matters:** This is a real Dragos contract awarded by USACE (Army) for OT cybersecurity at energy infrastructure. The $1.09M obligated for a 3-year energy resilience cybersecurity program directly validates our $780K/year estimate for a 4-site deployment as conservative.
+**Why this matters:** This is a real Dragos contract awarded by USACE (Army) for OT cybersecurity at energy infrastructure. The $1.09M obligated for a 3-year energy resilience cybersecurity program supports the plausibility of the portfolio's $780K/year planning estimate, without making it a pricing proof point.
 
 ---
 
@@ -278,7 +278,7 @@
 | Place of Performance | Hanover, MD 21076 |
 | USAspending URL | https://www.usaspending.gov/award/ASST_NON_DEOE0000898_089 |
 
-**Why this matters:** DOE funded Neighborhood Keeper development at $2.26M total. Portfolio correctly references NK as a differentiator. The $772K obligation is remarkably close to our $780K estimate.
+**Why this matters:** DOE funded Neighborhood Keeper development at $2.26M total. Portfolio correctly references NK as a differentiator. The $772K obligation is a useful comparison point near the portfolio's $780K planning estimate, not a direct quote benchmark.
 
 ---
 

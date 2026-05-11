@@ -72,21 +72,76 @@ try {
       })
       if (index < 23) await page.keyboard.press('ArrowRight')
     }
+    const protectedState = await auditProtectedPresentationState(page)
     await page.close()
     results.push({
       viewport: `${width}x${height}`,
       failures: steps.filter((step) => step.qa || step.svg !== 0 || step.canvas !== 1 || step.pulses !== 0 || step.scroll.x || step.scroll.y),
       final: steps.at(-1),
+      protectedState,
       consoleIssues,
     })
   }
   await browser.close()
 
-  const failures = results.filter((result) => result.failures.length || result.consoleIssues.length)
+  const failures = results.filter((result) => result.failures.length || result.protectedState.failures.length || result.consoleIssues.length)
   console.log(JSON.stringify(results, null, 2))
   if (failures.length) process.exitCode = 1
 } finally {
   server.close()
+}
+
+async function auditProtectedPresentationState(page) {
+  const failures = []
+  await page.goto(`http://127.0.0.1:${port}/whiteboard/?qa=protected-state-${Date.now()}`, { waitUntil: 'load' })
+  await page.evaluate(() => window.localStorage.removeItem('dragos-whiteboard-workshop-draft-v1'))
+  await page.reload({ waitUntil: 'load' })
+
+  const baselineCore = await page.locator('[data-entity-id="core"]').boundingBox()
+  await page.getByRole('button', { name: 'Workshop', exact: true }).click()
+  const workshopCore = await page.locator('[data-entity-id="core"]').boundingBox()
+  if (!workshopCore) {
+    failures.push('core missing in workshop')
+  } else {
+    await page.mouse.move(workshopCore.x + workshopCore.width / 2, workshopCore.y + workshopCore.height / 2)
+    await page.mouse.down()
+    await page.mouse.move(workshopCore.x + workshopCore.width / 2 + 180, workshopCore.y + workshopCore.height / 2 + 80, { steps: 8 })
+    await page.mouse.up()
+  }
+  const sensorButton = page.locator('.wb-stencil button').filter({ hasText: 'Sensor' })
+  const sensorButtonCount = await sensorButton.count()
+  const sensorButtonVisible = sensorButtonCount > 0 && (await sensorButton.first().isVisible())
+  if (sensorButtonVisible) await sensorButton.first().click()
+
+  const workshopRuntimeCount = await page.locator('[data-entity-id^="workshop-"]').count()
+  const workshopStatus = await page.locator('.wb-state-status').innerText()
+  await page.getByRole('button', { name: 'Presentation', exact: true }).click()
+
+  const presentationCore = await page.locator('[data-entity-id="core"]').boundingBox()
+  const presentationRuntimeCount = await page.locator('[data-entity-id^="workshop-"]').count()
+  const presentationStatus = await page.locator('.wb-state-status').innerText()
+  const qa = await page.locator('.qa-failure-overlay').count()
+  const pulses = await page.locator('.packet-pulse').count()
+
+  if (sensorButtonVisible && workshopRuntimeCount < 1) failures.push('workshop stencil item was not created in workshop draft')
+  if (!/Workshop draft saved/i.test(workshopStatus)) failures.push('workshop draft status did not render')
+  if (!/Presentation baseline locked/i.test(presentationStatus)) failures.push('presentation baseline status did not render')
+  if (presentationRuntimeCount !== 0) failures.push('workshop runtime entity leaked into presentation')
+  if (qa !== 0) failures.push('presentation has QA overlay after workshop edits')
+  if (pulses !== 0) failures.push('pulse remained active after mode switch')
+  if (!sameBox(baselineCore, presentationCore)) failures.push('presentation core geometry changed after workshop drag')
+
+  await page.getByRole('button', { name: 'Workshop', exact: true }).click()
+  await page.getByRole('button', { name: 'Reset Workshop', exact: true }).click()
+  const resetRuntimeCount = await page.locator('[data-entity-id^="workshop-"]').count()
+  if (resetRuntimeCount !== 0) failures.push('reset workshop did not remove runtime entities')
+
+  return { failures, workshopRuntimeCount, presentationRuntimeCount, resetRuntimeCount }
+}
+
+function sameBox(left, right) {
+  if (!left || !right) return false
+  return Math.abs(left.x - right.x) < 2 && Math.abs(left.y - right.y) < 2 && Math.abs(left.width - right.width) < 2 && Math.abs(left.height - right.height) < 2
 }
 
 async function resolveStaticPath(pathname) {

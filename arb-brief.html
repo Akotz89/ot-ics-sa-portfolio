@@ -45,7 +45,7 @@
     <div class="meta-item"><label>Decision Requested</label><span>Endorsement for full 4-site deployment procurement</span></div>
     <div class="meta-item"><label>Opportunity ID</label><span>DRG-FED-2026-0847</span></div>
   </div>
-  <div class="classification">PORTFOLIO EXERCISE - Sample work product created for interview preparation. Not a Dragos engagement.</div>
+  <div class="classification">Fictional future-state simulation built from public sources; not a real Dragos/customer engagement.<br>Stakeholder names, findings, dates, ARB decision points, authorization milestones, and procurement milestones are simulated unless explicitly sourced.</div>
 </div>
 
 <div class="page">
@@ -68,7 +68,7 @@
 <!-- SLIDE 2: PROBLEM -->
 <div class="slide">
   <div class="slide-header">1. Problem Statement</div>
-  <div class="slide-subheader">This exercise sizes a 5,970 MW planning basis across 4 major NWD dams with zero OT network visibility.</div>
+  <div class="slide-subheader">This exercise sizes a 5,970 MW planning basis across 4 major NWD dams with limited protocol-aware OT network visibility.</div>
 
   <div class="kpi-row">
     <div class="kpi"><div class="value">0</div><div class="label">OT Assets Monitored</div></div>
@@ -78,7 +78,7 @@
   </div>
 
   <blockquote>
-    <strong>Current State:</strong> If an adversary gained access to a turbine controller today, NWD would have no way to detect, investigate, or respond. The first indication would be a physical failure - by which point the attack has already succeeded.
+    <strong>Current State:</strong> If an adversary gained access to a turbine controller today, NWD would have limited telemetry to detect, investigate, or respond. The first indication could be an operational anomaly rather than a security alert.
   </blockquote>
 </div>
 
@@ -125,12 +125,12 @@
   <table>
     <tr><th>Requirement</th><th>Source</th><th>Dragos Coverage</th></tr>
     <tr><td>OT Asset Inventory</td><td>USACE EP 1130-2-510; CISA BOD 23-01</td><td><span class="check">✓</span> Continuous passive discovery</td></tr>
-    <tr><td>OT Network Monitoring</td><td>NIST 800-82 §5.3; DoD CIO OT Directive</td><td><span class="check">✓</span> 600+ protocol parsers, behavioral analytics</td></tr>
+    <tr><td>OT Network Monitoring</td><td>NIST 800-82 §5.3; scenario OT monitoring driver</td><td><span class="check">✓</span> Broad industrial protocol coverage for the scenario protocols, behavioral analytics</td></tr>
     <tr><td>Vulnerability Management</td><td>NIST 800-53 RA-5; EP 1130-2-510</td><td><span class="check">✓</span> Now/Next/Never prioritization</td></tr>
     <tr><td>Incident Response</td><td>NIST 800-53 IR-4; CIRCIA</td><td><span class="check">✓</span> PCAP forensics, timeline reconstruction</td></tr>
     <tr><td>System Hardening</td><td>DISA STIG</td><td><span class="check">✓</span> Platform 2.x STIG published on public.cyber.mil</td></tr>
-    <tr><td>RMF Authorization</td><td>NIST SP 800-37; DoDI 8510.01</td><td><span class="check">✓</span> IATT for PoC (90-day); full ATO artifacts pre-built. eMASS-ready package</td></tr>
-    <tr><td>Supply Chain (§889)</td><td>NDAA FY2019 §889; FASCSA</td><td><span class="check">✓</span> Dell/HPE hardware, documented provenance, compliance letter available</td></tr>
+    <tr><td>RMF Authorization</td><td>NIST SP 800-37; DoDI 8510.01</td><td><span class="check">✓</span> IATT or test authorization if required; STIG, SSP inputs, ports/protocols, and POA&amp;M artifacts prepared for customer ISSO/AO review</td></tr>
+    <tr><td>Supply Chain (§889)</td><td>NDAA FY2019 §889; FASCSA</td><td><span class="check">✓</span> Final BOM compliance validated through Dragos, Carahsoft, and hardware-vendor documentation at quote time</td></tr>
   </table>
 </div>
 
@@ -140,7 +140,7 @@
   <div class="risk-grid">
     <div class="risk-card">
       <h4>VOLTZITE (PRC-linked) Pre-Positioning</h4>
-      <p>Active reconnaissance of US electric utilities per CISA AA24-038A. The Columbia River Basin produces 40% of US hydroelectric generation; these 4 dams are part of that grid. Current detection capability: <strong>zero</strong>.</p>
+      <p>Active reconnaissance of US electric utilities per CISA AA24-038A. The Columbia River Basin produces 40% of US hydroelectric generation; these 4 dams are part of that grid. Current detection capability in this fictional scenario is limited.</p>
     </div>
     <div class="risk-card">
       <h4>CHERNOVITE ICS Attack Framework</h4>
@@ -148,7 +148,7 @@
     </div>
     <div class="risk-card">
       <h4>Regulatory Non-Compliance</h4>
-      <p>EP 1130-2-510 requires OT asset inventory and network monitoring. Current state: manual spreadsheets, no continuous monitoring. Audit risk is increasing with DoD-wide OT security emphasis.</p>
+      <p>EP 1130-2-510 requires OT asset inventory and network monitoring. Current state: manual spreadsheets and limited continuous OT monitoring. Audit risk is increasing with federal OT security emphasis.</p>
     </div>
     <div class="risk-card">
       <h4>Cascading Infrastructure Impact</h4>
@@ -194,7 +194,7 @@
     <p>We request the Architecture Review Board endorse the proposed Dragos Platform deployment for procurement via NASA SEWP V:</p>
     <ul>
       <li>Architecture technically sound - validated by 30-day PoC at most complex site</li>
-      <li>Compliance requirements addressed - EP 1130-2-510, NIST 800-82, DoD CIO OT Directive</li>
+      <li>Compliance requirements addressed - EP 1130-2-510, NIST 800-82, and the scenario OT monitoring driver</li>
       <li>Integration validated - Splunk Cloud, CrowdStrike Falcon, Neighborhood Keeper operational</li>
       <li>Procurement path clear - SEWP V task order via Carahsoft, ~$780K FFP Year 1</li>
     </ul>
