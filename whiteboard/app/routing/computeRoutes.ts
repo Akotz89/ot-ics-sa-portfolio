@@ -54,7 +54,7 @@ export function computeRouteScene(layout: BoardLayout, step: StepModel): RouteSc
 
   const labelObstacles = [...obstacles]
   for (const route of routes) {
-    const label = placeRouteLabel(route, labelObstacles, step, routes)
+    const label = placeRouteLabel(route, labelObstacles, step, routes, layout)
     if (label) {
       route.label = label
       labels.push(label)
@@ -434,7 +434,7 @@ function routesShareEndpoint(owner: { sourceId: string; targetId: string }, rout
   return owner.sourceId === route.sourceId || owner.sourceId === route.targetId || owner.targetId === route.sourceId || owner.targetId === route.targetId
 }
 
-function placeRouteLabel(route: RouteLayout, obstacles: Obstacle[], step: StepModel, routes: RouteLayout[]): RouteLabelLayout | undefined {
+function placeRouteLabel(route: RouteLayout, obstacles: Obstacle[], step: StepModel, routes: RouteLayout[], layout: BoardLayout): RouteLabelLayout | undefined {
   const text = labelForRoute(route, step)
   if (!text) return undefined
   const compact = route.routeClass === 'metadata-handoff' && text.length > 14
@@ -446,19 +446,33 @@ function placeRouteLabel(route: RouteLayout, obstacles: Obstacle[], step: StepMo
     .sort((a, b) => labelSegmentPreference(b, route) - labelSegmentPreference(a, route))
 
   for (const segment of usableSegments) {
-    const center = { x: (segment.a.x + segment.b.x) / 2, y: (segment.a.y + segment.b.y) / 2 }
     const horizontal = Math.abs(segment.a.y - segment.b.y) < 0.5
     const offsets = horizontal ? [-h - LABEL_GAP, LABEL_GAP, -h - 34, 34] : [LABEL_GAP, -w - LABEL_GAP, 32, -w - 32]
-    for (const offset of offsets) {
-      const box = horizontal
-        ? { x: center.x - w / 2, y: center.y + offset, w, h }
-        : { x: center.x + offset, y: center.y - h / 2, w, h }
-      if (obstacles.some((obstacle) => intersectsRect(inflate(box, 6), obstacle.box))) continue
-      if (routes.some((other) => other.id !== route.id && routeHitsBox(other.points, box, ROUTE_CLEARANCE + 8))) continue
-      return { id: `${route.id}-label`, linkId: route.id, text, x: Math.round(box.x), y: Math.round(box.y), w, h }
+    for (const center of labelCenters(segment, route)) {
+      for (const offset of offsets) {
+        const box = horizontal
+          ? { x: center.x - w / 2, y: center.y + offset, w, h }
+          : { x: center.x + offset, y: center.y - h / 2, w, h }
+        if (!rectInsideBoard(box, layout, 18)) continue
+        if (obstacles.some((obstacle) => intersectsRect(inflate(box, 6), obstacle.box))) continue
+        if (routes.some((other) => other.id !== route.id && routeHitsBox(other.points, box, ROUTE_CLEARANCE + 8))) continue
+        return { id: `${route.id}-label`, linkId: route.id, text, x: Math.round(box.x), y: Math.round(box.y), w, h }
+      }
     }
   }
   return undefined
+}
+
+function labelCenters(segment: { a: Point; b: Point; length: number }, route: RouteLayout) {
+  const ratios = route.id === 'tickets-centralstore' ? [0.68, 0.5, 0.32, 0.82, 0.18] : [0.5, 0.35, 0.65, 0.2, 0.8]
+  return ratios.map((ratio) => ({
+    x: segment.a.x + (segment.b.x - segment.a.x) * ratio,
+    y: segment.a.y + (segment.b.y - segment.a.y) * ratio,
+  }))
+}
+
+function rectInsideBoard(box: Rect, layout: BoardLayout, margin: number) {
+  return box.x >= margin && box.y >= margin && rectMaxX(box) <= layout.width - margin && rectMaxY(box) <= layout.height - margin
 }
 
 function labelSegmentPreference(segment: { a: Point; b: Point; length: number }, route: RouteLayout) {

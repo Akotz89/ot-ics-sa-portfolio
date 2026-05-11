@@ -118,6 +118,7 @@ export function auditDiagram(layout: BoardLayout, step: StepModel, routeScene: R
       }
     }
     if (route.label && route.label.linkId !== route.id) errors.push(`${route.label.id} is orphaned`)
+    if (route.label && !contains(inflate({ x: 0, y: 0, w: layout.width, h: layout.height }, -8), route.label)) errors.push(`${route.label.id} is outside the board`)
     if (link?.label && labelRequired(link, step) && !route.label) errors.push(`${route.id} label could not be placed`)
   }
 
