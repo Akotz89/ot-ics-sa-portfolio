@@ -8,7 +8,7 @@ export interface Point {
 
 export interface Obstacle {
   id: string
-  kind: 'device' | 'zone-header' | 'label'
+  kind: 'device' | 'zone-header' | 'label' | 'route'
   box: Box
   ownerId?: string
 }

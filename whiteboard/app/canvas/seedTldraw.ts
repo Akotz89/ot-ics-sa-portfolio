@@ -102,16 +102,18 @@ export function applyStep(editor: Editor, step: StepModel, workshop = false) {
   ])
   const visibleZones = new Set(step.visibleZones)
   const visibleEntities = new Set(step.visibleEntities)
-  const focus = new Set(step.focus ?? [])
+  const focus = new Set(step.active ?? step.focus ?? [])
+  const dimmed = new Set(step.dimmed ?? [])
+  const hidden = new Set(step.hidden ?? [])
   const hasFocus = focus.size > 0
 
   const updates: TLShapePartial[] = []
   for (const zone of zones) {
-    const visible = visibleZones.has(zone.id)
+    const visible = visibleZones.has(zone.id) && !hidden.has(zone.id)
     updates.push({
       id: shapeIdForZone(zone.id),
       type: 'ot-zone',
-      opacity: visible ? opacityFor(zone.id, hasFocus, focus) : 0,
+      opacity: visible ? opacityFor(zone.id, hasFocus, focus, dimmed) : 0,
       isLocked: true,
     } as unknown as TLShapePartial)
   }
@@ -124,11 +126,11 @@ export function applyStep(editor: Editor, step: StepModel, workshop = false) {
     } as unknown as TLShapePartial)
   }
   for (const entity of entities) {
-    const visible = visibleEntities.has(entity.id)
+    const visible = visibleEntities.has(entity.id) && !hidden.has(entity.id)
     updates.push({
       id: shapeIdForEntity(entity.id),
       type: 'ot-device',
-      opacity: visible ? opacityFor(entity.id, hasFocus, focus) : 0,
+      opacity: visible ? opacityFor(entity.id, hasFocus, focus, dimmed) : 0,
       isLocked: !workshop,
     } as TLShapePartial)
   }
@@ -148,9 +150,10 @@ export function fitVisibleContent(editor: Editor) {
   editor.zoomToBounds(bounds, { animation: { duration: 180 }, inset: 18 })
 }
 
-function opacityFor(id: string, hasFocus: boolean, focus: Set<string>) {
+function opacityFor(id: string, hasFocus: boolean, focus: Set<string>, dimmed: Set<string>) {
+  if (dimmed.has(id)) return 0.16
   if (!hasFocus) return 1
-  return focus.has(id) ? 1 : 0.22
+  return focus.has(id) ? 1 : 0.14
 }
 
 function entityById(id: string) {
