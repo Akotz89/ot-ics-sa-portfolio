@@ -144,32 +144,75 @@
 <h2>4. Network Architecture Assessment</h2>
 
 <h3>Purdue Model: As-Found</h3>
-<div class="arch-diagram">Level 5 (Enterprise)    ┌──────────────────────────────────────┐
-  NIPRNet, email,       │  USACE Enterprise Network (NIPRNet)   │
-  ATAAPS, finance       └──────────────┬───────────────────────┘
-                                       │
-                                       ▼  Palo Alto PA-3260 (✓ good)
-                        ┌──────────────┴───────────────────────┐
-Level 4 (IT/OT DMZ)    │  DMZ, partially implemented          │
-  PI relay, WSUS,       │  AVEVA PI relay, WSUS patch server  │
-  AV definitions        └──────────────┬───────────────────────┘
-                                       │
-                                       ▼  ⚠ NO FIREWALL, flat L1 switch
-                                          (CRITICAL GAP)
-                        ┌──────────────┴───────────────────────┐
-Level 3 (Site Ops)      │  SCADA servers, HMIs, eng. workstns   │
-  Connected 4 sites     │  All sites via DISA MPLS WAN          │
-  via MPLS              └──────────────┬───────────────────────┘
-                                       │
-                                       ▼  No segmentation (FLAT)
-                        ┌──────────────┴───────────────────────┐
-Level 2 (Control)       │  PLCs, DCS, turbine controllers       │
-  Same broadcast        │  Same broadcast domain as L3          │
-  domain as L3          └──────────────┬───────────────────────┘
-                                       │
-Level 1 (Field)         ┌──────────────┴───────────────────────┐
-  I/O, sensors, RTUs    │  Hardwired + IP-connected field devs  │
-                        └──────────────────────────────────────┘</div>
+<div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 4pt; padding: 16pt; margin: 10pt 0 16pt; page-break-inside: avoid;">
+  <div style="text-align: center; font-size: 12pt; font-weight: 700; color: var(--dragos-dark); margin-bottom: 2pt;">USACE NWD OT Network: As-Found Architecture</div>
+  <div style="text-align: center; font-size: 7pt; color: #718096; margin-bottom: 12pt; letter-spacing: 0.5px;">Mapped to ISA-99 / IEC 62443 Purdue Reference Architecture</div>
+
+  <!-- Level 5: Enterprise -->
+  <div style="background: #edf2f7; border: 1.5px solid #cbd5e0; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt;">
+    <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 4pt;">LEVEL 5 · ENTERPRISE</div>
+    <div style="display: flex; gap: 4pt; flex-wrap: wrap;">
+      <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;">USACE NIPRNet</div>
+      <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;">Email / DNS</div>
+      <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;">ATAAPS / Finance</div>
+      <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;">Splunk Cloud (IT SIEM)</div>
+    </div>
+  </div>
+
+  <!-- Boundary: PA-3260 Firewall (GOOD) -->
+  <div style="background: #f0fff4; border: 2px solid #48bb78; border-radius: 5pt; padding: 6pt 10pt; margin-bottom: 4pt; text-align: center;">
+    <span style="font-size: 9pt; font-weight: 700; color: #276749;">✓ Palo Alto PA-3260 Firewall</span>
+  </div>
+
+  <!-- Level 4: IT/OT DMZ -->
+  <div style="background: #f7fafc; border: 1.5px solid #cbd5e0; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt;">
+    <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 4pt;">LEVEL 4 · IT/OT DMZ <span style="font-weight: 400; font-style: italic; letter-spacing: 0;">(partially implemented)</span></div>
+    <div style="display: flex; gap: 4pt; flex-wrap: wrap;">
+      <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;">AVEVA PI Relay</div>
+      <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;">WSUS Patch Server</div>
+      <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;">AV Definition Server</div>
+    </div>
+  </div>
+
+  <!-- Boundary: CRITICAL GAP -->
+  <div style="background: #fff5f5; border: 2.5px dashed #e53e3e; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt; text-align: center;">
+    <span style="font-size: 9pt; font-weight: 700; color: #e53e3e;">⚠ CRITICAL GAP — No firewall between L4 DMZ and L3 control network</span>
+  </div>
+
+  <!-- Level 3: Site Operations -->
+  <div style="background: #e6f7f7; border: 1.5px solid #7dd3d0; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt;">
+    <div style="font-size: 8pt; font-weight: 700; color: #01605e; letter-spacing: 1px; margin-bottom: 4pt;">LEVEL 3 · SITE OPERATIONS</div>
+    <div style="display: flex; gap: 4pt; flex-wrap: wrap; align-items: center;">
+      <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;">SCADA Servers</div>
+      <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;">HMIs (22 stations)</div>
+      <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;">Eng. Workstations (6)</div>
+      <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;">Historians (AVEVA PI, Wonderware)</div>
+    </div>
+    <div style="font-size: 7pt; color: #01605e; margin-top: 4pt; font-style: italic;">All 4 dam sites interconnected via DISA MPLS WAN — single trust domain</div>
+  </div>
+
+  <!-- Boundary: FLAT NETWORK -->
+  <div style="background: #fff5f5; border: 2.5px dashed #e53e3e; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt; text-align: center;">
+    <span style="font-size: 9pt; font-weight: 700; color: #e53e3e;">⚠ FLAT — No segmentation between L3 and L2, same broadcast domain</span>
+  </div>
+
+  <!-- Level 2: Control -->
+  <div style="background: #fffff0; border: 1.5px solid #fefcbf; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt;">
+    <div style="font-size: 8pt; font-weight: 700; color: #975a16; letter-spacing: 1px; margin-bottom: 4pt;">LEVEL 2 · CONTROL</div>
+    <div style="display: flex; gap: 4pt; flex-wrap: wrap;">
+      <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;">GE Mark VIe (Bonneville)</div>
+      <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;">Emerson Ovation (The Dalles)</div>
+      <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;">AB ControlLogix (John Day)</div>
+      <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;">Siemens S7-400 (McNary)</div>
+    </div>
+  </div>
+
+  <!-- Level 1: Field -->
+  <div style="background: #f7fafc; border: 1.5px solid #e2e8f0; border-radius: 5pt; padding: 8pt 10pt;">
+    <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 4pt;">LEVEL 1 · FIELD</div>
+    <div style="font-size: 8pt; color: #a0aec0;">I/O Modules · Sensors · RTUs · Gate Actuators · Spillway Controls · River Monitoring</div>
+  </div>
+</div>
 
 <h3>Architecture Findings</h3>
 <table>
@@ -268,7 +311,7 @@ Level 1 (Field)         ┌──────────────┴──�
   <tr><td>Technical Decision Maker</td><td>Dr. Rebecca Torres, Chief, Cybersecurity Division (NWD)</td></tr>
   <tr><td>Budget Authority</td><td>COL Harding (approval) → Jennifer Walsh (contracting)</td></tr>
   <tr><td>Budget Range</td><td>$600K – $1M (FY26 funds, must obligate by Sep 30)</td></tr>
-  <tr><td>Procurement Path</td><td><span class="tip" data-tip="NASA SEWP (Solutions for Enterprise-Wide Procurement) VI is a pre-competed GWAC. Any federal agency can issue task orders against it. Carahsoft holds a SEWP VI contract as Dragos' authorized channel partner. Using SEWP eliminates the need for a new competition, saving 3-4 months.">NASA SEWP V via Carahsoft</span> (ordering period extended through Sep 30, 2026; SEWP VI pending)</td></tr>
+  <tr><td>Procurement Path</td><td><span class="tip" data-tip="NASA SEWP (Solutions for Enterprise-Wide Procurement) VI is a pre-competed GWAC. Any federal agency can issue task orders against it. Carahsoft holds a SEWP V contract as Dragos' authorized channel partner. Using SEWP eliminates the need for a new competition, saving 3-4 months.">NASA SEWP V via Carahsoft</span> (ordering period extended through Sep 30, 2026; SEWP VI pending)</td></tr>
   <tr><td>Contract Type</td><td><span class="tip" data-tip="Firm Fixed Price: the government pays a set total price. Vendor absorbs any cost overruns. COs prefer FFP for product/subscription procurements because it minimizes financial risk. Option years allow subscription renewal without re-competing.">Firm Fixed Price (FFP)</span> + option years for subscriptions</td></tr>
   <tr><td>Decision Timeline</td><td>Technical eval: Jun–Jul &nbsp;|&nbsp; Award: Aug–Sep</td></tr>
   <tr><td>Competition</td><td>Claroty contacted, no formal eval started. Nozomi not considered. Strong Dragos brand affinity; customer heard Robert M. Lee at S4 Conference.</td></tr>
