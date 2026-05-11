@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Technical Discovery Document: USACE Northwestern Division</title>
+  <title>Technical Discovery Document - USACE Northwestern Division</title>
   <link rel="stylesheet" href="../dragos-theme.css">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="../nav.css">
@@ -12,20 +12,19 @@
 
 <!-- ═══════════════ COVER PAGE ═══════════════ -->
 <div class="cover">
-  <div class="logo-area"><span class="dot"></span> Dragos, Inc. / Public Sector</div>
+  <div class="logo-area"><span class="dot"></span> Dragos, Inc. - Public Sector</div>
   <h1>Technical Discovery Document</h1>
-  <p class="subtitle">U.S. Army Corps of Engineers, Northwestern Division<br>Hydropower OT Cybersecurity Assessment</p>
+  <p class="subtitle">U.S. Army Corps of Engineers - Northwestern Division<br>Hydropower OT Cybersecurity Assessment</p>
   <div class="meta-grid">
-    <div class="meta-item"><label>Prepared By</label><span>Aaron Kotz, Sr. Solutions Architect (Federal)</span></div>
-    <div class="meta-item"><label>Account Executive</label><span><span class="tip" data-tip="The AE owns the customer relationship, pipeline forecast, and deal strategy. The SA owns the technical win. AE handles pricing negotiation with Deal Desk and coordinates with the channel partner. SA never quotes pricing directly.">[AE Name], Dragos Public Sector</span></span></div>
-    <div class="meta-item"><label><span class="tip" data-tip="A channel partner is an authorized reseller or distributor that holds the contract vehicle the government uses to purchase. In federal sales, the vendor (Dragos) rarely sells direct; the order flows through the channel partner who holds the GWAC/BPA.">Channel Partner</span></label><span><span class="tip" data-tip="Carahsoft Technology Corp. is one of the largest government IT solutions providers and Dragos' authorized federal distributor. They hold SEWP V (extended through Sep 2026), GSA Schedule, and other federal contract vehicles. Carahsoft handles quoting, order processing, and compliance documentation.">Carahsoft Technology Corp.</span></span></div>
-    <div class="meta-item"><label><span class="tip" data-tip="A contract vehicle is a pre-competed agreement (GWAC, IDIQ, BPA, or GSA Schedule) that federal agencies use to streamline procurement. Using an existing vehicle avoids the 6-12 month timeline of a new FAR Part 15 competitive procurement.">Contract Vehicle</span></label><span><span class="tip" data-tip="NASA SEWP V (Solutions for Enterprise-Wide Procurement) is a Government-Wide Acquisition Contract managed by NASA but available to all federal agencies. SEWP V ordering period is extended through September 30, 2026, with option periods possible through April 2027. SEWP VI is pending (delayed by GAO bid protests). Carahsoft is a SEWP V contract holder, enabling direct task-order issuance.">NASA SEWP V (via Carahsoft)</span></span></div>
+    <div class="meta-item"><label>Prepared By</label><span>Aaron Kotz, Solutions Architect (Federal) [Exercise Role]</span></div>
+    <div class="meta-item"><label>Account Executive</label><span>[AE Name], Dragos Public Sector</span></div>
+    <div class="meta-item"><label>Channel Partner</label><span>Carahsoft Technology Corp.</span></div>
+    <div class="meta-item"><label>Contract Vehicle</label><span>NASA SEWP V (via Carahsoft)</span></div>
     <div class="meta-item"><label>Date</label><span>May 20, 2026</span></div>
-    <div class="meta-item"><label>Version</label><span>1.4, Post-Discovery</span></div>
-    <div class="meta-item"><label><span class="tip" data-tip="The Opportunity ID is the CRM (Customer Relationship Management) tracking number, typically from Salesforce. It links all deal artifacts (discovery doc, architecture, BoM, PoC results) to a single pipeline entry for forecasting and deal review.">Opportunity ID</span></label><span>DRG-FED-2026-0847</span></div>
-    <div class="meta-item"><label><span class="tip" data-tip="A mutual Non-Disclosure Agreement must be executed before sharing sensitive customer environment details (IP addresses, network architecture, control system versions). NDA execution date establishes when protected information exchange began, important for CUI handling compliance.">NDA Status</span></label><span>Executed 2026-04-30</span></div>
+    <div class="meta-item"><label>Opportunity ID</label><span>DRG-FED-2026-0847</span></div>
+    <div class="meta-item"><label>NDA Status</label><span>Executed 2026-04-30</span></div>
   </div>
-  <div class="classification"><span class="tip" data-tip="CUI (Controlled Unclassified Information) per 32 CFR Part 2002. FOUO (For Official Use Only) is the legacy DoD marking being replaced by CUI. Distribution limited to named parties means only Dragos internal staff and Carahsoft (as the authorized channel partner) may access this document. No cloud storage, no unencrypted email.">CUI // FOUO, Distribution Limited to Dragos Internal + Carahsoft</span></div>
+  <div class="classification">PORTFOLIO EXERCISE - Sample work product created for interview preparation. Not a Dragos engagement.</div>
 </div>
 
 <div class="page">
@@ -38,7 +37,7 @@
   <tr><td>Customer</td><td>U.S. Army Corps of Engineers, Northwestern Division (NWD)</td></tr>
   <tr><td>Mission</td><td>Hydroelectric power generation, navigation locks, flood control, water management</td></tr>
   <tr><td>Sector</td><td>Federal: DoD (Civil Works) / Energy</td></tr>
-  <tr><td>Sites in Scope</td><td>4 dams (initial); expandable to 29 hydropower plants across NWD</td></tr>
+  <tr><td>Sites in Scope</td><td>4 dams (initial); expandable to all 21 NWD dams</td></tr>
   <tr><td>Primary Sites</td><td>Bonneville Dam (OR), The Dalles Dam (OR), John Day Dam (OR), McNary Dam (OR/WA)</td></tr>
   <tr><td>Discovery Session</td><td>2026-05-15 | 90 min | MS Teams (NIPR)</td></tr>
   <tr><td>Classification</td><td>Unclassified // CUI; all OT systems reside on unclassified networks</td></tr>
@@ -47,7 +46,7 @@
 <h3>Customer Stakeholders</h3>
 <table>
   <tr><th>Name</th><th>Title</th><th>Role</th></tr>
-  <tr><td>COL James Harding</td><td>Commander, Northwestern Division (NWD)</td><td>Executive Sponsor</td></tr>
+  <tr><td>COL James Harding</td><td>District Commander, Portland District</td><td>Executive Sponsor</td></tr>
   <tr><td>Dr. Rebecca Torres</td><td>Chief, Cybersecurity Division (NWD)</td><td>Technical Decision Maker</td></tr>
   <tr><td>Mike Osterman</td><td>SCADA Program Manager, Hydropower</td><td>OT Subject Matter Expert</td></tr>
   <tr><td>Jennifer Walsh</td><td>Contracting Officer, USACE Portland District</td><td>Procurement Authority</td></tr>
@@ -57,7 +56,7 @@
 <h3>Dragos Attendees</h3>
 <table>
   <tr><th>Name</th><th>Title</th><th>Role</th></tr>
-  <tr><td>Aaron Kotz</td><td>Sr. Solutions Architect (Federal)</td><td>Technical Lead: discovery, solution design, demo, PoC</td></tr>
+  <tr><td>Aaron Kotz</td><td>Solutions Architect (Federal) [Exercise Role]</td><td>Technical Lead: discovery, solution design, demo, PoC</td></tr>
   <tr><td>[AE Name]</td><td>Account Executive, Public Sector</td><td>Relationship owner: deal strategy, pricing, contract</td></tr>
   <tr><td>[SE Name]</td><td>Sales Engineer</td><td>Demo environment prep, protocol validation</td></tr>
 </table>
@@ -79,6 +78,10 @@
   "We need to know what's on our control networks, who's talking to what, and whether anyone who shouldn't be there is there. Today we're blind."
   <cite>- Dr. Rebecca Torres, Discovery Call, 2026-05-15</cite>
 </blockquote>
+
+<div style="background: #fffff0; border-left: 3px solid #d69e2e; padding: 8pt 12pt; margin: 8pt 0; font-size: 10pt;">
+  <strong>SA Note:</strong> Torres is the technical champion and budget holder. She framed this as a visibility problem, not a compliance checkbox. Lead the demo with asset discovery and threat detection, not regulatory mapping. Compliance is the justification for procurement, but her personal motivation is operational awareness.
+</div>
 
 <table>
   <tr><th>#</th><th>Outcome</th></tr>
@@ -103,7 +106,7 @@
 <h3>Control Systems by Site</h3>
 <table>
   <tr><th>Site</th><th>Primary Control</th><th>SCADA / HMI</th><th>Safety</th><th>Historian</th></tr>
-  <tr><td>Bonneville Dam</td><td>GE Mark VIe Turbine Controls</td><td><span class="tip" data-tip="GE CIMPLICITY is the standard HMI/SCADA platform for Mark VIe power generation environments. WorkstationST and ControlST are GE engineering/operator tools that run alongside CIMPLICITY for per-unit control and diagnostics.">GE CIMPLICITY</span> (plant-level SCADA); ControlST/WorkstationST (per-unit)</td><td>Woodward Load Sharing</td><td>AVEVA PI System</td></tr>
+  <tr><td>Bonneville Dam</td><td>GE Mark VIe Turbine Controls</td><td>GE CIMPLICITY (plant-level SCADA); ControlST/WorkstationST (per-unit)</td><td>Woodward Load Sharing</td><td>AVEVA PI System</td></tr>
   <tr><td>The Dalles Dam</td><td>Emerson Ovation DCS</td><td>Emerson OvationView</td><td>Legacy relay protection</td><td>AVEVA PI System</td></tr>
   <tr><td>John Day Dam</td><td>Allen-Bradley ControlLogix L83</td><td>FactoryTalk View SE (6 stn)</td><td>None identified</td><td>Wonderware</td></tr>
   <tr><td>McNary Dam</td><td>Siemens S7-400 PLCs</td><td>WinCC 7.5 (4 stations)</td><td>None identified</td><td>None (manual)</td></tr>
@@ -113,31 +116,39 @@
 <table>
   <tr><th>Device Type</th><th>Est. Count</th><th>Notes</th></tr>
   <tr><td>Turbine Control PLCs / DCS Controllers</td><td>48</td><td>Per-unit controllers at Bonneville (Mark VIe); shared DCS/PLC groups at other sites. 70 generating units total - actual controller count TBV during PoC asset discovery.</td></tr>
-  <tr><td>Gate/Lock Control PLCs</td><td>24</td><td>Spillway gates, navigation lock controls</td></tr>
-  <tr><td>RTUs</td><td>18</td><td>River level, seismic, weather monitoring</td></tr>
-  <tr><td>HMI / Operator Stations</td><td>22</td><td>Mix of dedicated workstations and shared terminals</td></tr>
-  <tr><td>Engineering Workstations</td><td>6</td><td>PLC programming, shared, no access control</td></tr>
-  <tr><td>Historians / Data Servers</td><td>6</td><td>AVEVA PI System (2), Wonderware (1), misc</td></tr>
-  <tr><td>Network Switches (OT)</td><td>~40</td><td>Mix of managed (Cisco IE) and unmanaged (Moxa)</td></tr>
-  <tr><td>IP Cameras on OT Network</td><td>~30</td><td>Physical security cameras routed through OT switches</td></tr>
-  <tr><td><strong>TOTAL</strong></td><td><strong>~194</strong></td><td>Customer estimates 30-40% undocumented. Actual count expected to be higher; primary justification for automated asset discovery.</td></tr>
+  <tr><td>Gate/Lock Control PLCs</td><td>32</td><td>Spillway gates, navigation lock controls across all 4 dams</td></tr>
+  <tr><td>RTUs</td><td>24</td><td>River level, seismic, weather monitoring</td></tr>
+  <tr><td>HMI / Operator Stations</td><td>82</td><td>Mix of dedicated workstations and shared terminals across all 4 sites</td></tr>
+  <tr><td>Engineering Workstations</td><td>16</td><td>PLC programming, shared, limited access control</td></tr>
+  <tr><td>Historians / Data Servers</td><td>12</td><td>AVEVA PI System (4), Wonderware (2), misc</td></tr>
+  <tr><td>Network Switches (OT)</td><td>~180</td><td>Mix of managed (Cisco IE) and unmanaged (Moxa) across all sites</td></tr>
+  <tr><td>IP Cameras on OT Network</td><td>~120</td><td>Physical security cameras routed through OT switches</td></tr>
+  <tr><td>IT/OT Boundary Devices</td><td>~40</td><td>Firewalls, jump hosts, patch relay servers, AV update servers</td></tr>
+  <tr><td><strong>TOTAL</strong></td><td><strong>~554</strong></td><td>Customer rough estimate from discovery call. Customer cautions 30-40% of devices are undocumented. Actual count expected to be significantly higher.</td></tr>
 </table>
 
 <h3>OT Protocols Identified</h3>
 <table>
   <tr><th>Protocol</th><th>Usage</th><th>Priority</th></tr>
-  <tr><td><span class="tip" data-tip="Modbus TCP is one of the most common OT protocols. Open standard, no authentication, no encryption. Operates on TCP port 502. Widely used for SCADA communications between HMIs and PLCs in power generation.">Modbus TCP</span></td><td>Turbine controls, gate actuators</td><td><span class="sev-crit">Critical</span></td></tr>
-  <tr><td><span class="tip" data-tip="GE SRTP (Service Request Transfer Protocol) is a proprietary GE protocol running over TCP. Used by ToolboxST engineering workstations and HMIs to read/write Mark VIe controller memory, perform diagnostics, and download configuration. Dragos Platform supports passive SRTP parsing.">GE SRTP</span></td><td>Mark VIe turbine controllers, Bonneville</td><td><span class="sev-crit">Critical</span></td></tr>
-  <tr><td><span class="tip" data-tip="GE EGD (Ethernet Global Data) is a proprietary multicast UDP protocol for high-speed cyclic data exchange between Mark VIe controllers. Deterministic, broadcast-based. Used for inter-controller communication and status distribution. Dragos Platform supports passive EGD parsing.">GE EGD</span></td><td>Mark VIe inter-controller data, Bonneville</td><td><span class="sev-crit">Critical</span></td></tr>
-  <tr><td><span class="tip" data-tip="EtherNet/IP uses the Common Industrial Protocol (CIP) at the application layer. Native to Allen-Bradley/Rockwell Automation PLCs. CIP carries configuration, control, and I/O data. CVE-2023-3595 targets this protocol specifically.">EtherNet/IP (CIP)</span></td><td>Allen-Bradley PLCs, John Day</td><td><span class="sev-crit">Critical</span></td></tr>
-  <tr><td><span class="tip" data-tip="S7comm is Siemens' proprietary protocol for S7-300 and S7-400 series PLCs. Runs on TCP port 102. No native encryption or authentication. Dragos Platform can passively parse S7comm to extract asset data, firmware versions, and detect anomalous commands.">S7comm</span></td><td>Siemens S7-400, McNary</td><td><span class="sev-crit">Critical</span></td></tr>
+  <tr><td>Modbus TCP</td><td>Turbine controls, gate actuators</td><td><span class="sev-crit">Critical</span></td></tr>
+  <tr><td>GE SRTP</td><td>Mark VIe turbine controllers, Bonneville</td><td><span class="sev-crit">Critical</span></td></tr>
+  <tr><td>GE EGD</td><td>Mark VIe inter-controller data, Bonneville</td><td><span class="sev-crit">Critical</span></td></tr>
+  <tr><td>EtherNet/IP (CIP)</td><td>Allen-Bradley PLCs, John Day</td><td><span class="sev-crit">Critical</span></td></tr>
+  <tr><td>S7comm</td><td>Siemens S7-400, McNary</td><td><span class="sev-crit">Critical</span></td></tr>
   <tr><td>OPC-UA</td><td>Historian data collection</td><td><span class="sev-high">High</span></td></tr>
   <tr><td>OPC-DA (Classic)</td><td>Legacy historian, The Dalles</td><td><span class="sev-med">Medium</span></td></tr>
   <tr><td>DNP3</td><td>RTU communications (river monitoring)</td><td><span class="sev-med">Medium</span></td></tr>
   <tr><td>HTTP/HTTPS</td><td>HMI web interfaces, firmware updates</td><td><span class="sev-med">Medium</span></td></tr>
-  <tr><td><span class="tip" data-tip="Remote Desktop Protocol, rated Critical because RDP is the #1 lateral movement vector in OT intrusions per Dragos Year in Review data. Adversaries use compromised RDP sessions to move from IT/DMZ into control system networks.">RDP</span></td><td>Remote HMI access</td><td><span class="sev-crit">Critical ⚠</span></td></tr>
+  <tr><td>RDP</td><td>Remote HMI access</td><td><span class="sev-crit">Critical ⚠</span></td></tr>
+
+<!-- SA NOTE -->
+</table>
+<div style="background: #fffff0; border-left: 3px solid #d69e2e; padding: 8pt 12pt; margin: 8pt 0 16pt; font-size: 10pt;">
+  <strong>SA Note:</strong> RDP on the OT network is a significant finding. Confirm during PoC whether this is site-to-site remote access or just local console use. If cross-site RDP exists over the DISA WAN with no segmentation, that is a high-severity gap worth calling out in the demo. Mike Osterman (SCADA PM) may push back on changing this workflow.
+</div>
+<table>
   <tr><td>SMB/CIFS</td><td>File shares, backup transfers</td><td><span class="sev-med">Medium</span></td></tr>
-  <tr><td><span class="tip" data-tip="IEC 61850 is the international standard for substation automation communications. Uses GOOSE (Generic Object Oriented Substation Event) messages for fast protection relay signaling. Relevant to relay monitoring at The Dalles.">IEC 61850</span></td><td>Substation relays (limited deployment)</td><td><span class="sev-low">Low</span></td></tr>
+  <tr><td>IEC 61850</td><td>Substation relays (limited deployment)</td><td><span class="sev-low">Low</span></td></tr>
 </table>
 
 <!-- ═══════════════ SECTION 4 ═══════════════ -->
@@ -184,8 +195,8 @@
     <div style="font-size: 8pt; font-weight: 700; color: #01605e; letter-spacing: 1px; margin-bottom: 4pt;">LEVEL 3 · SITE OPERATIONS</div>
     <div style="display: flex; gap: 4pt; flex-wrap: wrap; align-items: center;">
       <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;">SCADA Servers</div>
-      <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;">HMIs (22 stations)</div>
-      <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;">Eng. Workstations (6)</div>
+      <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;">HMIs (82 stations)</div>
+      <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;">Eng. Workstations (16)</div>
       <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;">Historians (AVEVA PI, Wonderware)</div>
     </div>
     <div style="font-size: 7pt; color: #01605e; margin-top: 4pt; font-style: italic;">All 4 dam sites interconnected via DISA MPLS WAN - single trust domain</div>
@@ -195,6 +206,10 @@
   <div style="background: #fff5f5; border: 2.5px dashed #e53e3e; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt; text-align: center;">
     <span style="font-size: 9pt; font-weight: 700; color: #e53e3e;">⚠ FLAT - No segmentation between L3 and L2, same broadcast domain</span>
   </div>
+
+<div style="background: #fffff0; border-left: 3px solid #d69e2e; padding: 8pt 12pt; margin: 8pt 0; font-size: 10pt;">
+  <strong>SA Note:</strong> This flat L3/L2 topology is the strongest argument for passive monitoring. They cannot segment overnight without risking production impact, but they can get visibility immediately by deploying sensors on SPAN ports. Position Dragos as the first step before segmentation, not a replacement for it. Follow up: does their maintenance window schedule allow TAP installation at John Day and McNary, or do we need SPAN-only at those sites?
+</div>
 
   <!-- Level 2: Control -->
   <div style="background: #fffff0; border: 1.5px solid #fefcbf; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt;">
@@ -218,7 +233,7 @@
 <table>
   <tr><th>ID</th><th>Finding</th><th>Severity</th><th>Detail</th></tr>
   <tr><td>A-1</td><td>No firewall between L4 DMZ and L3 control network</td><td><span class="sev-crit">CRITICAL</span></td><td>L3 and L4 share switch fabric. DMZ compromise = direct SCADA access.</td></tr>
-  <tr><td>A-2</td><td>L3 and L2 are a flat network - no segmentation</td><td><span class="sev-crit">CRITICAL</span></td><td>HMI compromise = direct PLC access. <span class="tip" data-tip="From the Dragos 2026 Year in Review (covering 2025 data): 81% of assessed OT environments had insufficient network segmentation between IT and OT. This is the most common architectural gap Dragos finds in field assessments.">Found in 81% of Dragos assessments.</span></td></tr>
+  <tr><td>A-2</td><td>L3 and L2 are a flat network - no segmentation</td><td><span class="sev-crit">CRITICAL</span></td><td>HMI compromise = direct PLC access. Found in 81% of Dragos assessments.</td></tr>
   <tr><td>A-3</td><td>RDP enabled on 4 engineering workstations</td><td><span class="sev-crit">CRITICAL</span></td><td>RDP is the #1 lateral movement vector in OT attacks.</td></tr>
   <tr><td>A-4</td><td>30+ IP cameras on OT network</td><td><span class="sev-high">HIGH</span></td><td>IoT devices with poor security expanding OT attack surface.</td></tr>
   <tr><td>A-5</td><td>MPLS WAN connects all 4 sites unfiltered</td><td><span class="sev-high">HIGH</span></td><td>Compromise at one dam can reach all others.</td></tr>
@@ -243,7 +258,7 @@
   <tr><td>OT Network Monitoring</td><td>NONE</td><td><span class="nocheck">✗</span> Complete blind spot below L4 DMZ.</td></tr>
   <tr><td>Vulnerability Mgmt</td><td>Tenable.sc, IT only. No OT scanning.</td><td><span class="nocheck">✗</span> Zero OT vulnerability visibility.</td></tr>
   <tr><td>Endpoint Protection</td><td>CrowdStrike Falcon on L3/L4 Windows servers only</td><td><span class="partial">⚠</span> No coverage on HMIs or below.</td></tr>
-  <tr><td>SIEM</td><td><span class="tip" data-tip="Splunk Cloud achieved FedRAMP High authorization (September 2024) and DoD IL5 Provisional Authorization from DISA. IL5 covers higher-sensitivity CUI and mission-critical national security systems. Hosted in AWS GovCloud (US) regions for data sovereignty.">Splunk Cloud (FedRAMP High / DoD IL5)</span>, IT side only</td><td><span class="partial">⚠</span> Exists but has zero OT data feeds.</td></tr>
+  <tr><td>SIEM</td><td>Splunk Cloud (FedRAMP High / DoD IL5), IT side only</td><td><span class="partial">⚠</span> Exists but has zero OT data feeds.</td></tr>
   <tr><td>Patch Management</td><td>WSUS for Windows. No OT firmware process.</td><td><span class="nocheck">✗</span> Months/years behind on OT patches.</td></tr>
   <tr><td>Access Control</td><td>Shared local accounts on HMIs. No MFA.</td><td><span class="nocheck">✗</span> "admin/admin" on ≥3 HMI stations.</td></tr>
   <tr><td>Incident Response</td><td>IT-only IR plan. No OT playbooks.</td><td><span class="nocheck">✗</span> No OT tabletop exercises conducted.</td></tr>
@@ -255,12 +270,12 @@
 <h2>6. Compliance &amp; Regulatory</h2>
 <table>
   <tr><th>Framework</th><th>Applicability</th><th>Status</th></tr>
-  <tr><td><span class="tip" data-tip="NIST Special Publication 800-82 Revision 3 (September 2023): Guide to Operational Technology Security. The primary federal framework for OT security controls. Covers asset management, network architecture, incident response, and vulnerability management specific to ICS/SCADA environments.">NIST SP 800-82 Rev 3</span></td><td>Primary OT framework for federal</td><td><span class="sev-crit">Not assessed</span></td></tr>
+  <tr><td>NIST SP 800-82 Rev 3</td><td>Primary OT framework for federal</td><td><span class="sev-crit">Not assessed</span></td></tr>
   <tr><td>DoD CIO OT Mandate (2026)</td><td>Requires OT monitoring by EOY FY26</td><td><span class="sev-crit">Non-compliant</span></td></tr>
   <tr><td>USACE EP 1130-2-510</td><td>Internal USACE hydropower operations policy, primary compliance driver for generation assets</td><td><span class="sev-crit">Gap: no OT monitoring capability</span></td></tr>
   <tr><td>EO 14028</td><td>Improving the Nation’s Cybersecurity (May 2021); drives zero-trust and supply chain security</td><td><span class="sev-med">Partial, IT only</span></td></tr>
-  <tr><td><span class="tip" data-tip="CISA Binding Operational Directive 23-01 (October 2022): Improving Asset Visibility and Vulnerability Detection on Federal Networks. Requires federal agencies to maintain a complete, accurate inventory of all network-addressable IP assets and identify software vulnerabilities.">CISA BOD 23-01</span></td><td>Asset visibility for internet-accessible devices</td><td><span class="sev-med">Partial (IT only)</span></td></tr>
-  <tr><td><span class="tip" data-tip="Federal Information Security Modernization Act (2014). Requires federal agencies to develop, document, and implement an agency-wide information security program. OT systems are often excluded from FISMA authorization boundaries, creating a governance gap.">FISMA</span></td><td>Federal baseline</td><td><span class="sev-med">IT covered; OT not in boundary</span></td></tr>
+  <tr><td>CISA BOD 23-01</td><td>Asset visibility for internet-accessible devices</td><td><span class="sev-med">Partial (IT only)</span></td></tr>
+  <tr><td>FISMA</td><td>Federal baseline</td><td><span class="sev-med">IT covered; OT not in boundary</span></td></tr>
   <tr><td>NERC CIP</td><td>Electric reliability; applies to BES; USACE generation assets are not directly NERC CIP-registered (governed by EP 1130-2-510 and DoD directives instead)</td><td><span class="sev-info">Not applicable to generation; BPA handles transmission compliance</span></td></tr>
 </table>
 
@@ -311,14 +326,14 @@
   <tr><td>Technical Decision Maker</td><td>Dr. Rebecca Torres, Chief, Cybersecurity Division (NWD)</td></tr>
   <tr><td>Budget Authority</td><td>COL Harding (approval) → Jennifer Walsh (contracting)</td></tr>
   <tr><td>Budget Range</td><td>$600K - $1M (FY26 funds, must obligate by Sep 30)</td></tr>
-  <tr><td>Procurement Path</td><td><span class="tip" data-tip="NASA SEWP (Solutions for Enterprise-Wide Procurement) V is a pre-competed GWAC. Any federal agency can issue task orders against it. Carahsoft holds a SEWP V contract as Dragos' authorized channel partner. Using SEWP eliminates the need for a new competition, saving 3-4 months.">NASA SEWP V via Carahsoft</span> (ordering period extended through Sep 30, 2026; SEWP V pending)</td></tr>
-  <tr><td>Contract Type</td><td><span class="tip" data-tip="Firm Fixed Price: the government pays a set total price. Vendor absorbs any cost overruns. COs prefer FFP for product/subscription procurements because it minimizes financial risk. Option years allow subscription renewal without re-competing.">Firm Fixed Price (FFP)</span> + option years for subscriptions</td></tr>
+  <tr><td>Procurement Path</td><td>NASA SEWP V via Carahsoft (ordering period extended through Sep 30, 2026; SEWP VI pending)</td></tr>
+  <tr><td>Contract Type</td><td>Firm Fixed Price (FFP) + option years for subscriptions</td></tr>
   <tr><td>Decision Timeline</td><td>Technical eval: Jun-Jul &nbsp;|&nbsp; Award: Aug-Sep</td></tr>
   <tr><td>Competition</td><td>Claroty contacted, no formal eval started. Nozomi not considered. Strong Dragos brand affinity; customer heard Robert M. Lee at S4 Conference.</td></tr>
-  <tr><td>Security Requirements</td><td>CUI handling. FedRAMP preferred. STIG-hardened appliances required. <span class="tip" data-tip="Section 889 of the FY2019 NDAA prohibits federal procurement of telecommunications equipment from Huawei, ZTE, Hytera, Hikvision, and Dahua. Dragos hardware is Dell/HPE-based with documented supply chain provenance. SA should proactively provide §889 compliance letter to the contracting officer.">§889 supply chain certification</span> required.</td></tr>
+  <tr><td>Security Requirements</td><td>CUI handling. FedRAMP preferred. STIG-hardened appliances required. §889 supply chain certification required.</td></tr>
   <tr><td>Deployment Constraints</td><td>No active scanning. No agents on PLCs. Passive only. Change control required for SPAN.</td></tr>
-  <tr><td><span class="tip" data-tip="FIPS 199 categorization determines the NIST 800-53 control baseline. For OT monitoring at safety-critical infrastructure: Confidentiality = Moderate, Integrity = Moderate, Availability = High. HIGH availability drives the overall system to a HIGH baseline. Must be agreed with ISSO early in RMF Step 1 to avoid control selection surprises later.">System Categorization</span></td><td>Recommended FIPS 199: Moderate-Moderate-High. HIGH availability drives HIGH control baseline. Discuss with ISSO during PoC scope meeting.</td></tr>
-  <tr><td><span class="tip" data-tip="All four dam sites are restricted federal installations. Dragos deployment personnel require either a Common Access Card (CAC) for unescorted access or a government escort for each site visit. Access requests must be submitted 14 days in advance through the site's Physical Security Office. The SA coordinates this through the customer champion (Dr. Torres).">Site Access</span></td><td>All 4 dams are restricted federal installations. Dragos personnel need <span class="tip" data-tip="Personal Identity Verification (PIV) / Common Access Card (CAC): the federal smart card for physical and logical access. DoD contractors typically receive a CAC with an active investigation and valid contract. Without a CAC, government escort is required for all site visits. Plan for 2-week lead time for access requests.">PIV/CAC or escort</span>. 14-day advance request through NWD Physical Security. SA coordinates access during deployment planning.</td></tr>
+  <tr><td>System Categorization</td><td>Recommended FIPS 199: Moderate-Moderate-High. HIGH availability drives HIGH control baseline. Discuss with ISSO during PoC scope meeting.</td></tr>
+  <tr><td>Site Access</td><td>All 4 dams are restricted federal installations. Dragos personnel need PIV/CAC or escort. 14-day advance request through NWD Physical Security. SA coordinates access during deployment planning.</td></tr>
 </table>
 
 <!-- ═══════════════ SECTION 9 ═══════════════ -->
@@ -338,7 +353,7 @@
   <tr><th>Target System</th><th>Integration</th><th>Method</th></tr>
   <tr><td>Splunk Cloud</td><td>OT alerts → Splunk</td><td>Syslog/CEF over TLS</td></tr>
   <tr><td>CrowdStrike Falcon</td><td>IOC sharing</td><td>REST API (bi-directional)</td></tr>
-  <tr><td><span class="tip" data-tip="ITSM platform to be confirmed. Customer's IT ticketing system was not identified during discovery. Could be ServiceNow, BMC Remedy, or Jira Service Management. Integration method will be validated during solution design phase.">ITSM (ServiceNow TBC)</span></td><td>Vulnerability tickets</td><td>REST API - customer to confirm ITSM platform during solution design</td></tr>
+  <tr><td>ITSM (ServiceNow TBC)</td><td>Vulnerability tickets</td><td>REST API - customer to confirm ITSM platform during solution design</td></tr>
 </table>
 
 <!-- ═══════════════ SECTION 10 ═══════════════ -->
@@ -350,18 +365,18 @@
   <tr><td>2</td><td>Schedule tailored demo for Dr. Torres + OT team</td><td>AE + SA</td><td>Week of Jun 9</td><td class="status-open">Open</td></tr>
   <tr><td>3</td><td>Engage Carahsoft for SEWP V pricing</td><td>AE</td><td>Jun 6</td><td class="status-open">Open</td></tr>
   <tr><td>4</td><td>Submit SPAN port change request at Bonneville (4-week change control → clears Jun 19)</td><td>Brian Knox</td><td>May 22</td><td class="status-pending">Pending</td></tr>
-  <tr><td>4a</td><td>Submit <span class="tip" data-tip="Interim Authority to Test (IATT): time-limited RMF authorization (90 days) for evaluation deployments. Requires STIG compliance evidence and a subset of RMF controls. Submitted through eMASS by the site ISSO. Must be granted before sensors connect to the OT network.">IATT package</span> through eMASS for Bonneville PoC (target: granted before SPAN clears)</td><td>ISSO + SA support</td><td>Jun 6</td><td class="status-open">Open</td></tr>
+  <tr><td>4a</td><td>Submit IATT package through eMASS for Bonneville PoC (target: granted before SPAN clears)</td><td>ISSO + SA support</td><td>Jun 6</td><td class="status-open">Open</td></tr>
   <tr><td>5</td><td>Procure Gigamon TAPs for John Day + McNary</td><td>Jennifer Walsh</td><td>Jun 13</td><td class="status-open">Open</td></tr>
   <tr><td>6</td><td>Verify S7comm + Emerson Ovation protocol support</td><td>SA (internal)</td><td>May 27</td><td class="status-open">Open</td></tr>
   <tr><td>7</td><td>Schedule PoC scope meeting (Bonneville pilot - target start Jun 23 after SPAN clears)</td><td>SA + Dr. Torres</td><td>Jun 16</td><td class="status-open">Open</td></tr>
   <tr><td>8</td><td>Draft PoC success criteria document</td><td>SA</td><td>Jun 20</td><td class="status-open">Open</td></tr>
   <tr><td>9</td><td>Internal Dragos review - pricing + services scoping</td><td>SA + AE + Deal Desk</td><td>Jun 2</td><td class="status-open">Open</td></tr>
-  <tr><td>10</td><td>Provide FedRAMP / ATO documentation package (STIG results, SSP sections, POAM templates) formatted for <span class="tip" data-tip="eMASS (Enterprise Mission Assurance Support Service): DoD's system for managing RMF authorization packages. SA must ensure architecture artifacts are in a format the ISSO can upload directly to eMASS.">eMASS</span> submission</td><td>SA (internal)</td><td>Jun 6</td><td class="status-open">Open</td></tr>
+  <tr><td>10</td><td>Provide FedRAMP / ATO documentation package (STIG results, SSP sections, POAM templates) formatted for eMASS submission</td><td>SA (internal)</td><td>Jun 6</td><td class="status-open">Open</td></tr>
 </table>
 
 <div class="doc-footer">
-  <span>Dragos, Inc., Confidential</span>
-  <span>Technical Discovery Document v1.4, DRG-FED-2026-0847</span>
+  <span>PORTFOLIO EXERCISE</span>
+  <span>Technical Discovery Document - DRG-FED-2026-0847</span>
 </div>
 
 </div>

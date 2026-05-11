@@ -29,24 +29,23 @@
   <h1>Proof of Value - Findings Report</h1>
   <p class="subtitle">U.S. Army Corps of Engineers - Bonneville Dam<br>Dragos Platform PoC · June 23 - July 23, 2026</p>
   <div class="meta-grid">
-    <div class="meta-item"><label>Prepared By</label><span>Aaron Kotz, Sr. Solutions Architect (Federal)</span></div>
+    <div class="meta-item"><label>Prepared By</label><span>Aaron Kotz, Solutions Architect (Federal) [Exercise Role]</span></div>
     <div class="meta-item"><label>Customer Champion</label><span>Dr. Rebecca Torres, Chief, Cybersecurity Division (NWD)</span></div>
     <div class="meta-item"><label>PoC Duration</label><span>30 days (Jun 23 - Jul 23, 2026)</span></div>
     <div class="meta-item"><label>Site</label><span>Bonneville Dam - 1,050 MW, 18 units</span></div>
     <div class="meta-item"><label>Sensors Deployed</label><span>2 (L2 process + L3 operations)</span></div>
-    <div class="meta-item"><label>SiteStore</label><span>1× <span class="tip" data-tip="Dragos hardware appliance model sized for sites with up to 500 OT assets. Deployed as a VM during the PoC for faster setup; production deployment uses the physical appliance for performance and STIG compliance.">DS-1000 (VM deployment)</span></span></div>
+    <div class="meta-item"><label>SiteStore</label><span>1× SiteStore VM (evaluation deployment)</span></div>
     <div class="meta-item"><label>Opportunity ID</label><span>DRG-FED-2026-0847</span></div>
-    <div class="meta-item"><label><span class="tip" data-tip="Interim Authority to Test: a time-limited RMF authorization (90 days) allowing the Dragos Platform to operate on the Bonneville OT network for evaluation. Submitted through eMASS by the site ISSO. IATT is the standard path for PoC deployments; full ATO follows after successful evaluation and procurement.">Authorization</span></label><span>IATT granted Jun 18, 2026 (90-day, expires Sep 16)</span></div>
-    <div class="meta-item"><label>Version</label><span>1.0 - Final Report</span></div>
+    <div class="meta-item"><label>Authorization</label><span>IATT granted Jun 18, 2026 (90-day, expires Sep 16)</span></div>
   </div>
-  <div class="classification">CUI // FOUO - Distribution Limited to Named Parties</div>
+  <div class="classification">PORTFOLIO EXERCISE - Sample work product created for interview preparation. Not a Dragos engagement.</div>
 </div>
 
 <div class="page">
 
 <h2>1. Executive Summary</h2>
 
-<p>Over a 30-day <span class="tip" data-tip="Dragos uses 'Proof of Value' rather than 'Proof of Concept' to emphasize that the evaluation demonstrates measurable business and security value, not just technical function.">Proof of Value</span> engagement at Bonneville Dam, the Dragos Platform exceeded all five agreed-upon success criteria. The platform discovered <strong>247 OT assets</strong> (12% more than the customer's manual inventory), identified <strong>3 previously unknown communication paths</strong>, and demonstrated deep protocol parsing across all four site-relevant protocols - with <strong>zero operational disruptions</strong>.</p>
+<p>Over a 30-day Proof of Value engagement at Bonneville Dam, the Dragos Platform exceeded all five agreed-upon success criteria. The platform discovered <strong>247 OT assets</strong> (12% more than the customer's manual inventory), identified <strong>3 previously unknown communication paths</strong>, and demonstrated deep protocol parsing across all four site-relevant protocols - with <strong>zero operational disruptions</strong>.</p>
 
 <blockquote>
   <strong>Bottom Line:</strong> The Dragos Platform provides the OT visibility that USACE NWD currently lacks, validated at the most complex site in the Columbia River system. The architecture is proven and ready for full deployment across all four dam sites.
@@ -94,12 +93,12 @@
 </div>
 
 <table>
-  <tr><th><span class="tip" data-tip="The Purdue Enterprise Reference Architecture defines 5 levels of industrial network segmentation. Level 0-1 = physical process and controllers, Level 2 = HMI/SCADA, Level 3 = site operations, Level 3.5 = industrial DMZ, Level 4-5 = enterprise IT.">Purdue Level</span></th><th>Asset Type</th><th>Known (Pre-PoC)</th><th>Discovered</th><th>Delta</th></tr>
-  <tr><td>Level 1</td><td>PLCs / Controllers (GE Mark VIe)</td><td>20</td><td>22</td><td class="check">+2 undocumented I/O modules</td></tr>
-  <tr><td>Level 2</td><td>HMIs / SCADA Servers</td><td>8</td><td>12</td><td class="check">+4 (incl. 2 legacy Windows XP HMIs)</td></tr>
-  <tr><td>Level 2</td><td>Network Infrastructure</td><td>14</td><td>18</td><td class="check">+4 unmanaged switches</td></tr>
-  <tr><td>Level 3</td><td>Historians / Engineering Workstations</td><td>6</td><td>8</td><td class="check">+2 vendor laptop connections</td></tr>
-  <tr><td>Level 3</td><td>IT/OT Boundary Devices</td><td>4</td><td>5</td><td class="check">+1 undocumented jump server</td></tr>
+  <tr><th>Purdue Level</th><th>Asset Type</th><th>Known (Pre-PoC)</th><th>Discovered</th><th>Delta</th></tr>
+  <tr><td>Level 1</td><td>PLCs / Controllers (GE Mark VIe)</td><td>36</td><td>40</td><td class="check">+4 undocumented I/O modules</td></tr>
+  <tr><td>Level 2</td><td>HMIs / SCADA Servers</td><td>28</td><td>38</td><td class="check">+10 (incl. 2 legacy Windows XP HMIs, 8 operator terminals)</td></tr>
+  <tr><td>Level 2</td><td>Network Infrastructure</td><td>62</td><td>72</td><td class="check">+10 unmanaged switches and access points</td></tr>
+  <tr><td>Level 3</td><td>Historians / Engineering Workstations</td><td>52</td><td>54</td><td class="check">+2 vendor laptop connections</td></tr>
+  <tr><td>Level 3</td><td>IT/OT Boundary Devices</td><td>42</td><td>43</td><td class="check">+1 undocumented jump server</td></tr>
   <tr><td colspan="2"><strong>Total</strong></td><td><strong>220</strong></td><td><strong>247</strong></td><td><strong class="check">+27 (12.3%)</strong></td></tr>
 </table>
 
@@ -108,29 +107,29 @@
 <div class="two-col">
   <div class="finding-card">
     <h4><span class="sev-crit">CRITICAL</span> Undocumented Jump Server</h4>
-    <p>Discovery identified an undocumented Windows Server 2016 host bridging the L3/L4 boundary with active RDP sessions. This device was not in the customer's asset inventory and had no associated <span class="tip" data-tip="Authority to Operate - the formal authorization to run a system on a federal network. Any system without an ATO is technically operating in violation of FISMA and the agency's cybersecurity policy.">ATO</span>. Recommendation: immediate investigation and remediation.</p>
+    <p>Discovery identified an undocumented Windows Server 2016 host bridging the L3/L4 boundary with active RDP sessions. This device was not in the customer's asset inventory and had no associated ATO. Recommendation: immediate investigation and remediation.</p>
   </div>
   <div class="finding-card">
     <h4><span class="sev-high">HIGH</span> Legacy Windows XP HMIs</h4>
-    <p>Two <span class="tip" data-tip="Windows XP reached end-of-life in April 2014. It receives no security patches and cannot run modern endpoint protection. Any XP system on an OT network represents a significant attack surface.">Windows XP</span> HMI workstations discovered on the L2 process network. These systems have no security patches since 2014 and were communicating with GE Mark VIe controllers via unencrypted SRTP. Recommendation: network segmentation controls + compensating monitoring.</p>
+    <p>Two Windows XP HMI workstations discovered on the L2 process network. These systems have no security patches since 2014 and were communicating with GE Mark VIe controllers via unencrypted SRTP. Recommendation: network segmentation controls + compensating monitoring.</p>
   </div>
   <div class="finding-card">
     <h4><span class="sev-high">HIGH</span> Unexpected Cross-Zone Traffic</h4>
-    <p>Dragos detected <span class="tip" data-tip="SMB (Server Message Block) is a Windows file-sharing protocol. SMB traffic crossing from IT (L4) to OT (L2) networks indicates inadequate segmentation - a key indicator that an attacker could use the same path for lateral movement.">SMB file-sharing traffic</span> traversing from the L4 enterprise zone directly to L2 process network HMIs. This traffic bypasses the industrial DMZ and indicates a segmentation gap. Recommendation: firewall rule audit + ACL hardening.</p>
+    <p>Dragos detected SMB file-sharing traffic traversing from the L4 enterprise zone directly to L2 process network HMIs. This traffic bypasses the industrial DMZ and indicates a segmentation gap. Recommendation: firewall rule audit + ACL hardening.</p>
   </div>
   <div class="finding-card">
     <h4><span class="sev-med">MEDIUM</span> Vendor Laptop Connections</h4>
-    <p>Two vendor laptop MAC addresses observed connecting to the L3 engineering workstation VLAN during maintenance windows. These connections were authorized but not logged by existing controls. Recommendation: implement <span class="tip" data-tip="Secure Remote Access monitoring detects and alerts on all remote or transient connections to the OT network - including vendor laptops, VPN sessions, and maintenance ports. Aligns with SANS ICS Critical Control #4.">secure remote access monitoring</span> per SANS Critical Control #4.</p>
+    <p>Two vendor laptop MAC addresses observed connecting to the L3 engineering workstation VLAN during maintenance windows. These connections were authorized but not logged by existing controls. Recommendation: implement secure remote access monitoring per SANS Critical Control #4.</p>
   </div>
 </div>
 
 <h2>5. Vulnerability Assessment</h2>
 
-<p>The platform identified 34 vulnerabilities across Bonneville OT assets, prioritized using Dragos' <span class="tip" data-tip="Now: actively exploited in the wild or trivially exploitable with public tools - patch immediately. Next: exploitable under specific conditions - schedule for next maintenance window. Never: theoretical risk with no practical exploit path in this environment - monitor only.">Now/Next/Never</span> framework:</p>
+<p>The platform identified 34 vulnerabilities across Bonneville OT assets, prioritized using Dragos' Now/Next/Never framework:</p>
 
 <table>
   <tr><th>Priority</th><th>Count</th><th>Example</th><th>Action</th></tr>
-  <tr><td><span class="sev-crit">NOW</span></td><td>2</td><td>CVE-2023-3595 - ControlLogix CIP RCE (CVSS 9.8). <em>Note: affects John Day's AB controllers, not Bonneville, but critical for future deployment planning.</em></td><td>Patch during next outage window (John Day)</td></tr>
+  <tr><td><span class="sev-crit">NOW</span></td><td>2</td><td>CVE-2023-3595 - ControlLogix CIP RCE (CVSS 9.8). <em>Identified during platform vulnerability database review for future deployment sites. Affects AB ControlLogix at John Day, not Bonneville GE controllers. Flagged here for pre-deployment remediation planning.</em></td><td>Coordinate patch with John Day site during next scheduled maintenance window, prior to sensor deployment</td></tr>
   <tr><td><span class="sev-high">NEXT</span></td><td>8</td><td>GE Mark VIe firmware versions with known auth bypass (GE advisory GES-2024-003)</td><td>Schedule firmware update with GE field service</td></tr>
   <tr><td><span class="sev-med">NEVER</span></td><td>24</td><td>Informational CVEs requiring physical access or specific configurations not present</td><td>Monitor - no action required</td></tr>
 </table>
@@ -139,8 +138,8 @@
 
 <table>
   <tr><th>Integration</th><th>Status</th><th>Validation</th></tr>
-  <tr><td><strong>Splunk Cloud</strong> (<span class="tip" data-tip="Syslog using Common Event Format (CEF) is the standard for forwarding security alerts to SIEMs. TLS encryption ensures alert metadata is protected in transit. Only alert type, severity, timestamp, and asset ID are forwarded - no raw PCAP.">Syslog/CEF over TLS</span>)</td><td><span class="check">✓ Operational</span></td><td>Alert metadata flowing to Splunk within 30 seconds of detection. 127 events forwarded during PoC. SOC confirmed visibility in existing dashboards.</td></tr>
-  <tr><td><strong>CrowdStrike Falcon</strong> (<span class="tip" data-tip="REST API integration enables bi-directional data exchange. Dragos sends OT IOCs and asset inventory to Falcon; CrowdStrike sends endpoint context (hostname, OS, AD domain) back to enrich Dragos asset records.">REST API</span>)</td><td><span class="check">✓ Operational</span></td><td>Bi-directional IOC exchange validated. 14 OT assets correlated with Falcon Discover for IoT endpoint data.</td></tr>
+  <tr><td><strong>Splunk Cloud</strong> (Syslog/CEF over TLS)</td><td><span class="check">✓ Operational</span></td><td>Alert metadata flowing to Splunk within 30 seconds of detection. 127 events forwarded during PoC. SOC confirmed visibility in existing dashboards.</td></tr>
+  <tr><td><strong>CrowdStrike Falcon</strong> (REST API)</td><td><span class="check">✓ Operational</span></td><td>Bi-directional IOC exchange validated. 14 OT assets correlated with Falcon Discover for IoT endpoint data.</td></tr>
   <tr><td><strong>Neighborhood Keeper</strong></td><td><span class="check">✓ Enrolled</span></td><td>Anonymized telemetry flowing. Customer identifiers confirmed stripped per NK data handling policy.</td></tr>
 </table>
 
@@ -153,7 +152,7 @@
   <tr><td>3</td><td><strong>Segment Windows XP HMIs</strong> - implement compensating controls until replacement.</td><td><span class="sev-high">HIGH</span></td><td>Within 60 days</td></tr>
   <tr><td>4</td><td><strong>Close SMB cross-zone path</strong> - firewall rule audit, remove unnecessary L4→L2 traffic.</td><td><span class="sev-high">HIGH</span></td><td>Within 60 days</td></tr>
   <tr><td>5</td><td><strong>Initiate TAP procurement</strong> for John Day and McNary - long lead time for change control.</td><td><span class="sev-med">MEDIUM</span></td><td>Begin immediately</td></tr>
-  <tr><td>6</td><td><strong><span class="tip" data-tip="Transition from IATT (PoC authorization) to full ATO. The SA provides SSP contribution sections, updated STIG results from the production configuration, POA&M for residual risks, and PPSM data. The ISSO submits the complete RMF package through eMASS. Target: ATO granted before production deployment go-live.">Begin full ATO package preparation</span></strong> - transition from IATT to production ATO. SA provides SSP contribution sections, POA&M, and PPSM registration data to ISSO for eMASS submission.</td><td><span class="sev-med">MEDIUM</span></td><td>Begin after ARB endorsement</td></tr>
+  <tr><td>6</td><td><strong>Begin full ATO package preparation</strong> - transition from IATT to production ATO. SA provides SSP contribution sections, POA&M, and PPSM registration data to ISSO for eMASS submission.</td><td><span class="sev-med">MEDIUM</span></td><td>Begin after ARB endorsement</td></tr>
 </table>
 
 <blockquote>
@@ -162,8 +161,9 @@
 
 </div>
 
-<div style="margin-top: 40px; padding: 12px 48px; font-size: 11px; color: var(--gray-500); text-align: center; border-top: 1px solid var(--gray-200);">
-  CUI // FOUO - Distribution Limited to Named Parties · PoC Findings Report v1.0 · DRG-FED-2026-0847
+<div class="doc-footer">
+  <span>PORTFOLIO EXERCISE</span>
+  <span>PoC Findings Report - DRG-FED-2026-0847</span>
 </div>
 
 <script src="nav.js"></script>

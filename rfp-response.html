@@ -29,14 +29,15 @@
   <h1>Technical Volume</h1>
   <p class="subtitle">Response to USACE NWD Solicitation: OT Cybersecurity Monitoring Platform<br>RFP No. W912EF-26-R-0042 (Exercise)</p>
   <div class="meta-grid">
-    <div class="meta-item"><label>Offeror</label><span><span class="tip" data-tip="Dragos Public Sector LLC is a dedicated subsidiary launched October 2024. SAM registered, Carahsoft contract vehicles. Created specifically to serve federal and SLTT customers.">Dragos Public Sector LLC</span></span></div>
-    <div class="meta-item"><label><span class="tip" data-tip="The Technical Volume is evaluated separately from the pricing volume by the government's Source Selection Evaluation Board (SSEB). The SA writes the technical narrative; the AE/Deal Desk prepare the pricing volume.">Volume</span></label><span>Volume I - Technical</span></div>
-    <div class="meta-item"><label><span class="tip" data-tip="A DUNS number (now replaced by UEI - Unique Entity Identifier) is the federal registration ID required for all government contractors. Required for SAM.gov registration and contract award.">UEI</span></label><span>[Dragos UEI - SAM.gov]</span></div>
-    <div class="meta-item"><label><span class="tip" data-tip="CAGE (Commercial and Government Entity) code is a 5-character identifier assigned by DLA to companies doing business with the federal government. Required for all contract documentation.">CAGE Code</span></label><span>[Dragos CAGE]</span></div>
+    <div class="meta-item"><label>Offeror</label><span>Dragos Public Sector LLC</span></div>
+    <div class="meta-item"><label>Volume</label><span>Volume I - Technical</span></div>
+    <div class="meta-item"><label>UEI</label><span>[Populated by contracts team at submission]</span></div>
+    <div class="meta-item"><label>CAGE Code</label><span>[Populated by contracts team at submission]</span></div>
     <div class="meta-item"><label>Contract Vehicle</label><span>NASA SEWP V (via Carahsoft)</span></div>
-    <div class="meta-item"><label>Version</label><span>1.0 - Initial Submission</span></div>
+    <div class="meta-item"><label>Submission Date</label><span>August 1, 2026</span></div>
+    <div class="meta-item"><label>Opportunity ID</label><span>DRG-FED-2026-0847</span></div>
   </div>
-  <div class="classification">CUI // FOUO - Source Selection Sensitive</div>
+  <div class="classification">PORTFOLIO EXERCISE - Sample work product created for interview preparation. Not a Dragos engagement.</div>
 </div>
 
 <div class="page">
@@ -63,13 +64,13 @@
   <li><strong>Multi-vendor environment</strong> - GE Mark VIe, Emerson Ovation, AB ControlLogix, and Siemens S7-400 controllers require protocol-native parsing.</li>
   <li><strong>Federal compliance</strong> - USACE EP 1130-2-510, DoD CIO OT Directive, NIST 800-82 Rev 3, and NIST 800-53 Rev 5 controls.</li>
   <li><strong>Existing security tools</strong> - solution must integrate with Splunk Cloud (FedRAMP High / DoD IL5) and CrowdStrike Falcon.</li>
-  <li><strong>Not NERC CIP</strong> - federal hydropower facilities under USACE operate under <span class="tip" data-tip="USACE hydropower dams are federal military installations operated by a DoD agency. They fall under DoD cybersecurity authority (DoDI 8500.01, RMF) rather than FERC/NERC, which governs private utilities. This distinction affects compliance requirements, procurement authority, and security frameworks.">DoD authority, not FERC/NERC</span>. Compliance framework is EP 1130-2-510 and DoD CIO guidance.</li>
+  <li><strong>Not NERC CIP</strong> - federal hydropower facilities under USACE operate under DoD authority, not FERC/NERC. Compliance framework is EP 1130-2-510 and DoD CIO guidance.</li>
 </ul>
 
 <!-- SECTION 2 -->
 <div class="vol-header">Section 2: Technical Approach</div>
 
-<p>Dragos proposes its <span class="tip" data-tip="The Dragos Platform is purpose-built for OT/ICS environments. Unlike IT security tools adapted for OT, Dragos was designed from the ground up to parse industrial protocols, understand process-level context, and operate passively in safety-critical environments.">purpose-built OT cybersecurity platform</span> with the following architecture:</p>
+<p>Dragos proposes its purpose-built OT cybersecurity platform with the following architecture:</p>
 
 <table>
   <tr><th>Component</th><th>Quantity</th><th>Placement</th><th>Function</th></tr>
@@ -78,7 +79,7 @@
   <tr><td>CentralStore</td><td>1</td><td>NWD HQ (Portland)</td><td>Enterprise aggregation, cross-site correlation, SIEM integration</td></tr>
 </table>
 
-<p style="margin-top: 12px;">The platform addresses all four <span class="tip" data-tip="The SANS Institute identified 5 Critical Controls for World-Class ICS/OT Cybersecurity. Dragos addresses controls 2 (Defensible Architecture), 3 (Network Monitoring), and 5 (Vulnerability Management) directly, and supports controls 1 (IR) and 4 (Remote Access) through detection and professional services.">SANS 5 Critical Controls</span> relevant to this requirement: Defensible Architecture, ICS Network Monitoring, Secure Remote Access Detection, and Risk-Based Vulnerability Management.</p>
+<p style="margin-top: 12px;">The platform addresses all four SANS 5 Critical Controls relevant to this requirement: Defensible Architecture, ICS Network Monitoring, Secure Remote Access Detection, and Risk-Based Vulnerability Management.</p>
 
 <!-- SECTION 3 -->
 <div class="vol-header">Section 3: Deployment Methodology</div>
@@ -91,14 +92,14 @@
   <div class="phase-item"><strong>Phase 5</strong>Acceptance<br>Week 7</div>
 </div>
 
-<p>Sites are deployed sequentially: Bonneville (proven PoC) → The Dalles → John Day → McNary. John Day and McNary require <span class="tip" data-tip="Network TAP installation requires a brief network interruption to insert the inline device. At OT sites, this must be coordinated with a scheduled maintenance window to avoid impacting turbine operations. Typical change control lead time at USACE is 4 weeks.">network TAP installation during scheduled maintenance windows</span>. Total deployment timeline: 12 weeks from contract award to full operational capability.</p>
+<p>Sites are deployed sequentially: Bonneville (proven PoC) → The Dalles → John Day → McNary. John Day and McNary require network TAP installation during scheduled maintenance windows. Total deployment timeline: 16 weeks from contract award to full operational capability across all 4 sites.</p>
 
 <!-- SECTION 4 -->
 <div class="vol-header">Section 4: Staffing &amp; Key Personnel</div>
 
 <div class="staff-card">
   <div class="role">Solutions Architect (Federal) - Primary Technical Lead</div>
-  <div class="quals">Responsible for architecture design, deployment oversight, and customer technical engagement. Requirements: <span class="tip" data-tip="Top Secret / Sensitive Compartmented Information clearance. Required for accessing classified program information at DoD sites. Dragos Public Sector LLC holds a Top Secret Facility Clearance (FCL).">Active TS/SCI clearance</span>, 5+ years federal infrastructure experience, OT/ICS protocol knowledge.</div>
+  <div class="quals">Responsible for architecture design, deployment oversight, and customer technical engagement. Requirements: Active TS/SCI clearance, 5+ years federal infrastructure experience, OT/ICS protocol knowledge.</div>
 </div>
 <div class="staff-card">
   <div class="role">Deployment Engineer - Platform Installation</div>
@@ -115,7 +116,7 @@
 <table>
   <tr><th>Risk</th><th>Probability</th><th>Impact</th><th>Mitigation</th></tr>
   <tr><td>TAP installation delays (change control)</td><td><span class="sev-med">MEDIUM</span></td><td>Schedule slip</td><td>Initiate change control requests during pre-deployment phase; coordinate with dam maintenance schedules</td></tr>
-  <tr><td>ATO timeline extension</td><td><span class="sev-med">MEDIUM</span></td><td>Deployment delay</td><td>DISA STIG pre-built; <span class="tip" data-tip="Interim Authority to Test (IATT): time-limited RMF authorization (90-180 days) for evaluation deployments. Requires a subset of RMF controls. Submitted through eMASS by the site ISSO. Standard path for PoC/pilot deployments at DoD sites.">IATT</span> for PoC, full ATO for production. ATO artifact package prepared during Phase 1; early ISSO engagement for <span class="tip" data-tip="eMASS (Enterprise Mission Assurance Support Service): the DoD's system for managing RMF authorization packages. SA contributes architecture diagrams, STIG evidence, and security control implementation details. ISSO/ISSM owns the package.">eMASS</span> submission</td></tr>
+  <tr><td>ATO timeline extension</td><td><span class="sev-med">MEDIUM</span></td><td>Deployment delay</td><td>DISA STIG pre-built; IATT for PoC, full ATO for production. ATO artifact package prepared during Phase 1; early ISSO engagement for eMASS submission</td></tr>
   <tr><td>Protocol parsing gaps</td><td><span class="sev-low">LOW</span></td><td>Reduced visibility</td><td>All 4 controller platforms (GE, Emerson, AB, Siemens) are natively supported; validated during PoC</td></tr>
   <tr><td>Staff clearance requirements</td><td><span class="sev-low">LOW</span></td><td>Personnel delay</td><td>All proposed key personnel hold active clearances; Dragos maintains cleared bench depth</td></tr>
 </table>
@@ -123,7 +124,7 @@
 <!-- SECTION 6 -->
 <div class="vol-header">Section 6: Requirements Compliance Matrix</div>
 
-<p>The following matrix demonstrates compliance with each <span class="tip" data-tip="A Statement of Work (SOW) requirement is a specific technical, operational, or management requirement defined by the government in the solicitation. The compliance matrix maps each SOW requirement to the offeror's proposed solution and compliance status.">SOW requirement</span>:</p>
+<p>The following matrix demonstrates compliance with each SOW requirement:</p>
 
 <table>
   <tr><th style="width:60px">Req ID</th><th>Requirement</th><th style="width:80px">Status</th><th>Proposed Solution</th></tr>
@@ -133,12 +134,12 @@
   <tr><td>SOW-04</td><td>Integration with existing SIEM (Splunk Cloud)</td><td><span class="req-full">FULL</span></td><td>Syslog/CEF over TLS from CentralStore. Alert metadata only - no raw PCAP exported. Validated during PoC.</td></tr>
   <tr><td>SOW-05</td><td>Integration with existing EDR (CrowdStrike Falcon)</td><td><span class="req-full">FULL</span></td><td>REST API bi-directional integration. OT IOCs → Falcon; EDR context → Dragos asset enrichment.</td></tr>
   <tr><td>SOW-06</td><td>Support for 4 controller platforms (GE, Emerson, AB, Siemens)</td><td><span class="req-full">FULL</span></td><td>Native protocol parsing for SRTP, EGD, OPC-UA, Modbus TCP, EtherNet/IP (CIP), S7comm. All validated.</td></tr>
-  <tr><td>SOW-07</td><td><span class="tip" data-tip="DISA STIG (Security Technical Implementation Guide) is the DoD standard for system hardening. Dragos Platform 2.x STIG is published on DISA's official repository (public.cyber.mil) since October 2024, giving the ISSO a pre-built assessment baseline and saving 3-6 months of ATO timeline.">DISA STIG-compliant deployment</span></td><td><span class="req-full">FULL</span></td><td>Platform 2.x STIG published on public.cyber.mil. Pre-hardened appliances.</td></tr>
+  <tr><td>SOW-07</td><td>DISA STIG-compliant deployment</td><td><span class="req-full">FULL</span></td><td>Platform 2.x STIG published on public.cyber.mil. Pre-hardened appliances.</td></tr>
   <tr><td>SOW-08</td><td>Incident response forensic capability</td><td><span class="req-full">FULL</span></td><td>Full PCAP replay, protocol-aware search, timeline reconstruction. On-prem evidence retention.</td></tr>
-  <tr><td>SOW-09</td><td><span class="tip" data-tip="Air-gapped operation means the platform functions with zero network connectivity to the internet or external systems. Content updates (threat intel, signatures) are delivered via secure media transfer (USB, DVD). Critical for classified OT environments.">Air-gapped operation capability</span></td><td><span class="req-full">FULL</span></td><td>Platform operates fully offline. Content updates via secure media transfer. NK enrollment optional.</td></tr>
-  <tr><td>SOW-10</td><td>24/7 managed monitoring service</td><td><span class="req-full">FULL</span></td><td><span class="tip" data-tip="Dragos' managed OT detection service. Dedicated Dragos analysts monitor customer environments, triage alerts, investigate threats, and escalate findings. Addresses the common federal gap of no in-house OT SOC capability.">OT Watch</span> managed detection service - Dragos analysts provide alert triage, investigation, and escalation.</td></tr>
-  <tr><td>SOW-11</td><td><span class="tip" data-tip="Section 889 of the FY2019 NDAA prohibits federal agencies from procuring telecommunications equipment from Huawei, ZTE, Hytera, Hikvision, Dahua, and their subsidiaries. Part B extends this to any contractor using covered equipment in their supply chain.">Supply chain compliance (§889 NDAA)</span></td><td><span class="req-full">FULL</span></td><td>All Dragos hardware (Dell/HPE platforms) certified §889-compliant. Supply chain provenance documentation available. No prohibited telecommunications components.</td></tr>
-  <tr><td>SOW-12</td><td><span class="tip" data-tip="The government requires vendors to provide artifacts that support the Risk Management Framework authorization process. This includes STIG results, SSP contribution sections, network diagrams, and data flow documentation - all formatted for eMASS submission.">RMF authorization support artifacts</span></td><td><span class="req-full">FULL</span></td><td>Published DISA STIG (public.cyber.mil). Pre-built SSP contribution sections, POA&M templates, FIPS 199 categorization guidance, and PPSM registration data. SA provides direct ISSO support through ATO.</td></tr>
+  <tr><td>SOW-09</td><td>Air-gapped operation capability</td><td><span class="req-partial">PARTIAL</span></td><td>Platform operates fully offline. Content updates (threat signatures, vulnerability advisories) require manual secure media transfer on a defined schedule. Automated update mechanisms are not available in air-gapped mode. NK enrollment requires outbound connectivity and is not available in fully air-gapped deployments.</td></tr>
+  <tr><td>SOW-10</td><td>24/7 managed monitoring service</td><td><span class="req-partial">PARTIAL</span></td><td>OT Watch managed detection service available for sites with outbound connectivity to Dragos cloud infrastructure. Air-gapped sites (if applicable) would require on-site analyst staffing or periodic PCAP export for remote analysis. OT Watch connectivity requirements should be validated against site network policy during deployment planning.</td></tr>
+  <tr><td>SOW-11</td><td>Supply chain compliance (§889 NDAA)</td><td><span class="req-full">FULL</span></td><td>All Dragos hardware (Dell/HPE platforms) certified §889-compliant. Supply chain provenance documentation available. No prohibited telecommunications components.</td></tr>
+  <tr><td>SOW-12</td><td>RMF authorization support artifacts</td><td><span class="req-full">FULL</span></td><td>Published DISA STIG (public.cyber.mil). Pre-built SSP contribution sections, POA&M templates, FIPS 199 categorization guidance, and PPSM registration data. SA provides direct ISSO support through ATO.</td></tr>
 </table>
 
 <!-- SECTION 7 -->
@@ -151,12 +152,13 @@
   <tr><td>Defense Industrial Base</td><td>Manufacturing / Defense</td><td>OT visibility for classified manufacturing</td><td>Air-gapped deployment. Met all ATO requirements. Integrated with existing SIEM.</td></tr>
 </table>
 
-<p style="font-size: 12px; color: var(--gray-500); margin-top: 8px;"><em>Contact information available upon request. References are sanitized per customer NDA requirements.</em></p>
+<p style="font-size: 12px; color: var(--gray-500); margin-top: 8px;"><em>Past performance references above are representative engagement profiles created for this portfolio exercise. In a real RFP response, this section would be populated by the contracts team with verified CPARS-rated references. The SA's role is to ensure the technical scope descriptions accurately reflect delivered capabilities. These examples illustrate the types of federal OT engagements Dragos would reference.</em></p>
 
 </div>
 
-<div style="margin-top: 40px; padding: 12px 48px; font-size: 11px; color: var(--gray-500); text-align: center; border-top: 1px solid var(--gray-200);">
-  CUI // FOUO - Source Selection Sensitive · Technical Volume v1.0 · RFP W912EF-26-R-0042 (Exercise)
+<div class="doc-footer">
+  <span>PORTFOLIO EXERCISE</span>
+  <span>Technical Volume - RFP W912EF-26-R-0042 (Exercise)</span>
 </div>
 
 <script src="nav.js"></script>

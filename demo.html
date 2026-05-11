@@ -12,8 +12,8 @@
     .agenda-title { font-weight: 600; color: var(--dragos-blue); font-size: 14px; margin-bottom: 4px; }
     .agenda-detail { font-size: 12px; color: var(--gray-700); line-height: 1.6; }
     .persona-card { border: 1px solid var(--gray-200); border-radius: 8px; padding: 16px 20px; margin-bottom: 12px; }
-    .persona-card .name { font-weight: 700; font-size: 14px; color: var(--dragos-blue); }
-    .persona-card .title { font-size: 12px; color: var(--gray-500); margin-bottom: 8px; }
+    .persona-card .name { font-weight: 700; font-size: 15px; color: var(--dragos-blue); }
+    .persona-card .title { font-size: 13px; color: var(--gray-700); margin-bottom: 8px; }
     .persona-card .talk-track { font-size: 13px; color: var(--gray-700); line-height: 1.6; }
     .obj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
     .obj-card { border: 1px solid var(--gray-200); border-radius: 8px; padding: 14px 16px; }
@@ -32,21 +32,21 @@
   <h1>Tailored Demo Agenda</h1>
   <p class="subtitle">U.S. Army Corps of Engineers - Northwestern Division<br>Dragos Platform Demonstration for Columbia River Hydropower Team</p>
   <div class="meta-grid">
-    <div class="meta-item"><label>Prepared By</label><span>Aaron Kotz, Sr. Solutions Architect (Federal)</span></div>
+    <div class="meta-item"><label>Prepared By</label><span>Aaron Kotz, Solutions Architect (Federal) [Exercise Role]</span></div>
     <div class="meta-item"><label>Demo Date</label><span>June 9, 2026 · 1300-1400 ET</span></div>
     <div class="meta-item"><label>Format</label><span>Microsoft Teams (screen share from Dragos demo lab)</span></div>
     <div class="meta-item"><label>Audience</label><span>Dr. Torres (Champion), Mike Osterman (OT Eng), Brian Knox (GS-12)</span></div>
-    <div class="meta-item"><label>Demo Environment</label><span><span class="tip" data-tip="Dragos maintains a pre-configured demo environment loaded with realistic OT traffic captures. The SA configures the demo instance with protocols matching the customer's environment before the session.">Dragos Demo Lab</span> - configured for GE Mark VIe / SRTP / EGD</span></div>
-    <div class="meta-item"><label>Version</label><span>1.0</span></div>
+    <div class="meta-item"><label>Demo Environment</label><span>Dragos Demo Lab - configured for GE Mark VIe / SRTP / EGD</span></div>
+    <div class="meta-item"><label>Opportunity ID</label><span>DRG-FED-2026-0847</span></div>
   </div>
-  <div class="classification">EXERCISE - Not a real engagement</div>
+  <div class="classification">PORTFOLIO EXERCISE - Sample work product created for interview preparation. Not a Dragos engagement.</div>
 </div>
 
 <div class="page">
 
 <h2>1. Demo Strategy</h2>
 
-<p>This demo follows the <span class="tip" data-tip="The 3-feature rule means showing only the 3 platform capabilities that directly solve the customer's stated pain points - not walking through every feature. Customers remember focused value demonstrations; they forget feature tours."><strong>3-Feature Rule</strong></span>: show only the capabilities that solve USACE NWD's specific pain points identified during discovery. No generic feature walks.</p>
+<p>This demo follows the <strong>3-Feature Rule</strong>: show only the capabilities that solve USACE NWD's specific pain points identified during discovery. No generic feature walks.</p>
 
 <blockquote>
   <strong>Demo thesis:</strong> "You have 70 turbine controllers across 4 dams with zero network visibility. Today I'll show you how Dragos discovers every asset, parses your exact protocols, and gives you the vulnerability context your team needs - all without touching a single controller."
@@ -57,9 +57,10 @@
   <li>Demo environment configured with GE SRTP, EGD, Modbus TCP, and OPC-UA traffic captures</li>
   <li>Asset inventory pre-loaded with hydropower-relevant equipment (turbine controllers, excitation systems, governor controls)</li>
   <li>VOLTZITE threat intelligence page bookmarked for live pivot during threat context discussion</li>
-  <li><span class="tip" data-tip="Now/Next/Never is Dragos' OT vulnerability prioritization framework. Pre-staging relevant CVEs ensures the demo shows real vulnerability context, not generic examples.">Now/Next/Never</span> vulnerability view pre-filtered to show GE Mark VIe and Emerson Ovation advisories</li>
+  <li>Now/Next/Never vulnerability view pre-filtered to show GE Mark VIe and Emerson Ovation advisories</li>
   <li>Splunk integration mock dashboard ready (syslog/CEF forwarding visualization)</li>
   <li>Backup screenshots prepared in case of network latency during live demo</li>
+  <li>Screen recording of full demo flow saved locally in case of lab connectivity failure</li>
 </ul>
 
 <h2>2. 60-Minute Agenda</h2>
@@ -68,7 +69,8 @@
   <div class="agenda-time">0:00-0:05</div>
   <div>
     <div class="agenda-title">Opening - The Trust Bridge</div>
-    <div class="agenda-detail">Introduce yourself with the <span class="tip" data-tip="The 'trust bridge' is a 60-second credibility statement that establishes you've operated in the customer's world. It's not a resume recitation - it's proof you understand their constraints: classified networks, compliance pressure, availability requirements.">trust bridge</span>: "I've spent 18 years in classified DoD environments - from USAF avionics and COMSEC through ANG cyber operations to the mission networks I lead today. I currently serve as the Cybersecurity and Mission Systems Lead at one of 13 ANG sites - 4 security zones, 2 hard DMZ boundaries, STIG enforcement, SIEM deployments. I understand your environment because I've built and defended one."<br><br>
+    <div class="agenda-detail">Introduce yourself with the trust bridge. Do not read this verbatim; deliver it in your own words:<br><br>
+    <em>"Before we jump into the platform, quick background on me. I've spent my whole career in DoD mission systems. Started on F-16 avionics in the Air Force, moved into cyber operations with the Air National Guard, and for the last several years I've been the Cybersecurity and Mission Systems Lead at one of the RPA sites in the program. I run a site with 4 security zones, 2 hard DMZ boundaries, TS/SCI and Secret enclaves, STIG enforcement, ACAS scans, the whole compliance stack. So when I show you this platform, I'm looking at it from the perspective of someone who's been on your side of the table - managing the infrastructure that actually has to stay running."</em><br><br>
     Transition: "Let me show you what this platform actually does for a hydropower environment like yours."</div>
   </div>
 </div>
@@ -81,9 +83,9 @@
       <strong>Live demo actions:</strong><br>
       • Open Asset Inventory → filter by "Turbine Controller" → show GE Mark VIe units auto-discovered<br>
       • Highlight firmware versions, communication patterns, and last-seen timestamps<br>
-      • Show a <span class="tip" data-tip="The communication map is a visual topology showing all observed connections between OT assets. It reveals undocumented communication paths - devices talking to each other that nobody expected. This is often the most impactful demo moment.">communication map</span> - "See this connection? That's an engineering workstation talking directly to a controller, bypassing your historian. Was that authorized?"<br>
+      • Show a communication map - "See this connection? That's an engineering workstation talking directly to a controller, bypassing your historian. Was that authorized?"<br>
       • Show asset detail: make, model, firmware version, all protocols observed<br><br>
-      <strong>Pain point addressed:</strong> "You told us you have a spreadsheet with 220 assets. In 48 hours, we found 247 - including 27 you didn't know about."
+      <strong>Pain point addressed:</strong> "In our demo lab configured with your GE Mark VIe environment, the platform discovered 247 assets from a baseline of 220 - including 27 that weren't in the seed inventory. That's the kind of gap we expect to find on your network."
     </div>
   </div>
 </div>
@@ -94,9 +96,9 @@
     <div class="agenda-title">Pillar 2: Threat Detection - "Your protocols, your threat landscape"</div>
     <div class="agenda-detail">
       <strong>Live demo actions:</strong><br>
-      • Show <span class="tip" data-tip="GE SRTP (Service Request Transport Protocol) is a proprietary protocol for GE Mark controllers. Dragos parses SRTP natively to detect unauthorized configuration changes, firmware uploads, and diagnostic commands - the specific actions an adversary would take to manipulate turbine controls.">GE SRTP parsing</span> - deep packet inspection showing controller register reads/writes<br>
+      • Show GE SRTP parsing - deep packet inspection showing controller register reads/writes<br>
       • Trigger a detection rule: "Unauthorized firmware download to Mark VIe controller"<br>
-      • Pivot to <span class="tip" data-tip="VOLTZITE is a Dragos-tracked threat group linked to the People's Republic of China (PRC). They conduct sustained reconnaissance of US electric utilities, targeting GIS data, network diagrams, and SCADA access points. Directly relevant to USACE hydropower.">VOLTZITE threat page</span> in WorldView - "This is the group that's pre-positioning in electric utilities right now. Here's what they're looking for."<br>
+      • Pivot to VOLTZITE threat page in WorldView - "This is the group that's pre-positioning in electric utilities right now. Here's what they're looking for."<br>
       • Show behavioral baseline: "The platform learned what normal looks like in 72 hours. Now it alerts on deviations."<br><br>
       <strong>Pain point addressed:</strong> "Your existing SIEM sees port scans. Dragos sees 'someone just tried to download firmware to turbine controller #7.'"
     </div>
@@ -110,7 +112,7 @@
     <div class="agenda-detail">
       <strong>Live demo actions:</strong><br>
       • Open Vulnerability dashboard → show Now/Next/Never prioritization<br>
-      • Highlight a "Now" vulnerability: <span class="tip" data-tip="CVE-2023-3595 is a critical (CVSS 9.8) remote code execution vulnerability in Rockwell ControlLogix firmware. Dragos discovered and responsibly disclosed it. Relevant to John Day's AB ControlLogix L83 controllers.">CVE-2023-3595</span> (ControlLogix) → "This affects your John Day site. Here's why it's 'Now' and not just another CVSS 9.8."<br>
+      • Highlight a "Now" vulnerability: CVE-2023-3595 (ControlLogix) → "This affects your John Day site. Here's why it's 'Now' and not just another CVSS 9.8."<br>
       • Contrast with a "Never" vulnerability → "This CVE requires physical access to the controller backplane. In your environment, that means getting past card readers and armed guards. It's never."<br>
       • Show WorldView advisory enrichment - Dragos intelligence context on each CVE<br><br>
       <strong>Pain point addressed:</strong> "ACAS gives you 10,000 findings. Dragos gives you 2 that matter right now and tells you why the other 32 can wait."
@@ -126,7 +128,7 @@
       <strong>Live demo actions:</strong><br>
       • Show Syslog/CEF integration → "OT alerts appear in your existing Splunk dashboards. No new SOC tool to learn."<br>
       • Show CrowdStrike integration → "IOCs flow both ways. Your SOC gets OT context without needing OT expertise."<br>
-      • Mention <span class="tip" data-tip="Neighborhood Keeper shares anonymized threat telemetry with other critical infrastructure operators and government agencies (NSA, CISA). If an adversary hits a utility in Idaho, Bonneville Dam gets the indicators before they become public advisories.">Neighborhood Keeper</span> → "When another utility in the Columbia Basin sees an attack, you'll know about it before the advisory drops."<br><br>
+      • Mention Neighborhood Keeper → "When another utility in the Columbia Basin sees an attack, you'll know about it before the advisory drops."<br><br>
       <strong>Pain point addressed:</strong> "This isn't another siloed tool. It feeds your existing stack."
     </div>
   </div>
@@ -171,30 +173,34 @@
   </div>
   <div class="obj-card">
     <h4>"Our SIEM already monitors the network."</h4>
-    <div class="response">Your SIEM sees IP addresses and ports. Dragos sees "<span class="tip" data-tip="Protocol-level visibility means the platform understands the application-layer content of OT communications - not just 'TCP port 502' but 'Modbus function code 16: write multiple registers to address 40001.' This is the difference between seeing network traffic and understanding process control commands.">write multiple registers to PLC address 40001</span>." IT tools can't parse SRTP or EGD - that's not a criticism, it's a design reality. Dragos complements your SIEM; it doesn't replace it.</div>
+    <div class="response">Your SIEM sees IP addresses and ports. Dragos sees "write multiple registers to PLC address 40001." IT tools can't parse SRTP or EGD - that's not a criticism, it's a design reality. Dragos complements your SIEM; it doesn't replace it.</div>
   </div>
   <div class="obj-card">
     <h4>"How long does the ATO process take?"</h4>
-    <div class="response">Dragos Platform 2.x has a published <span class="tip" data-tip="DISA STIG (Security Technical Implementation Guide) is the DoD standard for system hardening. Having a published STIG means the security controls are pre-documented - the ISSO doesn't have to assess them from scratch, saving 3-6 months of ATO timeline.">DISA STIG</span>. That means your ISSO has a pre-built assessment baseline. For a PoC, we request an <span class="tip" data-tip="Interim Authority to Test (IATT): a time-limited authorization (typically 90-180 days) that allows a system to operate on a federal network for evaluation purposes before a full ATO is granted. The ISSO submits the IATT package through eMASS. Requires a subset of RMF controls - not the full ATO artifact set. Common path for PoC deployments at DoD sites.">IATT</span> (Interim Authority to Test), which typically clears in 2-3 weeks with a published STIG. I've navigated this process in my role as a site lead managing ATO compliance.</div>
+    <div class="response">Dragos Platform 2.x has a published DISA STIG. That means your ISSO has a pre-built assessment baseline, not a blank spreadsheet. For a PoC, we request an IATT (Interim Authority to Test), which typically clears in 2-3 weeks when you have a published STIG to reference. <em>From my own experience managing ATO compliance at my site: the STIG is the single biggest accelerator. Without one, you're writing custom control implementations from scratch. With one, your ISSO can import the benchmark results directly into eMASS.</em></div>
   </div>
   <div class="obj-card">
     <h4>"Why not Claroty or Nozomi?"</h4>
-    <div class="response">Two differentiators: <strong>Threat intelligence</strong> - Dragos has the largest dedicated OT intel team tracking 20+ groups. Claroty and Nozomi buy their intel feeds. <strong>Federal commitment</strong> - Dragos launched a dedicated Public Sector subsidiary (Oct 2024), has a DISA STIG, and NSA/CISA are trusted advisors in Neighborhood Keeper.</div>
+    <div class="response">Three differentiators worth knowing:
+    <br><br><strong>1. Threat intelligence is built in-house, not bought.</strong> Dragos tracks 20+ named OT threat groups with their own analysts. Claroty and Nozomi license third-party feeds. Concrete example: Dragos discovered PIPEDREAM/INCONTROLLER (the first cross-industry ICS attack framework) before it was deployed. That came from Dragos intel, not a feed.
+    <br><br><strong>2. Federal-specific commitment.</strong> Dragos launched a dedicated Public Sector subsidiary (Oct 2024), has a published DISA STIG, and NSA/CISA participate as trusted advisors in Neighborhood Keeper. Neither Claroty nor Nozomi has a government collective defense program at that level.
+    <br><br><strong>3. Neighborhood Keeper has no competitor equivalent.</strong> It is an opt-in, anonymized threat telemetry sharing network across Dragos customers. CISA and NSA can push threat indicators to all participants simultaneously. No other OT vendor offers collective defense at this scale.</div>
   </div>
   <div class="obj-card">
     <h4>"What about supply chain compliance?"</h4>
-    <div class="response">All Dragos hardware is built on <span class="tip" data-tip="Dell PowerEdge and HPE ProLiant server platforms are both TAA (Trade Agreements Act) compliant and manufactured in approved countries. Both vendors provide documented supply chain provenance and Section 889 compliance certifications for federal procurement.">Dell/HPE server platforms</span> with documented provenance. We're <span class="tip" data-tip="Section 889 of the FY2019 NDAA prohibits federal agencies from procuring or using telecommunications equipment from five specific entities: Huawei, ZTE, Hytera, Hikvision, and Dahua. Part A prohibits direct purchase; Part B (effective Aug 2020) prohibits contracting with any entity that uses covered equipment anywhere in their organization.">Section 889</span> compliant across the entire bill of materials, including Gigamon TAPs and Cisco switches. I can provide a supply chain compliance letter for your contracting officer when we get to the procurement phase.</div>
+    <div class="response">All Dragos hardware is built on Dell/HPE server platforms with documented provenance. We're Section 889 compliant across the entire bill of materials, including Gigamon TAPs and Cisco switches. I can provide a supply chain compliance letter for your contracting officer when we get to the procurement phase.</div>
   </div>
   <div class="obj-card">
     <h4>"How does this fit our existing authorization boundary?"</h4>
-    <div class="response">We recommend the Dragos Platform be categorized as a separate <span class="tip" data-tip="FIPS 199 (Federal Information Processing Standard 199) defines system impact levels. A separate authorization boundary means the Dragos system gets its own ATO package, not added to an existing system's ATO. This isolates the authorization scope and avoids triggering re-authorization of existing OT systems.">authorization boundary</span> at <span class="tip" data-tip="Moderate Confidentiality (CUI data, no classified), Moderate Integrity (monitoring data, not control commands), High Availability (continuous monitoring required for safety-critical infrastructure). The HIGH availability drives the overall system to a HIGH control baseline per NIST 800-53.">Moderate-Moderate-High</span> under FIPS 199. The passive-only architecture means we don't affect your existing OT system's authorization boundary. I'll provide the <span class="tip" data-tip="System Security Plan contribution sections from the SA: architecture narrative, network topology, data flows, ports/protocols/services, encryption specs, access controls. These feed directly into the SSP that your ISSO maintains in eMASS.">SSP contribution sections</span> and <span class="tip" data-tip="Security Impact Analysis per NIST SP 800-128: evaluates whether adding the Dragos system introduces new risks. Because sensors are passive (receive-only, no transmit path to OT), the SIA scope is significantly reduced. SA provides SIA artifacts proactively.">SIA documentation</span> proactively so your ISSO can start the eMASS package early.</div>
+    <div class="response">We recommend the Dragos Platform be categorized as a separate authorization boundary at Moderate-Moderate-High under FIPS 199. The passive-only architecture means we don't affect your existing OT system's authorization boundary. I'll provide the SSP contribution sections and SIA documentation proactively so your ISSO can start the eMASS package early.</div>
   </div>
 </div>
 
 </div>
 
-<div style="margin-top: 40px; padding: 12px 48px; font-size: 11px; color: var(--gray-500); text-align: center; border-top: 1px solid var(--gray-200);">
-  EXERCISE - Not a real engagement · Demo Agenda v1.0 · DRG-FED-2026-0847
+<div class="doc-footer">
+  <span>PORTFOLIO EXERCISE</span>
+  <span>Demo Agenda - DRG-FED-2026-0847</span>
 </div>
 
 <script src="nav.js"></script>
