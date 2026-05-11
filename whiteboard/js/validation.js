@@ -1,4 +1,4 @@
-import { routeLink, VALID_PORTS } from './routing.js';
+import { routeLink, VALID_PORTS } from './routing.js?v=engine-22';
 import { intersects, rectOf, segmentHitsRect } from './validation/geometry.js';
 
 const NODE_PADDING = 8;
@@ -20,6 +20,7 @@ export function validateModel({ layout, links, steps }) {
   validateEnclaveHeaderClearance(layout, errors);
   validateStepBoxCollisions(steps, layout, errors);
   validateRouteCollisions(steps, layout, links, nodesById, errors);
+  validateRouteOverlaps(steps, layout, links, nodesById, errors);
 
   if (errors.length) {
     throw new Error(`Whiteboard model failed validation:\n- ${errors.join('\n- ')}`);
@@ -101,4 +102,50 @@ function validateRouteCollisions(steps, layout, links, nodesById, errors) {
         });
       });
   });
+}
+
+function validateRouteOverlaps(steps, layout, links, nodesById, errors) {
+  steps.forEach(step => {
+    const visibleRoutes = links
+      .filter(link => step.links.includes(link.group))
+      .map(link => ({ link, points: routeLink(link, nodesById, layout) }));
+    for (let i = 0; i < visibleRoutes.length; i += 1) {
+      for (let j = i + 1; j < visibleRoutes.length; j += 1) {
+        if (shareEndpoint(visibleRoutes[i].link, visibleRoutes[j].link)) continue;
+        if (routesShareSegment(visibleRoutes[i].points, visibleRoutes[j].points)) {
+          errors.push(`Step "${step.label}" routes ${visibleRoutes[i].link.id} and ${visibleRoutes[j].link.id} overlap; reserve separate lanes`);
+        }
+      }
+    }
+  });
+}
+
+function shareEndpoint(a, b) {
+  return a.from === b.from || a.from === b.to || a.to === b.from || a.to === b.to;
+}
+
+function routesShareSegment(a, b) {
+  return segments(a).some(first => segments(b).some(second => sameAxisOverlap(first, second)));
+}
+
+function segments(points) {
+  return points.slice(1).map((point, index) => ({ a: points[index], b: point }));
+}
+
+function sameAxisOverlap(first, second) {
+  if (first.a.y === first.b.y && second.a.y === second.b.y && first.a.y === second.a.y) {
+    return rangeOverlap(first.a.x, first.b.x, second.a.x, second.b.x) > 18;
+  }
+  if (first.a.x === first.b.x && second.a.x === second.b.x && first.a.x === second.a.x) {
+    return rangeOverlap(first.a.y, first.b.y, second.a.y, second.b.y) > 18;
+  }
+  return false;
+}
+
+function rangeOverlap(a1, a2, b1, b2) {
+  const minA = Math.min(a1, a2);
+  const maxA = Math.max(a1, a2);
+  const minB = Math.min(b1, b2);
+  const maxB = Math.max(b1, b2);
+  return Math.max(0, Math.min(maxA, maxB) - Math.max(minA, minB));
 }

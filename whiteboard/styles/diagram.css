@@ -1,5 +1,5 @@
-.wb-stage{flex:1;min-height:0;padding:4px 8px;background:#edf2f6;display:flex;align-items:flex-start;justify-content:center;overflow:auto}
-.diagram-frame{--board-scale:1;--board-width:1320px;--board-height:720px;width:calc(var(--board-width) * var(--board-scale));height:calc(var(--board-height) * var(--board-scale));flex:0 0 auto}
+.wb-stage{flex:1;min-height:0;padding:4px 8px;background:#edf2f6;display:flex;align-items:flex-start;justify-content:center;overflow:hidden}
+.diagram-frame{--board-scale:1;--board-width:1320px;--board-height:720px;width:calc(var(--board-width) * var(--board-scale));height:calc(var(--board-height) * var(--board-scale));flex:0 0 auto;overflow:hidden}
 .diagram{position:relative;width:var(--board-width);height:var(--board-height);min-width:var(--board-width);min-height:var(--board-height);background:#fff;border:1px solid #cbd8e5;border-radius:10px;box-shadow:0 10px 24px rgba(20,42,70,.08);overflow:hidden;transform:scale(var(--board-scale));transform-origin:top left}
 .flow-layer,.enclave-layer,.node-layer,.flow-label-layer,.annotation-layer{position:absolute;left:0;top:0;right:auto;bottom:auto;width:var(--board-width)!important;height:var(--board-height)!important;max-width:none;max-height:none}
 .flow-layer{z-index:2;pointer-events:none}
@@ -23,8 +23,9 @@
 .enclave-title{position:absolute;left:14px;top:10px;font-size:13px;font-weight:800;color:#17314f}
 .enclave-sub{position:absolute;left:14px;top:29px;font-size:10px;font-weight:600;color:#657589}
 .enclave.danger .enclave-title{color:#ad2d29}
-.node{position:absolute;border:1.2px solid #b8c7d6;border-radius:8px;background:#fff;box-shadow:0 3px 9px rgba(20,42,70,.13);display:grid;grid-template-columns:24px 1fr;align-items:center;gap:7px;padding:0 10px;text-align:left;opacity:0;transition:opacity .32s ease,transform .32s ease;transform:translateY(5px)}
+.node{position:absolute;border:1.2px solid #b8c7d6;border-radius:8px;background:#fff;box-shadow:0 3px 9px rgba(20,42,70,.13);display:grid;grid-template-columns:24px 1fr;align-items:center;gap:7px;padding:0 10px;text-align:left;opacity:0;transition:opacity .32s ease,transform .32s ease,box-shadow .18s ease;transform:translateY(5px);cursor:pointer}
 .node.visible{opacity:1;transform:translateY(0)}
+.node.triggered{box-shadow:0 0 0 3px rgba(47,111,160,.18),0 6px 14px rgba(20,42,70,.18)}
 .node .label{font-size:10.5px;font-weight:800;color:#15243a;line-height:1.08}
 .node .sub{margin-top:4px;font-size:9px;font-weight:600;color:#647488}
 .node.switch{background:#123554;border-color:#315f8e;color:#fff}
@@ -64,7 +65,20 @@
 .flow.protocol{stroke:#2e6da4;stroke-width:2.2;stroke-dasharray:7 7}
 .flow.orange{stroke:#c96a16;stroke-width:2.6;stroke-dasharray:8 6}
 .flow.blue{stroke:#1f65a6;stroke-width:2.6;stroke-dasharray:8 6}
-.flow-label{position:absolute;font-size:10px;font-weight:800;color:#245f95;background:#fff;padding:2px 6px;border-radius:4px;border:1px solid #d6e3ef;opacity:0;transition:opacity .32s ease;white-space:nowrap}
+.direction-cue{fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .32s ease}
+.direction-cue.visible{opacity:1}
+.direction-cue.orange{stroke:#c96a16}
+.direction-cue.blue{stroke:#1f65a6}
+.packet{opacity:0;transition:opacity .12s ease;stroke:#fff;stroke-width:1.5;filter:drop-shadow(0 1px 2px rgba(20,42,70,.28))}
+.packet.active{opacity:.95}
+.packet-enterprise{fill:#586a7f}
+.packet-service{fill:#8ba0b6}
+.packet-backbone{fill:#123d68}
+.packet-protocol{fill:#2e6da4}
+.packet-span{fill:#c96a16}
+.packet-detection{fill:#1f65a6}
+.packet-handoff{fill:#2d8a56}
+.flow-label{position:absolute;box-sizing:border-box;font-size:10px;line-height:1.15;font-weight:800;color:#245f95;background:#fff;padding:3px 7px;border-radius:4px;border:1px solid #d6e3ef;opacity:0;transition:opacity .32s ease;white-space:nowrap}
 .flow-label.visible{opacity:1}
 .annotation{position:absolute;border:2px solid #2d8a56;border-radius:10px;background:#f0fff5;box-shadow:0 4px 12px rgba(20,42,70,.12);padding:12px 16px;opacity:0;transition:opacity .32s ease}
 .annotation.visible{opacity:1}

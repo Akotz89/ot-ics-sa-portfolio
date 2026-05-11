@@ -3,7 +3,7 @@
   .step-controls{width:100%;justify-content:flex-end}
   .wb-header h1{font-size:16px}
   .narration{min-height:92px}
-  .wb-stage{overflow:auto}
+  .wb-stage{overflow:hidden}
 }
 
 @media print{

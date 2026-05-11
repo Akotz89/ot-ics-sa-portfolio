@@ -1,4 +1,6 @@
-const AUDIT_PADDING = 4;
+import { ENTITY_RULES } from '../layout/entityRules.js?v=engine-22';
+
+const AUDIT_PADDING = 2;
 
 export function createRenderAudit({ steps, onFail = showAuditFailure } = {}) {
   function auditCurrentStep() {
@@ -8,7 +10,8 @@ export function createRenderAudit({ steps, onFail = showAuditFailure } = {}) {
       ...findHeaderIntrusions(),
       ...findTextClipping(),
       ...findVisibleWireWithoutEndpoints(),
-      ...findFlowLabelOverlaps(visibleBoxes)
+      ...findFlowLabelOverlaps(visibleBoxes),
+      ...findLabelAttachmentProblems()
     ];
 
     if (errors.length) onFail(errors);
@@ -35,11 +38,53 @@ export function createRenderAudit({ steps, onFail = showAuditFailure } = {}) {
   return { auditCurrentStep, auditAllSteps };
 }
 
+function findLabelAttachmentProblems() {
+  return [...document.querySelectorAll('.flow-label.visible')]
+    .filter(label => {
+      const link = label.dataset.linkSource;
+      const rect = normalizedRect(label);
+      const scale = boardScale();
+      const center = { x: (rect.x + rect.w / 2) / scale, y: (rect.y + rect.h / 2) / scale };
+      const paths = [...document.querySelectorAll(`.flow.visible[data-link-source="${link}"]`)];
+      const nearest = Math.min(...paths.map(path => distanceToPath(center, path)).filter(Number.isFinite));
+      const allowed = ENTITY_RULES.labelDistance;
+      return nearest > allowed;
+    })
+    .map(label => `${nameOf(label)} is too far from its route`);
+}
+
+function distanceToPath(point, path) {
+  const d = path.getAttribute('d') || '';
+  const points = d.match(/[ML](-?\d+(?:\.\d+)?) (-?\d+(?:\.\d+)?)/g)?.map(token => {
+    const [, x, y] = token.match(/[ML](-?\d+(?:\.\d+)?) (-?\d+(?:\.\d+)?)/);
+    return { x: Number(x), y: Number(y) };
+  }) || [];
+  if (points.length < 2) return Infinity;
+  return Math.min(...points.slice(1).map((end, index) => distanceToSegment(point, points[index], end)));
+}
+
+function distanceToSegment(point, a, b) {
+  if (a.x === b.x) {
+    const minY = Math.min(a.y, b.y);
+    const maxY = Math.max(a.y, b.y);
+    const y = Math.min(Math.max(point.y, minY), maxY);
+    return Math.hypot(point.x - a.x, point.y - y);
+  }
+  if (a.y === b.y) {
+    const minX = Math.min(a.x, b.x);
+    const maxX = Math.max(a.x, b.x);
+    const x = Math.min(Math.max(point.x, minX), maxX);
+    return Math.hypot(point.x - x, point.y - a.y);
+  }
+  return Infinity;
+}
+
 function findHeaderIntrusions() {
   const errors = [];
   const globalHeaderBlockers = [...document.querySelectorAll('.flow-label.visible')];
   document.querySelectorAll('.enclave.visible').forEach(enclave => {
     const header = normalizedHeaderRect(enclave);
+    const labelHeader = normalizedHeaderRect(enclave, 50);
     const group = enclave.dataset.group;
     document.querySelectorAll(`.node.visible[data-group="${group}"],.annotation.visible[data-group="${group}"]`).forEach(node => {
       if (overlaps(header, normalizedRect(node))) {
@@ -47,7 +92,7 @@ function findHeaderIntrusions() {
       }
     });
     globalHeaderBlockers.forEach(label => {
-      if (overlaps(header, normalizedRect(label))) {
+      if (overlaps(labelHeader, normalizedRect(label))) {
         errors.push(`${nameOf(label)} intrudes into ${group} header band`);
       }
     });
@@ -55,11 +100,11 @@ function findHeaderIntrusions() {
   return errors;
 }
 
-function normalizedHeaderRect(enclave) {
+function normalizedHeaderRect(enclave, headerHeight = 56) {
   const rect = normalizedRect(enclave);
   const designHeight = parseFloat(enclave.style.height) || rect.h;
   const scale = rect.h / designHeight;
-  return { x: rect.x, y: rect.y, w: rect.w, h: 56 * scale };
+  return { x: rect.x, y: rect.y, w: rect.w, h: headerHeight * scale };
 }
 
 function collectVisibleBoxes() {
@@ -77,6 +122,13 @@ function normalizedRect(element) {
     w: rect.width,
     h: rect.height
   };
+}
+
+function boardScale() {
+  const diagram = document.getElementById('diagram');
+  const rendered = diagram.getBoundingClientRect();
+  const designWidth = parseFloat(getComputedStyle(diagram).width) || rendered.width || 1;
+  return rendered.width / designWidth || 1;
 }
 
 function findBoxOverlaps(items) {

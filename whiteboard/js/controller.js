@@ -23,19 +23,20 @@ export function createController(steps) {
   }
 
   function reset() {
-    currentStep = -1;
-    setVisibleGroups(new Set(), new Set());
-    narration.innerHTML = 'Press <strong>Next</strong> or <strong>spacebar</strong> to begin the customer whiteboard walkthrough.';
-    updateControls();
-    notify();
+    currentStep = 0;
+    apply();
   }
 
-  function apply() {
+  function refresh(options = {}) {
+    if (currentStep >= 0) apply(options);
+  }
+
+  function apply(options = {}) {
     const step = steps[currentStep];
     setVisibleGroups(new Set(step.groups), new Set(step.links), new Set(step.focus || []));
     narration.innerHTML = step.narration;
     updateControls();
-    notify();
+    if (!options.silent) notify();
   }
 
   function goTo(index) {
@@ -53,6 +54,7 @@ export function createController(steps) {
   }
 
   function setVisibleGroups(nodeGroups, linkGroups, focusGroups = new Set()) {
+    document.querySelectorAll('.packet.active').forEach(packet => packet.classList.remove('active'));
     document.getElementById('diagram')?.classList.toggle('has-focus', focusGroups.size > 0);
     document.querySelectorAll('[data-group]').forEach(element => {
       const isVisible = nodeGroups.has(element.dataset.group);
@@ -69,7 +71,7 @@ export function createController(steps) {
   }
 
   function updateControls() {
-    indicator.textContent = currentStep < 0 ? 'Ready' : `${steps[currentStep].label} ${currentStep + 1}/${steps.length}`;
+    indicator.textContent = `${steps[currentStep].label} ${currentStep + 1}/${steps.length}`;
     prevButton.disabled = currentStep <= 0;
     nextButton.disabled = currentStep >= steps.length - 1;
   }
@@ -92,5 +94,9 @@ export function createController(steps) {
     reset();
   }
 
-  return { bind, next, previous, reset, goTo, onChange };
+  function current() {
+    return currentStep;
+  }
+
+  return { bind, next, previous, reset, goTo, refresh, current, onChange };
 }
