@@ -15,20 +15,20 @@ export function RouteOverlay({ editor, layout, step, pulseLinks }: RouteOverlayP
   if (!editor) return null
 
   const camera = editor.getCamera()
-  const focused = new Set(step.focus ?? [])
+  const focused = new Set(step.active ?? step.focus ?? [])
   const hasFocus = focused.size > 0
 
   return (
     <svg className="ot-route-overlay" aria-hidden="true">
       <defs>
-        <marker id="ot-route-arrow-dark" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
-          <path d="M 1 1 L 11 6 L 1 11 z" />
+        <marker id="ot-route-arrow-dark" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="6.5" markerHeight="6.5" orient="auto">
+          <path d="M 2 2 L 10 6 L 2 10 z" />
         </marker>
-        <marker id="ot-route-arrow-blue" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
-          <path d="M 1 1 L 11 6 L 1 11 z" />
+        <marker id="ot-route-arrow-blue" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="6.5" markerHeight="6.5" orient="auto">
+          <path d="M 2 2 L 10 6 L 2 10 z" />
         </marker>
-        <marker id="ot-route-arrow-orange" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
-          <path d="M 1 1 L 11 6 L 1 11 z" />
+        <marker id="ot-route-arrow-orange" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="6.5" markerHeight="6.5" orient="auto">
+          <path d="M 2 2 L 10 6 L 2 10 z" />
         </marker>
       </defs>
       {layout.routes.map((route) => {

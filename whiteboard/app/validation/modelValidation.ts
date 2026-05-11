@@ -9,6 +9,10 @@ export function validateStaticModel() {
   const entityIds = new Set(entities.map((entity) => entity.id))
   const zoneIds = new Set(zones.map((zone) => zone.id))
   const linkIds = new Set(links.map((link) => link.id))
+  const routeClasses = new Set(['enterprise', 'service', 'trunk', 'protocol-bus', 'span-feed', 'metadata-handoff'])
+  const directionCues = new Set(['none', 'forward', 'reverse', 'both', 'passive'])
+  const ports = new Set(['left', 'right', 'top', 'bottom', 'uplink', 'downlink', 'service', 'span', 'metadata', 'fieldbus'])
+  const labelPolicies = new Set(['none', 'first-visible', 'always'])
 
   for (const entity of entities) {
     if (!zoneIds.has(entity.zone)) errors.push(`${entity.id} references missing zone ${entity.zone}`)
@@ -18,6 +22,12 @@ export function validateStaticModel() {
   for (const link of links) {
     if (!entityIds.has(link.source)) errors.push(`${link.id} missing source ${link.source}`)
     if (!entityIds.has(link.target)) errors.push(`${link.id} missing target ${link.target}`)
+    if (!link.routeClass || !routeClasses.has(link.routeClass)) errors.push(`${link.id} has no valid routeClass`)
+    if (!link.directionCue || !directionCues.has(link.directionCue)) errors.push(`${link.id} has no valid directionCue`)
+    if (!link.sourcePort || !ports.has(link.sourcePort)) errors.push(`${link.id} has no valid sourcePort`)
+    if (!link.targetPort || !ports.has(link.targetPort)) errors.push(`${link.id} has no valid targetPort`)
+    if (!link.labelPolicy || !labelPolicies.has(link.labelPolicy)) errors.push(`${link.id} has no valid labelPolicy`)
+    if (!link.customerMeaning?.trim()) errors.push(`${link.id} needs customerMeaning`)
   }
 
   for (const flow of flows) {
@@ -28,6 +38,9 @@ export function validateStaticModel() {
   }
 
   for (const step of steps) {
+    for (const zoneId of step.visibleZones) {
+      if (!zoneIds.has(zoneId)) errors.push(`${step.id} references missing zone ${zoneId}`)
+    }
     for (const entityId of step.visibleEntities) {
       if (!entityIds.has(entityId)) errors.push(`${step.id} references missing entity ${entityId}`)
     }
@@ -38,6 +51,9 @@ export function validateStaticModel() {
       } else if (!step.visibleEntities.includes(link.source) || !step.visibleEntities.includes(link.target)) {
         errors.push(`${step.id} shows ${linkId} before both endpoint entities are visible`)
       }
+    }
+    for (const itemId of [...(step.active ?? []), ...(step.introduced ?? []), ...(step.dimmed ?? []), ...(step.hidden ?? []), ...(step.focus ?? [])]) {
+      if (!entityIds.has(itemId) && !zoneIds.has(itemId) && !linkIds.has(itemId)) errors.push(`${step.id} references missing focus item ${itemId}`)
     }
   }
 
