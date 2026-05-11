@@ -16,7 +16,7 @@
   ];
 
   const tools = [
-    { href: 'whiteboard/index.html', label: 'Whiteboard', badge: 'NEW' },
+    { href: 'whiteboard/index.html', label: 'Whiteboard' },
   ];
 
   // Determine which page is active
