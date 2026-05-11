@@ -627,86 +627,110 @@
   <h3>Dragos Platform Deployment: Purdue Model Reference</h3>
   <p>The following shows how Dragos components map to the Purdue Model zones in a typical federal OT network:</p>
 
-  <div style="margin: 10pt 0 16pt; page-break-inside: avoid;">
-    <svg viewBox="0 0 1000 680" xmlns="http://www.w3.org/2000/svg" style="width:100%; border: 1px solid #cbd5e0; border-radius: 4pt; background: #fff;">
-      <defs>
-        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#049995"/></marker>
-        <filter id="sh"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.08"/></filter>
-      </defs>
-      <!-- Title -->
-      <text x="500" y="30" font-family="Inter,sans-serif" font-size="14" font-weight="700" fill="#0a1212" text-anchor="middle">Federal OT Network: Dragos Sensor Deployment</text>
-      <text x="500" y="46" font-family="Inter,sans-serif" font-size="9" fill="#718096" text-anchor="middle">Based on ISA-99 / IEC 62443 Purdue Reference Architecture</text>
-      <!-- L5: Enterprise -->
-      <rect x="40" y="60" width="920" height="65" rx="5" fill="#edf2f7" stroke="#cbd5e0" stroke-width="1.5" filter="url(#sh)"/>
-      <text x="56" y="82" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#718096" letter-spacing="1">LEVEL 5 · ENTERPRISE</text>
-      <rect x="76" y="90" width="88" height="24" rx="3" fill="#fff" stroke="#cbd5e0"/><text x="120" y="106" font-family="Inter,sans-serif" font-size="8" fill="#4a5568" text-anchor="middle">Email / DNS</text>
-      <rect x="174" y="90" width="100" height="24" rx="3" fill="#fff" stroke="#cbd5e0"/><text x="224" y="106" font-family="Inter,sans-serif" font-size="8" fill="#4a5568" text-anchor="middle">Active Directory</text>
-      <rect x="284" y="90" width="88" height="24" rx="3" fill="#fff" stroke="#cbd5e0"/><text x="328" y="106" font-family="Inter,sans-serif" font-size="8" fill="#4a5568" text-anchor="middle">SIEM / Splunk</text>
-      <rect x="700" y="78" width="240" height="34" rx="5" fill="#0a1212" stroke="#01605e" stroke-width="2" filter="url(#sh)"/>
-      <text x="820" y="100" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">⬢ Dragos CentralStore</text>
-      <!-- L4: Business -->
-      <rect x="40" y="135" width="920" height="55" rx="5" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5"/>
-      <text x="56" y="157" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#718096" letter-spacing="1">LEVEL 4 · BUSINESS</text>
-      <rect x="76" y="166" width="88" height="20" rx="3" fill="#fff" stroke="#cbd5e0"/><text x="120" y="180" font-family="Inter,sans-serif" font-size="8" fill="#4a5568" text-anchor="middle">ERP</text>
-      <!-- DMZ -->
-      <rect x="40" y="200" width="920" height="44" rx="5" fill="#fff5f5" stroke="#e53e3e" stroke-width="2" stroke-dasharray="8,4"/>
-      <text x="56" y="222" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#e53e3e" letter-spacing="1">LEVEL 3.5 · INDUSTRIAL DMZ</text>
-      <rect x="340" y="210" width="72" height="24" rx="3" fill="#fff" stroke="#e53e3e"/><text x="376" y="226" font-family="Inter,sans-serif" font-size="8" fill="#c53030" text-anchor="middle">Firewall</text>
-      <rect x="422" y="210" width="110" height="24" rx="3" fill="#fff" stroke="#e53e3e"/><text x="477" y="226" font-family="Inter,sans-serif" font-size="8" fill="#c53030" text-anchor="middle">Jump Server / VPN</text>
-      <rect x="542" y="210" width="80" height="24" rx="3" fill="#fff" stroke="#e53e3e"/><text x="582" y="226" font-family="Inter,sans-serif" font-size="8" fill="#c53030" text-anchor="middle">Data Diode</text>
-      <!-- L3: Site Ops -->
-      <rect x="40" y="254" width="920" height="80" rx="5" fill="#e6f7f7" stroke="#7dd3d0" stroke-width="1.5" filter="url(#sh)"/>
-      <text x="56" y="276" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#01605e" letter-spacing="1">LEVEL 3 · SITE OPERATIONS</text>
-      <rect x="76" y="288" width="96" height="24" rx="3" fill="#fff" stroke="#7dd3d0"/><text x="124" y="304" font-family="Inter,sans-serif" font-size="8" fill="#01605e" text-anchor="middle">Historian</text>
-      <rect x="182" y="288" width="120" height="24" rx="3" fill="#fff" stroke="#7dd3d0"/><text x="242" y="304" font-family="Inter,sans-serif" font-size="8" fill="#01605e" text-anchor="middle">Eng. Workstation</text>
-      <rect x="312" y="288" width="88" height="24" rx="3" fill="#fff" stroke="#7dd3d0"/><text x="356" y="304" font-family="Inter,sans-serif" font-size="8" fill="#01605e" text-anchor="middle">Patch Server</text>
-      <!-- Sensor L3 -->
-      <rect x="480" y="284" width="130" height="32" rx="5" fill="#f6ad55" stroke="#dd6b20" stroke-width="2" filter="url(#sh)"/>
-      <text x="545" y="305" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">◉ Sensor (SPAN)</text>
-      <!-- SiteStore -->
-      <rect x="700" y="270" width="240" height="48" rx="5" fill="#01605e" stroke="#049995" stroke-width="2" filter="url(#sh)"/>
-      <text x="820" y="291" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">⬢ Dragos SiteStore</text>
-      <text x="820" y="307" font-family="Inter,sans-serif" font-size="7.5" fill="#a8e8e5" text-anchor="middle">Analysis · Detection · Asset Inventory</text>
-      <line x1="610" y1="300" x2="698" y2="294" stroke="#049995" stroke-width="2" marker-end="url(#arr)"/>
-      <!-- L2: Supervisory -->
-      <rect x="40" y="344" width="920" height="74" rx="5" fill="#f0fff4" stroke="#9ae6b4" stroke-width="1.5"/>
-      <text x="56" y="366" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#276749" letter-spacing="1">LEVEL 2 · SUPERVISORY CONTROL</text>
-      <rect x="76" y="378" width="96" height="24" rx="3" fill="#fff" stroke="#9ae6b4"/><text x="124" y="394" font-family="Inter,sans-serif" font-size="8" fill="#276749" text-anchor="middle">SCADA Server</text>
-      <rect x="182" y="378" width="70" height="24" rx="3" fill="#fff" stroke="#9ae6b4"/><text x="217" y="394" font-family="Inter,sans-serif" font-size="8" fill="#276749" text-anchor="middle">HMI #1</text>
-      <rect x="262" y="378" width="70" height="24" rx="3" fill="#fff" stroke="#9ae6b4"/><text x="297" y="394" font-family="Inter,sans-serif" font-size="8" fill="#276749" text-anchor="middle">HMI #2</text>
-      <!-- Sensor L2 -->
-      <rect x="480" y="374" width="130" height="32" rx="5" fill="#f6ad55" stroke="#dd6b20" stroke-width="2" filter="url(#sh)"/>
-      <text x="545" y="395" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">◉ Sensor (TAP)</text>
-      <line x1="610" y1="390" x2="820" y2="320" stroke="#049995" stroke-width="2" marker-end="url(#arr)" stroke-dasharray="6,3"/>
-      <!-- L1: Basic Control -->
-      <rect x="40" y="428" width="920" height="74" rx="5" fill="#fffff0" stroke="#fefcbf" stroke-width="1.5"/>
-      <text x="56" y="450" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#975a16" letter-spacing="1">LEVEL 1 · BASIC CONTROL</text>
-      <rect x="76" y="462" width="70" height="24" rx="3" fill="#fff" stroke="#fefcbf"/><text x="111" y="478" font-family="Inter,sans-serif" font-size="8" fill="#975a16" text-anchor="middle">PLC #1</text>
-      <rect x="156" y="462" width="70" height="24" rx="3" fill="#fff" stroke="#fefcbf"/><text x="191" y="478" font-family="Inter,sans-serif" font-size="8" fill="#975a16" text-anchor="middle">PLC #2</text>
-      <rect x="236" y="462" width="60" height="24" rx="3" fill="#fff" stroke="#fefcbf"/><text x="266" y="478" font-family="Inter,sans-serif" font-size="8" fill="#975a16" text-anchor="middle">RTU</text>
-      <rect x="306" y="462" width="100" height="24" rx="3" fill="#fff" stroke="#fefcbf"/><text x="356" y="478" font-family="Inter,sans-serif" font-size="8" fill="#975a16" text-anchor="middle">DCS Controller</text>
-      <rect x="416" y="462" width="60" height="24" rx="3" fill="#fff" stroke="#fefcbf"/><text x="446" y="478" font-family="Inter,sans-serif" font-size="8" fill="#975a16" text-anchor="middle">SIS</text>
-      <!-- L0: Physical -->
-      <rect x="40" y="512" width="920" height="48" rx="5" fill="#f7fafc" stroke="#e2e8f0" stroke-width="1.5"/>
-      <text x="56" y="534" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#718096" letter-spacing="1">LEVEL 0 · PHYSICAL PROCESS</text>
-      <text x="76" y="550" font-family="Inter,sans-serif" font-size="8" fill="#a0aec0">Valves · Pumps · Motors · Actuators · Sensors · Transmitters</text>
-      <!-- Data flow: SiteStore → CentralStore -->
-      <line x1="820" y1="270" x2="820" y2="114" stroke="#049995" stroke-width="2.5" marker-end="url(#arr)" stroke-dasharray="8,4"/>
-      <text x="808" y="200" font-family="Inter,sans-serif" font-size="7" fill="#049995" transform="rotate(-90,808,200)">Encrypted Metadata</text>
-      <!-- Syslog -->
-      <line x1="700" y1="92" x2="374" y2="102" stroke="#718096" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="4,3"/>
-      <text x="540" y="88" font-family="Inter,sans-serif" font-size="7" fill="#718096">Syslog Forwarding</text>
-      <!-- Legend -->
-      <rect x="40" y="575" width="920" height="42" rx="4" fill="#f7fafc" stroke="#e2e8f0"/>
-      <rect x="56" y="588" width="14" height="14" rx="3" fill="#f6ad55" stroke="#dd6b20"/>
-      <text x="76" y="600" font-family="Inter,sans-serif" font-size="8" fill="#4a5568">Dragos Sensor (passive)</text>
-      <rect x="230" y="588" width="14" height="14" rx="3" fill="#0a1212" stroke="#01605e"/>
-      <text x="250" y="600" font-family="Inter,sans-serif" font-size="8" fill="#4a5568">Dragos Platform Component</text>
-      <line x1="430" y1="595" x2="466" y2="595" stroke="#049995" stroke-width="2" stroke-dasharray="6,3"/>
-      <text x="472" y="600" font-family="Inter,sans-serif" font-size="8" fill="#4a5568">Metadata Flow</text>
-      <rect x="580" y="588" width="14" height="14" rx="3" fill="#fff5f5" stroke="#e53e3e" stroke-dasharray="4,2"/>
-      <text x="600" y="600" font-family="Inter,sans-serif" font-size="8" fill="#4a5568">DMZ Boundary</text>
-    </svg>
+  <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 4pt; padding: 16pt; margin: 10pt 0 16pt; page-break-inside: avoid;">
+    <div style="text-align: center; font-size: 12pt; font-weight: 700; color: var(--navy); margin-bottom: 2pt;">Federal OT Network: Dragos Sensor Deployment</div>
+    <div style="text-align: center; font-size: 7pt; color: var(--text-light); margin-bottom: 12pt; letter-spacing: 0.5px;">Based on ISA-99 / IEC 62443 Purdue Reference Architecture</div>
+
+    <!-- Level 5: Enterprise -->
+    <div style="background: #edf2f7; border: 1.5px solid #cbd5e0; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6pt;">
+      <div>
+        <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 4pt;">LEVEL 5 · ENTERPRISE</div>
+        <div style="display: flex; gap: 4pt; flex-wrap: wrap;">
+          <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;">Email / DNS</div>
+          <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;">Active Directory</div>
+          <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;">SIEM / Splunk</div>
+        </div>
+      </div>
+      <div style="background: #0a1212; border: 2px solid #01605e; border-radius: 5pt; padding: 6pt 14pt; text-align: center;">
+        <div style="font-size: 10pt; font-weight: 700; color: #fff;">⬢ Dragos CentralStore</div>
+        <div style="font-size: 7pt; color: #a8e8e5;">Enterprise Dashboard · Cross-Site Correlation</div>
+      </div>
+    </div>
+
+    <!-- Metadata flow indicator -->
+    <div style="display: flex; justify-content: flex-end; padding-right: 80pt;">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <div style="font-size: 6.5pt; color: #049995; margin-bottom: 1pt;">▲ Encrypted Metadata</div>
+        <div style="width: 0; height: 12pt; border-left: 2.5px dashed #049995;"></div>
+      </div>
+    </div>
+
+    <!-- Level 4: Business -->
+    <div style="background: #f7fafc; border: 1.5px solid #cbd5e0; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt;">
+      <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 4pt;">LEVEL 4 · BUSINESS</div>
+      <div style="display: flex; gap: 4pt;">
+        <div style="background: #fff; border: 1px solid #cbd5e0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #4a5568;">ERP</div>
+      </div>
+    </div>
+
+    <!-- DMZ -->
+    <div style="background: #fff5f5; border: 2px dashed #e53e3e; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt;">
+      <div style="font-size: 8pt; font-weight: 700; color: #e53e3e; letter-spacing: 1px; margin-bottom: 4pt;">LEVEL 3.5 · INDUSTRIAL DMZ</div>
+      <div style="display: flex; gap: 4pt; flex-wrap: wrap;">
+        <div style="background: #fff; border: 1px solid #e53e3e; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #c53030;">Firewall</div>
+        <div style="background: #fff; border: 1px solid #e53e3e; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #c53030;">Jump Server / VPN</div>
+        <div style="background: #fff; border: 1px solid #e53e3e; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #c53030;">Data Diode</div>
+      </div>
+    </div>
+
+    <!-- Level 3: Site Operations -->
+    <div style="background: #e6f7f7; border: 1.5px solid #7dd3d0; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6pt;">
+      <div>
+        <div style="font-size: 8pt; font-weight: 700; color: #01605e; letter-spacing: 1px; margin-bottom: 4pt;">LEVEL 3 · SITE OPERATIONS</div>
+        <div style="display: flex; gap: 4pt; flex-wrap: wrap; align-items: center;">
+          <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;">Historian</div>
+          <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;">Eng. Workstation</div>
+          <div style="background: #fff; border: 1px solid #7dd3d0; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #01605e;">Patch Server</div>
+          <div style="display: flex; align-items: center; margin-left: 4pt;"><div style="width: 10pt; border-top: 2px solid #dd6b20;"></div><div style="width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid #dd6b20;"></div></div>
+          <div style="background: #f6ad55; border: 2px solid #dd6b20; border-radius: 5pt; padding: 5pt 10pt; font-size: 9pt; font-weight: 700; color: #fff;">◉ Sensor (SPAN)</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 4pt;">
+        <div style="display: flex; align-items: center;"><div style="width: 12pt; border-top: 2px solid #049995;"></div><div style="width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid #049995;"></div></div>
+        <div style="background: #01605e; border: 2px solid #049995; border-radius: 5pt; padding: 8pt 14pt; text-align: center;">
+          <div style="font-size: 10pt; font-weight: 700; color: #fff;">⬢ Dragos SiteStore</div>
+          <div style="font-size: 7pt; color: #a8e8e5;">Analysis · Detection · Asset Inventory</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 2: Supervisory Control -->
+    <div style="background: #f0fff4; border: 1.5px solid #9ae6b4; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt;">
+      <div style="font-size: 8pt; font-weight: 700; color: #276749; letter-spacing: 1px; margin-bottom: 4pt;">LEVEL 2 · SUPERVISORY CONTROL</div>
+      <div style="display: flex; gap: 4pt; flex-wrap: wrap; align-items: center;">
+        <div style="background: #fff; border: 1px solid #9ae6b4; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #276749;">SCADA Server</div>
+        <div style="background: #fff; border: 1px solid #9ae6b4; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #276749;">HMI #1</div>
+        <div style="background: #fff; border: 1px solid #9ae6b4; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #276749;">HMI #2</div>
+        <div style="display: flex; align-items: center; margin-left: 4pt;"><div style="width: 10pt; border-top: 2px solid #dd6b20;"></div><div style="width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid #dd6b20;"></div></div>
+        <div style="background: #f6ad55; border: 2px solid #dd6b20; border-radius: 5pt; padding: 5pt 10pt; font-size: 9pt; font-weight: 700; color: #fff;">◉ Sensor (TAP)</div>
+      </div>
+    </div>
+
+    <!-- Level 1: Basic Control -->
+    <div style="background: #fffff0; border: 1.5px solid #fefcbf; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 4pt;">
+      <div style="font-size: 8pt; font-weight: 700; color: #975a16; letter-spacing: 1px; margin-bottom: 4pt;">LEVEL 1 · BASIC CONTROL</div>
+      <div style="display: flex; gap: 4pt; flex-wrap: wrap;">
+        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;">PLC #1</div>
+        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;">PLC #2</div>
+        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;">RTU</div>
+        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;">DCS Controller</div>
+        <div style="background: #fff; border: 1px solid #fefcbf; border-radius: 3pt; padding: 4pt 8pt; font-size: 8pt; color: #975a16;">SIS</div>
+      </div>
+    </div>
+
+    <!-- Level 0: Physical Process -->
+    <div style="background: #f7fafc; border: 1.5px solid #e2e8f0; border-radius: 5pt; padding: 8pt 10pt; margin-bottom: 10pt;">
+      <div style="font-size: 8pt; font-weight: 700; color: #718096; letter-spacing: 1px; margin-bottom: 2pt;">LEVEL 0 · PHYSICAL PROCESS</div>
+      <div style="font-size: 8pt; color: #a0aec0;">Valves · Pumps · Motors · Actuators · Sensors · Transmitters</div>
+    </div>
+
+    <!-- Legend -->
+    <div style="background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 4pt; padding: 6pt 10pt; display: flex; gap: 16pt; flex-wrap: wrap; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 4pt;"><div style="width: 14px; height: 14px; background: #f6ad55; border: 1px solid #dd6b20; border-radius: 3pt;"></div><span style="font-size: 8pt; color: #4a5568;">Dragos Sensor (passive)</span></div>
+      <div style="display: flex; align-items: center; gap: 4pt;"><div style="width: 14px; height: 14px; background: #0a1212; border: 1px solid #01605e; border-radius: 3pt;"></div><span style="font-size: 8pt; color: #4a5568;">Dragos Platform Component</span></div>
+      <div style="display: flex; align-items: center; gap: 4pt;"><div style="width: 20pt; border-top: 2px dashed #049995;"></div><span style="font-size: 8pt; color: #4a5568;">Metadata Flow</span></div>
+      <div style="display: flex; align-items: center; gap: 4pt;"><div style="width: 14px; height: 14px; background: #fff5f5; border: 1px dashed #e53e3e; border-radius: 3pt;"></div><span style="font-size: 8pt; color: #4a5568;">DMZ Boundary</span></div>
+    </div>
   </div>
   <div style="font-size: 8.5pt; color: var(--text-light); font-style: italic; text-align: center; margin-top: -10pt; margin-bottom: 14pt;">Figure 2: Customer whiteboard sketch. Passive sensors at L2 and L3 monitoring points, SiteStore at site operations, syslog forwarding to enterprise SIEM.</div>
 
