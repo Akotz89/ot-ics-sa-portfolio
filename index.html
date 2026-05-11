@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -767,7 +767,7 @@
     <tr><td><strong>OT Watch</strong></td><td>Managed detection service. Dragos analysts monitor customer environments 24/7</td><td>For customers without OT SOC capability (most federal agencies)</td></tr>
     <tr><td><strong>Neighborhood Keeper</strong></td><td>Community defense program for anonymized threat data sharing across participants. NSA/CISA are trusted advisors.</td><td>Unique federal value: collective defense for critical infrastructure sectors</td></tr>
     <tr><td><strong>Professional Services</strong></td><td>Architecture assessment, penetration testing, tabletop exercises, incident response retainer</td><td>Supports SANS Control 1 (ICS IR) and NIST CSF assessment requirements</td></tr>
-    <tr><td><strong>Dragos Public Sector LLC</strong></td><td>Subsidiary launched Oct 2024, dedicated to federal and SLTT customers. SAM registered, Carahsoft contract vehicles.</td><td>Procurement pathway: GSA Schedule, NASA SEWP, Carahsoft</td></tr>
+    <tr><td><strong>Dragos Public Sector LLC</strong></td><td>Subsidiary launched Oct 2024, dedicated to federal and SLTT customers. SAM registered, Carahsoft contract vehicles.</td><td>Procurement pathway: NASA SEWP V (active; SEWP VI pending bid protests), Carahsoft as channel partner</td></tr>
   </table>
 </div>
 
@@ -839,10 +839,12 @@
         • Configure SPAN/TAP access at identified monitoring points<br>
         • Deploy SiteStore (VM or appliance) per STIG requirements<br>
         • Firewall rules for sensor → SiteStore communication<br>
-        • Coordinate with ISSO for ATO documentation (if required)<br>
+        • Coordinate IATT (Interim Authority to Test) package with ISSO for eMASS submission<br>
+        • Submit FIPS 199 system categorization for ISSO concurrence<br>
+        • Coordinate site access (PIV/CAC or government escort) for deployment personnel<br>
         • Validate no active scanning occurs (passive only)
       </td>
-      <td>Deployed infrastructure, connectivity validation, ATO artifact package</td>
+      <td>Deployed infrastructure, connectivity validation, IATT package, FIPS 199 categorization</td>
     </tr>
     <tr>
       <td><strong>3. Deploy & Baseline</strong></td>
@@ -889,20 +891,28 @@
   <h3>Federal-Specific POC Considerations</h3>
   <div class="card-grid">
     <div class="card">
-      <h4>ATO / Authorization</h4>
-      <p>Many federal customers require ATO artifacts for any new system on their network. Dragos Platform 2.x has a published DISA STIG, which accelerates the assessment process. I would prepare the ATO artifact package during Phase 2.</p>
+      <h4>IATT / Authorization Path</h4>
+      <p>Federal PoC deployments require an Interim Authority to Test (IATT) before sensors touch the network. The SA prepares the IATT package (STIG checklist, network diagrams, data flow documentation, ports/protocols matrix) and coordinates eMASS submission with the customer's ISSO. Dragos Platform 2.x STIG on public.cyber.mil accelerates this process. I would begin IATT coordination during Phase 1 to avoid deployment delays.</p>
+    </div>
+    <div class="card">
+      <h4>FIPS 199 / System Categorization</h4>
+      <p>RMF Step 1 requires FIPS 199 categorization before control selection can begin. For OT monitoring at safety-critical infrastructure, I would recommend Moderate-Moderate-High (availability drives the HIGH baseline). Getting ISSO concurrence on categorization early prevents control selection surprises later in the authorization process.</p>
+    </div>
+    <div class="card">
+      <h4>Site Access / PIV/CAC</h4>
+      <p>Federal facilities require PIV/CAC for unescorted access or government escort for each site visit. Access requests typically require 14 days advance notice through the site's Physical Security Office. The SA coordinates access logistics during Phase 2 to prevent deployment schedule slips. My current role at restricted military installations means I navigate these processes daily.</p>
+    </div>
+    <div class="card">
+      <h4>Supply Chain / Section 889</h4>
+      <p>The contracting officer requires Section 889 (NDAA FY2019) compliance certification before award. All Dragos hardware (Dell/HPE platforms) is 889-compliant with documented supply chain provenance. The SA proactively provides the compliance letter to the CO during the procurement phase, not waiting to be asked. This demonstrates procurement maturity and avoids delays.</p>
     </div>
     <div class="card">
       <h4>Classification Constraints</h4>
-      <p>Classified environments may restrict data export, remote access, and vendor support models. POC design must account for air-gapped operation and on-site-only support. My current environment has the same restrictions.</p>
-    </div>
-    <div class="card">
-      <h4>Passive-Only Requirement</h4>
-      <p>OT environments cannot tolerate active scanning. I would explicitly validate with the customer and their network team that Dragos sensors are passive: SPAN port mirroring only, zero injection.</p>
+      <p>Classified environments restrict data export, remote access, and vendor support models. POC design must account for air-gapped operation, secure media transfer for content updates, and on-site-only support. My current environment operates under the same restrictions across TS/SCI and Secret enclaves.</p>
     </div>
     <div class="card">
       <h4>Multi-Stakeholder Alignment</h4>
-      <p>Federal POCs involve CISO, mission owners, network engineers, ISSOs, contracting officers, and sometimes external assessors. My current role requires coordination across all of these at the site and program level.</p>
+      <p>Federal POCs involve CISO, mission owners, network engineers, ISSOs, contracting officers, and sometimes the Authorizing Official's designated representative (AODR). The SA manages the technical track while the AM manages the commercial track. My current role requires identical coordination across all of these at the site and program level.</p>
     </div>
   </div>
 </div>
