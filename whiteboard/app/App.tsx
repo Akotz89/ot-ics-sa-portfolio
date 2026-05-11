@@ -5,6 +5,7 @@ import type { DiagramEntity, DragState } from './engine/diagramModel'
 import { loadWorkshopDraft, resetWorkshopDraft, sameEntityLayout, saveWorkshopDraft } from './engine/workshopDraft'
 import { flows } from './model/topology'
 import { steps } from './model/steps'
+import { concernStatusLabels, concernsForStep, type ConcernModel } from './model/gaps'
 import { computeRouteScene } from './routing/computeRoutes'
 import { auditDiagram, validateStaticModel } from './validation/modelValidation'
 import { PulseHitLayer } from './renderer/PulseHitLayer'
@@ -41,6 +42,7 @@ export function App() {
   const activeEntities = mode === 'presentation' ? presentationEntities : workshopEntities
   const layout = useMemo(() => computeBoardLayout(activeEntities, undefined, viewport), [activeEntities, viewport])
   const routeScene = useMemo(() => computeRouteScene(layout, step), [layout, step])
+  const stepConcerns = useMemo(() => concernsForStep(step.id).slice(0, 2), [step.id])
   const stateGuardErrors = useMemo(() => auditPresentationState(mode, activeEntities, presentationEntities), [activeEntities, mode, presentationEntities])
   const auditErrors = useMemo(() => [...validateStaticModel(), ...auditDiagram(layout, step, routeScene), ...stateGuardErrors], [layout, routeScene, stateGuardErrors, step])
   const pulseLinkSet = useMemo(() => new Set(pulseLinks), [pulseLinks])
@@ -243,8 +245,26 @@ export function App() {
           {mode === 'presentation' ? <PulseHitLayer layout={layout} step={step} onPulse={triggerPulse} /> : null}
         </div>
       </div>
+      {mode === 'presentation' && stepConcerns.length ? <ValidationPanel concerns={stepConcerns} /> : null}
       {hasErrors ? <div className="qa-failure-overlay">Whiteboard QA failed: {auditErrors.slice(0, 5).join(' | ')}</div> : null}
     </div>
+  )
+}
+
+function ValidationPanel({ concerns }: { concerns: ConcernModel[] }) {
+  return (
+    <aside className="wb-validation-panel" aria-label="Workshop validation prompts" tabIndex={0}>
+      <div className="wb-validation-title">Workshop Validation</div>
+      {concerns.map((concern) => (
+        <article key={concern.id} className={`wb-validation-item status-${concern.status}`}>
+          <div>
+            <span>{concernStatusLabels[concern.status]}</span>
+            <strong>{concern.title}</strong>
+          </div>
+          <p>{concern.customerPrompt}</p>
+        </article>
+      ))}
+    </aside>
   )
 }
 

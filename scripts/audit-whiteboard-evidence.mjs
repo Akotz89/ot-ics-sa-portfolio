@@ -21,6 +21,7 @@ require.extensions['.ts'] = (module, filename) => {
 const { evidenceCatalog } = require(join(root, 'whiteboard/app/model/evidence.ts'))
 const { zones, entities, links } = require(join(root, 'whiteboard/app/model/topology.ts'))
 const { steps } = require(join(root, 'whiteboard/app/model/steps.ts'))
+const { concerns, requiredScenarioConcernIds } = require(join(root, 'whiteboard/app/model/gaps.ts'))
 
 const errors = []
 const approvedPublicPrefixes = [
@@ -44,6 +45,21 @@ for (const zone of zones) checkRefs(`zone ${zone.id}`, zone.evidenceRefs)
 for (const entity of entities) checkRefs(`entity ${entity.id}`, entity.evidenceRefs)
 for (const link of links) checkRefs(`link ${link.id}`, link.evidenceRefs)
 for (const step of steps) checkRefs(`step ${step.id}`, step.evidenceRefs)
+for (const concern of concerns) checkRefs(`concern ${concern.id}`, concern.evidenceRefs)
+
+const stepIds = new Set(steps.map((step) => step.id))
+const modeledConcernIds = new Set(concerns.map((concern) => concern.id))
+for (const concernId of requiredScenarioConcernIds) {
+  if (!modeledConcernIds.has(concernId)) errors.push(`required scenario concern ${concernId} is missing`)
+}
+for (const concern of concerns) {
+  if (!concern.customerPrompt?.trim()) errors.push(`${concern.id} has no customer prompt`)
+  if (!concern.scenarioFinding?.trim()) errors.push(`${concern.id} has no scenario finding`)
+  if (!concern.dragosRelevance?.trim()) errors.push(`${concern.id} has no Dragos relevance`)
+  for (const stepId of concern.stepIds ?? []) {
+    if (!stepIds.has(stepId)) errors.push(`${concern.id} references missing step ${stepId}`)
+  }
+}
 
 if (steps.length !== 24) errors.push(`expected 24 whiteboard steps, found ${steps.length}`)
 
@@ -65,11 +81,17 @@ for (const evidence of Object.values(evidenceCatalog)) {
   console.log(`| ${escapeCell(evidence.claim)} | ${evidence.id} | ${escapeCell(evidence.source)} | PASS |`)
 }
 
+console.log('\n| Whiteboard gap concern | Status | Steps | Status |')
+console.log('|---|---|---|---|')
+for (const concern of concerns) {
+  console.log(`| ${escapeCell(concern.title)} | ${concern.status} | ${escapeCell(concern.stepIds.join(', '))} | PASS |`)
+}
+
 if (errors.length) {
   console.error(`\nWhiteboard scenario alignment failed:\n- ${errors.join('\n- ')}`)
   process.exitCode = 1
 } else {
-  console.log(`\nWhiteboard scenario alignment passed: ${zones.length} zones, ${entities.length} entities, ${links.length} links, ${steps.length} steps, ${Object.keys(evidenceCatalog).length} evidence anchors.`)
+  console.log(`\nWhiteboard scenario alignment passed: ${zones.length} zones, ${entities.length} entities, ${links.length} links, ${steps.length} steps, ${concerns.length} concerns, ${Object.keys(evidenceCatalog).length} evidence anchors.`)
 }
 
 function checkRefs(owner, refs) {

@@ -265,7 +265,7 @@ const stepDefinitions: StepModel[] = [
     label: 'Boundary SPAN',
     tag: 'POINT',
     narration:
-      'Draw the boundary SPAN feed. This gives north/south visibility without placing Dragos inline on the firewall path.',
+      'Draw the passive boundary SPAN/TAP copy. This gives north/south visibility without placing Dragos inline on the firewall path.',
     visibleZones: allZones,
     visibleEntities: [...boundary, ...operations, ...control, ...field, ...monitoring],
     visibleLinks: ['firewall-sensor-boundary'],
@@ -278,7 +278,7 @@ const stepDefinitions: StepModel[] = [
     label: 'Control Trunk SPAN',
     tag: 'POINT',
     narration:
-      'Draw the control trunk SPAN feed. This is the passive collection point for SCADA-to-controller visibility.',
+      'Draw the passive control SPAN/TAP copy. Confirm the mirrored source sees the control VLANs and does not miss same-switch east/west traffic.',
     visibleZones: allZones,
     visibleEntities: [...enterprise, ...boundary, ...operations, ...control, ...field, ...monitoring],
     visibleLinks: ['core-dist', 'dist-sensor-control'],
@@ -317,7 +317,7 @@ const stepDefinitions: StepModel[] = [
     label: 'SOC Handoff',
     tag: 'DRAW',
     narration:
-      'Close the loop into the customer process: detections become SOC review and ticket handoff, not just another monitoring console.',
+      'Close the loop into the customer process: approved outbound detections become SOC review and ticket handoff, not enterprise tools reaching into OT.',
     visibleZones: allZones,
     visibleEntities: [...enterprise, ...boundary, ...operations, ...control, ...field, ...monitoring],
     visibleLinks: ['sitestore-centralstore', 'tickets-centralstore'],

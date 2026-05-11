@@ -1,6 +1,7 @@
 import { contains, inflate, intersects, segmentIntersectsRect, segmentsFor } from '../engine/geometry'
 import type { BoardLayout } from '../engine/diagramModel'
 import { evidenceCatalog, type EvidenceRefId } from '../model/evidence'
+import { concerns, requiredScenarioConcernIds } from '../model/gaps'
 import { entities, flows, links, zones } from '../model/topology'
 import { steps, type StepModel } from '../model/steps'
 import type { RouteSceneLayout } from '../routing/types'
@@ -10,6 +11,8 @@ export function validateStaticModel() {
   const entityIds = new Set<string>(entities.map((entity) => entity.id))
   const zoneIds = new Set<string>(zones.map((zone) => zone.id))
   const linkIds = new Set<string>(links.map((link) => link.id))
+  const stepIds = new Set<string>(steps.map((step) => step.id))
+  const modelItemIds = new Set([...entityIds, ...zoneIds, ...linkIds])
   const routeClasses = new Set(['enterprise', 'service', 'trunk', 'protocol-bus', 'span-feed', 'metadata-handoff'])
   const directionCues = new Set(['none', 'forward', 'reverse', 'both', 'passive'])
   const ports = new Set(['left', 'right', 'top', 'bottom', 'uplink', 'downlink', 'service', 'span', 'metadata', 'fieldbus'])
@@ -41,6 +44,24 @@ export function validateStaticModel() {
     for (const linkId of flow.links) if (!linkIds.has(linkId)) errors.push(`${flow.id} references missing link ${linkId}`)
   }
 
+  const concernIds = new Set(concerns.map((concern) => concern.id))
+  const concernStatuses = new Set(['validate', 'unknown', 'gap-if-absent', 'confirmed-gap', 'pov-dependency', 'authorization-dependency'])
+  for (const requiredId of requiredScenarioConcernIds) {
+    if (!concernIds.has(requiredId)) errors.push(`required scenario concern ${requiredId} is not modeled`)
+  }
+  for (const concern of concerns) {
+    if (!concernStatuses.has(concern.status)) errors.push(`${concern.id} has invalid status ${concern.status}`)
+    if (!concern.title.trim()) errors.push(`${concern.id} has no title`)
+    if (!concern.customerPrompt.trim()) errors.push(`${concern.id} has no customerPrompt`)
+    if (!concern.whyItMatters.trim()) errors.push(`${concern.id} has no whyItMatters`)
+    if (!concern.scenarioFinding.trim()) errors.push(`${concern.id} has no scenarioFinding`)
+    if (!concern.dragosRelevance.trim()) errors.push(`${concern.id} has no dragosRelevance`)
+    validateEvidenceRefs(errors, `concern ${concern.id}`, concern.evidenceRefs, evidenceIds)
+    for (const stepId of concern.stepIds) if (!stepIds.has(stepId)) errors.push(`${concern.id} references missing step ${stepId}`)
+    for (const itemId of concern.tiedTo) if (!modelItemIds.has(itemId)) errors.push(`${concern.id} tiedTo missing model item ${itemId}`)
+  }
+  validateControlStatus(errors)
+
   for (const step of steps) {
     validateEvidenceRefs(errors, `step ${step.id}`, step.evidenceRefs, evidenceIds)
     for (const zoneId of step.visibleZones) if (!zoneIds.has(zoneId)) errors.push(`${step.id} references missing zone ${zoneId}`)
@@ -59,6 +80,29 @@ export function validateStaticModel() {
   }
 
   return errors
+}
+
+function validateControlStatus(errors: string[]) {
+  const firewallConcern = concerns.find((concern) => concern.id === 'l4-l3-firewall-gap')
+  const jumpConcern = concerns.find((concern) => concern.id === 'remote-access-no-jump-mfa')
+  if (firewallConcern && !['confirmed-gap', 'validate', 'gap-if-absent'].includes(firewallConcern.status)) {
+    errors.push('boundary firewall concern must be framed as validation or gap, not confirmed current-state control')
+  }
+  if (jumpConcern && !['confirmed-gap', 'validate', 'gap-if-absent'].includes(jumpConcern.status)) {
+    errors.push('jump host concern must be framed as validation or gap, not confirmed current-state control')
+  }
+  const unsafePhrases = [
+    /the customer has a true L4-to-L3 firewall/i,
+    /the customer has a jump host/i,
+    /MFA is configured/i,
+    /session logging is configured/i,
+  ]
+  for (const concern of concerns) {
+    const copy = `${concern.customerPrompt} ${concern.scenarioFinding}`
+    for (const phrase of unsafePhrases) {
+      if (phrase.test(copy)) errors.push(`${concern.id} states an unconfirmed boundary/access control as fact`)
+    }
+  }
 }
 
 function validateEvidenceRefs(errors: string[], owner: string, refs: EvidenceRefId[] | undefined, evidenceIds: Set<string>) {
