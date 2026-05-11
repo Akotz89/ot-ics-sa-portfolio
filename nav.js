@@ -17,6 +17,7 @@
 
   const tools = [
     { href: 'whiteboard/index.html', label: 'Whiteboard' },
+    { href: 'evidence.html', label: 'Evidence' },
   ];
 
   // Determine which page is active
