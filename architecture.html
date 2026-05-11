@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -50,20 +50,20 @@
 <!-- SECTION 1: EXECUTIVE SUMMARY -->
 <h2>1. Executive Summary</h2>
 
-<p>This document presents the recommended Dragos Platform deployment architecture for the U.S. Army Corps of Engineers - Northwestern Division (NWD) Columbia River hydropower facilities. The architecture is derived from the Technical Discovery session conducted on May 15, 2026, and addresses the complete absence of OT network monitoring across four major dam sites generating 6,003 MW of combined capacity.</p>
+<p>This architecture covers the Dragos Platform deployment for the USACE Northwestern Division (NWD) Columbia River hydropower facilities: Bonneville, The Dalles, John Day, and McNary. These four dams generate 6,003 MW combined and currently have no OT network monitoring.</p>
 
-<p>This gap is critical given the current <span class="tip" data-tip="Dragos tracks 20+ ICS-specific threat groups. VOLTZITE (Chinese state-sponsored) has been observed pre-positioning in US critical infrastructure. CHERNOVITE developed PIPEDREAM/INCONTROLLER - the first cross-industry ICS attack framework capable of targeting multiple OT protocols. ELECTRUM (Sandworm) has demonstrated destructive capability against power grid infrastructure.">threat landscape</span>. Dragos tracks 20+ ICS-specific threat groups, including <strong>VOLTZITE</strong> (targeting U.S. critical infrastructure for pre-positioning) and <strong>CHERNOVITE</strong> (developer of PIPEDREAM, the first cross-industry ICS attack framework). Hydropower facilities with unmonitored OT networks represent high-value targets with zero detection capability.</p>
+<p>The design is based on the Technical Discovery session conducted May 15, 2026 (see Discovery Document v1.4, DRG-FED-2026-0847). <span class="tip" data-tip="Dragos tracks 20+ ICS-specific threat groups. VOLTZITE (PRC-linked) has been observed pre-positioning in US critical infrastructure. CHERNOVITE developed PIPEDREAM/INCONTROLLER, a cross-industry ICS attack framework. ELECTRUM (Sandworm) has demonstrated destructive capability against power grid infrastructure.">Threat context</span> is documented in the Discovery report; key drivers are VOLTZITE pre-positioning activity and the DoD CIO OT monitoring mandate.</p>
 
 <blockquote>
-  <strong>Design Principle:</strong> All OT data processing stays on-premises. Only structured alert metadata leaves the local network via encrypted channels to existing enterprise security tools. No raw PCAP, asset data, or process telemetry is sent to any cloud service.
+  <strong>Design Principle:</strong> All OT data stays on-premises. Only structured alert metadata leaves the local network via encrypted channels to existing enterprise security tools. No raw PCAP, asset data, or process telemetry goes to any cloud service.
 </blockquote>
 
-<p>The proposed architecture deploys <strong>6 passive sensors</strong> across 4 dam sites, <strong>4 SiteStores</strong> for local analysis, and <strong>1 CentralStore</strong> at NWD HQ for enterprise aggregation, providing complete OT visibility from Purdue Level 1 through Level 3 without any active scanning or operational disruption.</p>
+<p>The deployment: <strong>6 passive sensors</strong> across 4 dam sites, <strong>4 SiteStores</strong> for local analysis, and <strong>1 CentralStore</strong> at NWD HQ for enterprise aggregation. Passive monitoring only (Purdue L1-L3). No active scanning.</p>
 
 <!-- SECTION 2: SITE ARCHITECTURE -->
 <h2>2. Site Deployment Architecture</h2>
 
-<p>Each site's deployment is tailored to its specific controller platform, network infrastructure, and protocol requirements identified during discovery. Sensor placement and network tap strategy varies by site based on switch capabilities.</p>
+<p>Deployment varies by site based on controller platform, switch capabilities, and protocol mix. Sensor placement and tap strategy are driven by what each site's network gear can support.</p>
 
 <div class="site-grid">
   <div class="site-card">
@@ -136,14 +136,14 @@
     <li>Executive reporting for NWD leadership and USACE HQ</li>
     <li>SIEM integration point (single syslog feed to Splunk Cloud)</li>
   </ul>
-  <p style="margin-top: 12px; font-size: 13px;"><strong>VM Requirements:</strong> 8 vCPU, 32 GB RAM, 2 TB storage, VMware ESXi 7.0+ or RHEL 8.x KVM. <span class="tip" data-tip="DISA STIG (Security Technical Implementation Guide) is the DoD standard for system hardening. Dragos Platform 2.x STIG is published on public.cyber.mil. Applying the STIG baseline pre-deployment accelerates the ATO process by providing the ISSO a pre-built assessment checklist.">DISA STIG baseline</span> applied.</p>
+  <p style="margin-top: 12px; font-size: 13px;"><strong>VM Requirements:</strong> 8 vCPU, 32 GB RAM, 2 TB storage, VMware ESXi 8.0+ or RHEL 9.x KVM. <span class="tip" data-tip="DISA STIG (Security Technical Implementation Guide) is the DoD standard for system hardening. Dragos Platform 2.x STIG is published on public.cyber.mil. Applying the STIG baseline pre-deployment accelerates the ATO process by providing the ISSO a pre-built assessment checklist.">DISA STIG baseline</span> applied.</p>
   <p style="margin-top: 8px; font-size: 13px;"><strong>Network:</strong> SiteStore → CentralStore: <span class="tip" data-tip="Metadata-only transport between sites. Raw PCAP stays on-site at each SiteStore. Only structured alerts, asset inventory updates, and vulnerability data are forwarded - not full packet captures.">~5-10 Mbps per site</span> (metadata transport over encrypted WAN). <strong>Data Retention:</strong> <span class="tip" data-tip="90-day PCAP retention is sized for the estimated traffic profile. Each SiteStore retains local packet captures for forensic investigation. After 90 days, aging policy rolls oldest captures. Retention can be extended by adding storage.">90-day PCAP</span> per SiteStore (local); 1-year alert/asset history at CentralStore.</p>
 </div>
 
 <!-- SECTION 4: INTEGRATIONS -->
 <h2>4. Integration Architecture</h2>
 
-<p>The Dragos Platform integrates with the customer's existing security stack. All integrations use encrypted channels and send only metadata. No raw OT data leaves the on-premises environment.</p>
+<p>Dragos integrates with the customer's existing security tools. All integrations use encrypted channels and send metadata only. No raw OT data leaves the on-premises environment.</p>
 
 <div class="int-grid">
   <div class="int-card">
@@ -158,14 +158,14 @@
     <p><strong>Method:</strong> REST API (bi-directional)<br>
     <strong>Dragos → CS:</strong> OT IOCs + asset inventory → Falcon Discover for IoT<br>
     <strong>CS → Dragos:</strong> EDR context (hostname, OS, AD domain) enriches OT asset data<br>
-    <strong>Value:</strong> Unified IT/OT threat visibility</p>
+    <strong>Value:</strong> Correlate IT endpoint context with OT asset data</p>
   </div>
   <div class="int-card">
     <h4>🌐 <span class="tip" data-tip="Neighborhood Keeper is Dragos' community defense program. Sensors share anonymized threat telemetry - customer identifiers are stripped before transmission. NSA and CISA participate as trusted advisors.">Neighborhood Keeper</span></h4>
     <p><strong>Method:</strong> Anonymized sensor telemetry<br>
     <strong>Source:</strong> Sensors → Dragos Cloud (anonymized)<br>
     <strong>Data:</strong> Statistical threat patterns only. Zero customer-identifiable data.<br>
-    <strong>Value:</strong> Collective defense for critical infrastructure</p>
+    <strong>Value:</strong> Cross-sector threat awareness without exposing customer data</p>
   </div>
 </div>
 
@@ -229,7 +229,7 @@
 <!-- SECTION 6: COMPLIANCE MAPPING -->
 <h2>6. Compliance &amp; Regulatory Alignment</h2>
 
-<p>This architecture addresses multiple overlapping federal compliance requirements. The Dragos Platform provides direct evidence artifacts for each framework.</p>
+<p>This architecture maps to four federal compliance frameworks. The platform generates evidence artifacts for each.</p>
 
 <div class="compliance-grid">
   <div class="comp-card">
@@ -242,7 +242,7 @@
   </div>
   <div class="comp-card">
     <h4><span class="tip" data-tip="The DoD CIO issued a directive requiring all DoD components to establish OT cybersecurity programs with asset inventory, network monitoring, and vulnerability management capabilities. Applies to USACE as a DoD agency.">DoD CIO OT Security Directive</span></h4>
-    <p>Mandates OT cybersecurity programs across all DoD components. This deployment directly satisfies the asset visibility and network monitoring requirements.</p>
+    <p>Mandates OT cybersecurity programs across all DoD components. This deployment covers the asset visibility and network monitoring requirements.</p>
   </div>
   <div class="comp-card">
     <h4><span class="tip" data-tip="NIST SP 800-53 Rev 5 provides the security control catalog used by all federal systems. The Dragos Platform maps to controls in the SI (System and Information Integrity), AU (Audit), and IR (Incident Response) families.">NIST SP 800-53 Rev 5</span></h4>
@@ -290,7 +290,7 @@
 <!-- SECTION 8: POC SUCCESS CRITERIA -->
 <h2>8. PoC Success Criteria</h2>
 
-<p>The Bonneville Dam PoC is evaluated against five specific, measurable success criteria. All five must be met before recommending full production deployment.</p>
+<p>The Bonneville PoC is evaluated against five success criteria. All must be met before recommending production deployment.</p>
 
 <table>
   <tr><th>#</th><th>Criterion</th><th>Target</th><th>Measurement Method</th></tr>
